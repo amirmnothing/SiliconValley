@@ -1,7 +1,25 @@
-import java.util.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-public class Main {
-    public static void main(String[] args){
-        System.out.println("SiliconValley Project Start");
+import java.util.Objects;
+
+public class Main extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        GridPane root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("UI/view/gameBoard.fxml")));
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Game Board");
+        primaryStage.setResizable(false);
+
+        primaryStage.show();
     }
 }
