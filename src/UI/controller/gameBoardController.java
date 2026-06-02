@@ -1,5 +1,6 @@
 package UI.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -312,6 +313,10 @@ public class gameBoardController {
         ((Shape) (event.getSource())).setStroke(Color.rgb(70,70,70));
     }
 
-
-
+    @FXML
+    void SetColorUnchangable(MouseEvent event){
+        ((Shape) (event.getSource())).setOnMouseEntered(null);
+        ((Shape) (event.getSource())).setOnMouseExited(null);
+        ((Shape) (event.getSource())).setFill(Color.RED);
+    }
 }
