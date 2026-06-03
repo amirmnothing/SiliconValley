@@ -20,6 +20,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Game Board");
         primaryStage.setResizable(false);
+//        primaryStage.setFullScreen(true);
 
         primaryStage.show();
     }

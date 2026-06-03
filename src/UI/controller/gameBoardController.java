@@ -2,7 +2,9 @@ package UI.controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -308,6 +310,23 @@ public class gameBoardController {
     void ChangeColorToNotChoose(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.rgb(70,70,70));
         ((Shape) (event.getSource())).setStroke(Color.rgb(70,70,70));
+    }
+
+    @FXML
+    void ChangeButtonColorToChoose(MouseEvent event) {
+        String rgbColor = "rgb(37,37,37)";
+        if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
+            ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
+        else
+            ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+    }
+
+    @FXML
+    void ChangeButtonColorToNotChoose(MouseEvent event) {
+        if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
+            ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
+        else
+            ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
