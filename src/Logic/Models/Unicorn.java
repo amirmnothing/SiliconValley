@@ -11,10 +11,10 @@ public class Unicorn extends CompanyStructure {
 
         @Override
         public void produce(Sector sector) {
-            if(sector.isInspector())return;
+            if (sector.isInspector()) return;
 
             ResourceType producedResource = sector.getResources();
-            if(producedResource == null) return;
+            if (producedResource == null) return;
             this.getOwner().addResource(producedResource, 2);
         }
 
@@ -22,6 +22,4 @@ public class Unicorn extends CompanyStructure {
         public int getVictoryPoints() {
             return 2;
         }
-
-
 }
