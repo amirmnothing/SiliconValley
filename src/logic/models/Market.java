@@ -1,4 +1,4 @@
-package Logic.Models;
+package logic.models;
 
 public class Market {
 }

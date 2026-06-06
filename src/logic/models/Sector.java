@@ -1,20 +1,19 @@
-package Logic.Models;
-import Logic.Enums.CornerDirection;
-import Logic.Enums.ResourceType;
+package logic.models;
+import logic.enums.CornerDirection;
+import logic.enums.ResourceType;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Sector {
     private ResourceType resourceType;
-    private int diceNumber;
+    private int activationNumber;
     private boolean isInspector;
     private final Map<CornerDirection, Vertex> corners;
 
-    public Sector(ResourceType resourceType, int diceNumber, boolean isInspector) {
+    public Sector(ResourceType resourceType, int activationNumber, boolean isInspector) {
         this.resourceType = resourceType;
-        this.diceNumber = diceNumber;
+        this.activationNumber = activationNumber;
         this.isInspector = isInspector;
         this.corners = new HashMap<>();
     }
@@ -27,12 +26,12 @@ public class Sector {
         this.resourceType = resourceType;
     }
 
-    public int getDiceNumber() {
-        return diceNumber;
+    public int getactivationNumber() {
+        return activationNumber;
     }
 
-    public void setDiceNumber(int diceNumber) {
-        this.diceNumber = diceNumber;
+    public void setactivationNumber(int activationNumber) {
+        this.activationNumber = activationNumber;
     }
 
     public boolean isInspector() {

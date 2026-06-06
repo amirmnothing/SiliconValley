@@ -1,4 +1,4 @@
-package Logic.Enums;
+package logic.enums;
 
 public enum PlayerRole {
     THE_HACKER_CEO,

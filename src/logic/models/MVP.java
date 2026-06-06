@@ -1,6 +1,6 @@
-package Logic.Models;
+package logic.models;
 
-import Logic.Enums.ResourceType;
+import logic.enums.ResourceType;
 
 public class MVP extends CompanyStructure {
     public MVP(Player owner) {
@@ -11,7 +11,7 @@ public class MVP extends CompanyStructure {
     @Override
     public void produce(Sector sector) {
         if (sector.isInspector()) return;
-        ResourceType producedResource = sector.getResources();
+        ResourceType producedResource = sector.getResourceType();
 
         if (producedResource == null) return;
 

@@ -1,6 +1,6 @@
-package Logic.Models;
+package logic.models;
 
-import Logic.Enums.ResourceType;
+import logic.enums.ResourceType;
 
 public class Unicorn extends CompanyStructure {
 
@@ -13,7 +13,7 @@ public class Unicorn extends CompanyStructure {
         public void produce(Sector sector) {
             if (sector.isInspector()) return;
 
-            ResourceType producedResource = sector.getResources();
+            ResourceType producedResource = sector.getResourceType();
             if (producedResource == null) return;
             this.getOwner().addResource(producedResource, 2);
         }

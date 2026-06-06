@@ -1,4 +1,4 @@
-package Logic.Models;
+package logic.models;
 
 public abstract class CompanyStructure {
     private final Player owner;

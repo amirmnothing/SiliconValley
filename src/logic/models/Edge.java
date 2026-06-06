@@ -1,10 +1,11 @@
-package Logic.Models;
+package logic.models;
 
 
 public class Edge {
     private Vertex start;
     private Vertex end;
-    private PartnerShip partnership;
+    private Partnership partnership;
+
     public Edge(Vertex start, Vertex end) {
        this.start = start;
        this.end = end;
@@ -27,11 +28,11 @@ public class Edge {
         this.end = end;
     }
 
-    public PartnerShip getPartnership() {
+    public Partnership getPartnership() {
         return partnership;
     }
 
-    public void setPartnership(PartnerShip partnership) {
+    public void setPartnership(Partnership partnership) {
         this.partnership = partnership;
     }
 }
