@@ -22,7 +22,7 @@ public class Player {
         this.companies=companies;
         this.playerRole=playerRole;
     }
-    public int culculateVictoryPoints() {
+    public int calculateVictoryPoints() {
         int totalPoints = 0;
         if(companies!=null) {
             for (CompanyStructure comp : companies) {
