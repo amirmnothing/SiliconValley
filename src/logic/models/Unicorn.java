@@ -12,7 +12,6 @@ public class Unicorn extends CompanyStructure {
         @Override
         public void produce(Sector sector) {
             if (sector.isInspector()) return;
-
             ResourceType producedResource = sector.getResourceType();
             if (producedResource == null) return;
             this.getOwner().addResource(producedResource, 2);

@@ -7,9 +7,22 @@ public class Edge {
     private Partnership partnership;
 
     public Edge(Vertex start, Vertex end) {
-       this.start = start;
-       this.end = end;
-       this.partnership = null;
+        this.start = start;
+        this.end = end;
+        this.partnership = null;
+
+        if (start != null) {
+            start.addAdjacentEdge(this);
+        }
+        if (end != null) {
+            end.addAdjacentEdge(this);
+        }
+    }
+
+    public Vertex getOppositeVertex(Vertex current){
+        if (current == start) return end;
+        if (current == end) return start;
+        else return null;
     }
 
     public Vertex getStart() {

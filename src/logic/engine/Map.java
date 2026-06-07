@@ -68,4 +68,23 @@ public class Map {
             }
         }
     }
+    public Sector[][] getSectors() {
+        return sectors;
+    }
+
+    public Vertex[][] getVertices() {
+        return vertices;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public int getRows() {
+        return rows;
+    }
 }

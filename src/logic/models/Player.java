@@ -61,15 +61,37 @@ public class Player {
     }
 
     public boolean hasResourcesForPartnership(){
-        if (resources.getOrDefault(ResourceType.PATENT, 0) > 0 && resources.getOrDefault(ResourceType.CAPITAL, 0) > 0){
-            return true;
-        }
-        return false;
+        return resources.getOrDefault(ResourceType.PATENT, 0) > 0 &&
+                resources.getOrDefault(ResourceType.CAPITAL, 0) > 0;
+    }
+
+    public boolean hasResourcesForMVP(){
+        return resources.getOrDefault(ResourceType.CAPITAL, 0) > 0 &&
+                resources.getOrDefault(ResourceType.TALENT, 0) > 0 &&
+                resources.getOrDefault(ResourceType.CLOUD, 0) > 0 &&
+                resources.getOrDefault(ResourceType.DATA, 0) > 0;
     }
 
     public void deductResourcesForPartnership(){
-        deductResource(ResourceType.CAPITAL , 1);
-        deductResource(ResourceType.PATENT , 1);
+        if (hasResourcesForPartnership()) {
+            deductResource(ResourceType.CAPITAL, 1);
+            deductResource(ResourceType.PATENT, 1);
+        }
+        else {
+            // TODO : Show error : not enough resources
+        }
+    }
+
+    public void deductResourcesForMVP(){
+        if (hasResourcesForMVP()) {
+            deductResource(ResourceType.CAPITAL, 1);
+            deductResource(ResourceType.TALENT, 1);
+            deductResource(ResourceType.CLOUD, 1);
+            deductResource(ResourceType.DATA, 1);
+        }
+        else {
+            // TODO : Show error : not enough resources
+        }
     }
 
     public Map<ResourceType, Integer> getResourceCount() {

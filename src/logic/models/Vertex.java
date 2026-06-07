@@ -1,10 +1,15 @@
 package logic.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vertex {
     private CompanyStructure companyStructure;
+    private List<Edge> adjacentEdges;
 
     public Vertex() {
         this.companyStructure = null;
+        this.adjacentEdges = new ArrayList<>();
     }
 
     public CompanyStructure getCompanyStructure() {
@@ -15,26 +20,13 @@ public class Vertex {
         this.companyStructure = companyStructure;
     }
 
+    public List<Edge> getAdjacentEdges() {
+        return adjacentEdges;
+    }
 
-//    private List<Sector> adjacentSectors;
-//    private List<Edge> adjacentEdges;
-//    public Vertex(List<Sector> adjacentSectors) {
-//        if(adjacentSectors!=null) {this.adjacentSectors=adjacentSectors;}
-//        else this.adjacentSectors=new ArrayList<>();
-//        this.adjacentEdges=new ArrayList<>();
-//        this.companyStructure = null;
-//    }
+    public void addAdjacentEdge(Edge edge) {
+        if (edge != null && !adjacentEdges.contains(edge))
+            this.adjacentEdges.add(edge);
+    }
 
-//    public List<Sector> getAdjacentSectors() {
-//        return adjacentSectors;
-//    }
-//    public void setAdjacentSectors(List<Sector> adjacentSectors) {
-//        this.adjacentSectors = adjacentSectors;
-//    }
-//    public List<Edge> getAdjacentEdges() {
-//        return adjacentEdges;
-//    }
-//    public void addAdjacentEdge(Edge edge) {
-//        this.adjacentEdges.add(edge);
-//    }
 }
