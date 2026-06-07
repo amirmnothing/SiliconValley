@@ -30,14 +30,14 @@ public class Market {
         }
 
         int capitalPrice = getPrice(resourceToBuy);
-
+        int finalPrice = player.calculateMarketPrice(resourceToBuy,capitalPrice);
         int playerCapitalCount = player.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0);
-        if (playerCapitalCount < capitalPrice) {
+        if (playerCapitalCount < finalPrice) {
             //TODO برای خطا اینجا هم  اکسپشن
             return false;
         }
 
-        player.deductResource(ResourceType.CAPITAL, capitalPrice);
+        player.deductResource(ResourceType.CAPITAL, finalPrice);
         player.addResource(resourceToBuy, 1);
 
         if (currentPrices.get(resourceToBuy) < 6) {
