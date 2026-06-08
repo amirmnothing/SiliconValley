@@ -10,7 +10,7 @@ public class MVP extends CompanyStructure {
 
     @Override
     public void produce(Sector sector) {
-        if (sector.isInspector()) return;
+        if (sector.isAuditor()) return;
         ResourceType producedResource = sector.getResourceType();
         if (producedResource == null) return;
         this.getOwner().addResource(producedResource, 1);

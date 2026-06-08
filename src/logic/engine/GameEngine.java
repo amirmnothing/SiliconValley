@@ -48,7 +48,7 @@ public class GameEngine {
         Sector[][] sectors =  map.getSectors();
         for (int r = 0; r < map.getRows(); r++){
             for (int c = 0; c < map.getCols(); c++){
-                if (sectors[r][c].getactivationNumber() == activationNumber && !sectors[r][c].isInspector()){
+                if (sectors[r][c].getactivationNumber() == activationNumber && !sectors[r][c].isAuditor()){
                     for (CornerDirection cornerDirection : CornerDirection.values())
                         if ((sectors[r][c].getCorner(cornerDirection)).getCompanyStructure() != null) (sectors[r][c].getCorner(cornerDirection)).getCompanyStructure().produce(sectors[r][c]);
                 }
@@ -121,6 +121,43 @@ public class GameEngine {
 
         // TODO : Show MPV created successfully
 
+    }
+
+    public boolean canPlaceAuditor(Sector sector){
+        if (sector == null) return false;
+        if (sector.isAuditor()) return false;
+
+        if (sector.hasAnyCompanyOnSector()) return true;
+
+        Sector[][] sectors = map.getSectors();
+        int mapRows = map.getRows();
+        int mapCols = map.getCols();
+        for (int r = 0; r < mapRows; r++){
+            for (int c = 0; c < mapCols; c++){
+                if (sectors[r][c].hasAnyCompanyOnSector()) return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean moveAuditor(Sector sector){
+        if (sector == null) return false;
+        if (!canPlaceAuditor(sector)) return false;
+
+        Sector[][] sectors = map.getSectors();
+        int mapRows = map.getRows();
+        int mapCols = map.getCols();
+        for (int r = 0; r < mapRows; r++){
+            for (int c = 0; c < mapCols; c++){
+                if (sectors[r][c].isAuditor()) {
+                    sectors[r][c].setAuditor(false);
+                    sector.setAuditor(true);
+                    return true;
+                }
+            }
+        }
+        sector.setAuditor(true);
+        return true;
     }
 
     public void buildPartnership(Player player, Edge edge){

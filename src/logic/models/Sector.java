@@ -34,17 +34,26 @@ public class Sector {
         this.activationNumber = activationNumber;
     }
 
-    public boolean isInspector() {
+    public boolean isAuditor() {
         return isInspector;
     }
 
-    public void setInspector(boolean inspector) {
+    public void setAuditor(boolean inspector) {
         isInspector = inspector;
     }
 
     public void setCorner(CornerDirection cornerDirection, Vertex vertex) {
         if (cornerDirection != null && vertex != null)
             this.corners.put(cornerDirection, vertex);
+    }
+
+    public boolean hasAnyCompanyOnSector(){
+        for (CornerDirection cornerDirection : CornerDirection.values()){
+            if (this.getCorner(cornerDirection) != null){
+                if (this.getCorner(cornerDirection).getCompanyStructure() != null) return true;
+            }
+        }
+        return false;
     }
 
     public Vertex getCorner(CornerDirection cornerDirection) {
