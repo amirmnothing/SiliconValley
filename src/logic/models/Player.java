@@ -58,12 +58,6 @@ public class Player {
         return 0; // بازیکن معمولی هیچ جریمه امتیازی ندارد
     }
 
-    public boolean hasResourcesForUnicornUpgrade() {
-        return resources.getOrDefault(ResourceType.CLOUD, 0) >= 2 - getUpgradeCloudDiscount()
-                && resources.getOrDefault(ResourceType.DATA, 0) >= 3;
-    }
-
-
     public void deductResourcesForUnicornUpgrade() {
         if (hasResourcesForUnicornUpgrade()) {
             deductResource(ResourceType.CLOUD, 2 - getUpgradeCloudDiscount());
@@ -106,6 +100,11 @@ public class Player {
                 resources.getOrDefault(ResourceType.TALENT, 0) > 0 &&
                 resources.getOrDefault(ResourceType.CLOUD, 0) > 0 &&
                 resources.getOrDefault(ResourceType.DATA, 0) > 0;
+    }
+
+    public boolean hasResourcesForUnicornUpgrade() {
+        return resources.getOrDefault(ResourceType.CLOUD, 0) >= 2 - getUpgradeCloudDiscount()
+                && resources.getOrDefault(ResourceType.DATA, 0) >= 3;
     }
 
     public void deductResourcesForPartnership() {

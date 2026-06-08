@@ -15,7 +15,7 @@ public class HackerCEOPlayer extends  Player {
     @Override
     public int calculateMarketPrice(ResourceType resource, int currentMarketPrice) {
 
-        return Math.max(currentMarketPrice-1, 2);
+        return Math.max((currentMarketPrice * 3) / 4, 2);
     }
     @Override
     public int getRolePenalty() {
