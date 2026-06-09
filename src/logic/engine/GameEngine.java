@@ -7,6 +7,7 @@ import logic.enums.ResourceType;
 import logic.models.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -109,7 +110,7 @@ public class GameEngine {
 
     public void buildMVP(Vertex vertex, Player player){
         if (vertex.getCompanyStructure() != null){
-            throw new InvalidPlacementException(vertex,"A company has already been built on this vertex");
+            throw new InvalidPlacementException(vertex, "A company has already been built on this vertex");
 
         }
         for (Edge edge : vertex.getAdjacentEdges()) {
@@ -164,16 +165,51 @@ public class GameEngine {
         return true;
     }
 
-    public void buildPartnership(Player player, Edge edge){
+    public boolean canBuildPartnership(Player player, Edge edge) {
+        if (edge == null || player == null) return false;
+        if (edge.getPartnership() != null) return false;
 
-        if (edge.getPartnership() != null){
-            throw new InvalidPlacementException(edge,"Placement violation! This edge already has a partnership on it.");
+        Vertex startVertex = edge.getStart();
+        Vertex endVertex = edge.getEnd();
+
+        if (startVertex != null && startVertex.getCompanyStructure() != null) {
+            if (startVertex.getCompanyStructure().getOwner().equals(player)) {
+                return true;
+            }
         }
 
-        // قرار دادن پارتنرشیپ جدید روی یال و کم کردن منابع لازم برای ساخت آن از بازیکن
+        if (endVertex != null && endVertex.getCompanyStructure() != null) {
+            if (endVertex.getCompanyStructure().getOwner().equals(player)) {
+                return true;
+            }
+        }
+
+        if (startVertex != null) {
+            for (Edge e : startVertex.getAdjacentEdges()) {
+                if (e != edge && e.getPartnership() != null) {
+                    if (e.getPartnership().getOwner().equals(player)) return true;
+                }
+            }
+        }
+
+        if (endVertex != null) {
+            for (Edge e : endVertex.getAdjacentEdges()) {
+                if (e != edge && e.getPartnership() != null) {
+                    if (e.getPartnership().getOwner().equals(player)) return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public void buildPartnership(Player player, Edge edge){
+
+        if (edge.getPartnership() != null) throw new InvalidPlacementException(edge,"Placement violation! This edge already has a partnership on it.");
+        if (!canBuildPartnership(player, edge)) throw new InvalidPlacementException(edge, "Placement violation! Partnership must connect to your existing companies or partnerships.");
+
         player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
-
 
         // TODO : Show Partnership created successfully
     }

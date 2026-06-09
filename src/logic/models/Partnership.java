@@ -7,4 +7,7 @@ public class Partnership {
         this.owner = owner;
     }
 
+    public Player getOwner() {
+        return owner;
+    }
 }
