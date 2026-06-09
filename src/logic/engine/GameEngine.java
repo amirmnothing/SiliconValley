@@ -1,5 +1,7 @@
 package logic.engine;
 
+import exception.InsufficientResourcesException;
+import exception.InvalidPlacementException;
 import logic.enums.CornerDirection;
 import logic.models.*;
 
@@ -59,37 +61,35 @@ public class GameEngine {
     }
 
     public void buildMVP(Vertex vertex, Player player){
-        if (!player.hasResourcesForMVP()){
-            // TODO : Show not enough Resources (or don't let the player to click on create a partnership button)
-            return;
-        }
         if (vertex.getCompanyStructure() != null){
-            // TODO : Show : This vertex has a company on it already
-            return;
+            throw new InvalidPlacementException(vertex,"A company has already been built on this vertex");
+
+        }
+        for (Edge edge : vertex.getAdjacentEdges()) {
+            Vertex opposite = edge.getOppositeVertex(vertex);
+            if (opposite != null && opposite.getCompanyStructure() != null) {
+                throw new InvalidPlacementException(vertex, "Placement violation! You cannot build in the immediate neighborhood of an existing company.");
+            }
         }
 
         // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
-        vertex.setCompanyStructure(new MVP(player));
         player.deductResourcesForMVP();
+        vertex.setCompanyStructure(new MVP(player));
 
         // TODO : Show MPV created successfully
 
     }
 
     public void buildPartnership(Player player, Edge edge){
-        if (!player.hasResourcesForPartnership()) {
-            // TODO : Show not enough Resources (or don't let the player to click on create a partnership button)
-            return;
-        }
 
         if (edge.getPartnership() != null){
-            // TODO : Show : This edge has a partnership on it already
-            return;
+            throw new InvalidPlacementException(edge,"Placement violation! This edge already has a partnership on it.");
         }
 
         // قرار دادن پارتنرشیپ جدید روی یال و کم کردن منابع لازم برای ساخت آن از بازیکن
-        edge.setPartnership(new Partnership(player));
         player.deductResourcesForPartnership();
+        edge.setPartnership(new Partnership(player));
+
 
         // TODO : Show Partnership created successfully
     }

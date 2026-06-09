@@ -1,5 +1,7 @@
 package logic.models;
 
+import exception.InvalidAuditorMovementException;
+
 public class Auditor {
     private Sector currentSector;
 
@@ -14,16 +16,25 @@ public class Auditor {
         return currentSector;
     }
 
-    public void moveAuditor(Sector newSector) {
-        if (newSector == null || newSector == this.currentSector) {
-            //TODO با اکسپشن هندل کرد
-            return;
+
+
+    public void moveAuditor(Sector targetSector) {
+        if(targetSector==null){
+            throw new InvalidAuditorMovementException(
+                    "Target sector cannot be null.",
+                    currentSector,
+                    null);
+        }
+        if (targetSector == this.currentSector) {
+            throw new InvalidAuditorMovementException(
+                    "The auditor must be moved to a different sector. It cannot stay in the same place!"
+                    ,this.currentSector,targetSector);
         }
 
         if (this.currentSector != null) {
             this.currentSector.setInspector(false);
         }
-        this.currentSector = newSector;
+        this.currentSector = targetSector;
         this.currentSector.setInspector(true);
     }
 }

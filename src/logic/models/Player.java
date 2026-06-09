@@ -1,5 +1,6 @@
 package logic.models;
 
+import exception.InsufficientResourcesException;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 
@@ -74,8 +75,10 @@ public class Player {
         int currentCount = resources.getOrDefault(type, 0);
         int newCount = currentCount - count;
         if (newCount < 0) {
-            // TODO : Show error : not enough resources to deduct
-            return;
+            Map<ResourceType, Integer> missingResources = new HashMap<>();
+            missingResources.put(type, count - currentCount);
+
+            throw new exception.InsufficientResourcesException(this, "Not enough resources of type: " + type, missingResources);
         } else {
             resources.put(type, newCount);
         }
@@ -112,7 +115,18 @@ public class Player {
             deductResource(ResourceType.CAPITAL, 1);
             deductResource(ResourceType.PATENT, 1);
         } else {
-            // TODO : Show error : not enough resources
+            Map<ResourceType, Integer> missingResources = new HashMap<>();
+            ResourceType[] requiredTypes = {
+                    ResourceType.CAPITAL, ResourceType.PATENT
+            };
+            for (ResourceType type : requiredTypes) {
+                int currentAmount = resources.getOrDefault(type, 0);
+                if (currentAmount < 1) {
+                    missingResources.put(type, 1 - currentAmount);
+                }
+            }
+            throw new InsufficientResourcesException(this,"There are not enough resources to build an Partnership",missingResources);
+
         }
     }
 
@@ -123,7 +137,18 @@ public class Player {
             deductResource(ResourceType.CLOUD, 1);
             deductResource(ResourceType.DATA, 1);
         } else {
-            // TODO : Show error : not enough resources
+            Map<ResourceType, Integer> missingResources = new HashMap<>();
+            ResourceType[] requiredTypes = {
+                    ResourceType.CAPITAL, ResourceType.TALENT, ResourceType.CLOUD, ResourceType.DATA
+            };
+            for (ResourceType type : requiredTypes) {
+                int currentAmount = resources.getOrDefault(type, 0);
+                if (currentAmount < 1) {
+                    missingResources.put(type, 1 - currentAmount);
+                }
+            }
+            throw new InsufficientResourcesException(this,"There are not enough resources to build an MPV",missingResources);
+
         }
     }
 

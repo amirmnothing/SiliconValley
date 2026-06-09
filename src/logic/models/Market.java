@@ -1,5 +1,7 @@
 package logic.models;
 
+import exception.InsufficientResourcesException;
+import exception.InvalidMarketTransactionException;
 import logic.enums.ResourceType;
 
 import java.util.HashMap;
@@ -25,16 +27,17 @@ public class Market {
 
     public boolean buyFromMarket(Player player, ResourceType resourceToBuy) {
         if (resourceToBuy == ResourceType.CAPITAL) {
-            //TODO برای خطا میشه از اکسپشن استفاده کرد
-            return false;
+            throw new InvalidMarketTransactionException(ResourceType.CAPITAL, "You cannot buy CAPITAL from the market!");
         }
 
         int capitalPrice = getPrice(resourceToBuy);
         int finalPrice = player.calculateMarketPrice(resourceToBuy,capitalPrice);
         int playerCapitalCount = player.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0);
         if (playerCapitalCount < finalPrice) {
-            //TODO برای خطا اینجا هم  اکسپشن
-            return false;
+            Map<ResourceType, Integer> missingResources = new HashMap<>();
+            missingResources.put(ResourceType.CAPITAL, finalPrice - playerCapitalCount);
+
+            throw new InsufficientResourcesException(player,"You don’t have enough capital to buy this resource",missingResources);
         }
 
         player.deductResource(ResourceType.CAPITAL, finalPrice);
