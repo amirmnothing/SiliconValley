@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Player {
+    public static final int LONGEST_NETWORK_BONUS_POINTS = 2;
+    public static final int DEFAULT_CRISIS_THRESHOLD = 7;
     protected Map<ResourceType, Integer> resources = new HashMap<>();
     protected List<CompanyStructure> companies;
     protected PlayerRole playerRole;
@@ -33,7 +35,7 @@ public class Player {
                 totalPoints += comp.getVictoryPoints();
             }
         }
-        if (hasLongestNetwork) totalPoints += 2;
+        if (hasLongestNetwork) totalPoints += LONGEST_NETWORK_BONUS_POINTS;
 
         totalPoints -= getRolePenalty();
 
@@ -47,7 +49,7 @@ public class Player {
 
     //سقف تعداد کارت های منبع بازیکن برای فرار از مالیات
     public int getCrisisModifierThreshold() {
-        return 7;
+        return DEFAULT_CRISIS_THRESHOLD;
     }
 
     public int getUpgradeCloudDiscount() {
@@ -58,14 +60,6 @@ public class Player {
     public int getRolePenalty() {
         return 0; // بازیکن معمولی هیچ جریمه امتیازی ندارد
     }
-
-    public void deductResourcesForUnicornUpgrade() {
-        if (hasResourcesForUnicornUpgrade()) {
-            deductResource(ResourceType.CLOUD, 2 - getUpgradeCloudDiscount());
-            deductResource(ResourceType.DATA, 3);
-        }
-    }
-
 
     public void addResource(ResourceType type, int count) {
         resources.put(type, resources.getOrDefault(type, 0) + count);
@@ -94,26 +88,26 @@ public class Player {
     }
 
     public boolean hasResourcesForPartnership() {
-        return resources.getOrDefault(ResourceType.PATENT, 0) > 0 &&
-                resources.getOrDefault(ResourceType.CAPITAL, 0) > 0;
+        return resources.getOrDefault(ResourceType.PATENT, 0) >= Partnership.CONSTRUCTION_COST.get(ResourceType.PATENT) &&
+                resources.getOrDefault(ResourceType.CAPITAL, 0) >= Partnership.CONSTRUCTION_COST.get(ResourceType.CAPITAL);
     }
 
     public boolean hasResourcesForMVP() {
-        return resources.getOrDefault(ResourceType.CAPITAL, 0) > 0 &&
-                resources.getOrDefault(ResourceType.TALENT, 0) > 0 &&
-                resources.getOrDefault(ResourceType.CLOUD, 0) > 0 &&
-                resources.getOrDefault(ResourceType.DATA, 0) > 0;
+        return resources.getOrDefault(ResourceType.CAPITAL, 0) >= MVP.CONSTRUCTION_COST.get(ResourceType.CAPITAL) &&
+                resources.getOrDefault(ResourceType.TALENT, 0) >= MVP.CONSTRUCTION_COST.get(ResourceType.TALENT) &&
+                resources.getOrDefault(ResourceType.CLOUD, 0) >= MVP.CONSTRUCTION_COST.get(ResourceType.CLOUD) &&
+                resources.getOrDefault(ResourceType.DATA, 0) >= MVP.CONSTRUCTION_COST.get(ResourceType.DATA);
     }
 
     public boolean hasResourcesForUnicornUpgrade() {
-        return resources.getOrDefault(ResourceType.CLOUD, 0) >= 2 - getUpgradeCloudDiscount()
-                && resources.getOrDefault(ResourceType.DATA, 0) >= 3;
+        return resources.getOrDefault(ResourceType.CLOUD, 0) >= Unicorn.UPGRADE_COST.get(ResourceType.CLOUD) - getUpgradeCloudDiscount()
+                && resources.getOrDefault(ResourceType.DATA, 0) >= Unicorn.UPGRADE_COST.get(ResourceType.DATA);
     }
 
     public void deductResourcesForPartnership() {
         if (hasResourcesForPartnership()) {
-            deductResource(ResourceType.CAPITAL, 1);
-            deductResource(ResourceType.PATENT, 1);
+            deductResource(ResourceType.CAPITAL, Partnership.CONSTRUCTION_COST.get(ResourceType.CAPITAL));
+            deductResource(ResourceType.PATENT, Partnership.CONSTRUCTION_COST.get(ResourceType.PATENT));
         } else {
             Map<ResourceType, Integer> missingResources = new HashMap<>();
             ResourceType[] requiredTypes = {
@@ -121,8 +115,8 @@ public class Player {
             };
             for (ResourceType type : requiredTypes) {
                 int currentAmount = resources.getOrDefault(type, 0);
-                if (currentAmount < 1) {
-                    missingResources.put(type, 1 - currentAmount);
+                if (currentAmount < Partnership.CONSTRUCTION_COST.get(type)) {
+                    missingResources.put(type, Partnership.CONSTRUCTION_COST.get(type) - currentAmount);
                 }
             }
             throw new InsufficientResourcesException(this,"There are not enough resources to build an Partnership",missingResources);
@@ -132,10 +126,10 @@ public class Player {
 
     public void deductResourcesForMVP() {
         if (hasResourcesForMVP()) {
-            deductResource(ResourceType.CAPITAL, 1);
-            deductResource(ResourceType.TALENT, 1);
-            deductResource(ResourceType.CLOUD, 1);
-            deductResource(ResourceType.DATA, 1);
+            deductResource(ResourceType.CAPITAL, MVP.CONSTRUCTION_COST.get(ResourceType.CAPITAL));
+            deductResource(ResourceType.TALENT, MVP.CONSTRUCTION_COST.get(ResourceType.TALENT));
+            deductResource(ResourceType.CLOUD, MVP.CONSTRUCTION_COST.get(ResourceType.CLOUD));
+            deductResource(ResourceType.DATA, MVP.CONSTRUCTION_COST.get(ResourceType.DATA));
         } else {
             Map<ResourceType, Integer> missingResources = new HashMap<>();
             ResourceType[] requiredTypes = {
@@ -143,12 +137,36 @@ public class Player {
             };
             for (ResourceType type : requiredTypes) {
                 int currentAmount = resources.getOrDefault(type, 0);
-                if (currentAmount < 1) {
-                    missingResources.put(type, 1 - currentAmount);
+                if (currentAmount < MVP.CONSTRUCTION_COST.get(type)) {
+                    missingResources.put(type, MVP.CONSTRUCTION_COST.get(type) - currentAmount);
                 }
             }
-            throw new InsufficientResourcesException(this,"There are not enough resources to build an MPV",missingResources);
+            throw new InsufficientResourcesException(this,"There are not enough resources to build an MVP",missingResources);
 
+        }
+    }
+
+    public void deductResourcesForUnicornUpgrade() {
+        int cloudCost = Math.max(Unicorn.UPGRADE_COST.get(ResourceType.CLOUD) - getUpgradeCloudDiscount(), 0);
+        int dataCost = Unicorn.UPGRADE_COST.get(ResourceType.DATA);
+
+        if (hasResourcesForUnicornUpgrade()) {
+            deductResource(ResourceType.CLOUD, cloudCost);
+            deductResource(ResourceType.DATA, dataCost);
+        } else {
+            Map<ResourceType, Integer> missingResources = new HashMap<>();
+
+            int currentData = resources.getOrDefault(ResourceType.DATA, 0);
+            if (currentData < dataCost) {
+                missingResources.put(ResourceType.DATA, dataCost - currentData);
+            }
+
+            int currentCloud = resources.getOrDefault(ResourceType.CLOUD, 0);
+            if (currentCloud < cloudCost) {
+                missingResources.put(ResourceType.CLOUD, cloudCost - currentCloud);
+            }
+
+            throw new InsufficientResourcesException(this, "There are not enough resources to upgrade your MVP to Unicorn", missingResources);
         }
     }
 
