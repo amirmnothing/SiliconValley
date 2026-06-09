@@ -8,7 +8,7 @@ public class Auditor {
     public Auditor(Sector initialSector) {
         currentSector = initialSector;
         if (currentSector != null) {
-            currentSector.setInspector(true);
+            currentSector.setAuditor(true);
         }
     }
 
@@ -32,9 +32,10 @@ public class Auditor {
         }
 
         if (this.currentSector != null) {
-            this.currentSector.setInspector(false);
+            this.currentSector.setAuditor(false);
         }
         this.currentSector = targetSector;
-        this.currentSector.setInspector(true);
+        this.currentSector.setAuditor(true);
+
     }
 }
