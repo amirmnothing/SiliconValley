@@ -6,10 +6,7 @@ import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 import logic.models.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class GameEngine {
     private final Map map;
@@ -24,42 +21,43 @@ public class GameEngine {
         this.currentPlayerIndex = 0;
     }
 
-    public Player getCurrentPlayer(){
+    public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
     }
 
-    public void nextTurn(){
+    public void nextTurn() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 
-    public ArrayList<Integer> rollDice(){
+    public ArrayList<Integer> rollDice() {
         ArrayList<Integer> diceList = new ArrayList<>();
         diceList.add(random.nextInt(6) + 1);
         diceList.add(random.nextInt(6) + 1);
         return diceList;
     }
 
-    public void distribute(ArrayList<Integer> diceList){
+    public void distribute(ArrayList<Integer> diceList) {
         int activationNumber = diceList.get(0) + diceList.get(1);
 
         // بحران قانونی
-        if (activationNumber == 7){
+        if (activationNumber == 7) {
             handleSevenOrCrisis();
             return;
         }
 
-        Sector[][] sectors =  map.getSectors();
-        for (int r = 0; r < map.getRows(); r++){
-            for (int c = 0; c < map.getCols(); c++){
-                if (sectors[r][c].getactivationNumber() == activationNumber && !sectors[r][c].isAuditor()){
+        Sector[][] sectors = map.getSectors();
+        for (int r = 0; r < map.getRows(); r++) {
+            for (int c = 0; c < map.getCols(); c++) {
+                if (sectors[r][c].getactivationNumber() == activationNumber && !sectors[r][c].isAuditor()) {
                     for (CornerDirection cornerDirection : CornerDirection.values())
-                        if ((sectors[r][c].getCorner(cornerDirection)).getCompanyStructure() != null) (sectors[r][c].getCorner(cornerDirection)).getCompanyStructure().produce(sectors[r][c]);
+                        if ((sectors[r][c].getCorner(cornerDirection)).getCompanyStructure() != null)
+                            (sectors[r][c].getCorner(cornerDirection)).getCompanyStructure().produce(sectors[r][c]);
                 }
             }
         }
     }
 
-    public void handleSevenOrCrisis(){
+    public void handleSevenOrCrisis() {
         for (Player player : players) {
             // محاسبه کل کارت‌های منبع بازیکن در حال حاضر
             int totalResources = 0;
@@ -77,7 +75,7 @@ public class GameEngine {
         }
     }
 
-    public boolean discardSelectedResources(Player player, java.util.Map<ResourceType, Integer> resourcesToDiscard){
+    public boolean discardSelectedResources(Player player, java.util.Map<ResourceType, Integer> resourcesToDiscard) {
         if (player == null || resourcesToDiscard == null) return false;
 
         // بررسی تعداد کارت های بازیکن و تعداد انتخاب شده برای جلوگیری از تقلب یا ...
@@ -98,7 +96,7 @@ public class GameEngine {
         return true;
     }
 
-    public boolean canBuildMVP(int row,int col) {
+    public boolean canBuildMVP(int row, int col) {
         Vertex[][] vertices = map.getVertices();
         Vertex vertex = vertices[row][col];
         if (vertex.getCompanyStructure() != null) return false;
@@ -108,8 +106,8 @@ public class GameEngine {
         return true;
     }
 
-    public void buildMVP(Vertex vertex, Player player){
-        if (vertex.getCompanyStructure() != null){
+    public void buildMVP(Vertex vertex, Player player) {
+        if (vertex.getCompanyStructure() != null) {
             throw new InvalidPlacementException(vertex, "A company has already been built on this vertex");
 
         }
@@ -128,7 +126,7 @@ public class GameEngine {
 
     }
 
-    public boolean canPlaceAuditor(Sector sector){
+    public boolean canPlaceAuditor(Sector sector) {
         if (sector == null) return false;
         if (sector.isAuditor()) return false;
 
@@ -137,23 +135,23 @@ public class GameEngine {
         Sector[][] sectors = map.getSectors();
         int mapRows = map.getRows();
         int mapCols = map.getCols();
-        for (int r = 0; r < mapRows; r++){
-            for (int c = 0; c < mapCols; c++){
+        for (int r = 0; r < mapRows; r++) {
+            for (int c = 0; c < mapCols; c++) {
                 if (sectors[r][c].hasAnyCompanyOnSector()) return false;
             }
         }
         return true;
     }
 
-    public boolean moveAuditor(Sector sector){
+    public boolean moveAuditor(Sector sector) {
         if (sector == null) return false;
         if (!canPlaceAuditor(sector)) return false;
 
         Sector[][] sectors = map.getSectors();
         int mapRows = map.getRows();
         int mapCols = map.getCols();
-        for (int r = 0; r < mapRows; r++){
-            for (int c = 0; c < mapCols; c++){
+        for (int r = 0; r < mapRows; r++) {
+            for (int c = 0; c < mapCols; c++) {
                 if (sectors[r][c].isAuditor()) {
                     sectors[r][c].setAuditor(false);
                     sector.setAuditor(true);
@@ -203,14 +201,103 @@ public class GameEngine {
         return false;
     }
 
-    public void buildPartnership(Player player, Edge edge){
+    public void buildPartnership(Player player, Edge edge) {
 
-        if (edge.getPartnership() != null) throw new InvalidPlacementException(edge,"Placement violation! This edge already has a partnership on it.");
-        if (!canBuildPartnership(player, edge)) throw new InvalidPlacementException(edge, "Placement violation! Partnership must connect to your existing companies or partnerships.");
+        if (edge.getPartnership() != null)
+            throw new InvalidPlacementException(edge, "Placement violation! This edge already has a partnership on it.");
+        if (!canBuildPartnership(player, edge))
+            throw new InvalidPlacementException(edge, "Placement violation! Partnership must connect to your existing companies or partnerships.");
 
         player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
 
         // TODO : Show Partnership created successfully
+    }
+
+
+    public int DFS(Vertex currentVertex, Player player, Set<Edge> visitedEdges) {
+
+        if (currentVertex.getCompanyStructure() != null && currentVertex.getCompanyStructure().getOwner() != player) {
+            return 0;
+        }
+        int maxSubPathLength = 0;
+
+        for (Edge edge : currentVertex.getAdjacentEdges()) {
+            if (edge.getPartnership() != null && edge.getPartnership().getOwner() == player) {
+                if (!visitedEdges.contains(edge)) {
+                    Vertex destination = edge.getOppositeVertex(currentVertex);
+
+                    visitedEdges.add(edge);
+                    int subPathLength = DFS(destination, player, visitedEdges) + 1;
+                    if (subPathLength > maxSubPathLength) {
+                        maxSubPathLength = subPathLength;
+                    }
+                    visitedEdges.remove(edge);
+                }
+            }
+
+        }
+        return maxSubPathLength;
+    }
+
+    public void updateLongestNetwork() {
+        Player currentPartnershipHolder = null;
+
+        for (Player player : players) {
+            if (player.isHasLongestNetwork()) {
+                currentPartnershipHolder = player;
+                break;
+            }
+        }
+
+        int maxSubPathLength = 2;
+        if (currentPartnershipHolder != null) {
+            maxSubPathLength = calculateLongestPathForPlayer(currentPartnershipHolder);
+        }
+        Player newLongestPartnershipHolder = currentPartnershipHolder;
+
+        for (Player player : players) {
+            if (player == currentPartnershipHolder) continue;
+            int playerPath = calculateLongestPathForPlayer(player);
+            if (playerPath > maxSubPathLength) {//احتماال وجود خطا
+                maxSubPathLength = playerPath;
+                newLongestPartnershipHolder = player;
+            }
+        }
+        if (newLongestPartnershipHolder != currentPartnershipHolder) {
+            for (Player player : players) {
+                player.setHasLongestNetwork(false);
+            }
+            if (newLongestPartnershipHolder != null) {
+                newLongestPartnershipHolder.setHasLongestNetwork(true);
+            }
+        }
+
+    }
+
+    private int calculateLongestPathForPlayer(Player player) {
+        int maxPath = 0;
+        for (Vertex[] row : map.getVertices()) {
+            if (row == null) continue;
+            for (Vertex vertex : row) {
+                if (vertex == null) continue;
+
+                boolean isCandidate = false;
+                for (Edge e : vertex.getAdjacentEdges()) {
+                    if (e.getPartnership() != null && e.getPartnership().getOwner() == player) {
+                        isCandidate = true;
+                        break;
+                    }
+                }
+                if (isCandidate) {
+                    Set<Edge> visitedEdges = new HashSet<>();
+                    int currentVertexMax = DFS(vertex, player, visitedEdges);
+                    if (currentVertexMax > maxPath) {
+                        maxPath = currentVertexMax;
+                    }
+                }
+            }
+        }
+        return maxPath;
     }
 }
