@@ -1,6 +1,7 @@
 package ui.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -299,6 +300,9 @@ public class GameBoardController {
     private Line l98;
 
     @FXML
+    private Group PlayerResources;
+
+    @FXML
     void ChangeColorToChoose(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.RED);
         ((Shape) (event.getSource())).setStroke(Color.RED);
@@ -332,5 +336,15 @@ public class GameBoardController {
         ((Shape) (event.getSource())).setOnMouseEntered(null);
         ((Shape) (event.getSource())).setOnMouseExited(null);
         ((Shape) (event.getSource())).setFill(Color.RED);
+    }
+
+    @FXML
+    void SetPlayerResourcesOpacityZero(MouseEvent event){
+        PlayerResources.setOpacity(0);
+    }
+
+    @FXML
+    void SetPlayerResourcesOpacityOne(MouseEvent event){
+        PlayerResources.setOpacity(1);
     }
 }
