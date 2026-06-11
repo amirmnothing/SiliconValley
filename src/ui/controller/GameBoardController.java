@@ -397,4 +397,9 @@ public class GameBoardController {
     void SetResourcesToNotChoose(MouseEvent event){
         ((Rectangle) (event.getSource())).setOpacity(0);
     }
+
+//    @FXML
+//    void RollDice(){
+//        rollDice
+//    }
 }
