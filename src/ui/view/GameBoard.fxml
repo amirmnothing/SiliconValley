@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -43,7 +42,7 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
+                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#RollDice" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="51.0" />
                            </font>
@@ -369,16 +368,8 @@
                               </Group>
                            </children>
                         </Group>
-                        <ImageView fx:id="Dice1" fitHeight="130.0" fitWidth="130.0" layoutX="654.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../assets/dice/dice_1.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="Dice2" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../assets/dice/dice_6.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="Dice1" fitHeight="130.0" fitWidth="130.0" layoutX="654.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Dice2" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
             </content>
