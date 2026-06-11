@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class GameBoardController {
@@ -303,6 +304,19 @@ public class GameBoardController {
     private Group PlayerResources;
 
     @FXML
+    private Group P1RLines;
+
+    @FXML
+    private Group P2RLines;
+
+    @FXML
+    private Group P3RLines;
+
+    @FXML
+    private Group P4RLines;
+
+
+    @FXML
     void ChangeColorToChoose(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.RED);
         ((Shape) (event.getSource())).setStroke(Color.RED);
@@ -341,10 +355,46 @@ public class GameBoardController {
     @FXML
     void SetPlayerResourcesOpacityZero(MouseEvent event){
         PlayerResources.setOpacity(0);
+        ((Rectangle) (event.getSource())).setOpacity(0.1);
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")){
+            P1RLines.setOpacity(0);
+        }
+        if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")){
+            P2RLines.setOpacity(0);
+        }
+        if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")){
+            P3RLines.setOpacity(0);
+        }
+        if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")){
+            P4RLines.setOpacity(0);
+        }
     }
 
     @FXML
     void SetPlayerResourcesOpacityOne(MouseEvent event){
         PlayerResources.setOpacity(1);
+        ((Rectangle) (event.getSource())).setOpacity(0.2);
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")){
+            P1RLines.setOpacity(1);
+        }
+        else if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")){
+            P2RLines.setOpacity(1);
+        }
+        else if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")){
+            P3RLines.setOpacity(1);
+        }
+        else if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")){
+            P4RLines.setOpacity(1);
+        }
+    }
+
+    @FXML
+    void SetResourcesToChoose(MouseEvent event){
+        ((Rectangle) (event.getSource())).setOpacity(0.1);
+    }
+
+    @FXML
+    void SetResourcesToNotChoose(MouseEvent event){
+        ((Rectangle) (event.getSource())).setOpacity(0);
     }
 }
