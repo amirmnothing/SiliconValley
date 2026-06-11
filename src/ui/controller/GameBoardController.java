@@ -3,14 +3,28 @@ package ui.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import logic.engine.GameEngine;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameBoardController {
+
+    // رفرنس به انجین بازی
+    private GameEngine gameEngine;
+
+    // متدی برای تزریق انجین از کلاس Main یا لودر بازی
+    public void setGameEngine(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
+    }
 
     @FXML
     private Circle c00;
@@ -315,6 +329,12 @@ public class GameBoardController {
     @FXML
     private Group P4RLines;
 
+    @FXML
+    private ImageView Dice1;
+
+    @FXML
+    private ImageView Dice2;
+
 
     @FXML
     void ChangeColorToChoose(MouseEvent event) {
@@ -398,8 +418,14 @@ public class GameBoardController {
         ((Rectangle) (event.getSource())).setOpacity(0);
     }
 
-//    @FXML
-//    void RollDice(){
-//        rollDice
-//    }
+    @FXML
+    void RollDice(){
+        ArrayList<Integer> Dice = gameEngine.rollDice();
+
+        String D1Addr = "/assets/dice/dice_"+ Dice.get(0) + ".png";
+        String D2Addr = "/assets/dice/dice_"+ Dice.get(1) + ".png";
+
+        Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
+        Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+    }
 }
