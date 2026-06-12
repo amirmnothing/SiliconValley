@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -18,8 +20,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.Image?>
 <BorderPane maxHeight="864.0" maxWidth="1536.0" minHeight="756.0" minWidth="1536.0" prefHeight="756.0" prefWidth="1536.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.GameBoardController">
    <right>
       <TabPane prefHeight="756.0" prefWidth="826.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="TOP_CENTER">
@@ -379,336 +381,368 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="250.0" layoutY="655.0" stroke="WHITE" strokeType="INSIDE" width="89.0" />
-                        <VBox layoutX="1.0" layoutY="20.0" maxHeight="650.0" maxWidth="800.0" minHeight="150.0" minWidth="150.0">
+                        <HBox layoutX="12.0" layoutY="142.0" prefHeight="554.0" prefWidth="747.0" spacing="340.0">
                            <children>
-                              <Group>
+                              <VBox alignment="CENTER" prefHeight="756.0" prefWidth="191.0">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="88.0" layoutX="16.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="489.0" y="50.0" />
-                                    <HBox layoutX="16.0" prefHeight="204.0" prefWidth="480.0">
+                                    <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../assets/Resources/Talent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0" spacing="20.0">
                                        <children>
-                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="217.0" minHeight="206.0" minWidth="127.0" prefHeight="206.0" prefWidth="217.0" spacing="11.0">
-                                             <children>
-                                                <Label text="Resources" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="148.0" startX="-56.921390533447266" startY="-0.35742801427841187" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets left="4.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                                <Label text="Prices" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="138.82859802246094" startX="-65.87858581542969" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets left="6.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets left="2.0" />
-                                             </opaqueInsets>
+                                          <Button fx:id="TalentL" alignment="CENTER" mnemonicParsing="false" onAction="#onTalentMinus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&lt;" textFill="WHITE">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </VBox>
-                                          <Line endX="1.0" endY="2.0" startX="1.0" startY="90.0" stroke="WHITE">
-                                             <HBox.margin>
-                                                <Insets top="50.0" />
-                                             </HBox.margin>
-                                          </Line>
-                                          <VBox alignment="CENTER" maxHeight="215.0" maxWidth="182.0" minHeight="206.0" minWidth="66.0" prefHeight="215.0" prefWidth="94.0" spacing="11.0">
-                                             <children>
-                                                <Label text="Talent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="46.0" startX="-35.0008430480957" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="0.5" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                                <Label fx:id="TalentPrice" text="2" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="30.964370727539062" startX="-53.12849044799805" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="0.5" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets left="2.0" />
-                                             </opaqueInsets>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="TalentCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" text="25" textAlignment="CENTER" textFill="WHITE">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </VBox>
-                                          <Line endY="2.0" startY="90.0" stroke="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="TalentR" alignment="CENTER" mnemonicParsing="false" onAction="#onTalentPlus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&gt;" textFill="WHITE">
                                              <HBox.margin>
-                                                <Insets top="50.0" />
+                                                <Insets />
                                              </HBox.margin>
-                                          </Line>
-                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="100.0" minHeight="206.0" minWidth="50.0" prefHeight="206.0" prefWidth="72.0" spacing="11.0">
-                                             <children>
-                                                <Label prefHeight="16.0" prefWidth="44.0" text="Cloud" textAlignment="CENTER" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                   <VBox.margin>
-                                                      <Insets left="7.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <Line endX="-23.0" startX="-83.0" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                                <Label fx:id="CloudPrice" text="3" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="-23.0" startX="-83.0" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                             </children>
-                                          </VBox>
-                                          <Line endY="2.0" startY="90.0" stroke="WHITE">
-                                             <HBox.margin>
-                                                <Insets top="50.0" />
-                                             </HBox.margin>
-                                          </Line>
-                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" minHeight="206.0" minWidth="66.0" prefHeight="206.0" prefWidth="74.0" spacing="11.0">
-                                             <children>
-                                                <Label text="Patent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="36.299922943115234" startX="-35.0" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="1.5" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                                <Label fx:id="PatentPrice" text="4" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="40.0" startX="-27.200109481811523" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="1.5" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets left="2.0" />
-                                             </opaqueInsets>
-                                          </VBox>
-                                          <Line endY="2.0" startY="90.0" stroke="WHITE">
-                                             <HBox.margin>
-                                                <Insets top="50.0" />
-                                             </HBox.margin>
-                                          </Line>
-                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" minHeight="206.0" minWidth="66.0" prefHeight="206.0" prefWidth="74.0" spacing="11.0">
-                                             <children>
-                                                <Label text="Data" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="54.6138801574707" startX="-18.079008102416992" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="-7.0" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                                <Label fx:id="DataPrice" text="5" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="70.44287872314453" startX="-6.050065994262695" stroke="WHITE">
-                                                   <VBox.margin>
-                                                      <Insets right="-5.0" top="2.0" />
-                                                   </VBox.margin>
-                                                </Line>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets left="2.0" />
-                                             </opaqueInsets>
-                                          </VBox>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../assets/Resources/Cloud.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets top="35.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0" spacing="20.0">
+                                       <children>
+                                          <Button fx:id="CloudL" alignment="CENTER" mnemonicParsing="false" onAction="#onCloudMinus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&lt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="CloudCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" text="25" textAlignment="CENTER" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="CloudR" alignment="CENTER" mnemonicParsing="false" onAction="#onCloudPlus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&gt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets top="-50.0" />
-                                 </VBox.margin>
-                              </Group>
-                              <HBox>
+                              </VBox>
+                              <VBox prefHeight="756.0" prefWidth="138.0">
                                  <children>
-                                    <VBox prefHeight="756.0" prefWidth="395.0">
+                                    <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../assets/Resources/Patent.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0" spacing="20.0">
                                        <children>
-                                          <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../assets/Resources/Talent.png" />
-                                             </image>
-                                          </ImageView>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Button fx:id="TalentL" mnemonicParsing="false" onAction="#onTalentMinus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&lt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Label fx:id="TalentCount" text="25" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" top="4.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Button fx:id="TalentR" mnemonicParsing="false" onAction="#onTalentPlus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&gt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="4.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets left="60.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../assets/Resources/Cloud.png" />
-                                             </image>
-                                             <VBox.margin>
-                                                <Insets top="35.0" />
-                                             </VBox.margin>
-                                          </ImageView>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Button fx:id="CloudL" mnemonicParsing="false" onAction="#onCloudMinus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&lt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Label fx:id="CloudCount" text="25" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" top="4.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Button fx:id="CloudR" mnemonicParsing="false" onAction="#onCloudPlus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&gt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="4.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets left="60.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
+                                          <Button fx:id="PatentL" alignment="CENTER" mnemonicParsing="false" onAction="#onPatentMinus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&lt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="PatentCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" text="25" textAlignment="CENTER" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="PatentR" alignment="CENTER" mnemonicParsing="false" onAction="#onPatentPlus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&gt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
                                        </children>
-                                    </VBox>
-                                    <VBox prefHeight="756.0" prefWidth="395.0">
-                                       <children>
-                                          <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../assets/Resources/Patent.png" />
-                                             </image>
-                                          </ImageView>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Button fx:id="PatentL" mnemonicParsing="false" onAction="#onPatentMinus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&lt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Label fx:id="PatentCount" text="25" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" top="4.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Button fx:id="PatentR" mnemonicParsing="false" onAction="#onPatentPlus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&gt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="4.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets left="60.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../assets/Resources/Data.png" />
-                                             </image>
-                                             <VBox.margin>
-                                                <Insets top="35.0" />
-                                             </VBox.margin>
-                                          </ImageView>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Button fx:id="DataL" mnemonicParsing="false" onAction="#onDataMinus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&lt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Label fx:id="DataCount" text="25" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" top="4.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Button fx:id="DataR" mnemonicParsing="false" onAction="#onDataPlus" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #333333;" text="&gt;" textFill="WHITE">
-                                                   <HBox.margin>
-                                                      <Insets left="4.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets left="60.0" top="20.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="-50.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <VBox>
-                                 <VBox.margin>
-                                    <Insets left="255.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <Label fx:id="TotalCount" alignment="TOP_CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="74.0" text="25" textFill="#fcfcfc">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets top="20.0" />
                                        </VBox.margin>
+                                    </HBox>
+                                    <ImageView fitHeight="207.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../assets/Resources/Data.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets top="35.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <HBox alignment="CENTER" prefHeight="33.0" prefWidth="207.0" spacing="20.0">
+                                       <children>
+                                          <Button fx:id="DataL" alignment="CENTER" mnemonicParsing="false" onAction="#onDataMinus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&lt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="DataCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="60.0" text="25" textAlignment="CENTER" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="DataR" alignment="CENTER" mnemonicParsing="false" onAction="#onDataPlus" onMouseEntered="#ChangeShopButtonsToChoose" onMouseExited="#ChangeShopButtonsToNotChoose" prefHeight="26.0" prefWidth="26.0" style="-fx-background-color: #181818;" text="&gt;" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="44.0" layoutX="333.0" layoutY="652.0" stroke="WHITE" strokeType="INSIDE" width="130.0" />
+                        <VBox alignment="CENTER" layoutX="317.0" layoutY="653.0" prefHeight="90.0" prefWidth="162.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="162.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="74.0" text="Total :" textFill="#fcfcfc">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                       </font>
                                        <padding>
                                           <Insets top="-6.0" />
                                        </padding>
                                     </Label>
-                                    <Button fx:id="Buy" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: green;" text="Buy" textFill="WHITE">
-                                       <VBox.margin>
-                                          <Insets left="6.0" />
-                                       </VBox.margin>
-                                    </Button>
+                                    <Label fx:id="TotalCount" alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="60.0" prefWidth="45.0" text="25" textFill="#fcfcfc">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="-6.0" />
+                                       </padding>
+                                    </Label>
                                  </children>
-                              </VBox>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="8.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button fx:id="Buy" alignment="CENTER" contentDisplay="CENTER" minHeight="37.0" minWidth="68.0" mnemonicParsing="false" onMouseEntered="#ChangeShopBuyButtonToChoose" onMouseExited="#ChangeShopBuyButtonToNotChoose" prefHeight="37.0" prefWidth="68.0" style="-fx-background-color: #004018;" text="Buy" textAlignment="CENTER" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </VBox>
+                        <Group layoutX="234.0" layoutY="14.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" height="90.0" layoutX="16.0" layoutY="-50.0" stroke="WHITE" strokeType="INSIDE" width="506.0" y="50.0">
+                                 <rotationAxis>
+                                    <Point3D />
+                                 </rotationAxis>
+                              </Rectangle>
+                              <HBox layoutX="16.0" prefHeight="90.0" prefWidth="506.0">
+                                 <children>
+                                    <VBox alignment="CENTER" maxHeight="206.0" maxWidth="233.0" prefHeight="90.0" prefWidth="200.0" spacing="11.0">
+                                       <children>
+                                          <Label text="Resources" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="164.0" stroke="WHITE">
+                                             <VBox.margin>
+                                                <Insets left="1.0" />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label text="Prices" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <Line endX="1.0" endY="2.0" startX="1.0" startY="90.0" stroke="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Line>
+                                    <VBox alignment="CENTER" maxHeight="215.0" maxWidth="182.0" prefHeight="110.0" prefWidth="85.0" spacing="11.0">
+                                       <children>
+                                          <Label text="Talent" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="47.0" startX="-35.0" stroke="WHITE">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label fx:id="TalentPrice" text="2" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <Line endY="2.0" startY="90.0" stroke="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Line>
+                                    <VBox alignment="CENTER" maxHeight="206.0" maxWidth="100.0" prefHeight="19.0" prefWidth="85.0" spacing="11.0">
+                                       <children>
+                                          <Label prefHeight="16.0" prefWidth="44.0" text="Cloud" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="7.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Line endX="47.0" startX="-35.0" stroke="WHITE">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label fx:id="CloudPrice" text="3" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                    <Line endY="2.0" startY="90.0" stroke="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Line>
+                                    <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" prefHeight="140.0" prefWidth="85.0" spacing="11.0">
+                                       <children>
+                                          <Label text="Patent" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="47.0" startX="-35.0" stroke="WHITE">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label fx:id="PatentPrice" text="4" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                    <Line endY="2.0" startY="90.0" stroke="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Line>
+                                    <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" prefHeight="118.0" prefWidth="85.0" spacing="11.0">
+                                       <children>
+                                          <Label text="Data" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="47.0" startX="-35.0" stroke="WHITE">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label fx:id="DataPrice" text="5" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                 </children>
+                                 <rotationAxis>
+                                    <Point3D />
+                                 </rotationAxis>
+                              </HBox>
+                           </children>
+                        </Group>
+                        <Text fill="WHITE" layoutX="1.0" layoutY="81.0" stroke="#404040" strokeType="OUTSIDE" strokeWidth="4.0" text="Shop" textAlignment="CENTER" wrappingWidth="218.84588623046875">
+                           <font>
+                              <Font name="Elephant" size="70.0" />
+                           </font>
+                        </Text>
+                        <Line endX="90.0" fill="WHITE" layoutX="110.0" layoutY="104.0" startX="-85.0" stroke="WHITE" strokeWidth="5.0" />
                      </children></AnchorPane>
               </content>
             </Tab>

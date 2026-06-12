@@ -384,6 +384,13 @@ public class GameBoardController {
 
     @FXML
     private Button Buy;
+
+    @FXML
+    private ImageView Dice1;
+
+    @FXML
+    private ImageView Dice2;
+
     // متغیرهای نگهدارنده تعداد هر کارت
     private int currentTalentCount = 0;
     private int currentPatentCount = 0;
@@ -477,11 +484,28 @@ public class GameBoardController {
     }
 
     @FXML
-    private ImageView Dice1;
+    void ChangeShopButtonsToChoose(MouseEvent event){
+        String rgbColor = "rgb(33, 33, 33)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
+    }
 
     @FXML
-    private ImageView Dice2;
+    void ChangeShopButtonsToNotChoose(MouseEvent event){
+        String rgbColor = "rgb(18, 18, 18)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
+    }
 
+    @FXML
+    void ChangeShopBuyButtonToChoose(MouseEvent event){
+        String rgbColor = "rgb(00, 100, 18)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
+    }
+
+    @FXML
+    void ChangeShopBuyButtonToNotChoose(MouseEvent event){
+        String rgbColor = "rgb(00, 60, 18)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
+    }
 
     @FXML
     void ChangeColorToChoose(MouseEvent event) {
