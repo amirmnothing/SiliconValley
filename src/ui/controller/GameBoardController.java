@@ -1,10 +1,12 @@
 package ui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -330,6 +332,151 @@ public class GameBoardController {
     private Group P4RLines;
 
     @FXML
+    private Label TalentPrice;
+
+    @FXML
+    private Label CloudPrice;
+
+    @FXML
+    private Label PatentPrice;
+
+    @FXML
+    private Label DataPrice;
+
+    @FXML
+    private Button TalentL;
+
+    @FXML
+    private Button TalentR;
+
+    @FXML
+    private Label TalentCount;
+
+    @FXML
+    private Button PatentL;
+
+    @FXML
+    private Button PatentR;
+
+    @FXML
+    private Label PatentCount;
+
+    @FXML
+    private Button CloudL;
+
+    @FXML
+    private Button CloudR;
+
+    @FXML
+    private Label CloudCount;
+
+    @FXML
+    private Button DataL;
+
+    @FXML
+    private Button DataR;
+
+    @FXML
+    private Label DataCount;
+
+    @FXML
+    private Label TotalCount;
+
+    @FXML
+    private Button Buy;
+    // متغیرهای نگهدارنده تعداد هر کارت
+    private int currentTalentCount = 0;
+    private int currentPatentCount = 0;
+    private int currentCloudCount = 0;
+    private int currentDataCount = 0;
+
+    @FXML
+    public void initialize() {
+
+        TalentCount.setText("0");
+        PatentCount.setText("0");
+        CloudCount.setText("0");
+        DataCount.setText("0");
+        TotalCount.setText("0");
+    }
+
+    private void updateTotalPrice() {
+        int total = currentTalentCount * Integer.parseInt(TalentPrice.getText())
+                + currentPatentCount * Integer.parseInt(PatentPrice.getText())
+                + currentCloudCount * Integer.parseInt(CloudPrice.getText())
+                + currentDataCount * Integer.parseInt(DataPrice.getText());
+        TotalCount.setText(String.valueOf(total));
+    }
+
+
+    @FXML
+    void onTalentPlus(ActionEvent event) {
+        currentTalentCount++;
+        TalentCount.setText(String.valueOf(currentTalentCount));
+        updateTotalPrice();
+    }
+
+    @FXML
+    void onTalentMinus(ActionEvent event) {
+        if (currentTalentCount > 0) {
+            currentTalentCount--;
+            TalentCount.setText(String.valueOf(currentTalentCount));
+            updateTotalPrice();
+        }
+    }
+
+
+    @FXML
+    void onPatentPlus(ActionEvent event) {
+        currentPatentCount++;
+        PatentCount.setText(String.valueOf(currentPatentCount));
+        updateTotalPrice();
+    }
+
+    @FXML
+    void onPatentMinus(ActionEvent event) {
+        if (currentPatentCount > 0) {
+            currentPatentCount--;
+            PatentCount.setText(String.valueOf(currentPatentCount));
+            updateTotalPrice();
+        }
+    }
+
+
+    @FXML
+    void onCloudPlus(ActionEvent event) {
+        currentCloudCount++;
+        CloudCount.setText(String.valueOf(currentCloudCount));
+        updateTotalPrice();
+    }
+
+    @FXML
+    void onCloudMinus(ActionEvent event) {
+        if (currentCloudCount > 0) {
+            currentCloudCount--;
+            CloudCount.setText(String.valueOf(currentCloudCount));
+            updateTotalPrice();
+        }
+    }
+
+
+    @FXML
+    void onDataPlus(ActionEvent event) {
+        currentDataCount++;
+        DataCount.setText(String.valueOf(currentDataCount));
+        updateTotalPrice();
+    }
+
+    @FXML
+    void onDataMinus(ActionEvent event) {
+        if (currentDataCount > 0) {
+            currentDataCount--;
+            DataCount.setText(String.valueOf(currentDataCount));
+            updateTotalPrice();
+        }
+    }
+
+    @FXML
     private ImageView Dice1;
 
     @FXML
@@ -344,8 +491,8 @@ public class GameBoardController {
 
     @FXML
     void ChangeColorToNotChoose(MouseEvent event) {
-        ((Shape) (event.getSource())).setFill(Color.rgb(70,70,70));
-        ((Shape) (event.getSource())).setStroke(Color.rgb(70,70,70));
+        ((Shape) (event.getSource())).setFill(Color.rgb(70, 70, 70));
+        ((Shape) (event.getSource())).setStroke(Color.rgb(70, 70, 70));
     }
 
     @FXML
@@ -366,60 +513,57 @@ public class GameBoardController {
     }
 
     @FXML
-    void SetColorUnchangable(MouseEvent event){
+    void SetColorUnchangable(MouseEvent event) {
         ((Shape) (event.getSource())).setOnMouseEntered(null);
         ((Shape) (event.getSource())).setOnMouseExited(null);
         ((Shape) (event.getSource())).setFill(Color.RED);
     }
 
     @FXML
-    void SetPlayerResourcesOpacityZero(MouseEvent event){
+    void SetPlayerResourcesOpacityZero(MouseEvent event) {
         PlayerResources.setOpacity(0);
         ((Rectangle) (event.getSource())).setOpacity(0.1);
-        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")){
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")) {
             P1RLines.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")){
+        if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")) {
             P2RLines.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")){
+        if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")) {
             P3RLines.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")){
+        if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")) {
             P4RLines.setOpacity(0);
         }
     }
 
     @FXML
-    void SetPlayerResourcesOpacityOne(MouseEvent event){
+    void SetPlayerResourcesOpacityOne(MouseEvent event) {
         PlayerResources.setOpacity(1);
         ((Rectangle) (event.getSource())).setOpacity(0.2);
-        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")){
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")) {
             P1RLines.setOpacity(1);
-        }
-        else if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")){
+        } else if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")) {
             P2RLines.setOpacity(1);
-        }
-        else if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")){
+        } else if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")) {
             P3RLines.setOpacity(1);
-        }
-        else if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")){
+        } else if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")) {
             P4RLines.setOpacity(1);
         }
     }
 
     @FXML
-    void SetResourcesToChoose(MouseEvent event){
+    void SetResourcesToChoose(MouseEvent event) {
         ((Rectangle) (event.getSource())).setOpacity(0.1);
     }
 
     @FXML
-    void SetResourcesToNotChoose(MouseEvent event){
+    void SetResourcesToNotChoose(MouseEvent event) {
         ((Rectangle) (event.getSource())).setOpacity(0);
     }
 
     @FXML
-    void RollDice(){
+    void RollDice() {
         ArrayList<Integer> Dice = gameEngine.rollDice();
 
         String D1Addr = "/assets/dice/dice_"+ Dice.get(0) + ".png";
