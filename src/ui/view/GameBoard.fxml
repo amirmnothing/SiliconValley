@@ -19,6 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
 <BorderPane maxHeight="864.0" maxWidth="1536.0" minHeight="756.0" minWidth="1536.0" prefHeight="756.0" prefWidth="1536.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.GameBoardController">
    <right>
       <TabPane prefHeight="756.0" prefWidth="826.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="TOP_CENTER">
