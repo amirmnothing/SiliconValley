@@ -20,6 +20,11 @@ import java.util.Objects;
 
 public class GameBoardController {
 
+    final static String PLAYER1COLOR = "rgb(110, 0, 0)";
+    final static String PLAYER2COLOR = "rgb(7, 0, 90)";
+    final static String PLAYER3COLOR = "rgb(0, 140, 100)";
+    final static String PLAYER4COLOR = "rgb(255, 215, 0)";
+
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
 

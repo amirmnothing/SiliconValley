@@ -737,18 +737,369 @@
                               </HBox>
                            </children>
                         </Group>
-                        <Text fill="WHITE" layoutX="1.0" layoutY="81.0" stroke="#404040" strokeType="OUTSIDE" strokeWidth="4.0" text="Shop" textAlignment="CENTER" wrappingWidth="218.84588623046875">
+                        <Text fill="WHITE" layoutX="1.0" layoutY="81.0" stroke="#303030" strokeType="OUTSIDE" strokeWidth="0.0" text="Shop" textAlignment="CENTER" wrappingWidth="218.84588623046875">
                            <font>
-                              <Font name="Elephant" size="70.0" />
+                              <Font name="Elephant Italic" size="70.0" />
                            </font>
                         </Text>
-                        <Line endX="90.0" fill="WHITE" layoutX="110.0" layoutY="104.0" startX="-85.0" stroke="WHITE" strokeWidth="5.0" />
+                        <Line endX="90.0" fill="WHITE" layoutX="110.0" layoutY="104.0" startX="-85.0" stroke="WHITE" strokeWidth="4.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
           <Tab closable="false" text="Trade">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="35.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="286.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="538.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Text fill="WHITE" layoutX="287.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade" textAlignment="CENTER" wrappingWidth="223.510009765625">
+                           <font>
+                              <Font name="Elephant Italic" size="70.0" />
+                           </font>
+                        </Text>
+                        <Line endX="100.0" layoutX="409.0" layoutY="96.0" startX="-118.0" stroke="WHITE" strokeWidth="4.0" />
+                        <HBox alignment="CENTER" layoutX="12.0" layoutY="154.0" prefHeight="469.0" prefWidth="754.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                       <VBox.margin>
+                                          <Insets top="7.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                             <children>
+                                                <Label text="Capital" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Talent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Cloud" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Patent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Line>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                             <children>
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="11.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                       <VBox.margin>
+                                          <Insets top="7.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                             <children>
+                                                <Label text="Capital" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Talent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Cloud" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Patent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Line>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                             <children>
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="11.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                       <VBox.margin>
+                                          <Insets top="7.0" />
+                                       </VBox.margin>
+                                    </Line>
+                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                             <children>
+                                                <Label text="Capital" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Talent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Cloud" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Patent" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="Data" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Line>
+                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                             <children>
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Label text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="11.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
@@ -790,19 +1141,43 @@
                         <Insets />
                      </GridPane.margin>
                   </Circle>
-                  <Circle fx:id="c22" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c24" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c22" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c24" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c26" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c42" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c44" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c42" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c44" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c46" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                   <Circle fx:id="c48" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c62" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c64" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c62" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c64" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c66" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                   <Circle fx:id="c68" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c82" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c84" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c82" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c84" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c86" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <Circle fx:id="c88" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <Line fx:id="l18" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -810,7 +1185,10 @@
                         <Insets />
                      </GridPane.margin>
                   </Line>
-                  <Line fx:id="l23" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Line fx:id="l23" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
                   <Line fx:id="l16" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
@@ -820,21 +1198,33 @@
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l12" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l32" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l34" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l36" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
@@ -860,21 +1250,33 @@
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l52" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l72" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l74" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l76" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <GridPane.margin>
@@ -900,70 +1302,211 @@
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l92" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
                   <Line fx:id="l21" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </Line>
-                  <Line fx:id="l25" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Line fx:id="l27" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Line fx:id="l29" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Line fx:id="l41" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Line fx:id="l43" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Line fx:id="l45" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Line fx:id="l47" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Line fx:id="l49" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Line fx:id="l69" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Line fx:id="l67" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Line fx:id="l65" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Line fx:id="l63" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Line fx:id="l61" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Line fx:id="l81" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Line fx:id="l83" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Line fx:id="l85" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Line fx:id="l87" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Line fx:id="l89" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c02" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c04" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Line fx:id="l25" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l27" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l29" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l41" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l43" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l45" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l47" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l49" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-168.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="0.5" />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l69" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l67" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l65" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l63" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l61" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l81" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l83" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l85" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l87" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l89" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Circle fx:id="c02" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c04" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c06" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Circle fx:id="c08" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Circle fx:id="c108" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
                   <Circle fx:id="c106" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c104" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c102" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c100" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c80" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c60" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c40" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c20" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c104" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c102" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c100" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c80" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c60" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c40" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Circle fx:id="c20" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
                   <Circle fx:id="c010" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Circle fx:id="c210" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Circle fx:id="c410" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                   <Circle fx:id="c610" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                   <Circle fx:id="c810" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <Circle fx:id="c1010" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c00" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l01" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l03" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l05" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l07" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l09" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Line fx:id="l101" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Line fx:id="l103" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Line fx:id="l105" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Line fx:id="l107" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Line fx:id="l109" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Line fx:id="l10" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Line fx:id="l30" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Line fx:id="l50" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                  <Line fx:id="l70" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                  <Line fx:id="l90" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c00" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Circle>
+                  <Line fx:id="l01" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l03" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l05" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l07" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l09" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l101" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l103" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l105" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l107" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l109" accessibleRole="BUTTON" endX="-69.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l10" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l30" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l50" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l70" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l90" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
                   <Line fx:id="l110" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Line fx:id="l310" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                   <Line fx:id="l510" accessibleRole="BUTTON" endX="-100.0" endY="100.5" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
