@@ -759,49 +759,442 @@
                            </font>
                         </Text>
                         <Line endX="100.0" layoutX="409.0" layoutY="96.0" startX="-118.0" stroke="WHITE" strokeWidth="4.0" />
-                        <HBox alignment="CENTER" layoutX="12.0" layoutY="154.0" prefHeight="469.0" prefWidth="754.0">
+                        <VBox alignment="TOP_CENTER" layoutX="12.0" layoutY="154.0" prefHeight="588.0" prefWidth="754.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                              <HBox alignment="CENTER" prefHeight="469.0" prefWidth="754.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
-                                       <VBox.margin>
-                                          <Insets top="7.0" />
-                                       </VBox.margin>
-                                    </Line>
-                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                             <VBox.margin>
+                                                <Insets top="7.0" />
+                                             </VBox.margin>
+                                          </Line>
+                                          <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Capital" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Talent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Cloud" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Patent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Data" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="11.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                             <VBox.margin>
+                                                <Insets top="7.0" />
+                                             </VBox.margin>
+                                          </Line>
+                                          <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Capital" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Talent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Cloud" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Patent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                                                         <VBox.margin>
+                                                            <Insets left="1.0" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label text="Data" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="11.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
+                                             <VBox.margin>
+                                                <Insets top="7.0" />
+                                             </VBox.margin>
+                                          </Line>
+                                          <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Capital" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="Talent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="Cloud" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="Patent" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="Data" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
+                                                      <Label text="10" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="11.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                             <font>
+                                                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                                             </font>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <VBox.margin>
+                                                <Insets top="15.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Your resources" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Line endX="100.0" startX="-115.0" stroke="WHITE" strokeWidth="4.0">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <Group>
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" height="115.0" layoutX="16.0" layoutY="-50.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="615.0" y="50.0">
+                                       <rotationAxis>
+                                          <Point3D />
+                                       </rotationAxis>
+                                    </Rectangle>
+                                    <HBox layoutX="16.0" prefHeight="115.0" prefWidth="616.0">
+                                       <children>
+                                          <VBox alignment="CENTER" maxHeight="215.0" maxWidth="182.0" prefWidth="122.0" spacing="11.0">
                                              <children>
                                                 <Label text="Capital" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+                                                <Line endX="78.0" startX="-38.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Line>
+                                                <Label fx:id="TalentPrice11" text="10" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </VBox>
+                                          <Line endY="2.0" startY="108.0" stroke="WHITE" strokeWidth="4.0">
+                                             <HBox.margin>
+                                                <Insets top="2.0" />
+                                             </HBox.margin>
+                                          </Line>
+                                          <VBox alignment="CENTER" maxHeight="215.0" maxWidth="182.0" prefWidth="122.0" spacing="11.0">
+                                             <children>
                                                 <Label text="Talent" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Cloud" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Patent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Data" textFill="WHITE">
+                                                <Line endX="78.0" startX="-38.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Line>
+                                                <Label fx:id="TalentPrice1" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -811,109 +1204,33 @@
                                                 <Insets />
                                              </opaqueInsets>
                                              <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </VBox>
-                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
-                                             <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
-                                          </Line>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
-                                             <children>
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
                                           </VBox>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="11.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
-                                       <VBox.margin>
-                                          <Insets top="7.0" />
-                                       </VBox.margin>
-                                    </Line>
-                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
-                                       <children>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
+                                          <Line endY="2.0" startY="108.0" stroke="WHITE" strokeWidth="4.0">
+                                             <HBox.margin>
+                                                <Insets top="2.0" />
+                                             </HBox.margin>
+                                             <rotationAxis>
+                                                <Point3D />
+                                             </rotationAxis>
+                                          </Line>
+                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="183.0" prefWidth="122.0" spacing="11.0">
                                              <children>
-                                                <Label text="Capital" textFill="WHITE">
+                                                <Label prefHeight="27.0" prefWidth="62.0" text="Cloud" textAlignment="CENTER" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
+                                                   <VBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </VBox.margin>
                                                 </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Talent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Cloud" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Patent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Data" textFill="WHITE">
+                                                <Line endX="78.0" startX="-38.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Line>
+                                                <Label fx:id="CloudPrice1" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -922,110 +1239,28 @@
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
                                           </VBox>
-                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                          <Line endY="2.0" startY="108.0" stroke="WHITE" strokeWidth="4.0">
                                              <HBox.margin>
-                                                <Insets />
+                                                <Insets top="2.0" />
                                              </HBox.margin>
+                                             <rotationAxis>
+                                                <Point3D />
+                                             </rotationAxis>
                                           </Line>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" prefWidth="122.0" spacing="11.0">
                                              <children>
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="11.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Line endX="100.0" startX="-100.0" stroke="WHITE" strokeWidth="4.0">
-                                       <VBox.margin>
-                                          <Insets top="7.0" />
-                                       </VBox.margin>
-                                    </Line>
-                                    <HBox alignment="CENTER" prefHeight="263.0" prefWidth="252.0">
-                                       <children>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="122.0" spacing="11.0">
-                                             <children>
-                                                <Label text="Capital" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Talent" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Cloud" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
                                                 <Label text="Patent" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Line endX="20.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="Data" textFill="WHITE">
+                                                <Line endX="78.0" startX="-38.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Line>
+                                                <Label fx:id="PatentPrice1" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -1034,71 +1269,46 @@
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
                                           </VBox>
-                                          <Line startY="260.0" stroke="WHITE" strokeWidth="4.0">
+                                          <Line endY="2.0" startY="108.0" stroke="WHITE" strokeWidth="4.0">
                                              <HBox.margin>
-                                                <Insets />
+                                                <Insets top="2.0" />
                                              </HBox.margin>
+                                             <rotationAxis>
+                                                <Point3D />
+                                             </rotationAxis>
                                           </Line>
-                                          <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
+                                          <VBox alignment="CENTER" maxHeight="206.0" maxWidth="182.0" prefWidth="122.0" spacing="11.0">
                                              <children>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label text="Data" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
                                                 </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                                   </font>
-                                                </Label>
-                                                <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Line endX="78.0" startX="-36.0" stroke="WHITE" strokeWidth="4.0">
+                                                   <VBox.margin>
+                                                      <Insets right="2.0" />
+                                                   </VBox.margin>
+                                                </Line>
+                                                <Label fx:id="DataPrice1" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
                                                 </Label>
                                              </children>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
                                           </VBox>
                                        </children>
-                                       <VBox.margin>
-                                          <Insets top="11.0" />
-                                       </VBox.margin>
+                                       <rotationAxis>
+                                          <Point3D />
+                                       </rotationAxis>
                                     </HBox>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                    </Button>
                                  </children>
-                              </VBox>
+                              </Group>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children></AnchorPane>
             </content>
           </Tab>
