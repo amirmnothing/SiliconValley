@@ -1883,9 +1883,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="630.0">
                      <children>
-                        <ImageView fitHeight="45.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/ResourcesIcons/AI.png" />
+                              <Image url="@../../assets/SectorsIcons/Ai.png" />
                            </image>
                            <HBox.margin>
                               <Insets />
@@ -1901,7 +1901,7 @@
                         </Text>
                         <ImageView fitHeight="45.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/ResourcesIcons/AI.png" />
+                              <Image url="@../../assets/SectorsIcons/Fintech.png" />
                            </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fintech" textAlignment="CENTER">
@@ -1912,9 +1912,9 @@
                               <Insets left="5.0" right="30.0" />
                            </HBox.margin>
                         </Text>
-                        <ImageView fitHeight="45.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/ResourcesIcons/AI.png" />
+                              <Image url="@../../assets/SectorsIcons/Cloud.png" />
                            </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cloud" textAlignment="CENTER">
@@ -1927,7 +1927,7 @@
                         </Text>
                         <ImageView fitHeight="45.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/ResourcesIcons/AI.png" />
+                              <Image url="@../../assets/SectorsIcons/Data.png" />
                            </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" textAlignment="CENTER">
@@ -1940,7 +1940,7 @@
                         </Text>
                         <ImageView fitHeight="45.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../assets/ResourcesIcons/AI.png" />
+                              <Image url="@../../assets/SectorsIcons/Patent.png" />
                            </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patent" textAlignment="CENTER">
