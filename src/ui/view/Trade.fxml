@@ -51,7 +51,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Ai.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -89,7 +89,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Cloud.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -129,7 +129,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Data.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -169,7 +169,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Fintech.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -209,7 +209,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Patent.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -266,7 +266,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Ai.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -307,7 +307,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Cloud.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -348,7 +348,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Data.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -389,7 +389,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Fintech.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
@@ -430,7 +430,7 @@
                            <children>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../assets/Resources/Capital.png" />
+                                    <Image url="@../../assets/SectorsIcons/Patent.png" />
                                  </image>
                               </ImageView>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
