@@ -20,7 +20,7 @@ public class Player {
     public Player(List<CompanyStructure> companies) {
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type, 0);
+            resources.put(type, 10);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;
