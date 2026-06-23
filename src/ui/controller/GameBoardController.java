@@ -437,12 +437,6 @@ public class GameBoardController {
         BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black;");
     }
 
-    // متغیرهای نگهدارنده تعداد هر کارت
-    private int currentTalentCount = 0;
-    private int currentPatentCount = 0;
-    private int currentCloudCount = 0;
-    private int currentDataCount = 0;
-
     @FXML
     public void initialize() {
 
