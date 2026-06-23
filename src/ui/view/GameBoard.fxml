@@ -30,12 +30,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="747.0" prefWidth="710.0">
                      <children>
-                        <Button fx:id="BuildAPartnershipBTN" layoutX="16.0" layoutY="20.0" mnemonicParsing="false" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Build a Partnership" textFill="WHITE">
+                        <Button fx:id="BuildAPartnershipBTN" layoutX="16.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBuildAPartnershipBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Build a Partnership" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="BuildAMVPBTN" layoutX="16.0" layoutY="90.0" mnemonicParsing="false" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Build a MVP" textFill="WHITE">
+                        <Button fx:id="BuildAMVPBTN" layoutX="16.0" layoutY="90.0" mnemonicParsing="false" onAction="#onBuildAMVPBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Build a MVP" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -1379,25 +1379,17 @@
                         <Insets />
                      </GridPane.margin>
                   </ImageView>
-                  <Line fx:id="l18" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Line>
-                  <Line fx:id="l16" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_6" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Line>
-                  <Line fx:id="l14" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l12" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_4" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -1405,371 +1397,379 @@
                         <Point3D />
                      </rotationAxis>
                   </Line>
-                  <Line fx:id="l101" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l103" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l105" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_2" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin></Line>
-                  <Line fx:id="l107" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  </Line>
+                  <Line fx:id="l10_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l109" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <Line fx:id="l10_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l10_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Line>
-                  <Line fx:id="l32" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l34" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l36" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l38" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l58" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l56" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l54" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l52" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l72" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l74" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l76" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l78" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l98" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l96" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Line>
-                  <Line fx:id="l94" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l92" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l21" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                  </Line>
-                  <Line fx:id="l41" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Line fx:id="l10_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l61" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l81" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l01" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l23" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l43" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l63" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l83" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l03" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l25" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l45" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l65" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l85" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l05" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l27" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l47" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l67" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l87" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l07" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Line>
-                  <Line fx:id="l29" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Line fx:id="l10_9" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Line>
-                  <Line fx:id="l49" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Line fx:id="l3_2" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l3_4" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l3_6" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l3_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l5_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l5_6" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l5_4" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l5_2" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l7_2" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l7_4" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l7_6" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l7_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l9_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l9_6" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Line>
+                  <Line fx:id="l9_4" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l9_2" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l2_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line fx:id="l4_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l6_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l8_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l0_1" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l2_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l4_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l6_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l8_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l0_3" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l2_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l4_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l6_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l8_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l0_5" accessibleRole="BUTTON" endX="-70.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l2_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l4_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l6_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l8_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l0_7" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-170.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Line>
+                  <Line fx:id="l2_9" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></Line>
+                  <Line fx:id="l4_9" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l69" accessibleRole="BUTTON" endX="-69.0" layoutX="-169.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <Line fx:id="l6_9" accessibleRole="BUTTON" endX="-69.0" layoutX="-169.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Line>
-                  <Line fx:id="l89" accessibleRole="BUTTON" endX="-69.0" layoutX="-169.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <Line fx:id="l8_9" accessibleRole="BUTTON" endX="-69.0" layoutX="-169.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Line>
-                  <Line fx:id="l09" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Line fx:id="l0_9" accessibleRole="BUTTON" endX="-69.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-169.0" stroke="#464646" strokeWidth="5.0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin></Line>
-                  <Line fx:id="l10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_0" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l110" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Line fx:id="l30" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Line fx:id="l1_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Line fx:id="l3_0" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l310" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                  <Line fx:id="l50" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <Line fx:id="l3_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Line fx:id="l5_0" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l510" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                  <Line fx:id="l70" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                  <Line fx:id="l5_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <Line fx:id="l7_0" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l710" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                  <Line fx:id="l90" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                  <Line fx:id="l7_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                  <Line fx:id="l9_0" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Line>
-                  <Line fx:id="l910" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c28" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Line fx:id="l9_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c2_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Circle>
-                  <Circle fx:id="c22" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Circle fx:id="c2_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c24" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Circle fx:id="c2_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c26" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c42" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Circle fx:id="c2_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c4_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c44" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Circle fx:id="c4_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c46" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c48" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c62" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <Circle fx:id="c4_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c4_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c6_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c64" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <Circle fx:id="c6_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c66" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c68" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c82" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <Circle fx:id="c6_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c6_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c8_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c84" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <Circle fx:id="c8_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c86" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c88" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c02" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Circle fx:id="c8_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c8_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c0_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c04" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Circle fx:id="c0_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c06" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c08" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c108" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c106" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c104" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <Circle fx:id="c0_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c0_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c10_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c10_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c10_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c102" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <Circle fx:id="c10_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c100" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <Circle fx:id="c10_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c80" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <Circle fx:id="c8_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c60" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <Circle fx:id="c6_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c40" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Circle fx:id="c4_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c20" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Circle fx:id="c2_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
-                  <Circle fx:id="c010" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c210" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c410" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c610" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c810" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c1010" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                  <Circle fx:id="c00" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseCircle" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Circle fx:id="c0_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c2_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c4_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c6_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c8_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c10_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                  <Circle fx:id="c0_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Circle>
