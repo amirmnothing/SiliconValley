@@ -2,7 +2,11 @@ package ui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,11 +17,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.models.Edge;
 import logic.models.Vertex;
+import logic.models.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -27,6 +35,12 @@ public class GameBoardController {
     final static String PLAYER2COLOR = "rgb(7, 0, 90)";
     final static String PLAYER3COLOR = "rgb(0, 140, 100)";
     final static String PLAYER4COLOR = "rgb(255, 215, 0)";
+
+    // متغیرهای نگهدارنده تعداد هر کارت
+    private int currentTalentCount = 0;
+    private int currentPatentCount = 0;
+    private int currentCloudCount = 0;
+    private int currentDataCount = 0;
 
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
@@ -547,8 +561,14 @@ public class GameBoardController {
     }
 
     @FXML
-    void ChangeColorToNotChoose(MouseEvent event) {
+    void ChangeColorToNotChooseCircle(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.rgb(70, 70, 70));
+        ((Shape) (event.getSource())).setStroke(Color.BLACK);
+        ((Shape) (event.getSource())).setStrokeWidth(1);
+    }
+
+    @FXML
+    void ChangeColorToNotChooseLine(MouseEvent event) {
         ((Shape) (event.getSource())).setStroke(Color.rgb(70, 70, 70));
     }
 
@@ -596,6 +616,13 @@ public class GameBoardController {
     void ChangeTradeButtonColorToNotChoose(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 4;");
     }
+
+    @FXML
+    void ChangeTradeButtonColorToPressed(MouseEvent event) {
+        String rgbColor = "rgb(78,78,78)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 4;");
+    }
+
 
     @FXML
     void SetColorUnchangable(MouseEvent event) {
@@ -784,4 +811,29 @@ public class GameBoardController {
     }
 
 
+
+    @FXML
+    private void openTradeWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/Trade.fxml"));
+            Parent root = loader.load();
+
+            TradeController tradeController = loader.getController();
+
+            // Todo : You must send players to TRADE window to parse their resources
+            tradeController.setData(new Player[]{new Player(null)});
+
+            Stage tradeStage = new Stage();
+            tradeStage.setTitle("Trade");
+            tradeStage.setScene(new Scene(root));
+            tradeStage.setResizable(false);
+            tradeStage.initModality(Modality.APPLICATION_MODAL);
+            tradeStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+
+            tradeStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
