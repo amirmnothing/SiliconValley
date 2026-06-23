@@ -878,7 +878,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>
@@ -1006,7 +1006,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>
@@ -1118,7 +1118,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="576.0" prefWidth="500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.TradeController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="484.0" prefWidth="501.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You give">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="40.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Line endX="60.0" fill="WHITE" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="7.0" />
+                     </VBox.margin></HBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You get" textAlignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="40.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Line endX="60.0" fill="WHITE" startX="-100.0" stroke="WHITE" strokeWidth="3.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Line>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="250.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="200.00000762939453" layoutY="82.40000343322754" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Resources/Capital.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="493.0" prefHeight="91.0" prefWidth="502.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reset All" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Request" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="65.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

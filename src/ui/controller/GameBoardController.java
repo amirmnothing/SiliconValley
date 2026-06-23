@@ -2,7 +2,11 @@ package ui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,8 +17,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import logic.engine.GameEngine;
+import logic.models.Player;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -611,5 +619,31 @@ public class GameBoardController {
 
         Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
         Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+    }
+
+    @FXML
+    private void openTradeWindow(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/Trade.fxml"));
+            Parent root = loader.load();
+
+            TradeController tradeController = loader.getController();
+
+            // Todo : You must send players to TRADE window to parse their resources
+            tradeController.setData(new Player[]{new Player(null)});
+
+            Stage tradeStage = new Stage();
+            tradeStage.setTitle("Trade");
+            tradeStage.setScene(new Scene(root));
+            tradeStage.setResizable(false);
+            tradeStage.initModality(Modality.APPLICATION_MODAL);
+            tradeStage.initOwner(((Node) event.getSource()).getScene().getWindow());
+
+//            tradeStage.setAlwaysOnTop(true);
+            tradeStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
