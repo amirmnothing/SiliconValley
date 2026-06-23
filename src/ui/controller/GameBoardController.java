@@ -422,19 +422,25 @@ public class GameBoardController {
 
     @FXML
     void onBuildAMVPBTN(ActionEvent event) {
-        gameEngine.setBuildMode(BuildMode.MVP);
-
-        BuildAMVPBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333;");
-        BuildAPartnershipBTN.setStyle("-fx-border-color: white; -fx-background-color: black;");
+        if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) gameEngine.setBuildMode(BuildMode.MVP);
+        else {
+            resetBuildMode();
+            return;
+        }
+        BuildAMVPBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
+        BuildAPartnershipBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
 
     }
 
     @FXML
     void onBuildAPartnershipBTN(ActionEvent event) {
-        gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
-
-        BuildAPartnershipBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333;");
-        BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black;");
+        if (gameEngine.getCurrentBuildMode() != BuildMode.PARTNERSHIP) gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
+        else {
+            resetBuildMode();
+            return;
+        }
+        BuildAPartnershipBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
+        BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
     }
 
     @FXML
@@ -572,7 +578,10 @@ public class GameBoardController {
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else
-            ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+        ) ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
@@ -580,7 +589,10 @@ public class GameBoardController {
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else
-            ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+            if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+                    (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
+                    (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+            ) ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     private Color getPlayerColor() {
@@ -620,7 +632,6 @@ public class GameBoardController {
 
     @FXML
     void SetColorUnchangable(MouseEvent event) {
-
         if (gameEngine.getCurrentBuildMode() == BuildMode.NONE) {
             return;
         }
@@ -680,7 +691,7 @@ public class GameBoardController {
                 line.setOnMouseExited(null);
                 line.setFill(color);
                 line.setStroke(color);
-                line.setStrokeWidth(4);
+                line.setStrokeWidth(5);
 
                 resetBuildMode();
 
@@ -695,8 +706,8 @@ public class GameBoardController {
 
     private void resetBuildMode() {
         gameEngine.setBuildMode(BuildMode.NONE);
-        BuildAMVPBTN.setStyle("-fx-background-color: black; -fx-border-color: white;");
-        BuildAPartnershipBTN.setStyle("-fx-background-color: black; -fx-border-color: white;");
+        BuildAMVPBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
+        BuildAPartnershipBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
     }
 
     @FXML
