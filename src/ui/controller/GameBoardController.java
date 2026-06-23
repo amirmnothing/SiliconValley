@@ -651,7 +651,6 @@ public class GameBoardController {
             tradeStage.initModality(Modality.APPLICATION_MODAL);
             tradeStage.initOwner(((Node) event.getSource()).getScene().getWindow());
 
-//            tradeStage.setAlwaysOnTop(true);
             tradeStage.showAndWait();
 
         } catch (IOException e) {
