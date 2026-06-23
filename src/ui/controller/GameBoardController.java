@@ -33,6 +33,12 @@ public class GameBoardController {
     final static String PLAYER3COLOR = "rgb(0, 140, 100)";
     final static String PLAYER4COLOR = "rgb(255, 215, 0)";
 
+    // متغیرهای نگهدارنده تعداد هر کارت
+    private int currentTalentCount = 0;
+    private int currentPatentCount = 0;
+    private int currentCloudCount = 0;
+    private int currentDataCount = 0;
+
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
 
@@ -403,12 +409,6 @@ public class GameBoardController {
 
     @FXML
     private ImageView Dice2;
-
-    // متغیرهای نگهدارنده تعداد هر کارت
-    private int currentTalentCount = 0;
-    private int currentPatentCount = 0;
-    private int currentCloudCount = 0;
-    private int currentDataCount = 0;
 
     @FXML
     public void initialize() {
