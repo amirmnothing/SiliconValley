@@ -1346,136 +1346,38 @@
                   <RowConstraints maxHeight="4.8" minHeight="4.8" prefHeight="4.8" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
                      <GridPane.margin>
                         <Insets left="0.5" />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="9">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="3">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="5">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="7">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="9">
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="9" />
                   <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <image>
-                        <Image url="@../../assets/ResourcesIcons/AI.png" />
-                     </image>
                   </ImageView>
                   <Line fx:id="l18" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChooseLine" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
