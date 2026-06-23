@@ -158,8 +158,6 @@ public class GameEngine {
         // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
         if (!setupPhaseActive) player.deductResourcesForMVP();
         vertex.setCompanyStructure(new MVP(player));
-        System.out.println("M");//TODO
-
 
         // TODO : Show MPV created successfully
 
@@ -251,8 +249,6 @@ public class GameEngine {
 
         if (!setupPhaseActive) player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
-        System.out.println("P");//TODO
-
         // TODO : Show Partnership created successfully
     }
 
