@@ -521,14 +521,26 @@ public class GameBoardController {
     }
 
     @FXML
-    void ChangeColorToChoose(MouseEvent event) {
+    void ChangeColorToChooseCircle(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.RED);
+        ((Shape) (event.getSource())).setStroke(Color.BLACK);
+        ((Shape) (event.getSource())).setStrokeWidth(1);
+    }
+
+    @FXML
+    void ChangeColorToChooseLine(MouseEvent event) {
         ((Shape) (event.getSource())).setStroke(Color.RED);
     }
 
     @FXML
-    void ChangeColorToNotChoose(MouseEvent event) {
+    void ChangeColorToNotChooseCircle(MouseEvent event) {
         ((Shape) (event.getSource())).setFill(Color.rgb(70, 70, 70));
+        ((Shape) (event.getSource())).setStroke(Color.BLACK);
+        ((Shape) (event.getSource())).setStrokeWidth(1);
+    }
+
+    @FXML
+    void ChangeColorToNotChooseLine(MouseEvent event) {
         ((Shape) (event.getSource())).setStroke(Color.rgb(70, 70, 70));
     }
 
