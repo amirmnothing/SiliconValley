@@ -27,6 +27,7 @@ import logic.models.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class GameBoardController {
@@ -41,6 +42,9 @@ public class GameBoardController {
     private int currentPatentCount = 0;
     private int currentCloudCount = 0;
     private int currentDataCount = 0;
+
+    ArrayList<Line> lines;
+    ArrayList<Circle> circles;
 
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
@@ -422,7 +426,11 @@ public class GameBoardController {
 
     @FXML
     void onBuildAMVPBTN(ActionEvent event) {
-        if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) gameEngine.setBuildMode(BuildMode.MVP);
+        if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) {
+            gameEngine.setBuildMode(BuildMode.MVP);
+            for (Line l : lines) l.setDisable(true);
+            for (Circle c : circles) c.setDisable(false);
+        }
         else {
             resetBuildMode();
             return;
@@ -434,7 +442,11 @@ public class GameBoardController {
 
     @FXML
     void onBuildAPartnershipBTN(ActionEvent event) {
-        if (gameEngine.getCurrentBuildMode() != BuildMode.PARTNERSHIP) gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
+        if (gameEngine.getCurrentBuildMode() != BuildMode.PARTNERSHIP) {
+            for (Circle c : circles) c.setDisable(true);
+            for (Line l : lines) l.setDisable(false);
+            gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
+        }
         else {
             resetBuildMode();
             return;
@@ -451,6 +463,28 @@ public class GameBoardController {
         CloudCount.setText("0");
         DataCount.setText("0");
         TotalCount.setText("0");
+
+        lines = new ArrayList<>(Arrays.asList(
+                l0_1,l0_3,l0_5,l0_7, l0_9,
+                l1_0,l1_2,l1_4,l1_6,l1_8,l1_10,
+                l2_1,l2_3,l2_5,l2_7,l2_9,
+                l3_0,l3_2,l3_4,l3_6,l3_8,l3_10,
+                l4_1,l4_3,l4_5,l4_7,l4_9,
+                l5_0,l5_2,l5_4,l5_6,l5_8,l5_10,
+                l6_1,l6_3,l6_5,l6_7,l6_9,
+                l7_0,l7_2,l7_4,l7_6,l7_8,l7_10,
+                l8_1,l8_3,l8_5,l8_7,l8_9,
+                l9_0,l9_2,l9_4,l9_6,l9_8,l9_10,
+                l10_1,l10_3,l10_5,l10_7,l10_9
+        ));
+        circles = new ArrayList<>(Arrays.asList(
+                c0_0,c0_2,c0_4,c0_6,c0_8,c0_10,
+                c2_0,c2_2,c2_4,c2_6,c2_8,c2_10,
+                c4_0,c4_2,c4_4,c4_6,c4_8,c4_10,
+                c6_0,c6_2,c6_4,c6_6,c6_8,c6_10,
+                c8_0,c8_2,c8_4,c8_6,c8_8,c8_10,
+                c10_0,c10_2,c10_4,c10_6,c10_8,c10_10
+        ));
     }
 
     private void updateTotalPrice() {
@@ -706,6 +740,8 @@ public class GameBoardController {
 
     private void resetBuildMode() {
         gameEngine.setBuildMode(BuildMode.NONE);
+        for (Line l : lines) l.setDisable(false);
+        for (Circle c : circles) c.setDisable(false);
         BuildAMVPBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
         BuildAPartnershipBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
     }
