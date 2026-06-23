@@ -760,8 +760,13 @@ public class GameBoardController {
         String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
         String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
 
-        Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
-        Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+            Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
+            Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+
+//            refreshPlayersResourcesUI();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //برای استخراج مختصات از نام circle و line
