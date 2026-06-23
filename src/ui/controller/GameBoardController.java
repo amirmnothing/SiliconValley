@@ -573,6 +573,13 @@ public class GameBoardController {
     }
 
     @FXML
+    void ChangeTradeButtonColorToPressed(MouseEvent event) {
+        String rgbColor = "rgb(78,78,78)";
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 4;");
+    }
+
+
+    @FXML
     void SetColorUnchangable(MouseEvent event) {
         ((Shape) (event.getSource())).setOnMouseEntered(null);
         ((Shape) (event.getSource())).setOnMouseExited(null);
