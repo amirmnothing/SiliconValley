@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -44,7 +45,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGiveTalentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -54,11 +55,11 @@
                                     <Image url="@../../assets/SectorsIcons/Ai.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="TalentGiveLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -68,7 +69,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGiveTalentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -82,7 +83,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGiveCloudMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -92,11 +93,11 @@
                                     <Image url="@../../assets/SectorsIcons/Cloud.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="CloudGiveLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -106,7 +107,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGiveCloudPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -122,7 +123,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGiveDataMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -132,11 +133,11 @@
                                     <Image url="@../../assets/SectorsIcons/Data.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="DataGiveLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -146,7 +147,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGiveDataPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -162,7 +163,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGiveCapitalMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -172,11 +173,11 @@
                                     <Image url="@../../assets/SectorsIcons/Fintech.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="CapitalGiveLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -186,7 +187,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGiveCapitalPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -202,7 +203,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGivePatentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -212,11 +213,11 @@
                                     <Image url="@../../assets/SectorsIcons/Patent.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="PatentGiveLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -226,12 +227,12 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGivePatentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
                      <VBox.margin>
-                        <Insets top="7.0" />
+                        <Insets top="10.0" />
                      </VBox.margin></HBox>
                </children>
             </VBox>
@@ -259,7 +260,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGetTalentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -269,11 +270,11 @@
                                     <Image url="@../../assets/SectorsIcons/Ai.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="TalentGetLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -283,7 +284,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGetTalentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -300,7 +301,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGetCloudMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -310,11 +311,11 @@
                                     <Image url="@../../assets/SectorsIcons/Cloud.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="CloudGetLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -324,7 +325,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGetCloudPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -341,7 +342,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGetDataMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -351,11 +352,11 @@
                                     <Image url="@../../assets/SectorsIcons/Data.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="DataGetLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -365,7 +366,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGetDataPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -382,7 +383,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGetCapitalMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -392,11 +393,11 @@
                                     <Image url="@../../assets/SectorsIcons/Fintech.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="CapitalGetLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -406,7 +407,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGetCapitalPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -423,7 +424,7 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="217.5" layoutY="100.0" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="217.5" layoutY="100.0" onMouseClicked="#onGetPatentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -433,11 +434,11 @@
                                     <Image url="@../../assets/SectorsIcons/Patent.png" />
                                  </image>
                               </ImageView>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="97.4332275390625">
+                              <Label fx:id="PatentGetLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="102.0" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                  </font>
-                              </Text>
+                              </Label>
                            </children>
                         </VBox>
                         <Group>
@@ -447,7 +448,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onGetPatentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -461,7 +462,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="493.0" prefHeight="91.0" prefWidth="502.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeResetButtonColorToChoose" onMouseExited="#ChangeResetButtonColorToNotChoose" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reset All" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onResetAll" onMouseEntered="#ChangeResetButtonColorToChoose" onMouseExited="#ChangeResetButtonColorToNotChoose" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reset All" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                </font>
