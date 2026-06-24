@@ -20,10 +20,14 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
+import logic.enums.BuildMode;
+import logic.models.Edge;
+import logic.models.Vertex;
 import logic.models.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class GameBoardController {
@@ -39,6 +43,9 @@ public class GameBoardController {
     private int currentCloudCount = 0;
     private int currentDataCount = 0;
 
+    ArrayList<Line> lines;
+    ArrayList<Circle> circles;
+
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
 
@@ -48,292 +55,293 @@ public class GameBoardController {
     }
 
     @FXML
-    private Circle c00;
+    private Circle c0_0;
 
     @FXML
-    private Circle c010;
+    private Circle c0_10;
 
     @FXML
-    private Circle c02;
+    private Circle c0_2;
 
     @FXML
-    private Circle c04;
+    private Circle c0_4;
 
     @FXML
-    private Circle c06;
+    private Circle c0_6;
 
     @FXML
-    private Circle c08;
+    private Circle c0_8;
 
     @FXML
-    private Circle c100;
+    private Circle c10_0;
 
     @FXML
-    private Circle c1010;
+    private Circle c10_10;
 
     @FXML
-    private Circle c102;
+    private Circle c10_2;
 
     @FXML
-    private Circle c104;
+    private Circle c10_4;
 
     @FXML
-    private Circle c106;
+    private Circle c10_6;
 
     @FXML
-    private Circle c108;
+    private Circle c10_8;
 
     @FXML
-    private Circle c20;
+    private Circle c2_0;
 
     @FXML
-    private Circle c210;
+    private Circle c2_10;
 
     @FXML
-    private Circle c22;
+    private Circle c2_2;
 
     @FXML
-    private Circle c24;
+    private Circle c2_4;
 
     @FXML
-    private Circle c26;
+    private Circle c2_6;
 
     @FXML
-    private Circle c28;
+    private Circle c2_8;
 
     @FXML
-    private Circle c40;
+    private Circle c4_0;
 
     @FXML
-    private Circle c410;
+    private Circle c4_10;
 
     @FXML
-    private Circle c42;
+    private Circle c4_2;
 
     @FXML
-    private Circle c44;
+    private Circle c4_4;
 
     @FXML
-    private Circle c46;
+    private Circle c4_6;
 
     @FXML
-    private Circle c48;
+    private Circle c4_8;
 
     @FXML
-    private Circle c60;
+    private Circle c6_0;
 
     @FXML
-    private Circle c610;
+    private Circle c6_10;
 
     @FXML
-    private Circle c62;
+    private Circle c6_2;
 
     @FXML
-    private Circle c64;
+    private Circle c6_4;
 
     @FXML
-    private Circle c66;
+    private Circle c6_6;
 
     @FXML
-    private Circle c68;
+    private Circle c6_8;
 
     @FXML
-    private Circle c80;
+    private Circle c8_0;
 
     @FXML
-    private Circle c810;
+    private Circle c8_10;
 
     @FXML
-    private Circle c82;
+    private Circle c8_2;
 
     @FXML
-    private Circle c84;
+    private Circle c8_4;
 
     @FXML
-    private Circle c86;
+    private Circle c8_6;
 
     @FXML
-    private Circle c88;
+    private Circle c8_8;
 
     @FXML
-    private Line l01;
+    private Line l0_1;
 
     @FXML
-    private Line l03;
+    private Line l0_3;
 
     @FXML
-    private Line l05;
+    private Line l0_5;
 
     @FXML
-    private Line l07;
+    private Line l0_7;
 
     @FXML
-    private Line l09;
+    private Line l0_9;
 
     @FXML
-    private Line l10;
+    private Line l1_0;
 
     @FXML
-    private Line l101;
+    private Line l10_1;
 
     @FXML
-    private Line l103;
+    private Line l10_3;
 
     @FXML
-    private Line l105;
+    private Line l10_5;
 
     @FXML
-    private Line l107;
+    private Line l10_7;
 
     @FXML
-    private Line l109;
+    private Line l10_9;
 
     @FXML
-    private Line l110;
+    private Line l1_10;
 
     @FXML
-    private Line l12;
+    private Line l1_2;
 
     @FXML
-    private Line l14;
+    private Line l1_4;
 
     @FXML
-    private Line l16;
+    private Line l1_6;
 
     @FXML
-    private Line l18;
+    private Line l1_8;
 
     @FXML
-    private Line l21;
+    private Line l2_1;
 
     @FXML
-    private Line l23;
+    private Line l2_3;
 
     @FXML
-    private Line l25;
+    private Line l2_5;
 
     @FXML
-    private Line l27;
+    private Line l2_7;
 
     @FXML
-    private Line l29;
+    private Line l2_9;
 
     @FXML
-    private Line l30;
+    private Line l3_0;
 
     @FXML
-    private Line l310;
+    private Line l3_10;
 
     @FXML
-    private Line l32;
+    private Line l3_2;
 
     @FXML
-    private Line l34;
+    private Line l3_4;
 
     @FXML
-    private Line l36;
+    private Line l3_6;
 
     @FXML
-    private Line l38;
+    private Line l3_8;
 
     @FXML
-    private Line l41;
+    private Line l4_1;
 
     @FXML
-    private Line l43;
+    private Line l4_3;
 
     @FXML
-    private Line l45;
+    private Line l4_5;
 
     @FXML
-    private Line l47;
+    private Line l4_7;
 
     @FXML
-    private Line l49;
+    private Line l4_9;
 
     @FXML
-    private Line l50;
+    private Line l5_0;
 
     @FXML
-    private Line l510;
+    private Line l5_10;
 
     @FXML
-    private Line l52;
+    private Line l5_2;
 
     @FXML
-    private Line l54;
+    private Line l5_4;
 
     @FXML
-    private Line l56;
+    private Line l5_6;
 
     @FXML
-    private Line l58;
+    private Line l5_8;
 
     @FXML
-    private Line l61;
+    private Line l6_1;
 
     @FXML
-    private Line l63;
+    private Line l6_3;
 
     @FXML
-    private Line l65;
+    private Line l6_5;
 
     @FXML
-    private Line l67;
+    private Line l6_7;
 
     @FXML
-    private Line l69;
+    private Line l6_9;
 
     @FXML
-    private Line l70;
+    private Line l7_0;
 
     @FXML
-    private Line l710;
+    private Line l7_10;
 
     @FXML
-    private Line l72;
+    private Line l7_2;
 
     @FXML
-    private Line l74;
+    private Line l7_4;
 
     @FXML
-    private Line l76;
+    private Line l7_6;
 
     @FXML
-    private Line l78;
+    private Line l7_8;
 
     @FXML
-    private Line l81;
+    private Line l8_1;
 
     @FXML
-    private Line l83;
+    private Line l8_3;
 
     @FXML
-    private Line l85;
+    private Line l8_5;
 
     @FXML
-    private Line l87;
+    private Line l8_7;
 
     @FXML
-    private Line l89;
+    private Line l8_9;
 
     @FXML
-    private Line l90;
+    private Line l9_0;
 
     @FXML
-    private Line l910;
+    private Line l9_10;
 
     @FXML
-    private Line l92;
+    private Line l9_2;
 
     @FXML
-    private Line l94;
+    private Line l9_4;
 
     @FXML
-    private Line l96;
+    private Line l9_6;
 
     @FXML
-    private Line l98;
+    private Line l9_8;
+
 
     @FXML
     private Group PlayerResources;
@@ -411,6 +419,43 @@ public class GameBoardController {
     private ImageView Dice2;
 
     @FXML
+    private Button BuildAMVPBTN;
+
+    @FXML
+    private Button BuildAPartnershipBTN;
+
+    @FXML
+    void onBuildAMVPBTN(ActionEvent event) {
+        if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) {
+            gameEngine.setBuildMode(BuildMode.MVP);
+            for (Line l : lines) l.setDisable(true);
+            for (Circle c : circles) c.setDisable(false);
+        }
+        else {
+            resetBuildMode();
+            return;
+        }
+        BuildAMVPBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
+        BuildAPartnershipBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
+
+    }
+
+    @FXML
+    void onBuildAPartnershipBTN(ActionEvent event) {
+        if (gameEngine.getCurrentBuildMode() != BuildMode.PARTNERSHIP) {
+            for (Circle c : circles) c.setDisable(true);
+            for (Line l : lines) l.setDisable(false);
+            gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
+        }
+        else {
+            resetBuildMode();
+            return;
+        }
+        BuildAPartnershipBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
+        BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
+    }
+
+    @FXML
     public void initialize() {
 
         TalentCount.setText("0");
@@ -418,6 +463,28 @@ public class GameBoardController {
         CloudCount.setText("0");
         DataCount.setText("0");
         TotalCount.setText("0");
+
+        lines = new ArrayList<>(Arrays.asList(
+                l0_1,l0_3,l0_5,l0_7, l0_9,
+                l1_0,l1_2,l1_4,l1_6,l1_8,l1_10,
+                l2_1,l2_3,l2_5,l2_7,l2_9,
+                l3_0,l3_2,l3_4,l3_6,l3_8,l3_10,
+                l4_1,l4_3,l4_5,l4_7,l4_9,
+                l5_0,l5_2,l5_4,l5_6,l5_8,l5_10,
+                l6_1,l6_3,l6_5,l6_7,l6_9,
+                l7_0,l7_2,l7_4,l7_6,l7_8,l7_10,
+                l8_1,l8_3,l8_5,l8_7,l8_9,
+                l9_0,l9_2,l9_4,l9_6,l9_8,l9_10,
+                l10_1,l10_3,l10_5,l10_7,l10_9
+        ));
+        circles = new ArrayList<>(Arrays.asList(
+                c0_0,c0_2,c0_4,c0_6,c0_8,c0_10,
+                c2_0,c2_2,c2_4,c2_6,c2_8,c2_10,
+                c4_0,c4_2,c4_4,c4_6,c4_8,c4_10,
+                c6_0,c6_2,c6_4,c6_6,c6_8,c6_10,
+                c8_0,c8_2,c8_4,c8_6,c8_8,c8_10,
+                c10_0,c10_2,c10_4,c10_6,c10_8,c10_10
+        ));
     }
 
     private void updateTotalPrice() {
@@ -497,39 +564,34 @@ public class GameBoardController {
     }
 
     @FXML
-    void ChangeShopButtonsToChoose(MouseEvent event){
+    void ChangeShopButtonsToChoose(MouseEvent event) {
         String rgbColor = "rgb(33, 33, 33)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
 
     @FXML
-    void ChangeShopButtonsToNotChoose(MouseEvent event){
+    void ChangeShopButtonsToNotChoose(MouseEvent event) {
         String rgbColor = "rgb(18, 18, 18)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
 
     @FXML
-    void ChangeShopBuyButtonToChoose(MouseEvent event){
+    void ChangeShopBuyButtonToChoose(MouseEvent event) {
         String rgbColor = "rgb(00, 100, 18)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
 
     @FXML
-    void ChangeShopBuyButtonToNotChoose(MouseEvent event){
+    void ChangeShopBuyButtonToNotChoose(MouseEvent event) {
         String rgbColor = "rgb(00, 60, 18)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
 
     @FXML
-    void ChangeColorToChooseCircle(MouseEvent event) {
-        ((Shape) (event.getSource())).setFill(Color.RED);
-        ((Shape) (event.getSource())).setStroke(Color.BLACK);
-        ((Shape) (event.getSource())).setStrokeWidth(1);
-    }
-
-    @FXML
-    void ChangeColorToChooseLine(MouseEvent event) {
-        ((Shape) (event.getSource())).setStroke(Color.RED);
+    void ChangeColorToChoose(MouseEvent event) {
+        Color color = getPlayerColor();
+        ((Shape) (event.getSource())).setFill(color);
+        ((Shape) (event.getSource())).setStroke(color);
     }
 
     @FXML
@@ -550,7 +612,10 @@ public class GameBoardController {
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else
-            ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+        ) ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
@@ -558,7 +623,27 @@ public class GameBoardController {
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else
-            ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+            if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+                    (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
+                    (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+            ) ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+    }
+
+    private Color getPlayerColor() {
+        int index = gameEngine.getCurrentPlayerIndex();
+
+        switch (index) {
+            case 0:
+                return Color.web(PLAYER1COLOR);
+            case 1:
+                return Color.web(PLAYER2COLOR);
+            case 2:
+                return Color.web(PLAYER3COLOR);
+            case 3:
+                return Color.web(PLAYER4COLOR);
+            default:
+                return Color.BLACK;
+        }
     }
 
     @FXML
@@ -581,9 +666,84 @@ public class GameBoardController {
 
     @FXML
     void SetColorUnchangable(MouseEvent event) {
-        ((Shape) (event.getSource())).setOnMouseEntered(null);
-        ((Shape) (event.getSource())).setOnMouseExited(null);
-        ((Shape) (event.getSource())).setFill(Color.RED);
+        if (gameEngine.getCurrentBuildMode() == BuildMode.NONE) {
+            return;
+        }
+
+
+        if (event.getSource() instanceof Circle circle && gameEngine.getCurrentBuildMode() == BuildMode.MVP) {
+            if (gameEngine.isSetupPhase() && gameEngine.isSetupPlacedMVP()) {
+                return;
+                //TODO میتوان اکسپشن زد
+            }
+            Vertex vertex = getVertexFromCircle(circle);
+            int[] coordinates = parseCoordinates(circle.getId());
+
+            if (!gameEngine.canBuildMVP(coordinates[0] / 2, coordinates[1] / 2)) {
+                return;
+            }
+            try {
+                Color color = getPlayerColor();
+                gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
+                if (gameEngine.isSetupPhase()) {
+                    gameEngine.notifyMVPPlaced();
+                }
+
+                circle.setOnMouseEntered(null);
+                circle.setOnMouseExited(null);
+                circle.setFill(color);
+                circle.setStroke(color);
+
+
+                resetBuildMode();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (event.getSource() instanceof Line line && gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP) {
+
+            if (gameEngine.isSetupPhase() && gameEngine.isSetupPlacedPartnership()) {
+                return;
+                //TODO میتوان اکسپشن زد
+            }
+
+            Edge edge = getEdgefromLine(line);
+
+            if (edge == null || gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
+                return;
+            }
+            try {
+                Color color = getPlayerColor();
+                gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
+                gameEngine.updateLongestNetwork();
+
+                if (gameEngine.isSetupPhase()) {
+                    gameEngine.notifyPartnershipPlaced();
+                }
+
+                line.setOnMouseEntered(null);
+                line.setOnMouseExited(null);
+                line.setFill(color);
+                line.setStroke(color);
+                line.setStrokeWidth(5);
+
+                resetBuildMode();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
+    private void resetBuildMode() {
+        gameEngine.setBuildMode(BuildMode.NONE);
+        for (Line l : lines) l.setDisable(false);
+        for (Circle c : circles) c.setDisable(false);
+        BuildAMVPBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
+        BuildAPartnershipBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
     }
 
     @FXML
@@ -633,12 +793,65 @@ public class GameBoardController {
     void RollDice() {
         ArrayList<Integer> Dice = gameEngine.rollDice();
 
-        String D1Addr = "/assets/dice/dice_"+ Dice.get(0) + ".png";
-        String D2Addr = "/assets/dice/dice_"+ Dice.get(1) + ".png";
+        String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
+        String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
 
         Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
         Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
     }
+
+    //برای استخراج مختصات از نام circle و line
+    private int[] parseCoordinates(String id) {
+        id = id.substring(1);
+        String[] parts = id.split("_");
+
+        int row = Integer.parseInt(parts[0]);
+        int col = Integer.parseInt(parts[1]);
+
+        return new int[]{row, col};
+    }
+
+    private Vertex getVertexFromCircle(Circle circle) {
+        int[] coordinates = parseCoordinates(circle.getId());
+        int mapRow = coordinates[0] / 2;
+        int mapCol = coordinates[1] / 2;
+
+        return gameEngine.getMap().getVertices()[mapRow][mapCol];
+    }
+
+    private Edge findEdge(Vertex v1, Vertex v2) {
+        for (Edge e : gameEngine.getMap().getEdges()) {
+            if ((e.getStart() == v1 && e.getEnd() == v2) || (e.getStart() == v2 && e.getEnd() == v1)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    private Edge getEdgefromLine(Line line) {
+        int[] coordinates = parseCoordinates(line.getId());
+        int row = coordinates[0];
+        int col = coordinates[1];
+        if (row % 2 == 1) {
+            int r = (row - 1) / 2;
+            int c = col / 2;
+
+            Vertex v1 = gameEngine.getMap().getVertices()[r][c];
+            Vertex v2 = gameEngine.getMap().getVertices()[r + 1][c];
+
+            return findEdge(v1, v2);
+        } else {
+            int r = row / 2;
+            int c = (col - 1) / 2;
+
+            Vertex v1 = gameEngine.getMap().getVertices()[r][c];
+            Vertex v2 = gameEngine.getMap().getVertices()[r][c + 1];
+
+            return findEdge(v1, v2);
+        }
+    }
+
+
 
     @FXML
     private void openTradeWindow(ActionEvent event) {

@@ -28,8 +28,13 @@ public class Main extends Application {
 
         players.add(new logic.models.TechGuruPlayer(new java.util.ArrayList<>()));
         players.add(new logic.models.HackerCEOPlayer(new java.util.ArrayList<>()));
+        players.add(new logic.models.VCFundedPlayer(new java.util.ArrayList<>()));
+        players.add(new logic.models.Player(new java.util.ArrayList<>()));
+
+
 
         logic.engine.GameEngine gameEngine = new logic.engine.GameEngine(gameMap, players);
+        gameEngine.startSetupPhase();
 
         // پاس دادن موتور بازی به کنترلر
         controller.setGameEngine(gameEngine);

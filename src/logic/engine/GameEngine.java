@@ -1,7 +1,7 @@
 package logic.engine;
 
-import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
+import logic.enums.BuildMode;
 import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 import logic.models.*;
@@ -14,6 +14,14 @@ public class GameEngine {
     private int currentPlayerIndex;
     private final Random random = new Random();
 
+    private boolean setupPhaseActive;
+    private int setupRound;
+    private int setupDirection; //1 یعنی دور اول رو بجلو 1- یعنی دور دوم رو به عقب
+    private boolean setupPlacedMVP;//TODO
+    private boolean setupPlacedPartnership;//TODO
+    private int setupTurnCount;
+
+    private BuildMode currentBuildMode = BuildMode.NONE;
 
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
@@ -21,8 +29,32 @@ public class GameEngine {
         this.currentPlayerIndex = 0;
     }
 
+    public Map getMap() {
+        return map;
+    }
+
+    public void setBuildMode(BuildMode mode) {
+        this.currentBuildMode = mode;
+    }
+
+    public BuildMode getCurrentBuildMode() {
+        return currentBuildMode;
+    }
+
     public Player getCurrentPlayer() {
         return players.get(currentPlayerIndex);
+    }
+
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
+
+    public boolean isSetupPlacedMVP() {
+        return setupPlacedMVP;
+    }
+
+    public boolean isSetupPlacedPartnership() {
+        return setupPlacedPartnership;
     }
 
     public void nextTurn() {
@@ -97,11 +129,15 @@ public class GameEngine {
     }
 
     public boolean canBuildMVP(int row, int col) {
+        if (setupPhaseActive && setupPlacedMVP) return false;
+
         Vertex[][] vertices = map.getVertices();
         Vertex vertex = vertices[row][col];
         if (vertex.getCompanyStructure() != null) return false;
+
         for (Edge edge : vertex.getAdjacentEdges()) {
-            if (edge.getOppositeVertex(vertex).getCompanyStructure() != null) return false;
+            if (edge.getOppositeVertex(vertex).getCompanyStructure() != null &&
+                    edge.getOppositeVertex(vertex).getCompanyStructure().getOwner() != getCurrentPlayer()) return false;
         }
         return true;
     }
@@ -113,13 +149,14 @@ public class GameEngine {
         }
         for (Edge edge : vertex.getAdjacentEdges()) {
             Vertex opposite = edge.getOppositeVertex(vertex);
-            if (opposite != null && opposite.getCompanyStructure() != null) {
+            if (opposite != null && opposite.getCompanyStructure() != null &&
+                    opposite.getCompanyStructure().getOwner() != getCurrentPlayer()) {
                 throw new InvalidPlacementException(vertex, "Placement violation! You cannot build in the immediate neighborhood of an existing company.");
             }
         }
 
         // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
-        player.deductResourcesForMVP();
+        if (!setupPhaseActive) player.deductResourcesForMVP();
         vertex.setCompanyStructure(new MVP(player));
 
         // TODO : Show MPV created successfully
@@ -164,28 +201,30 @@ public class GameEngine {
     }
 
     public boolean canBuildPartnership(Player player, Edge edge) {
-        if (edge == null || player == null) return false;
-        if (edge.getPartnership() != null) return false;
+        if (edge == null || player == null) return true;
+        if (edge.getPartnership() != null) return true;
+
+        if (setupPhaseActive && setupPlacedPartnership) return false;
 
         Vertex startVertex = edge.getStart();
         Vertex endVertex = edge.getEnd();
 
         if (startVertex != null && startVertex.getCompanyStructure() != null) {
-            if (startVertex.getCompanyStructure().getOwner().equals(player)) {
-                return true;
+            if (startVertex.getCompanyStructure().getOwner() == player) {
+                return false;
             }
         }
 
         if (endVertex != null && endVertex.getCompanyStructure() != null) {
-            if (endVertex.getCompanyStructure().getOwner().equals(player)) {
-                return true;
+            if (endVertex.getCompanyStructure().getOwner() == player) {
+                return false;
             }
         }
 
         if (startVertex != null) {
             for (Edge e : startVertex.getAdjacentEdges()) {
                 if (e != edge && e.getPartnership() != null) {
-                    if (e.getPartnership().getOwner().equals(player)) return true;
+                    if (e.getPartnership().getOwner() == player) return false;
                 }
             }
         }
@@ -193,24 +232,23 @@ public class GameEngine {
         if (endVertex != null) {
             for (Edge e : endVertex.getAdjacentEdges()) {
                 if (e != edge && e.getPartnership() != null) {
-                    if (e.getPartnership().getOwner().equals(player)) return true;
+                    if (e.getPartnership().getOwner() == player) return false;
                 }
             }
         }
 
-        return false;
+        return true;
     }
 
     public void buildPartnership(Player player, Edge edge) {
 
         if (edge.getPartnership() != null)
             throw new InvalidPlacementException(edge, "Placement violation! This edge already has a partnership on it.");
-        if (!canBuildPartnership(player, edge))
+        if (canBuildPartnership(player, edge))
             throw new InvalidPlacementException(edge, "Placement violation! Partnership must connect to your existing companies or partnerships.");
 
-        player.deductResourcesForPartnership();
+        if (!setupPhaseActive) player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
-
         // TODO : Show Partnership created successfully
     }
 
@@ -300,4 +338,88 @@ public class GameEngine {
         }
         return maxPath;
     }
+
+    public boolean isSetupPhaseActive() {
+        return setupPhaseActive;
+    }
+
+    public void setSetupPhaseActive(boolean setupPhaseActive) {
+        this.setupPhaseActive = setupPhaseActive;
+    }
+
+    public int getSetupRound() {
+        return setupRound;
+    }
+
+    public void setSetupRound(int setupRound) {
+        this.setupRound = setupRound;
+    }
+
+    public int getSetupDirection() {
+        return setupDirection;
+    }
+
+    public void setSetupDirection(int setupDirection) {
+        this.setupDirection = setupDirection;
+    }
+
+    public int getSetupTurnCount() {
+        return setupTurnCount;
+    }
+
+    public void setSetupTurnCount(int setupTurnCount) {
+        this.setupTurnCount = setupTurnCount;
+    }
+
+    //متد های مربوط به فاز شروع بازی
+    public void startSetupPhase() {
+        setupPhaseActive = true;
+        setupRound = 0;
+        setupDirection = 1;
+        currentPlayerIndex = 0;
+        setupTurnCount = 0;
+    }
+
+    public boolean isSetupPhase() {
+        return setupPhaseActive;
+    }
+
+    public void notifyMVPPlaced() {
+        setupPlacedMVP = true;
+        checkAndMoveToNextSetupTurn();
+
+    }
+
+    public void notifyPartnershipPlaced() {
+        setupPlacedPartnership = true;
+        checkAndMoveToNextSetupTurn();
+
+
+    }
+
+    public void checkAndMoveToNextSetupTurn() {
+        if (setupPlacedMVP && setupPlacedPartnership) {
+            setupTurnCount++;
+
+            setupPlacedMVP = false;
+            setupPlacedPartnership = false;
+
+            if (setupTurnCount == players.size() * 2) {
+                setupPhaseActive = false;
+                setupRound = 2;
+                setupDirection = 1;
+                currentPlayerIndex = 0;
+                return;
+            }
+            if (setupRound == 0 && currentPlayerIndex == players.size() - 1) {
+                setupRound = 1;
+                setupDirection = -1;
+            } else {
+                currentPlayerIndex += setupDirection;
+            }
+
+        }
+    }
+
+
 }
