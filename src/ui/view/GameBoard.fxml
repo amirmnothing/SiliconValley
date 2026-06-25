@@ -127,31 +127,31 @@
                                           </Line>
                                           <VBox alignment="CENTER" prefHeight="204.0" prefWidth="40.0" spacing="11.0">
                                              <children>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1CapitalCount" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="21.0" startX="-27.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1TalentCount" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="21.0" startX="-27.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1CloudCount" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="21.0" startX="-27.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1PatentCount" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="21.0" startX="-27.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1DataCount" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -373,6 +373,11 @@
                         </Group>
                         <ImageView fx:id="Dice1" fitHeight="130.0" fitWidth="130.0" layoutX="654.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Dice2" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="EndTurnBTN" layoutX="63.0" layoutY="474.0" mnemonicParsing="false" onAction="#onEndTurnBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="86.0" prefWidth="193.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="End Turn" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>

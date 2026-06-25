@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
+import logic.enums.ResourceType;
 import logic.models.Edge;
 import logic.models.Vertex;
 import logic.models.Player;
@@ -28,6 +29,7 @@ import logic.models.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class GameBoardController {
@@ -345,6 +347,16 @@ public class GameBoardController {
 
     @FXML
     private Group PlayerResources;
+    @FXML
+    private Label P1TalentCount;
+    @FXML
+    private Label P1PatentCount;
+    @FXML
+    private Label P1CloudCount;
+    @FXML
+    private Label P1DataCount;
+    @FXML
+    private Label P1CapitalCount;
 
     @FXML
     private Group P1RLines;
@@ -425,13 +437,20 @@ public class GameBoardController {
     private Button BuildAPartnershipBTN;
 
     @FXML
+    private Button EndTurnBTN;
+
+    @FXML
+    void onEndTurnBTN(ActionEvent event) {
+
+    }
+
+    @FXML
     void onBuildAMVPBTN(ActionEvent event) {
         if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) {
             gameEngine.setBuildMode(BuildMode.MVP);
             for (Line l : lines) l.setDisable(true);
             for (Circle c : circles) c.setDisable(false);
-        }
-        else {
+        } else {
             resetBuildMode();
             return;
         }
@@ -446,8 +465,7 @@ public class GameBoardController {
             for (Circle c : circles) c.setDisable(true);
             for (Line l : lines) l.setDisable(false);
             gameEngine.setBuildMode(BuildMode.PARTNERSHIP);
-        }
-        else {
+        } else {
             resetBuildMode();
             return;
         }
@@ -464,26 +482,34 @@ public class GameBoardController {
         DataCount.setText("0");
         TotalCount.setText("0");
 
+
+        P1TalentCount.setText("0");
+        P1PatentCount.setText("0");
+        P1CloudCount.setText("0");
+        P1DataCount.setText("0");
+        P1CapitalCount.setText("0");
+
+
         lines = new ArrayList<>(Arrays.asList(
-                l0_1,l0_3,l0_5,l0_7, l0_9,
-                l1_0,l1_2,l1_4,l1_6,l1_8,l1_10,
-                l2_1,l2_3,l2_5,l2_7,l2_9,
-                l3_0,l3_2,l3_4,l3_6,l3_8,l3_10,
-                l4_1,l4_3,l4_5,l4_7,l4_9,
-                l5_0,l5_2,l5_4,l5_6,l5_8,l5_10,
-                l6_1,l6_3,l6_5,l6_7,l6_9,
-                l7_0,l7_2,l7_4,l7_6,l7_8,l7_10,
-                l8_1,l8_3,l8_5,l8_7,l8_9,
-                l9_0,l9_2,l9_4,l9_6,l9_8,l9_10,
-                l10_1,l10_3,l10_5,l10_7,l10_9
+                l0_1, l0_3, l0_5, l0_7, l0_9,
+                l1_0, l1_2, l1_4, l1_6, l1_8, l1_10,
+                l2_1, l2_3, l2_5, l2_7, l2_9,
+                l3_0, l3_2, l3_4, l3_6, l3_8, l3_10,
+                l4_1, l4_3, l4_5, l4_7, l4_9,
+                l5_0, l5_2, l5_4, l5_6, l5_8, l5_10,
+                l6_1, l6_3, l6_5, l6_7, l6_9,
+                l7_0, l7_2, l7_4, l7_6, l7_8, l7_10,
+                l8_1, l8_3, l8_5, l8_7, l8_9,
+                l9_0, l9_2, l9_4, l9_6, l9_8, l9_10,
+                l10_1, l10_3, l10_5, l10_7, l10_9
         ));
         circles = new ArrayList<>(Arrays.asList(
-                c0_0,c0_2,c0_4,c0_6,c0_8,c0_10,
-                c2_0,c2_2,c2_4,c2_6,c2_8,c2_10,
-                c4_0,c4_2,c4_4,c4_6,c4_8,c4_10,
-                c6_0,c6_2,c6_4,c6_6,c6_8,c6_10,
-                c8_0,c8_2,c8_4,c8_6,c8_8,c8_10,
-                c10_0,c10_2,c10_4,c10_6,c10_8,c10_10
+                c0_0, c0_2, c0_4, c0_6, c0_8, c0_10,
+                c2_0, c2_2, c2_4, c2_6, c2_8, c2_10,
+                c4_0, c4_2, c4_4, c4_6, c4_8, c4_10,
+                c6_0, c6_2, c6_4, c6_6, c6_8, c6_10,
+                c8_0, c8_2, c8_4, c8_6, c8_8, c8_10,
+                c10_0, c10_2, c10_4, c10_6, c10_8, c10_10
         ));
     }
 
@@ -611,22 +637,22 @@ public class GameBoardController {
         String rgbColor = "rgb(37,37,37)";
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
-        else
-        if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+        else if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
                 (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
                 (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
-        ) ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        )
+            ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
     void ChangeButtonColorToNotChoose(MouseEvent event) {
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
-        else
-            if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
-                    (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
-                    (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
-            ) ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        else if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+        )
+            ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     private Color getPlayerColor() {
@@ -707,9 +733,9 @@ public class GameBoardController {
                 //TODO میتوان اکسپشن زد
             }
 
-            Edge edge = getEdgefromLine(line);
+            Edge edge = getEdgeFromLine(line);
 
-            if (edge == null || gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
+            if (edge == null || !gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
                 return;
             }
             try {
@@ -748,34 +774,42 @@ public class GameBoardController {
 
     @FXML
     void SetPlayerResourcesOpacityZero(MouseEvent event) {
-        PlayerResources.setOpacity(0);
+        int currentPlayerIndex = gameEngine.getCurrentPlayerIndex();
         ((Rectangle) (event.getSource())).setOpacity(0.1);
-        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")) {
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle") && currentPlayerIndex == 0) {
             P1RLines.setOpacity(0);
+            PlayerResources.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")) {
+        if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle") && currentPlayerIndex == 1) {
             P2RLines.setOpacity(0);
+            PlayerResources.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")) {
+        if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle") && currentPlayerIndex == 2) {
             P3RLines.setOpacity(0);
+            PlayerResources.setOpacity(0);
         }
-        if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")) {
+        if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle") && currentPlayerIndex == 3) {
             P4RLines.setOpacity(0);
+            PlayerResources.setOpacity(0);
         }
     }
 
     @FXML
     void SetPlayerResourcesOpacityOne(MouseEvent event) {
-        PlayerResources.setOpacity(1);
+        int currentPlayerIndex = gameEngine.getCurrentPlayerIndex();
         ((Rectangle) (event.getSource())).setOpacity(0.2);
-        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle")) {
+        if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle") && currentPlayerIndex == 0) {
             P1RLines.setOpacity(1);
-        } else if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle")) {
+            PlayerResources.setOpacity(1);
+        } else if (((Rectangle) (event.getSource())).getId().equals("P2ResourceRectangle") && currentPlayerIndex == 1) {
             P2RLines.setOpacity(1);
-        } else if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle")) {
+            PlayerResources.setOpacity(1);
+        } else if (((Rectangle) (event.getSource())).getId().equals("P3ResourceRectangle") && currentPlayerIndex == 2) {
             P3RLines.setOpacity(1);
-        } else if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle")) {
+            PlayerResources.setOpacity(1);
+        } else if (((Rectangle) (event.getSource())).getId().equals("P4ResourceRectangle") && currentPlayerIndex == 3) {
             P4RLines.setOpacity(1);
+            PlayerResources.setOpacity(1);
         }
     }
 
@@ -791,16 +825,17 @@ public class GameBoardController {
 
     @FXML
     void RollDice() {
-        ArrayList<Integer> Dice = gameEngine.rollDice();
+        try {
+            ArrayList<Integer> Dice = gameEngine.rollDiceForCurrentTurn();
 
-        String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
-        String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
+            String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
+            String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
 
             Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
             Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
 
-//            refreshPlayersResourcesUI();
-        }catch (Exception e){
+            refreshPlayersResourcesUI();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -833,7 +868,7 @@ public class GameBoardController {
         return null;
     }
 
-    private Edge getEdgefromLine(Line line) {
+    private Edge getEdgeFromLine(Line line) {
         int[] coordinates = parseCoordinates(line.getId());
         int row = coordinates[0];
         int col = coordinates[1];
@@ -855,7 +890,6 @@ public class GameBoardController {
             return findEdge(v1, v2);
         }
     }
-
 
 
     @FXML
@@ -881,5 +915,14 @@ public class GameBoardController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void refreshPlayersResourcesUI() {
+        Player p = gameEngine.getCurrentPlayer();
+        P1CapitalCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
+        P1PatentCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
+        P1CloudCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
+        P1DataCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.DATA, 0)));
+        P1TalentCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
     }
 }

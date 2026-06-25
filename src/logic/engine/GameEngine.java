@@ -23,10 +23,19 @@ public class GameEngine {
 
     private BuildMode currentBuildMode = BuildMode.NONE;
 
+
+    private boolean canRollDiceThisTurn = false;
+    private boolean mainPhaseActive = false;
+    private int turnNumber = 1;
+
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
         this.players = players;
         this.currentPlayerIndex = 0;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 
     public Map getMap() {
@@ -201,8 +210,8 @@ public class GameEngine {
     }
 
     public boolean canBuildPartnership(Player player, Edge edge) {
-        if (edge == null || player == null) return true;
-        if (edge.getPartnership() != null) return true;
+        if (edge == null || player == null) return false;
+        if (edge.getPartnership() != null) return false;
 
         if (setupPhaseActive && setupPlacedPartnership) return false;
 
@@ -211,20 +220,20 @@ public class GameEngine {
 
         if (startVertex != null && startVertex.getCompanyStructure() != null) {
             if (startVertex.getCompanyStructure().getOwner() == player) {
-                return false;
+                return true;
             }
         }
 
         if (endVertex != null && endVertex.getCompanyStructure() != null) {
             if (endVertex.getCompanyStructure().getOwner() == player) {
-                return false;
+                return true;
             }
         }
 
         if (startVertex != null) {
             for (Edge e : startVertex.getAdjacentEdges()) {
                 if (e != edge && e.getPartnership() != null) {
-                    if (e.getPartnership().getOwner() == player) return false;
+                    if (e.getPartnership().getOwner() == player) return true;
                 }
             }
         }
@@ -232,19 +241,19 @@ public class GameEngine {
         if (endVertex != null) {
             for (Edge e : endVertex.getAdjacentEdges()) {
                 if (e != edge && e.getPartnership() != null) {
-                    if (e.getPartnership().getOwner() == player) return false;
+                    if (e.getPartnership().getOwner() == player) return true;
                 }
             }
         }
 
-        return true;
+        return false;
     }
 
     public void buildPartnership(Player player, Edge edge) {
 
         if (edge.getPartnership() != null)
             throw new InvalidPlacementException(edge, "Placement violation! This edge already has a partnership on it.");
-        if (canBuildPartnership(player, edge))
+        if (!canBuildPartnership(player, edge))
             throw new InvalidPlacementException(edge, "Placement violation! Partnership must connect to your existing companies or partnerships.");
 
         if (!setupPhaseActive) player.deductResourcesForPartnership();
@@ -406,9 +415,11 @@ public class GameEngine {
 
             if (setupTurnCount == players.size() * 2) {
                 setupPhaseActive = false;
+                mainPhaseActive = true;
                 setupRound = 2;
                 setupDirection = 1;
                 currentPlayerIndex = 0;
+                canRollDiceThisTurn = false;
                 return;
             }
             if (setupRound == 0 && currentPlayerIndex == players.size() - 1) {
@@ -421,5 +432,63 @@ public class GameEngine {
         }
     }
 
+    public void endCurrentTurn() {
+        if (setupPhaseActive) {
+            throw new IllegalStateException("Cannot end normal turn during setup phase.");
+        }
+        int previousPlayerIndex = currentPlayerIndex;
+        nextTurn();
+
+        if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
+            turnNumber++;
+
+            //TODO برای بخش مارکت ک باید اپدیت شود
+        }
+
+        canRollDiceThisTurn = false;
+        currentBuildMode = BuildMode.NONE;
+    }
+
+
+
+    public boolean isMainPhaseActive() {
+        return mainPhaseActive;
+    }
+
+    public void setMainPhaseActive(boolean mainPhaseActive) {
+        this.mainPhaseActive = mainPhaseActive;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+
+    public void setTurnNumber(int turnNumber) {
+        this.turnNumber = turnNumber;
+    }
+
+    public boolean isCanRollDiceThisTurn() {
+        return canRollDiceThisTurn;
+    }
+
+    public void setCanRollDiceThisTurn(boolean canRollDiceThisTurn) {
+        this.canRollDiceThisTurn = canRollDiceThisTurn;
+    }
+
+    public ArrayList<Integer> rollDiceForCurrentTurn() {
+        if (setupPhaseActive) {
+            throw new IllegalStateException("You cannot roll dice during setup phase.");
+        }
+
+        if (canRollDiceThisTurn) {
+            throw new IllegalStateException("You have rolled the dice.");
+        }
+
+        ArrayList<Integer> dice = rollDice();
+        canRollDiceThisTurn = true;
+        distribute(dice);
+
+        return dice;
+    }
 
 }
