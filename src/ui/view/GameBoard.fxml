@@ -373,9 +373,9 @@
                         </Group>
                         <ImageView fx:id="Dice1" fitHeight="130.0" fitWidth="130.0" layoutX="654.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Dice2" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="EndTurnBTN" layoutX="63.0" layoutY="474.0" mnemonicParsing="false" onAction="#onEndTurnBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="86.0" prefWidth="193.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="End Turn" textFill="WHITE">
+                        <Button fx:id="EndTurnBTN" layoutX="510.0" layoutY="672.0" mnemonicParsing="false" onAction="#onEndTurnBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="74.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="End Turn" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                            </font>
                         </Button>
                      </children>
