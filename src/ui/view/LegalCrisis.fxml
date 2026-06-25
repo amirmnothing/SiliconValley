@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="830.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LegalCrisisController">
+   <children>
+      <HBox spacing="270.0">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Legal Crisis" textFill="WHITE">
+                     <font>
+                        <Font name="Elephant Italic" size="48.0" />
+                     </font>
+                  </Label>
+                  <Line endX="300.0" fill="WHITE" stroke="WHITE" strokeWidth="3.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Player 0" textFill="WHITE">
+                     <font>
+                        <Font name="Elephant Italic" size="48.0" />
+                     </font>
+                  </Label>
+                  <Line endX="230.0" fill="WHITE" stroke="WHITE" strokeWidth="3.0" />
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="212.0" prefWidth="834.0" spacing="15.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Resources/Capital.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Resources/Talent.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Resources/Cloud.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Resources/Patent.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="185.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Resources/Data.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Left.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Right.png" />
+                                 </image>
+                              </ImageView>
+                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                           </children>
+                        </Group>
+                     </children>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="830.0">
+         <children>
+            <Label text="Total : 10 / 10" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onMouseEntered="#ChangeReturnButtonToChoose" onMouseExited="#ChangeReturnButtonToNotChoose" prefHeight="63.0" prefWidth="252.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Return to bank" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="350.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
