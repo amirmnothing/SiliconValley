@@ -224,7 +224,6 @@ public class TradeController {
 
     @FXML
     void ChangeRequestButtonColorToNotChoose(MouseEvent event){
-
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + "black" + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
 
