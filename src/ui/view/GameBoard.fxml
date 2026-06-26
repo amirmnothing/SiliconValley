@@ -373,9 +373,9 @@
                         </Group>
                         <ImageView fx:id="Dice1" fitHeight="130.0" fitWidth="130.0" layoutX="654.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Dice2" fitHeight="130.0" fitWidth="130.0" layoutX="510.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="EndTurnBTN" layoutX="63.0" layoutY="474.0" mnemonicParsing="false" onAction="#onEndTurnBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="86.0" prefWidth="193.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="End Turn" textFill="WHITE">
+                        <Button fx:id="EndTurnBTN" layoutX="510.0" layoutY="672.0" mnemonicParsing="false" onAction="#onEndTurnBTN" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="74.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="End Turn" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                            </font>
                         </Button>
                      </children>
@@ -386,7 +386,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox layoutX="12.0" layoutY="142.0" prefHeight="554.0" prefWidth="747.0" spacing="340.0">
+                        <HBox alignment="CENTER" layoutX="11.0" layoutY="142.0" prefHeight="554.0" prefWidth="747.0" spacing="319.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="756.0" prefWidth="191.0">
                                  <children>
@@ -547,11 +547,14 @@
                                  </children>
                               </VBox>
                            </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </HBox>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="44.0" layoutX="333.0" layoutY="652.0" stroke="WHITE" strokeType="INSIDE" width="130.0" />
-                        <VBox alignment="CENTER" layoutX="317.0" layoutY="653.0" prefHeight="90.0" prefWidth="162.0" spacing="10.0">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="49.0" layoutX="306.0" layoutY="647.0" stroke="WHITE" strokeType="INSIDE" width="166.0" />
+                        <VBox alignment="CENTER" layoutX="299.0" layoutY="651.0" prefHeight="90.0" prefWidth="174.0" spacing="10.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="162.0">
+                              <HBox alignment="CENTER" prefHeight="43.0" prefWidth="150.0">
                                  <children>
                                     <Label alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="74.0" text="Total :" textFill="#fcfcfc">
                                        <font>
@@ -561,7 +564,23 @@
                                           <Insets top="-6.0" />
                                        </padding>
                                     </Label>
-                                    <Label fx:id="TotalCount" alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="60.0" prefWidth="45.0" text="25" textFill="#fcfcfc">
+                                    <Label fx:id="TotalCount" alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="43.0" prefWidth="31.0" text="25" textFill="#fcfcfc">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="-6.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="TotalCount1" alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="43.0" prefWidth="14.0" text="/" textFill="#fcfcfc">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="-6.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="TotalCount11" alignment="CENTER" maxHeight="69.0" maxWidth="74.0" minHeight="30.0" minWidth="0.0" prefHeight="43.0" prefWidth="31.0" text="25" textFill="#00dc51">
                                        <font>
                                           <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                                        </font>
