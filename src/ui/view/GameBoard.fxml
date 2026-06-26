@@ -178,25 +178,25 @@
                                                    </font>
                                                 </Label>
                                                 <Line endX="148.0" startX="-67.0" stroke="WHITE" />
-                                                <Label text="Player 1" textFill="WHITE">
+                                                <Label fx:id="Player1Color" text="Player 1" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="148.0" startX="-68.0" stroke="WHITE" />
-                                                <Label text="Player 2" textFill="WHITE">
+                                                <Label fx:id="Player2Color" text="Player 2" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="148.0" startX="-68.0" stroke="WHITE" />
-                                                <Label text="Player 3" textFill="WHITE">
+                                                <Label fx:id="Player3Color" text="Player 3" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="148.0" startX="-68.0" stroke="WHITE" />
-                                                <Label text="Player 4" textFill="WHITE">
+                                                <Label fx:id="Player4Color" text="Player 4" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -223,7 +223,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="The Tech Guru" textFill="WHITE">
+                                                <Label fx:id="TheTechGuruColor" text="The Tech Guru" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -233,7 +233,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="The Hacker CEO" textFill="WHITE">
+                                                <Label fx:id="TheHackerCEOColor" text="The Hacker CEO" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -243,7 +243,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="The VC-Funded" textFill="WHITE">
+                                                <Label fx:id="TheVCFundedColor" text="The VC-Funded" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -253,7 +253,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="None" textFill="WHITE">
+                                                <Label fx:id="NoneColor" text="None" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -279,25 +279,25 @@
                                                    </VBox.margin>
                                                 </Label>
                                                 <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1PointColor" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P2PointColor" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P3PointColor" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
                                                 </Label>
                                                 <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P4PointColor" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -321,7 +321,7 @@
                                                       <Insets right="1.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P1Resources" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -331,7 +331,7 @@
                                                       <Insets right="1.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P2Resources" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -341,7 +341,7 @@
                                                       <Insets right="1.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P3Resources" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -351,7 +351,7 @@
                                                       <Insets right="1.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label text="10" textFill="WHITE">
+                                                <Label fx:id="P4Resources" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>

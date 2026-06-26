@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -54,6 +55,11 @@ public class GameBoardController {
     // متدی برای تزریق انجین از کلاس Main یا لودر بازی
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
+        if (gameEngine == null) {
+            return;
+        }
+        changePlayerTextColor();
+        refreshPlayersResourcesUI();
     }
 
     @FXML
@@ -347,16 +353,69 @@ public class GameBoardController {
 
     @FXML
     private Group PlayerResources;
+
     @FXML
     private Label P1TalentCount;
+
     @FXML
     private Label P1PatentCount;
+
     @FXML
     private Label P1CloudCount;
+
     @FXML
     private Label P1DataCount;
+
     @FXML
     private Label P1CapitalCount;
+
+    @FXML
+    private Label Player1Color;
+
+    @FXML
+    private Label Player2Color;
+
+    @FXML
+    private Label Player3Color;
+
+    @FXML
+    private Label Player4Color;
+
+    @FXML
+    private Label TheTechGuruColor;
+
+    @FXML
+    private Label TheHackerCEOColor;
+
+    @FXML
+    private Label TheVCFundedColor;
+
+    @FXML
+    private Label NoneColor;
+
+    @FXML
+    private Label P1PointColor;
+
+    @FXML
+    private Label P2PointColor;
+
+    @FXML
+    private Label P3PointColor;
+
+    @FXML
+    private Label P4PointColor;
+
+    @FXML
+    private Label P1Resources;
+
+    @FXML
+    private Label P2Resources;
+
+    @FXML
+    private Label P3Resources;
+
+    @FXML
+    private Label P4Resources;
 
     @FXML
     private Group P1RLines;
@@ -441,7 +500,11 @@ public class GameBoardController {
 
     @FXML
     void onEndTurnBTN(ActionEvent event) {
+        if (gameEngine == null) return;
 
+        gameEngine.nextTurn();
+        changePlayerTextColor();
+        refreshPlayersResourcesUI();
     }
 
     @FXML
@@ -924,5 +987,53 @@ public class GameBoardController {
         P1CloudCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
         P1DataCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.DATA, 0)));
         P1TalentCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
+    }
+
+     void changePlayerTextColor() {
+        int playerIndex = gameEngine.getCurrentPlayerIndex();
+        if (playerIndex == 0) {
+            resetLabelColor();
+            Label[] labels = {Player1Color,TheTechGuruColor,P1PointColor,P1Resources};
+            setLabelColor(PLAYER1COLOR,labels);
+        } else if (playerIndex == 1) {
+            resetLabelColor();
+            Label[] labels = {Player2Color,TheHackerCEOColor,P2PointColor,P2Resources};
+            setLabelColor(PLAYER2COLOR,labels);
+        } else if (playerIndex == 2) {
+            resetLabelColor();
+            Label[] labels = {Player3Color,TheVCFundedColor,P3PointColor,P3Resources};
+            setLabelColor(PLAYER3COLOR,labels);
+        } else if (playerIndex == 3) {
+            resetLabelColor();
+            Label[] labels = {Player4Color,NoneColor,P4PointColor,P4Resources};
+            setLabelColor(PLAYER4COLOR,labels);
+        }
+    }
+
+     void setLabelColor(String playerColor, Label[] labels) {
+        Color color = Color.web(playerColor);
+        for (Label label : labels) {
+            label.setTextFill(color);
+        }
+    }
+
+     void resetLabelColor() {
+        Color c = Color.WHITE;
+        Player1Color.setTextFill(c);
+        Player2Color.setTextFill(c);
+        Player3Color.setTextFill(c);
+        Player4Color.setTextFill(c);
+        TheTechGuruColor.setTextFill(c);
+        TheVCFundedColor.setTextFill(c);
+        TheHackerCEOColor.setTextFill(c);
+        NoneColor.setTextFill(c);
+        P1PointColor.setTextFill(c);
+        P2PointColor.setTextFill(c);
+        P3PointColor.setTextFill(c);
+        P4PointColor.setTextFill(c);
+        P1Resources.setTextFill(c);
+        P2Resources.setTextFill(c);
+        P3Resources.setTextFill(c);
+        P4Resources.setTextFill(c);
     }
 }
