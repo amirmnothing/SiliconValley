@@ -11,6 +11,7 @@ import java.util.*;
 public class GameEngine {
     private final Map map;
     private final List<Player> players;
+    private final Market market;
     private int currentPlayerIndex;
     private final Random random = new Random();
 
@@ -27,10 +28,12 @@ public class GameEngine {
     private boolean canRollDiceThisTurn = false;
     private boolean mainPhaseActive = false;
     private int turnNumber = 1;
+    private int currentTurnNumber = 1;
 
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
         this.players = players;
+        this.market = new Market();
         this.currentPlayerIndex = 0;
     }
 
@@ -40,6 +43,10 @@ public class GameEngine {
 
     public Map getMap() {
         return map;
+    }
+
+    public Market getMarket() {
+        return market;
     }
 
     public void setBuildMode(BuildMode mode) {
@@ -68,6 +75,7 @@ public class GameEngine {
 
     public void nextTurn() {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+
     }
 
     public ArrayList<Integer> rollDice() {
@@ -433,22 +441,22 @@ public class GameEngine {
     }
 
     public void endCurrentTurn() {
-        if (setupPhaseActive) {
-            throw new IllegalStateException("Cannot end normal turn during setup phase.");
-        }
+//        if (setupPhaseActive) {
+//            throw new IllegalStateException("Cannot end normal turn during setup phase.");
+//        }
         int previousPlayerIndex = currentPlayerIndex;
         nextTurn();
-
+        currentTurnNumber = turnNumber;
+        if(currentPlayerIndex == players.size() - 1) {market.updateMarketAtEndOfRound();}
         if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
             turnNumber++;
 
-            //TODO برای بخش مارکت ک باید اپدیت شود
+//
         }
 
         canRollDiceThisTurn = false;
         currentBuildMode = BuildMode.NONE;
     }
-
 
 
     public boolean isMainPhaseActive() {
@@ -491,4 +499,11 @@ public class GameEngine {
         return dice;
     }
 
+    public int getCurrentTurnNumber() {
+        return currentTurnNumber;
+    }
+
+    public void setCurrentTurnNumber(int currentTurnNumber) {
+        this.currentTurnNumber = currentTurnNumber;
+    }
 }

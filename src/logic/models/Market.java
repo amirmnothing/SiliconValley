@@ -2,6 +2,7 @@ package logic.models;
 
 import exception.InsufficientResourcesException;
 import exception.InvalidMarketTransactionException;
+import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 
 import java.util.HashMap;
@@ -25,36 +26,38 @@ public class Market {
         return currentPrices.getOrDefault(type, 4);
     }
 
-    public boolean buyFromMarket(Player player, ResourceType resourceToBuy) {
+    public void buyFromMarket(GameEngine gameEngine, Player player, ResourceType resourceToBuy, int count) {
         if (resourceToBuy == ResourceType.CAPITAL) {
             throw new InvalidMarketTransactionException(ResourceType.CAPITAL, "You cannot buy CAPITAL from the market!");
         }
+        if (count <= 0) {
+            throw new InvalidMarketTransactionException(resourceToBuy, "Count must be greater than zero!");
+        }
 
-        int capitalPrice = getPrice(resourceToBuy);
-        int finalPrice = player.calculateMarketPrice(resourceToBuy,capitalPrice);
+        int Price = getPrice(resourceToBuy) * count;
+        int finalPrice = player.calculateMarketPrice(resourceToBuy, Price);
+
         int playerCapitalCount = player.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0);
         if (playerCapitalCount < finalPrice) {
-            Map<ResourceType, Integer> missingResources = new HashMap<>();
-            missingResources.put(ResourceType.CAPITAL, finalPrice - playerCapitalCount);
-
-            throw new InsufficientResourcesException(player,"You don’t have enough capital to buy this resource",missingResources);
+            throw new InsufficientResourcesException(player, "You don’t have enough capital to buy this resource", null);
         }
 
         player.deductResource(ResourceType.CAPITAL, finalPrice);
-        player.addResource(resourceToBuy, 1);
+        player.addResource(resourceToBuy, count);
 
-        if (currentPrices.get(resourceToBuy) < 6) {
-            currentPrices.put(resourceToBuy, currentPrices.get(resourceToBuy) + 1);
-        }
         roundsWithoutTrade.put(resourceToBuy, 0);
         tradedInCurrentRound.put(resourceToBuy, true);
 
-        return true;
+
     }
-    
+
     public void updateMarketAtEndOfRound() {
         for (ResourceType resourceType : ResourceType.values()) {
             if (resourceType == ResourceType.CAPITAL) continue;
+
+            if(tradedInCurrentRound.get(resourceType)){
+                currentPrices.put(resourceType, currentPrices.get(resourceType) + 1);
+            }
 
             if (!tradedInCurrentRound.get(resourceType)) {
                 roundsWithoutTrade.put(resourceType, roundsWithoutTrade.get(resourceType) + 1);

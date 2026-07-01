@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -502,9 +501,13 @@ public class GameBoardController {
     void onEndTurnBTN(ActionEvent event) {
         if (gameEngine == null) return;
 
-        gameEngine.nextTurn();
+        gameEngine.endCurrentTurn();
+        if (gameEngine.getCurrentPlayerIndex() == 0) {
+            resetMarketPricesUI();
+        }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
+
     }
 
     @FXML
@@ -537,7 +540,7 @@ public class GameBoardController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize(GameEngine gameEngine) {
 
         TalentCount.setText("0");
         PatentCount.setText("0");
@@ -574,6 +577,29 @@ public class GameBoardController {
                 c8_0, c8_2, c8_4, c8_6, c8_8, c8_10,
                 c10_0, c10_2, c10_4, c10_6, c10_8, c10_10
         ));
+    }
+
+    public void resetLabel(GameEngine gameEngine) {
+//        TalentCount.setText("0");
+//        PatentCount.setText("0");
+//        CloudCount.setText("0");
+//        DataCount.setText("0");
+//        TotalCount.setText("0");
+//
+//
+//        P1TalentCount.setText("0");
+//        P1PatentCount.setText("0");
+//        P1CloudCount.setText("0");
+//        P1DataCount.setText("0");
+//        P1CapitalCount.setText("0");
+
+        this.gameEngine = gameEngine;
+        List<Player> players = gameEngine.getPlayers();
+        P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
+        P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
+        P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
+        P4Resources.setText(Integer.toString(totalResourcesCount(players.get(3))));
+
     }
 
     private void updateTotalPrice() {
@@ -980,44 +1006,81 @@ public class GameBoardController {
         }
     }
 
-    private void refreshPlayersResourcesUI() {
-        Player p = gameEngine.getCurrentPlayer();
-        P1CapitalCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
-        P1PatentCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
-        P1CloudCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
-        P1DataCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.DATA, 0)));
-        P1TalentCount.setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
+    int totalResourcesCount(Player player) {
+        return player.getResourceCount().getOrDefault(ResourceType.TALENT, 0) +
+                player.getResourceCount().getOrDefault(ResourceType.DATA, 0) +
+                player.getResourceCount().getOrDefault(ResourceType.PATENT, 0) +
+                player.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0) +
+                player.getResourceCount().getOrDefault(ResourceType.CLOUD, 0);
     }
 
-     void changePlayerTextColor() {
+    void refreshPlayersResourcesUI() {
+        Player p = gameEngine.getCurrentPlayer();
+        int playerIndex = gameEngine.getCurrentPlayerIndex();
+        List<Label> labels = new ArrayList<>();
+        labels.add(P1CapitalCount);
+        labels.add(P1PatentCount);
+        labels.add(P1CloudCount);
+        labels.add(P1DataCount);
+        labels.add(P1TalentCount);
+
+        if (playerIndex == 0) {
+            labels.add(P1Resources);
+            setPlayerResourcesUIText(p, labels);
+        } else if (playerIndex == 1) {
+            labels.add(P2Resources);
+            setPlayerResourcesUIText(p, labels);
+        } else if (playerIndex == 2) {
+            labels.add(P3Resources);
+            setPlayerResourcesUIText(p, labels);
+        } else if (playerIndex == 3) {
+            labels.add(P4Resources);
+            setPlayerResourcesUIText(p, labels);
+        }
+
+
+    }
+
+    void setPlayerResourcesUIText(Player p, List<Label> label) {
+        label.get(0).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
+        label.get(1).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
+        label.get(2).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
+        label.get(3).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.DATA, 0)));
+        label.get(4).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
+
+        label.get(5).setText(String.valueOf(totalResourcesCount(p)));
+
+    }
+
+    void changePlayerTextColor() {
         int playerIndex = gameEngine.getCurrentPlayerIndex();
         if (playerIndex == 0) {
             resetLabelColor();
-            Label[] labels = {Player1Color,TheTechGuruColor,P1PointColor,P1Resources};
-            setLabelColor(PLAYER1COLOR,labels);
+            Label[] labels = {Player1Color, TheTechGuruColor, P1PointColor, P1Resources};
+            setLabelColor(PLAYER1COLOR, labels);
         } else if (playerIndex == 1) {
             resetLabelColor();
-            Label[] labels = {Player2Color,TheHackerCEOColor,P2PointColor,P2Resources};
-            setLabelColor(PLAYER2COLOR,labels);
+            Label[] labels = {Player2Color, TheHackerCEOColor, P2PointColor, P2Resources};
+            setLabelColor(PLAYER2COLOR, labels);
         } else if (playerIndex == 2) {
             resetLabelColor();
-            Label[] labels = {Player3Color,TheVCFundedColor,P3PointColor,P3Resources};
-            setLabelColor(PLAYER3COLOR,labels);
+            Label[] labels = {Player3Color, TheVCFundedColor, P3PointColor, P3Resources};
+            setLabelColor(PLAYER3COLOR, labels);
         } else if (playerIndex == 3) {
             resetLabelColor();
-            Label[] labels = {Player4Color,NoneColor,P4PointColor,P4Resources};
-            setLabelColor(PLAYER4COLOR,labels);
+            Label[] labels = {Player4Color, NoneColor, P4PointColor, P4Resources};
+            setLabelColor(PLAYER4COLOR, labels);
         }
     }
 
-     void setLabelColor(String playerColor, Label[] labels) {
+    void setLabelColor(String playerColor, Label[] labels) {
         Color color = Color.web(playerColor);
         for (Label label : labels) {
             label.setTextFill(color);
         }
     }
 
-     void resetLabelColor() {
+    void resetLabelColor() {
         Color c = Color.WHITE;
         Player1Color.setTextFill(c);
         Player2Color.setTextFill(c);
@@ -1035,5 +1098,51 @@ public class GameBoardController {
         P2Resources.setTextFill(c);
         P3Resources.setTextFill(c);
         P4Resources.setTextFill(c);
+    }
+
+    @FXML
+    void onBuyFromMarket(ActionEvent event) {
+        Player p = gameEngine.getCurrentPlayer();
+        try {
+            if (currentTalentCount > 0)
+                gameEngine.getMarket().buyFromMarket(gameEngine, p, ResourceType.TALENT, currentTalentCount);
+
+            if (currentPatentCount > 0)
+                gameEngine.getMarket().buyFromMarket(gameEngine, p, ResourceType.PATENT, currentPatentCount);
+
+            if (currentCloudCount > 0)
+                gameEngine.getMarket().buyFromMarket(gameEngine, p, ResourceType.CLOUD, currentCloudCount);
+
+            if (currentDataCount > 0)
+                gameEngine.getMarket().buyFromMarket(gameEngine, p, ResourceType.DATA, currentDataCount);
+
+            resetMarketSelectionUI();
+            resetMarketPricesUI();
+            refreshPlayersResourcesUI();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void resetMarketSelectionUI() {
+        currentPatentCount = 0;
+        currentTalentCount = 0;
+        currentCloudCount = 0;
+        currentDataCount = 0;
+
+        TalentCount.setText("0");
+        PatentCount.setText("0");
+        CloudCount.setText("0");
+        DataCount.setText("0");
+        TotalCount.setText("0");
+    }
+
+    private void resetMarketPricesUI() {
+        TalentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.TALENT)));
+        PatentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.PATENT)));
+        CloudPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.CLOUD)));
+        DataPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.DATA)));
     }
 }

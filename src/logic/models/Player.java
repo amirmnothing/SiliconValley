@@ -20,7 +20,7 @@ public class Player {
     public Player(List<CompanyStructure> companies) {
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type,0);
+            resources.put(type,20);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;
@@ -72,7 +72,7 @@ public class Player {
             Map<ResourceType, Integer> missingResources = new HashMap<>();
             missingResources.put(type, count - currentCount);
 
-            throw new exception.InsufficientResourcesException(this, "Not enough resources of type: " + type, missingResources);
+            throw new InsufficientResourcesException(this, "Not enough resources of type: " + type, missingResources);
         } else {
             resources.put(type, newCount);
         }

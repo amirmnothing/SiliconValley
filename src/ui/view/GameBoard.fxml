@@ -596,7 +596,7 @@
                                     <Insets left="8.0" />
                                  </VBox.margin>
                               </HBox>
-                              <Button fx:id="Buy" alignment="CENTER" contentDisplay="CENTER" minHeight="37.0" minWidth="68.0" mnemonicParsing="false" onMouseEntered="#ChangeShopBuyButtonToChoose" onMouseExited="#ChangeShopBuyButtonToNotChoose" prefHeight="37.0" prefWidth="68.0" style="-fx-background-color: #004018;" text="Buy" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="Buy" alignment="CENTER" contentDisplay="CENTER" minHeight="37.0" minWidth="68.0" mnemonicParsing="false" onAction="#onBuyFromMarket" onMouseEntered="#ChangeShopBuyButtonToChoose" onMouseExited="#ChangeShopBuyButtonToNotChoose" prefHeight="37.0" prefWidth="68.0" style="-fx-background-color: #004018;" text="Buy" textAlignment="CENTER" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -657,7 +657,7 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </Line>
-                                          <Label fx:id="TalentPrice" text="2" textFill="WHITE">
+                                          <Label fx:id="TalentPrice" text="4" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                              </font>
@@ -690,7 +690,7 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </Line>
-                                          <Label fx:id="CloudPrice" text="3" textFill="WHITE">
+                                          <Label fx:id="CloudPrice" text="4" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                              </font>
@@ -744,7 +744,7 @@
                                                 <Insets />
                                              </VBox.margin>
                                           </Line>
-                                          <Label fx:id="DataPrice" text="5" textFill="WHITE">
+                                          <Label fx:id="DataPrice" text="4" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                              </font>
