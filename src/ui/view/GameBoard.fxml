@@ -1342,7 +1342,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="742.0" prefWidth="664.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="640.0">
+            <GridPane fx:id="mapGrid" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="640.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="4.8" minWidth="4.8" prefWidth="4.8" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="110.0" />

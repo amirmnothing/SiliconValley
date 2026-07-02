@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -20,9 +21,11 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
+import logic.engine.Map;
 import logic.enums.BuildMode;
 import logic.enums.ResourceType;
 import logic.models.Edge;
+import logic.models.Sector;
 import logic.models.Vertex;
 import logic.models.Player;
 
@@ -497,6 +500,11 @@ public class GameBoardController {
     @FXML
     private Button EndTurnBTN;
 
+
+    @FXML
+    private GridPane mapGrid;
+
+
     @FXML
     void onEndTurnBTN(ActionEvent event) {
         if (gameEngine == null) return;
@@ -539,8 +547,52 @@ public class GameBoardController {
         BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
     }
 
+    public void updateSectorImages() {
+        if (gameEngine == null || gameEngine.getMap() == null) return;
+
+        Sector[][] logicSectors = gameEngine.getMap().getSectors();
+
+        for (Node node : mapGrid.getChildren()) {
+            if (node instanceof ImageView) {
+                ImageView imageView = (ImageView) node;
+
+                Integer columnIndex = GridPane.getColumnIndex(imageView);
+                Integer rowIndex = GridPane.getRowIndex(imageView);
+
+                int c = (columnIndex != null) ? (columnIndex - 1) / 2 : 0;
+                int r = (rowIndex != null) ? (rowIndex - 1) / 2 : 0;
+
+                if (r < logicSectors.length && c < logicSectors[r].length) {
+                    Sector sector = logicSectors[r][c];
+
+                    // getting folder name
+                    String folderName = switch (sector.getResourceType()) {
+                        case CAPITAL -> "Fintech";
+                        case CLOUD -> "Cloud";
+                        case DATA -> "Data";
+                        case TALENT -> "AI";
+                        case PATENT -> "IP";
+                    };
+
+                    String fullPath = "/assets/Sectors/" + folderName + "/" + sector.getactivationNumber() + ".png";
+                    try (var stream = getClass().getResourceAsStream(fullPath)) {
+                        if (stream != null) {
+                            Image sectorImage = new Image(stream);
+                            imageView.setImage(sectorImage);
+                        } else {
+                            // Todo : Show error : Image not found... (print image path)
+                        }
+                    } catch (Exception e) {
+                        // Todo : Show error with a messagebox
+                    }
+                }
+            }
+        }
+    }
+
     @FXML
     public void initialize(GameEngine gameEngine) {
+        updateSectorImages();
 
         TalentCount.setText("0");
         PatentCount.setText("0");
