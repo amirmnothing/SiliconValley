@@ -572,9 +572,17 @@ public class GameBoardController {
                         case DATA -> "Data";
                         case TALENT -> "AI";
                         case PATENT -> "IP";
+                        case REGULATORY -> "REGULATORY";
                     };
 
-                    String fullPath = "/assets/Sectors/" + folderName + "/" + sector.getactivationNumber() + ".png";
+                    String fullPath;
+
+                    if (folderName.equals("REGULATORY")){
+                        fullPath = "/assets/Sectors/Regulatory.png";
+                    } else {
+                        fullPath = "/assets/Sectors/" + folderName + "/" + sector.getactivationNumber() + ".png";
+                    }
+
                     try (var stream = getClass().getResourceAsStream(fullPath)) {
                         if (stream != null) {
                             Image sectorImage = new Image(stream);

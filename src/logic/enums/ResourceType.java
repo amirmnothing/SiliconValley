@@ -5,5 +5,6 @@ public enum ResourceType {
     TALENT,
     CLOUD,
     PATENT,
-    DATA
+    DATA,
+    REGULATORY
 }

@@ -43,8 +43,9 @@ public class Map {
             for (int c = 0; c < cols; c++){
 
                 // TODO : الگوریتم رندوم برای خونه ها باید هوشمند سازی بشه تا تعداد هر کدوم از انواع سکتور ها، منطقی باشد
-                sectors[r][c] = new Sector(ResourceType.values()[random.nextInt(5)] ,
-                        random.nextInt(11) + 2 ,
+                ResourceType RT = ResourceType.values()[random.nextInt(6)];
+                sectors[r][c] = new Sector(RT ,
+                        RT == ResourceType.REGULATORY ? 0 : random.nextInt(11) + 2 ,
                         false);
 
                 // اتصال 4 گره اطراف هر سکتور به آن
