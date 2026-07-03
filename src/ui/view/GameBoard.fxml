@@ -46,7 +46,7 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#RollDice" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
+                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onAction="#RollDice" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="51.0" />
                            </font>

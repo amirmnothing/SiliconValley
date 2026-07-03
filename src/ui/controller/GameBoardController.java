@@ -506,6 +506,8 @@ public class GameBoardController {
     @FXML
     private GridPane mapGrid;
 
+    private boolean isActiveEndTurn = false;
+
 
     @FXML
     void onEndTurnBTN(ActionEvent event) {
@@ -517,7 +519,8 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
-        endTurnِDisable();
+        isActiveEndTurn = false;
+        endTurnDisable();
 
     }
 
@@ -601,7 +604,7 @@ public class GameBoardController {
         }
     }
 
-    public void setAuditorOnSector(StackPane stackPane){
+    public void setAuditorOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.3);
@@ -625,7 +628,7 @@ public class GameBoardController {
         }
     }
 
-    public void setAuditorNotOnSector(StackPane stackPane){
+    public void setAuditorNotOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
         ((ImageView) sectorImage).setEffect(null);
 
@@ -658,7 +661,7 @@ public class GameBoardController {
 
         updatePlayersPoints();
 
-        endTurnِDisable();
+        endTurnDisable();
         lines = new ArrayList<>(Arrays.asList(
                 l0_1, l0_3, l0_5, l0_7, l0_9,
                 l1_0, l1_2, l1_4, l1_6, l1_8, l1_10,
@@ -682,11 +685,12 @@ public class GameBoardController {
         ));
     }
 
-    private void endTurnِDisable() {
-        if (gameEngine != null) {
-            EndTurnBTN.setDisable(gameEngine.isSetupPhase());
+    private void endTurnDisable() {
+        if (gameEngine != null && gameEngine.isSetupPhase()) {
+            EndTurnBTN.setDisable(true);
+            return;
         }
-
+        EndTurnBTN.setDisable(!isActiveEndTurn);
     }
 
     private void updateTotalPrice() {
@@ -939,7 +943,7 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
-        endTurnِDisable();
+        endTurnDisable();
         updatePlayersPoints();
 
     }
@@ -1004,7 +1008,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void RollDice() {
+    void RollDice(ActionEvent event) {
         try {
             ArrayList<Integer> Dice = gameEngine.rollDiceForCurrentTurn();
 
@@ -1013,6 +1017,9 @@ public class GameBoardController {
 
             Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
             Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+
+            isActiveEndTurn = true;
+            endTurnDisable();
 
             refreshPlayersResourcesUI();
         } catch (Exception e) {
@@ -1236,11 +1243,10 @@ public class GameBoardController {
     }
 
     private void updatePlayersPoints() {
-    List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
+        List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
         P1PointColor.setText(Integer.toString(totalPoints.get(0)));
         P2PointColor.setText(Integer.toString(totalPoints.get(1)));
         P3PointColor.setText(Integer.toString(totalPoints.get(2)));
         P4PointColor.setText(Integer.toString(totalPoints.get(3)));
-        System.out.println(totalPoints);
     }
 }

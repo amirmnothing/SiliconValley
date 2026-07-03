@@ -30,6 +30,8 @@ public class GameEngine {
     private int turnNumber = 1;
     private int currentTurnNumber = 1;
 
+//    private isActiveEndTurn
+
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
         this.players = players;
