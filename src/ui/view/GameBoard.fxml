@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
@@ -1370,39 +1371,162 @@
                   <RowConstraints maxHeight="4.8" minHeight="4.8" prefHeight="4.8" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="0.5" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="9" />
-                  <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <StackPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                  </ImageView>
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="0.5" />
+                     </GridPane.margin>
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="5">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="7">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="7">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="7">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="7">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="9">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="9">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="9">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="9">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
                   <Line fx:id="l1_8" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
