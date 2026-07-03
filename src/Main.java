@@ -38,7 +38,6 @@ public class Main extends Application {
         // پاس دادن موتور بازی به کنترلر
         controller.setGameEngine(gameEngine);
         controller.initialize(gameEngine);
-        controller.resetLabel(gameEngine);
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Silicon Valley: The Tech Cartel");

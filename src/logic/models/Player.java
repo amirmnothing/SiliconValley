@@ -20,7 +20,7 @@ public class Player {
     public Player(List<CompanyStructure> companies) {
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type,20);
+            resources.put(type,0);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;
@@ -46,7 +46,9 @@ public class Player {
     public int calculateMarketPrice(ResourceType resource, int currentMarketPrice) {
         return currentMarketPrice;
     }
-
+    public Map<ResourceType, Integer> getResources() {
+        return resources;
+    }
     //سقف تعداد کارت های منبع بازیکن برای فرار از مالیات
     public int getCrisisModifierThreshold() {
         return DEFAULT_CRISIS_THRESHOLD;

@@ -515,6 +515,7 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
+        endTurnِDisable();
 
     }
 
@@ -577,7 +578,7 @@ public class GameBoardController {
 
                     String fullPath;
 
-                    if (folderName.equals("REGULATORY")){
+                    if (folderName.equals("REGULATORY")) {
                         fullPath = "/assets/Sectors/Regulatory.png";
                     } else {
                         fullPath = "/assets/Sectors/" + folderName + "/" + sector.getactivationNumber() + ".png";
@@ -609,13 +610,21 @@ public class GameBoardController {
         TotalCount.setText("0");
 
 
-        P1TalentCount.setText("0");
-        P1PatentCount.setText("0");
-        P1CloudCount.setText("0");
-        P1DataCount.setText("0");
-        P1CapitalCount.setText("0");
+        P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
+        P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
+        P1CloudCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
+        P1DataCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.DATA, 0)));
+        P1CapitalCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
 
+        List<Player> players = gameEngine.getPlayers();
+        P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
+        P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
+        P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
+        P4Resources.setText(Integer.toString(totalResourcesCount(players.get(3))));
 
+        updatePlayersPoints();
+
+        endTurnِDisable();
         lines = new ArrayList<>(Arrays.asList(
                 l0_1, l0_3, l0_5, l0_7, l0_9,
                 l1_0, l1_2, l1_4, l1_6, l1_8, l1_10,
@@ -639,26 +648,10 @@ public class GameBoardController {
         ));
     }
 
-    public void resetLabel(GameEngine gameEngine) {
-//        TalentCount.setText("0");
-//        PatentCount.setText("0");
-//        CloudCount.setText("0");
-//        DataCount.setText("0");
-//        TotalCount.setText("0");
-//
-//
-//        P1TalentCount.setText("0");
-//        P1PatentCount.setText("0");
-//        P1CloudCount.setText("0");
-//        P1DataCount.setText("0");
-//        P1CapitalCount.setText("0");
-
-        this.gameEngine = gameEngine;
-        List<Player> players = gameEngine.getPlayers();
-        P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
-        P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
-        P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
-        P4Resources.setText(Integer.toString(totalResourcesCount(players.get(3))));
+    private void endTurnِDisable() {
+        if (gameEngine != null) {
+            EndTurnBTN.setDisable(gameEngine.isSetupPhase());
+        }
 
     }
 
@@ -910,6 +903,10 @@ public class GameBoardController {
 
 
         }
+        changePlayerTextColor();
+        refreshPlayersResourcesUI();
+        endTurnِDisable();
+        updatePlayersPoints();
 
     }
 
@@ -1075,6 +1072,7 @@ public class GameBoardController {
     }
 
     void refreshPlayersResourcesUI() {
+        List<Player> players = gameEngine.getPlayers();
         Player p = gameEngine.getCurrentPlayer();
         int playerIndex = gameEngine.getCurrentPlayerIndex();
         List<Label> labels = new ArrayList<>();
@@ -1085,19 +1083,18 @@ public class GameBoardController {
         labels.add(P1TalentCount);
 
         if (playerIndex == 0) {
-            labels.add(P1Resources);
             setPlayerResourcesUIText(p, labels);
         } else if (playerIndex == 1) {
-            labels.add(P2Resources);
             setPlayerResourcesUIText(p, labels);
         } else if (playerIndex == 2) {
-            labels.add(P3Resources);
             setPlayerResourcesUIText(p, labels);
         } else if (playerIndex == 3) {
-            labels.add(P4Resources);
             setPlayerResourcesUIText(p, labels);
         }
-
+        P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
+        P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
+        P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
+        P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
 
     }
 
@@ -1107,8 +1104,6 @@ public class GameBoardController {
         label.get(2).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
         label.get(3).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.DATA, 0)));
         label.get(4).setText(String.valueOf(p.getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
-
-        label.get(5).setText(String.valueOf(totalResourcesCount(p)));
 
     }
 
@@ -1204,5 +1199,14 @@ public class GameBoardController {
         PatentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.PATENT)));
         CloudPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.CLOUD)));
         DataPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.DATA)));
+    }
+
+    private void updatePlayersPoints() {
+    List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
+        P1PointColor.setText(Integer.toString(totalPoints.get(0)));
+        P2PointColor.setText(Integer.toString(totalPoints.get(1)));
+        P3PointColor.setText(Integer.toString(totalPoints.get(2)));
+        P4PointColor.setText(Integer.toString(totalPoints.get(3)));
+        System.out.println(totalPoints);
     }
 }

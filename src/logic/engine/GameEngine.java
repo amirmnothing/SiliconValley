@@ -138,7 +138,7 @@ public class GameEngine {
 
         for (java.util.Map.Entry<ResourceType, Integer> entry : resourcesToDiscard.entrySet()) {
             if (entry.getValue() > 0) {
-                player.deductResource(entry.getKey(), entry.getValue());
+                player.deductResource(entry.getKey(), entry.getValue() / 2);
             }
         }
 
@@ -174,7 +174,9 @@ public class GameEngine {
 
         // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
         if (!setupPhaseActive) player.deductResourcesForMVP();
-        vertex.setCompanyStructure(new MVP(player));
+        MVP mvp=new MVP(player);
+        vertex.setCompanyStructure(mvp);
+        player.addCompanyStructure(mvp);
 
         // TODO : Show MPV created successfully
 
@@ -414,6 +416,15 @@ public class GameEngine {
 
     }
 
+    public List<Integer> calculatePlayerPoints() {
+        List<Integer> pointList=new ArrayList<>();
+        updateLongestNetwork();
+        for (Player player : players) {
+            pointList.add(player.calculateVictoryPoints());
+        }
+       return pointList;
+    }
+
     public void checkAndMoveToNextSetupTurn() {
         if (setupPlacedMVP && setupPlacedPartnership) {
             setupTurnCount++;
@@ -423,6 +434,9 @@ public class GameEngine {
 
             if (setupTurnCount == players.size() * 2) {
                 setupPhaseActive = false;
+                distributeSetupResources();
+
+
                 mainPhaseActive = true;
                 setupRound = 2;
                 setupDirection = 1;
@@ -447,10 +461,9 @@ public class GameEngine {
         int previousPlayerIndex = currentPlayerIndex;
         nextTurn();
         currentTurnNumber = turnNumber;
-        if(currentPlayerIndex == players.size() - 1) {market.updateMarketAtEndOfRound();}
         if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
             turnNumber++;
-
+            market.updateMarketAtEndOfRound();
 //
         }
 
@@ -506,4 +519,21 @@ public class GameEngine {
     public void setCurrentTurnNumber(int currentTurnNumber) {
         this.currentTurnNumber = currentTurnNumber;
     }
+
+    public void distributeSetupResources() {
+        Sector[][] sectors = map.getSectors();
+        for (Sector[] row : sectors) {
+            for (Sector sector : row) {
+                for (CornerDirection corner : CornerDirection.values()) {
+                    if (sector.getCorner(corner) != null) {
+                        Vertex v = sector.getCorner(corner);
+                        if (v.getCompanyStructure() != null && sector.getResourceType() != ResourceType.REGULATORY) {
+                            v.getCompanyStructure().getOwner().addResource(sector.getResourceType(), 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
