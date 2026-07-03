@@ -8,11 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -596,6 +598,40 @@ public class GameBoardController {
                 }
             }
         }
+    }
+
+    @FXML
+    public void setAuditorOnSector(StackPane stackPane){
+        Node sectorImage = stackPane.getChildren().get(0);
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.3);
+        colorAdjust.setContrast(0);
+        colorAdjust.setHue(0);
+        colorAdjust.setSaturation(-1.0);
+
+        ((ImageView) sectorImage).setEffect(colorAdjust);
+
+        Node auditorSector = stackPane.getChildren().get(1);
+        String auditorImagePath = "/assets/Sectors/Auditor.png";
+        try (var stream = getClass().getResourceAsStream(auditorImagePath)) {
+            if (stream != null) {
+                Image auditorImage = new Image(stream);
+                ((ImageView) auditorSector).setImage(auditorImage);
+            } else {
+                // Todo : Show error : Image not found... (print image path)
+            }
+        } catch (Exception e) {
+            // Todo : Show error with a messagebox
+        }
+    }
+
+    @FXML
+    public void setAuditorNotOnSector(StackPane stackPane){
+        Node sectorImage = stackPane.getChildren().get(0);
+        ((ImageView) sectorImage).setEffect(null);
+
+        Node auditorSector = stackPane.getChildren().get(1);
+        ((ImageView) auditorSector).setImage(null);
     }
 
     @FXML
