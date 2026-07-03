@@ -555,11 +555,11 @@ public class GameBoardController {
         Sector[][] logicSectors = gameEngine.getMap().getSectors();
 
         for (Node node : mapGrid.getChildren()) {
-            if (node instanceof ImageView) {
-                ImageView imageView = (ImageView) node;
+            if (node instanceof StackPane) {
+                ImageView imageView = (ImageView) ((StackPane) node).getChildren().getFirst();
 
-                Integer columnIndex = GridPane.getColumnIndex(imageView);
-                Integer rowIndex = GridPane.getRowIndex(imageView);
+                Integer columnIndex = GridPane.getColumnIndex(node);
+                Integer rowIndex = GridPane.getRowIndex(node);
 
                 int c = (columnIndex != null) ? (columnIndex - 1) / 2 : 0;
                 int r = (rowIndex != null) ? (rowIndex - 1) / 2 : 0;
@@ -600,7 +600,6 @@ public class GameBoardController {
         }
     }
 
-    @FXML
     public void setAuditorOnSector(StackPane stackPane){
         Node sectorImage = stackPane.getChildren().get(0);
         ColorAdjust colorAdjust = new ColorAdjust();
@@ -625,7 +624,6 @@ public class GameBoardController {
         }
     }
 
-    @FXML
     public void setAuditorNotOnSector(StackPane stackPane){
         Node sectorImage = stackPane.getChildren().get(0);
         ((ImageView) sectorImage).setEffect(null);
