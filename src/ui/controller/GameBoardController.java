@@ -23,7 +23,6 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
-import logic.engine.Map;
 import logic.enums.BuildMode;
 import logic.enums.ResourceType;
 import logic.models.Edge;
@@ -1075,13 +1074,13 @@ public class GameBoardController {
     @FXML
     private void openTradeWindow(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/Trade.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/TradeRequest.fxml"));
             Parent root = loader.load();
 
-            TradeController tradeController = loader.getController();
+            TradeRequestController tradeRequestController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
-            tradeController.setData(new Player[]{new Player(null)});
+            tradeRequestController.setData(new Player[]{new Player(null)});
 
             Stage tradeStage = new Stage();
             tradeStage.setTitle("Trade");

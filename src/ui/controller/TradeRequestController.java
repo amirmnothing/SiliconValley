@@ -2,20 +2,13 @@ package ui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 import logic.models.Player;
 
-import javax.swing.text.html.ImageView;
-import java.util.ArrayList;
-
-public class TradeController {
+public class TradeRequestController {
 
     private int toGiveTalentCount = 0;
     private int toGiveCloudCount = 0;
