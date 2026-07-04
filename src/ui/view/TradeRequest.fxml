@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="604.0" prefWidth="502.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.TradeRequestController">
+<AnchorPane fx:id="mainRootPane" prefHeight="604.0" prefWidth="502.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.TradeRequestController">
    <children>
       <VBox alignment="CENTER">
          <children>
@@ -501,7 +501,7 @@
                         <Insets right="60.0" />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#ChangeRequestButtonColorToChoose" onMouseExited="#ChangeRequestButtonColorToNotChoose" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Request" textAlignment="CENTER" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRequestButton" onMouseEntered="#ChangeRequestButtonColorToChoose" onMouseExited="#ChangeRequestButtonColorToNotChoose" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Request" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>

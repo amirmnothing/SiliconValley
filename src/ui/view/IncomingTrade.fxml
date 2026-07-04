@@ -13,8 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="302.0" prefWidth="610.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="302.0" prefWidth="610.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.IncomingTradeController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="302.0" prefWidth="610.0">
          <children>
@@ -255,12 +254,12 @@
             </Group>
             <HBox alignment="CENTER" prefHeight="64.0" prefWidth="610.0" spacing="280.0">
                <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reject" textAlignment="CENTER" textFill="WHITE">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRejectButton" onMouseEntered="#ChangeRejectButtonColorToChoose" onMouseExited="#ChangeRejectButtonColorToNotChoose" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reject" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Accept" textAlignment="CENTER" textFill="WHITE">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAcceptButton" onMouseEntered="#ChangeAcceptButtonColorToChoose" onMouseExited="#ChangeAcceptButtonColorToNotChoose" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Accept" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>

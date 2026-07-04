@@ -1083,7 +1083,7 @@ public class GameBoardController {
             tradeRequestController.setData(new Player[]{new Player(null)});
 
             Stage tradeStage = new Stage();
-            tradeStage.setTitle("Trade");
+            tradeStage.setTitle("Trade Request");
             tradeStage.setScene(new Scene(root));
             tradeStage.setResizable(false);
             tradeStage.initModality(Modality.APPLICATION_MODAL);
