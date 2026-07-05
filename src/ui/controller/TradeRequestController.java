@@ -1,21 +1,25 @@
 package ui.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import logic.models.Player;
 
-import javax.swing.text.html.ImageView;
-import java.util.ArrayList;
+import java.io.IOException;
 
-public class TradeController {
+public class TradeRequestController {
 
     private int toGiveTalentCount = 0;
     private int toGiveCloudCount = 0;
@@ -28,6 +32,9 @@ public class TradeController {
     private int toGetDataCount = 0;
     private int toGetCapitalCount = 0;
     private int toGetPatentCount = 0;
+
+    @FXML
+    private AnchorPane mainRootPane;
 
     @FXML
     private Label CapitalGetLabel;
@@ -262,5 +269,34 @@ public class TradeController {
         DataGetLabel.setText("0");
         CapitalGetLabel.setText("0");
         PatentGetLabel.setText("0");
+    }
+
+    @FXML
+    private void onRequestButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/IncomingTrade.fxml"));
+            Parent root = loader.load();
+
+            IncomingTradeController incomingTradeController = loader.getController();
+
+            Stage tradeIncomingStage = new Stage();
+            tradeIncomingStage.setTitle("Incoming Trade");
+            tradeIncomingStage.setScene(new Scene(root));
+            tradeIncomingStage.setResizable(false);
+
+            tradeIncomingStage.setAlwaysOnTop(true);
+            tradeIncomingStage.initModality(Modality.APPLICATION_MODAL);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Window mainStage = currentStage.getOwner();
+            if (mainStage != null) {
+                tradeIncomingStage.initOwner(mainStage);
+            }
+
+            currentStage.close();
+            tradeIncomingStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

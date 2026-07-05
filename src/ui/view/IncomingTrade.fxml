@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="302.0" prefWidth="610.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.IncomingTradeController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="302.0" prefWidth="610.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="610.0">
+               <children>
+                  <Label text="PLAYERNAME" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text=" wants to trade with " textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="PLAYERNAME" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Line endX="595.0" stroke="WHITE" strokeWidth="3.0" />
+            <Group>
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="178.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="600.0" />
+                  <HBox alignment="CENTER" layoutY="1.0" prefHeight="176.0" prefWidth="600.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="125.0" spacing="30.0">
+                           <children>
+                              <Label text="Resource" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="You get" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="You give" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Line startY="170.0" stroke="WHITE" strokeWidth="3.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="95.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/SectorsIcons/Ai.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" text="10" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="24.5" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Line startY="170.0" stroke="WHITE" strokeWidth="3.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="95.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/SectorsIcons/Cloud.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="28.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Line startY="170.0" stroke="WHITE" strokeWidth="3.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="95.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/SectorsIcons/Data.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="24.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Line startY="170.0" stroke="WHITE" strokeWidth="3.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="95.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/SectorsIcons/Fintech.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="24.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Line startY="170.0" stroke="WHITE" strokeWidth="3.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="95.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/SectorsIcons/Patent.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="24.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="10" textFill="WHITE">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="6.0" />
+               </VBox.margin>
+            </Group>
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="610.0" spacing="280.0">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRejectButton" onMouseEntered="#ChangeRejectButtonColorToChoose" onMouseExited="#ChangeRejectButtonColorToNotChoose" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Reject" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAcceptButton" onMouseEntered="#ChangeAcceptButtonColorToChoose" onMouseExited="#ChangeAcceptButtonColorToNotChoose" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Accept" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <Line endX="600.0" layoutY="100.66" startX="9.0" stroke="WHITE" strokeWidth="3.0" />
+      <Line endX="600.0" layoutY="159.33" startX="9.0" stroke="WHITE" strokeWidth="3.0" />
+   </children>
+</AnchorPane>
