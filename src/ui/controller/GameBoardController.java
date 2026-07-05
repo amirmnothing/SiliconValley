@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.enums.ResourceType;
@@ -506,6 +507,9 @@ public class GameBoardController {
     @FXML
     private GridPane mapGrid;
 
+    private boolean isActiveEndTurn = false;
+    private StackPane previousAuditorLocation = null;
+
 
     @FXML
     void onEndTurnBTN(ActionEvent event) {
@@ -517,7 +521,8 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
-        endTurnِDisable();
+        isActiveEndTurn = false;
+        endTurnDisable();
 
     }
 
@@ -601,7 +606,7 @@ public class GameBoardController {
         }
     }
 
-    public void setAuditorOnSector(StackPane stackPane){
+    public void setAuditorOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.3);
@@ -625,13 +630,50 @@ public class GameBoardController {
         }
     }
 
-    public void setAuditorNotOnSector(StackPane stackPane){
+    public void setAuditorNotOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
         ((ImageView) sectorImage).setEffect(null);
 
         Node auditorSector = stackPane.getChildren().get(1);
         ((ImageView) auditorSector).setImage(null);
     }
+
+
+    @FXML
+    void choiceAuditor(MouseEvent event) {
+        if (!(event.getSource() instanceof StackPane stackPane)) {
+            return;
+        }
+        if (previousAuditorLocation != null && stackPane == previousAuditorLocation) {
+            return;
+        }
+        if (gameEngine.getCurrentPlayer().isCanPlaceAuditor()) {
+            StackPane temp = previousAuditorLocation;
+            int row = gameEngine.getMap().getRows();
+            int col = gameEngine.getMap().getCols();
+            for (int r = 0; r < row; r++) {
+                for (int c = 0; c < col; c++) {
+                    if (mapGrid.getChildren().get(r * 5 + c) == stackPane) {
+                        if (gameEngine.moveAuditor(gameEngine.getMap().getSectors()[r][c])) {
+                            setAuditorOnSector(stackPane);
+                            temp = stackPane;
+                            gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
+                        } else {
+                            if (previousAuditorLocation != null) setAuditorOnSector(previousAuditorLocation);
+                            gameEngine.getMap().getSectors()[r][c].setAuditor(true);
+                        }
+                    } else if (previousAuditorLocation != null && mapGrid.getChildren().get(r * 5 + c) == previousAuditorLocation) {
+                        setAuditorNotOnSector(previousAuditorLocation);
+                        gameEngine.getMap().getSectors()[r][c].setAuditor(false);
+                    }
+                }
+            }
+            previousAuditorLocation = temp;
+            isActiveEndTurn = true;
+            endTurnDisable();
+        }
+    }
+
 
     @FXML
     public void initialize(GameEngine gameEngine) {
@@ -658,7 +700,7 @@ public class GameBoardController {
 
         updatePlayersPoints();
 
-        endTurnِDisable();
+        endTurnDisable();
         lines = new ArrayList<>(Arrays.asList(
                 l0_1, l0_3, l0_5, l0_7, l0_9,
                 l1_0, l1_2, l1_4, l1_6, l1_8, l1_10,
@@ -682,11 +724,12 @@ public class GameBoardController {
         ));
     }
 
-    private void endTurnِDisable() {
-        if (gameEngine != null) {
-            EndTurnBTN.setDisable(gameEngine.isSetupPhase());
+    private void endTurnDisable() {
+        if (gameEngine != null && gameEngine.isSetupPhase()) {
+            EndTurnBTN.setDisable(true);
+            return;
         }
-
+        EndTurnBTN.setDisable(!isActiveEndTurn);
     }
 
     private void updateTotalPrice() {
@@ -939,7 +982,7 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
-        endTurnِDisable();
+        endTurnDisable();
         updatePlayersPoints();
 
     }
@@ -1004,7 +1047,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void RollDice() {
+    void RollDice(ActionEvent event) {
         try {
             ArrayList<Integer> Dice = gameEngine.rollDiceForCurrentTurn();
 
@@ -1014,7 +1057,18 @@ public class GameBoardController {
             Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
             Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
 
+
+            isActiveEndTurn = true;
+            endTurnDisable();
+
             refreshPlayersResourcesUI();
+
+            if (Dice.get(0) + Dice.get(1) == 7) {
+                openLegalCrisisWindow();
+                isActiveEndTurn = false;
+                endTurnDisable();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1081,7 +1135,7 @@ public class GameBoardController {
             TradeRequestController tradeRequestController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
-            tradeRequestController.setData(new Player[]{new Player(null)});
+            tradeRequestController.setData(new Player[]{new Player("", null)});
 
             Stage tradeStage = new Stage();
             tradeStage.setTitle("Trade Request");
@@ -1094,6 +1148,47 @@ public class GameBoardController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openLegalCrisisWindow() {
+        for (Player p : gameEngine.getPlayers()) {
+            if (!gameEngine.isResourceBelowCrisisThreshold(p)) continue;
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/LegalCrisis.fxml"));
+                Parent root = loader.load();
+                int totalResourceCount = totalResourcesCount(p);
+                LegalCrisisController legalCrisisController = loader.getController();
+                legalCrisisController.setGameEngine(gameEngine);
+                legalCrisisController.initData(p, totalResourceCount);
+
+
+                Stage legalCrisisStage = new Stage();
+                legalCrisisStage.setTitle("Legal Crisis");
+                legalCrisisStage.setScene(new Scene(root));
+                legalCrisisStage.setResizable(false);
+                legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
+                legalCrisisStage.setOnCloseRequest(e -> {
+                    e.consume();
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.initOwner(legalCrisisStage);
+                    alert.setTitle("Hold On!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You can't close the window until you return requested resources to the bank");
+                    alert.showAndWait();
+                });
+
+                legalCrisisStage.showAndWait();
+
+                refreshPlayersResourcesUI();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -1236,11 +1331,10 @@ public class GameBoardController {
     }
 
     private void updatePlayersPoints() {
-    List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
+        List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
         P1PointColor.setText(Integer.toString(totalPoints.get(0)));
         P2PointColor.setText(Integer.toString(totalPoints.get(1)));
         P3PointColor.setText(Integer.toString(totalPoints.get(2)));
         P4PointColor.setText(Integer.toString(totalPoints.get(3)));
-        System.out.println(totalPoints);
     }
 }

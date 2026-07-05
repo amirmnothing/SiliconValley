@@ -46,7 +46,7 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#RollDice" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
+                        <Button fx:id="RollDiceBTN" alignment="CENTER" layoutX="510.0" layoutY="20.0" mnemonicParsing="false" onAction="#RollDice" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="198.0" prefWidth="270.0" style="-fx-background-color: black; -fx-border-color: blue; -fx-border-width: 2;" text="Roll Dice" textAlignment="CENTER" textFill="BLUE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="51.0" />
                            </font>
@@ -1371,7 +1371,7 @@
                   <RowConstraints maxHeight="4.8" minHeight="4.8" prefHeight="4.8" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <StackPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -1380,7 +1380,7 @@
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="0.5" />
                      </GridPane.margin>
@@ -1389,139 +1389,139 @@
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="1">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="1">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="3">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="3">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="5">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="5">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="7">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="7">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="7">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="7">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="3" GridPane.rowIndex="9">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="5" GridPane.rowIndex="9">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="7" GridPane.rowIndex="9">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="9" GridPane.rowIndex="9">
+                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
