@@ -228,7 +228,7 @@
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onMouseEntered="#StartButtonMouseEnter" onMouseExited="#StartButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Start Game" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#onStartGame" onMouseEntered="#StartButtonMouseEnter" onMouseExited="#StartButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Start Game" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>

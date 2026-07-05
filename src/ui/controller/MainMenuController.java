@@ -2,16 +2,21 @@ package ui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
+
+import java.io.IOException;
 
 public class MainMenuController {
 
@@ -124,4 +129,37 @@ public class MainMenuController {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
     }
 
+    @FXML
+    void onStartGame(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
+        BorderPane root = loader.load();
+
+        GameBoardController controller = loader.getController();
+
+        // Todo: Start game based on entered settings
+
+        logic.engine.Map gameMap = new logic.engine.Map(5, 5);
+        java.util.List<logic.models.Player> players = new java.util.ArrayList<>();
+
+        players.add(new logic.models.TechGuruPlayer("Player 1",new java.util.ArrayList<>()));
+        players.add(new logic.models.HackerCEOPlayer("Player 2",new java.util.ArrayList<>()));
+        players.add(new logic.models.VCFundedPlayer("Player 3",new java.util.ArrayList<>()));
+        players.add(new logic.models.Player("Player 4",new java.util.ArrayList<>()));
+
+
+        logic.engine.GameEngine gameEngine = new logic.engine.GameEngine(gameMap, players);
+        gameEngine.startSetupPhase();
+
+        // پاس دادن موتور بازی به کنترلر
+        controller.setGameEngine(gameEngine);
+        controller.initialize(gameEngine);
+
+        Stage gameBoardStage = new Stage();
+        gameBoardStage.setScene(new Scene(root));
+        gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
+        gameBoardStage.setResizable(false);
+
+        gameBoardStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
 }
