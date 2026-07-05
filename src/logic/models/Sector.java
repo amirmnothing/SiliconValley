@@ -44,7 +44,7 @@ public class Sector {
 
     public void setCorner(CornerDirection cornerDirection, Vertex vertex) {
         if (cornerDirection != null && vertex != null)
-            this.corners.put(cornerDirection, vertex);
+            this.getCorners().put(cornerDirection, vertex);
     }
 
     public boolean hasAnyCompanyOnSector(){
@@ -57,6 +57,10 @@ public class Sector {
     }
 
     public Vertex getCorner(CornerDirection cornerDirection) {
-        return this.corners.get(cornerDirection);
+        return this.getCorners().get(cornerDirection);
+    }
+
+    public Map<CornerDirection, Vertex> getCorners() {
+        return corners;
     }
 }

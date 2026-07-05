@@ -91,9 +91,9 @@ public class GameEngine {
 
         // بحران قانونی
         if (activationNumber == 7) {
+            getCurrentPlayer().setCanPlaceAuditor(true);
             return;
         }
-
         Sector[][] sectors = map.getSectors();
         for (int r = 0; r < map.getRows(); r++) {
             for (int c = 0; c < map.getCols(); c++) {

@@ -17,6 +17,7 @@ public class Player {
     protected List<CompanyStructure> companies;
     protected PlayerRole playerRole;
     protected boolean hasLongestNetwork = false;//یک flag برای بلندترین مسیر
+    private boolean canPlaceAuditor=false;
 
     public Player(String playerName, List<CompanyStructure> companies) {
         this.playerName = playerName;
@@ -48,9 +49,11 @@ public class Player {
     public int calculateMarketPrice(ResourceType resource, int currentMarketPrice) {
         return currentMarketPrice;
     }
+
     public int getResources(ResourceType resource) {
         return resources.get(resource);
     }
+
     //سقف تعداد کارت های منبع بازیکن برای فرار از مالیات
     public int getCrisisModifierThreshold() {
         return DEFAULT_CRISIS_THRESHOLD;
@@ -204,5 +207,13 @@ public class Player {
 
     public void setHasLongestNetwork(boolean hasLongestNetwork) {
         this.hasLongestNetwork = hasLongestNetwork;
+    }
+
+    public boolean isCanPlaceAuditor() {
+        return canPlaceAuditor;
+    }
+
+    public void setCanPlaceAuditor(boolean canPlaceAuditor) {
+        this.canPlaceAuditor = canPlaceAuditor;
     }
 }

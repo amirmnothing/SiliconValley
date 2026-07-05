@@ -508,6 +508,7 @@ public class GameBoardController {
     private GridPane mapGrid;
 
     private boolean isActiveEndTurn = false;
+    private StackPane previousAuditorLocation = null;
 
 
     @FXML
@@ -636,6 +637,43 @@ public class GameBoardController {
         Node auditorSector = stackPane.getChildren().get(1);
         ((ImageView) auditorSector).setImage(null);
     }
+
+
+    @FXML
+    void choiceAuditor(MouseEvent event) {
+        if (!(event.getSource() instanceof StackPane stackPane)) {
+            return;
+        }
+        if (previousAuditorLocation != null && stackPane == previousAuditorLocation) {
+            return;
+        }
+        if (gameEngine.getCurrentPlayer().isCanPlaceAuditor()) {
+            StackPane temp = previousAuditorLocation;
+            int row = gameEngine.getMap().getRows();
+            int col = gameEngine.getMap().getCols();
+            for (int r = 0; r < row; r++) {
+                for (int c = 0; c < col; c++) {
+                    if (mapGrid.getChildren().get(r * 5 + c) == stackPane) {
+                        if (gameEngine.moveAuditor(gameEngine.getMap().getSectors()[r][c])) {
+                            setAuditorOnSector(stackPane);
+                            temp = stackPane;
+                            gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
+                        } else {
+                            if (previousAuditorLocation != null) setAuditorOnSector(previousAuditorLocation);
+                            gameEngine.getMap().getSectors()[r][c].setAuditor(true);
+                        }
+                    } else if (previousAuditorLocation != null && mapGrid.getChildren().get(r * 5 + c) == previousAuditorLocation) {
+                        setAuditorNotOnSector(previousAuditorLocation);
+                        gameEngine.getMap().getSectors()[r][c].setAuditor(false);
+                    }
+                }
+            }
+            previousAuditorLocation = temp;
+            isActiveEndTurn = true;
+            endTurnDisable();
+        }
+    }
+
 
     @FXML
     public void initialize(GameEngine gameEngine) {
@@ -1027,7 +1065,8 @@ public class GameBoardController {
 
             if (Dice.get(0) + Dice.get(1) == 7) {
                 openLegalCrisisWindow();
-
+                isActiveEndTurn = false;
+                endTurnDisable();
             }
 
         } catch (Exception e) {
@@ -1115,7 +1154,7 @@ public class GameBoardController {
     @FXML
     private void openLegalCrisisWindow() {
         for (Player p : gameEngine.getPlayers()) {
-            if(!gameEngine.isResourceBelowCrisisThreshold(p))continue;
+            if (!gameEngine.isResourceBelowCrisisThreshold(p)) continue;
 
 
             try {
