@@ -26,10 +26,10 @@ public class Main extends Application {
         logic.engine.Map gameMap = new logic.engine.Map(5, 5);
         java.util.List<logic.models.Player> players = new java.util.ArrayList<>();
 
-        players.add(new logic.models.TechGuruPlayer(new java.util.ArrayList<>()));
-        players.add(new logic.models.HackerCEOPlayer(new java.util.ArrayList<>()));
-        players.add(new logic.models.VCFundedPlayer(new java.util.ArrayList<>()));
-        players.add(new logic.models.Player(new java.util.ArrayList<>()));
+        players.add(new logic.models.TechGuruPlayer("Player 1",new java.util.ArrayList<>()));
+        players.add(new logic.models.HackerCEOPlayer("Player 2",new java.util.ArrayList<>()));
+        players.add(new logic.models.VCFundedPlayer("Player 3",new java.util.ArrayList<>()));
+        players.add(new logic.models.Player("Player 4",new java.util.ArrayList<>()));
 
 
         logic.engine.GameEngine gameEngine = new logic.engine.GameEngine(gameMap, players);

@@ -30,7 +30,6 @@ public class GameEngine {
     private int turnNumber = 1;
     private int currentTurnNumber = 1;
 
-//    private isActiveEndTurn
 
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
@@ -92,7 +91,6 @@ public class GameEngine {
 
         // بحران قانونی
         if (activationNumber == 7) {
-            handleSevenOrCrisis();
             return;
         }
 
@@ -108,23 +106,35 @@ public class GameEngine {
         }
     }
 
-    public void handleSevenOrCrisis() {
-        for (Player player : players) {
-            // محاسبه کل کارت‌های منبع بازیکن در حال حاضر
-            int totalResources = 0;
-            java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
-            for (int count : resourceCount.values()) {
-                totalResources += count;
-            }
-
-            int threshold = player.getCrisisModifierThreshold();
-
-            if (totalResources > threshold) {
-                int countOfCardsToDiscard = totalResources / 2;
-                // TODO : نمایش پیام و باز شدن پنجره برای انتخاب کارت ها و فراخوانی متد discardSelectedResources
-            }
+//    public void handleSevenOrCrisis() {
+//        for (Player player : players) {
+//            // محاسبه کل کارت‌های منبع بازیکن در حال حاضر
+//            int totalResources = 0;
+//            java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
+//            for (int count : resourceCount.values()) {
+//                totalResources += count;
+//            }
+//
+//            int threshold = player.getCrisisModifierThreshold();
+//
+//            if (totalResources > threshold) {
+//                int countOfCardsToDiscard = totalResources / 2;
+//                // TODO : نمایش پیام و باز شدن پنجره برای انتخاب کارت ها و فراخوانی متد discardSelectedResources
+//            }
+//        }
+//    }
+public boolean isResourceBelowCrisisThreshold(Player player) {
+        int totalResources = 0;
+        java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
+        for (int count : resourceCount.values()) {
+            totalResources += count;
         }
-    }
+
+        int threshold = player.getCrisisModifierThreshold();
+
+        return totalResources > threshold;
+
+}
 
     public boolean discardSelectedResources(Player player, java.util.Map<ResourceType, Integer> resourcesToDiscard) {
         if (player == null || resourcesToDiscard == null) return false;
@@ -140,7 +150,7 @@ public class GameEngine {
 
         for (java.util.Map.Entry<ResourceType, Integer> entry : resourcesToDiscard.entrySet()) {
             if (entry.getValue() > 0) {
-                player.deductResource(entry.getKey(), entry.getValue() / 2);
+                player.deductResource(entry.getKey(), entry.getValue());
             }
         }
 
@@ -457,16 +467,15 @@ public class GameEngine {
     }
 
     public void endCurrentTurn() {
-//        if (setupPhaseActive) {
-//            throw new IllegalStateException("Cannot end normal turn during setup phase.");
-//        }
+        if (setupPhaseActive) {
+            throw new IllegalStateException("Cannot end normal turn during setup phase.");
+        }
         int previousPlayerIndex = currentPlayerIndex;
         nextTurn();
         currentTurnNumber = turnNumber;
         if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
             turnNumber++;
             market.updateMarketAtEndOfRound();
-//
         }
 
         canRollDiceThisTurn = false;

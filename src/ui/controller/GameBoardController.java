@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.engine.GameEngine;
 import logic.engine.Map;
 import logic.enums.BuildMode;
@@ -1018,10 +1019,17 @@ public class GameBoardController {
             Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
             Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
 
+
             isActiveEndTurn = true;
             endTurnDisable();
 
             refreshPlayersResourcesUI();
+
+            if (Dice.get(0) + Dice.get(1) == 7) {
+                openLegalCrisisWindow();
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1088,7 +1096,7 @@ public class GameBoardController {
             TradeController tradeController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
-            tradeController.setData(new Player[]{new Player(null)});
+            tradeController.setData(new Player[]{new Player("", null)});
 
             Stage tradeStage = new Stage();
             tradeStage.setTitle("Trade");
@@ -1101,6 +1109,38 @@ public class GameBoardController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openLegalCrisisWindow() {
+        for (Player p : gameEngine.getPlayers()) {
+            if(!gameEngine.isResourceBelowCrisisThreshold(p))continue;
+
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/LegalCrisis.fxml"));
+                Parent root = loader.load();
+                int totalResourceCount = totalResourcesCount(p);
+                LegalCrisisController legalCrisisController = loader.getController();
+                legalCrisisController.setGameEngine(gameEngine);
+                legalCrisisController.initData(p, totalResourceCount);
+
+
+                Stage legalCrisisStage = new Stage();
+                legalCrisisStage.setTitle("Legal Crisis");
+                legalCrisisStage.setScene(new Scene(root));
+                legalCrisisStage.setResizable(false);
+                legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
+
+                legalCrisisStage.showAndWait();
+
+                refreshPlayersResourcesUI();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

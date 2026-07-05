@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Player {
+    public final String playerName;
     public static final int LONGEST_NETWORK_BONUS_POINTS = 2;
     public static final int DEFAULT_CRISIS_THRESHOLD = 7;
     protected Map<ResourceType, Integer> resources = new HashMap<>();
@@ -17,10 +18,11 @@ public class Player {
     protected PlayerRole playerRole;
     protected boolean hasLongestNetwork = false;//یک flag برای بلندترین مسیر
 
-    public Player(List<CompanyStructure> companies) {
+    public Player(String playerName, List<CompanyStructure> companies) {
+        this.playerName = playerName;
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type,0);
+            resources.put(type, 0);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;
@@ -46,8 +48,8 @@ public class Player {
     public int calculateMarketPrice(ResourceType resource, int currentMarketPrice) {
         return currentMarketPrice;
     }
-    public Map<ResourceType, Integer> getResources() {
-        return resources;
+    public int getResources(ResourceType resource) {
+        return resources.get(resource);
     }
     //سقف تعداد کارت های منبع بازیکن برای فرار از مالیات
     public int getCrisisModifierThreshold() {
@@ -121,7 +123,7 @@ public class Player {
                     missingResources.put(type, Partnership.CONSTRUCTION_COST.get(type) - currentAmount);
                 }
             }
-            throw new InsufficientResourcesException(this,"There are not enough resources to build an Partnership",missingResources);
+            throw new InsufficientResourcesException(this, "There are not enough resources to build an Partnership", missingResources);
 
         }
     }
@@ -143,7 +145,7 @@ public class Player {
                     missingResources.put(type, MVP.CONSTRUCTION_COST.get(type) - currentAmount);
                 }
             }
-            throw new InsufficientResourcesException(this,"There are not enough resources to build an MVP",missingResources);
+            throw new InsufficientResourcesException(this, "There are not enough resources to build an MVP", missingResources);
 
         }
     }

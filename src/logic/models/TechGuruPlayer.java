@@ -6,8 +6,8 @@ import java.util.List;
 
 public class TechGuruPlayer extends Player {
 
-    public TechGuruPlayer(List<CompanyStructure> companies) {
-        super(companies);
+    public TechGuruPlayer(String playerName,List<CompanyStructure> companies) {
+        super(playerName,companies);
         this.playerRole=PlayerRole.THE_TECH_GURU_CTO;
     }
     @Override

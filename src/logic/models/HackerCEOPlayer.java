@@ -7,8 +7,8 @@ import java.util.List;
 
 public class HackerCEOPlayer extends  Player {
 
-    public HackerCEOPlayer(List<CompanyStructure> companies) {
-        super(companies);
+    public HackerCEOPlayer(String playerName,List<CompanyStructure> companies) {
+        super(playerName,companies);
         this.playerRole=PlayerRole.THE_HACKER_CEO;
     }
 

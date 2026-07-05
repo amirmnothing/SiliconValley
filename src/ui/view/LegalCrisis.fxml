@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="830.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LegalCrisisController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="832.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LegalCrisisController">
    <children>
       <HBox spacing="270.0">
          <children>
@@ -31,7 +31,7 @@
             </VBox>
             <VBox alignment="CENTER">
                <children>
-                  <Label text="Player 0" textFill="WHITE">
+                  <Label fx:id="PlayerName" text="Player 0" textFill="WHITE">
                      <font>
                         <Font name="Elephant Italic" size="48.0" />
                      </font>
@@ -65,10 +65,10 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="CapitalL" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onCapitalMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                        <Label fx:id="CapitalCount" alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
@@ -83,7 +83,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="CapitalR" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onCapitalPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -109,10 +109,10 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="TalentL" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onTalentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                        <Label fx:id="TalentCount" alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
@@ -127,7 +127,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="TalentR" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onTalentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -150,10 +150,10 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="CloudL" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onCloudMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                        <Label fx:id="CloudCount" alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
@@ -168,7 +168,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="CloudR" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onCloudPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -191,10 +191,10 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="PatentL" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onPatentMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                        <Label fx:id="PatentCount" alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
@@ -209,7 +209,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="PatentR" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onPatentPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -235,10 +235,10 @@
                                     <Image url="@../../assets/Icons/Left.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="DataL" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onDataMinus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
-                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
+                        <Label fx:id="DataCount" alignment="CENTER" prefHeight="35.0" prefWidth="41.0" text="10" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                            </font>
@@ -253,7 +253,7 @@
                                     <Image url="@../../assets/Icons/Right.png" />
                                  </image>
                               </ImageView>
-                              <Circle accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
+                              <Circle fx:id="DataRS" accessibleRole="BUTTON" layoutX="49.5" layoutY="17.5" onMouseClicked="#onDataPlus" onMouseEntered="#ChangeBorderWidthToChoose" onMouseExited="#ChangeBorderWidthToNotChoose" radius="16.0" stroke="#fff8f8" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: TRANSPARENT;" />
                            </children>
                         </Group>
                      </children>
@@ -270,15 +270,30 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="830.0">
          <children>
-            <Label text="Total : 10 / 10" textFill="WHITE">
+            <Label prefHeight="43.0" prefWidth="104.0" text="Total :" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="TotalCardCount" alignment="TOP_CENTER" prefHeight="43.0" prefWidth="46.0" text="10" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="36.0" />
                </font>
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onMouseEntered="#ChangeReturnButtonToChoose" onMouseExited="#ChangeReturnButtonToNotChoose" prefHeight="63.0" prefWidth="252.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Return to bank" textFill="WHITE">
+            <Label alignment="TOP_CENTER" prefHeight="43.0" prefWidth="14.0" text="/" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="MaxCardCount" alignment="TOP_CENTER" prefHeight="43.0" prefWidth="46.0" text="10" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="ReturnToBankBTN" mnemonicParsing="false" onMouseClicked="#onReturnToBank" onMouseEntered="#ChangeReturnButtonToChoose" onMouseExited="#ChangeReturnButtonToNotChoose" prefHeight="63.0" prefWidth="252.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Return to bank" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                </font>

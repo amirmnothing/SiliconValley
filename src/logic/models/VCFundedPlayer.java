@@ -7,8 +7,8 @@ import java.util.List;
 
 public class VCFundedPlayer extends Player{
 
-    public VCFundedPlayer(List<CompanyStructure> companies) {
-        super(companies);
+    public VCFundedPlayer(String playerName,List<CompanyStructure> companies) {
+        super(playerName,companies);
         this.playerRole=PlayerRole.THE_VC_FUNDED;
         this.addResource(ResourceType.CAPITAL, 2); //2 واحد سرمایه بیشتر در شروع بازی
     }
