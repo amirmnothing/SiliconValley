@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="988.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.GameLobbyController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.MainMenuController">
    <children>
-      <Group>
+      <Group fx:id="GameLobby" mouseTransparent="true" opacity="0.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;">
                <children>
@@ -28,22 +28,22 @@
                   <Line endX="300.0" stroke="WHITE" strokeWidth="3.0" />
                   <HBox alignment="CENTER" prefHeight="418.0" prefWidth="988.0" spacing="12.0">
                      <children>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheHackerCeo.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheTechGuru.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheVCFunded.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/None.png" />
                            </image>
@@ -66,7 +66,7 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="268.0">
                                        <children>
-                                          <Label text="Player 1" textFill="WHITE">
+                                          <Label fx:id="Player1Label" text="Player 1" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                                              </font>
@@ -102,7 +102,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="268.0">
                                        <children>
-                                          <Label text="Player 2" textFill="WHITE">
+                                          <Label fx:id="Player2Label" text="Player 2" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                                              </font>
@@ -142,7 +142,7 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="268.0">
                                        <children>
-                                          <Label text="Player 3" textFill="WHITE">
+                                          <Label fx:id="Player3Label" text="Player 3" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                                              </font>
@@ -178,7 +178,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="268.0">
                                        <children>
-                                          <Label text="Player 4" textFill="WHITE">
+                                          <Label fx:id="Player4Label" text="Player 4" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                                              </font>
@@ -218,17 +218,17 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="222.0" prefWidth="179.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Next Player" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseEntered="#NextPlayerButtonMouseEnter" onMouseExited="#NextPlayerButtonMouseExit" prefHeight="48.0" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Next Player" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Reset All" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseEntered="#ResetAllButtonMouseEnter" onMouseExited="#ResetAllButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Reset All" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Start Game" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseEntered="#StartButtonMouseEnter" onMouseExited="#StartButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Start Game" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -240,6 +240,60 @@
                         </VBox>
                      </children>
                   </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Group>
+      <Group fx:id="MainMenu">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu">
+                     <font>
+                        <Font name="Elephant Italic" size="64.0" />
+                     </font>
+                  </Text>
+                  <Line endX="410.0" stroke="WHITE" strokeWidth="7.0" />
+                  <Button mnemonicParsing="false" onAction="#OnStartANewGame" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="START A NEW GAME" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="48.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="LOAD A GAME" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="48.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="SETTINGS" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="48.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="ABOUT US" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="48.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onExitButton" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="EXIT" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="48.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>

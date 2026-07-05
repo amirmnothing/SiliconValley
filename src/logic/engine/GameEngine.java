@@ -1,6 +1,7 @@
 package logic.engine;
 
 import exception.InvalidPlacementException;
+import javafx.scene.paint.Color;
 import logic.enums.BuildMode;
 import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
@@ -14,6 +15,11 @@ public class GameEngine {
     private final Market market;
     private int currentPlayerIndex;
     private final Random random = new Random();
+
+    final public static String PLAYER1COLOR = "rgb(150, 0, 0)";
+    final public static String PLAYER2COLOR = "rgb(0, 0, 170)";
+    final public static String PLAYER3COLOR = "rgb(0, 140, 100)";
+    final public static String PLAYER4COLOR = "rgb(255, 215, 0)";
 
     private boolean setupPhaseActive;
     private int setupRound;

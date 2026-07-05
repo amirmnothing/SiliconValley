@@ -23,7 +23,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.enums.ResourceType;
@@ -38,12 +37,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class GameBoardController {
+import static logic.engine.GameEngine.*;
 
-    final static String PLAYER1COLOR = "rgb(110, 0, 0)";
-    final static String PLAYER2COLOR = "rgb(7, 0, 90)";
-    final static String PLAYER3COLOR = "rgb(0, 140, 100)";
-    final static String PLAYER4COLOR = "rgb(255, 215, 0)";
+public class GameBoardController {
 
     // متغیرهای نگهدارنده تعداد هر کارت
     private int currentTalentCount = 0;
