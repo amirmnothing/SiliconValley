@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
@@ -1170,6 +1171,15 @@ public class GameBoardController {
                 legalCrisisStage.setScene(new Scene(root));
                 legalCrisisStage.setResizable(false);
                 legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
+                legalCrisisStage.setOnCloseRequest(e -> {
+                    e.consume();
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.initOwner(legalCrisisStage);
+                    alert.setTitle("Hold On!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You can't close the window until you return requested resources to the bank");
+                    alert.showAndWait();
+                });
 
                 legalCrisisStage.showAndWait();
 
