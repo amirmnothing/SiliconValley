@@ -22,7 +22,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
                <children>
-                  <TableView fx:id="saveTable" editable="true" prefHeight="620.0" prefWidth="988.0" stylesheets="@LoadTableStyle.css">
+                  <TableView fx:id="saveTable" editable="true" prefHeight="620.0" prefWidth="988.0" stylesheets="@style.css">
                     <columns>
                       <TableColumn fx:id="saveNameCol" editable="false" prefWidth="604.7999939918518" resizable="false" sortable="false" text="Save Name" />
                       <TableColumn fx:id="saveDateCol" editable="false" prefWidth="382.4000244140625" resizable="false" sortable="false" text="Date" />

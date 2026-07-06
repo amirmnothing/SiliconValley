@@ -101,3 +101,49 @@
 .table-view .scroll-bar:vertical .increment-arrow:hover {
     -fx-background-color: #d4af37;
 }
+
+.tab-pane .tab-header-background {
+    -fx-background-color: #1a1a1a;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #0d0d0d;
+    -fx-background-radius: 5px 5px 0px 0px;
+    -fx-padding: 6px 12px 6px 12px;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #888888;
+    -fx-font-family: "Berlin Sans FB Demi";
+    -fx-font-size: 16px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #000000;
+    -fx-border-color: #d4af37 #d4af37 transparent #d4af37;
+    -fx-border-width: 2px 2px 0px 2px;
+    -fx-border-radius: 5px 5px 0px 0px;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #d4af37;
+}
+
+.tab-pane:focused,
+.tab-pane .tab:focused,
+.tab-pane .tab-container:focused {
+    -fx-focus-color: transparent !important;
+    -fx-inner-border-color: transparent !important;
+}
+
+.tab {
+    -fx-background-insets: 0, 1 1 0 1;
+}
+
+.tab:focused {
+    -fx-background-insets: 0, 1 1 0 1;
+}
+
+.tab-pane .tab:hover .tab-label {
+    -fx-text-fill: #d4af37;
+}
