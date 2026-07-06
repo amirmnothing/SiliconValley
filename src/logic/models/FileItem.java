@@ -15,7 +15,7 @@ public class FileItem {
 
     public FileItem(File file) {
         this.file = file;
-        this.name = new SimpleStringProperty(file.getName());
+        this.name = new SimpleStringProperty(file.getName().replaceAll("(?i)\\.sv$", ""));
         this.date = new SimpleStringProperty(getFileCreationOrModifiedDate(file));
     }
 
