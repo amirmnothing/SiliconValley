@@ -1,5 +1,7 @@
 package ui.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,10 +19,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
+import logic.models.FileItem;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainMenuController {
+
+    private final ObservableList<FileItem> saveList = FXCollections.observableArrayList();
 
     @FXML
     private Label Player1Label;
@@ -39,19 +47,92 @@ public class MainMenuController {
     private Group MainMenu;
 
     @FXML
+    private Group LoadMenu;
+
+    @FXML
+    private TableColumn<FileItem, String> saveDateCol;
+
+    @FXML
+    private TableColumn<FileItem, String> saveNameCol;
+
+    @FXML
+    private TableView<FileItem> saveTable;
+
+    @FXML
     public void initialize(){
         Player1Label.setTextFill(Color.web(GameEngine.PLAYER1COLOR));
         Player2Label.setTextFill(Color.web(GameEngine.PLAYER2COLOR));
         Player3Label.setTextFill(Color.web(GameEngine.PLAYER3COLOR));
         Player4Label.setTextFill(Color.web(GameEngine.PLAYER4COLOR));
+
+        saveTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        saveNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        saveDateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
+        saveNameCol.setReorderable(false);
+        saveDateCol.setReorderable(false);
+        saveTable.setItems(saveList);
+
+        loadSaveFiles();
+
+    }
+
+    @FXML
+    void LoadMenuButtonsMouseEnter(MouseEvent event){
+        ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 3; -fx-border-color:  #d4af37");
+    }
+
+    @FXML
+    void LoadMenuButtonsMouseExit(MouseEvent event){
+        ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a");
+    }
+
+    @FXML
+    void onBacktoMainMenuButton(ActionEvent event){
+        ResetAllPages();
+        MainMenu.setOpacity(1);
+        MainMenu.setMouseTransparent(false);
+    }
+
+    private void loadSaveFiles() {
+        saveList.clear();
+
+        File saveFolder = new File("saves");
+
+        if (!saveFolder.exists()) {
+            saveFolder.mkdir();
+        }
+
+        File[] files = saveFolder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".sv")) {
+                    saveList.add(new FileItem(file));
+                }
+            }
+        }
     }
 
     @FXML
     void OnStartANewGame(ActionEvent event){
+        ResetAllPages();
         GameLobby.setOpacity(1);
         GameLobby.setMouseTransparent(false);
+    }
+
+    @FXML
+    void OnLoadAGame(ActionEvent event){
+        ResetAllPages();
+        LoadMenu.setOpacity(1);
+        LoadMenu.setMouseTransparent(false);
+    }
+
+    void ResetAllPages(){
+        GameLobby.setOpacity(0);
+        GameLobby.setMouseTransparent(true);
         MainMenu.setOpacity(0);
         MainMenu.setMouseTransparent(true);
+        LoadMenu.setOpacity(0);
+        LoadMenu.setMouseTransparent(true);
     }
 
     @FXML
