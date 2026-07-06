@@ -771,7 +771,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-          <Tab closable="false" text="Trade">
+          <Tab fx:id="Trade" closable="false" onSelectionChanged="#onTabChanged" text="Trade">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -790,7 +790,7 @@
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                              </font>
@@ -864,31 +864,31 @@
                                                 </Line>
                                                 <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
                                                    <children>
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T1CapitalCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T1TalentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T1CloudCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T1PatentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T1DataCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
@@ -903,7 +903,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button fx:id="trade1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>
@@ -918,7 +918,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="name2" alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                              </font>
@@ -992,31 +992,31 @@
                                                 </Line>
                                                 <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
                                                    <children>
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T2CapitalCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T2TalentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T2CloudCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T2PatentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T2DataCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
@@ -1031,7 +1031,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button fx:id="trade2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>
@@ -1046,7 +1046,7 @@
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
+                                          <Label fx:id="name3" alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                              </font>
@@ -1104,31 +1104,31 @@
                                                 </Line>
                                                 <VBox alignment="CENTER" prefHeight="232.0" prefWidth="82.0" spacing="11.0">
                                                    <children>
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T3CapitalCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T3TalentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T3CloudCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T3PatentCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="21.0" startX="-48.0" stroke="WHITE" strokeWidth="3.0" />
-                                                      <Label text="10" textFill="WHITE">
+                                                      <Label fx:id="T3DataCnt" text="10" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                          </font>
@@ -1143,7 +1143,7 @@
                                                 <Insets top="11.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
+                                          <Button fx:id="trade3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openTradeWindow" onMouseEntered="#ChangeTradeButtonColorToChoose" onMouseExited="#ChangeTradeButtonColorToNotChoose" onMousePressed="#ChangeTradeButtonColorToPressed" prefHeight="51.0" prefWidth="205.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 4;" text="Trade" textAlignment="CENTER" textFill="WHITE">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                                              </font>
@@ -1192,7 +1192,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="TalentPrice11" text="10" textFill="WHITE">
+                                                <Label fx:id="yourCapital" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -1219,7 +1219,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="TalentPrice1" text="10" textFill="WHITE">
+                                                <Label fx:id="yourTalent" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -1255,7 +1255,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="CloudPrice1" text="10" textFill="WHITE">
+                                                <Label fx:id="yourCloud" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -1285,7 +1285,7 @@
                                                       <Insets />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="PatentPrice1" text="10" textFill="WHITE">
+                                                <Label fx:id="yourPatent" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>
@@ -1315,7 +1315,7 @@
                                                       <Insets right="2.0" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="DataPrice1" text="10" textFill="WHITE">
+                                                <Label fx:id="yourData" text="10" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                                    </font>

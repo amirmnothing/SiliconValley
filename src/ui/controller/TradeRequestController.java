@@ -15,11 +15,16 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import logic.engine.GameEngine;
+import logic.enums.ResourceType;
 import logic.models.Player;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TradeRequestController {
+    GameBoardController gameBoardController;
 
     private int toGiveTalentCount = 0;
     private int toGiveCloudCount = 0;
@@ -32,6 +37,9 @@ public class TradeRequestController {
     private int toGetDataCount = 0;
     private int toGetCapitalCount = 0;
     private int toGetPatentCount = 0;
+    GameEngine gameEngine;
+    Player[] players;
+
 
     @FXML
     private AnchorPane mainRootPane;
@@ -57,10 +65,15 @@ public class TradeRequestController {
     @FXML
     private Label TalentGiveLabel;
 
+    public void setGameBoardController(GameBoardController gameBoardController) {
+        this.gameBoardController = gameBoardController;
+    }
 
     @FXML
     void onGiveTalentPlus(MouseEvent event) {
-        toGiveTalentCount++;
+        if (toGiveTalentCount < players[1].getResources(ResourceType.TALENT)) {
+            toGiveTalentCount++;
+        }
         TalentGiveLabel.setText(String.valueOf(toGiveTalentCount));
     }
 
@@ -74,7 +87,9 @@ public class TradeRequestController {
 
     @FXML
     void onGiveCloudPlus(MouseEvent event) {
-        toGiveCloudCount++;
+        if (toGiveCloudCount < players[1].getResources(ResourceType.CLOUD)) {
+            toGiveCloudCount++;
+        }
         CloudGiveLabel.setText(String.valueOf(toGiveCloudCount));
     }
 
@@ -88,7 +103,9 @@ public class TradeRequestController {
 
     @FXML
     void onGiveDataPlus(MouseEvent event) {
-        toGiveDataCount++;
+        if (toGiveDataCount < players[1].getResources(ResourceType.DATA)) {
+            toGiveDataCount++;
+        }
         DataGiveLabel.setText(String.valueOf(toGiveDataCount));
     }
 
@@ -102,7 +119,9 @@ public class TradeRequestController {
 
     @FXML
     void onGiveCapitalPlus(MouseEvent event) {
-        toGiveCapitalCount++;
+        if (toGiveCapitalCount < players[1].getResources(ResourceType.CAPITAL)) {
+            toGiveCapitalCount++;
+        }
         CapitalGiveLabel.setText(String.valueOf(toGiveCapitalCount));
     }
 
@@ -116,7 +135,9 @@ public class TradeRequestController {
 
     @FXML
     void onGivePatentPlus(MouseEvent event) {
-        toGivePatentCount++;
+        if (toGivePatentCount < players[1].getResources(ResourceType.PATENT)) {
+            toGivePatentCount++;
+        }
         PatentGiveLabel.setText(String.valueOf(toGivePatentCount));
     }
 
@@ -130,7 +151,9 @@ public class TradeRequestController {
 
     @FXML
     void onGetTalentPlus(MouseEvent event) {
-        toGetTalentCount++;
+        if (toGetTalentCount < players[0].getResources(ResourceType.TALENT)) {
+            toGetTalentCount++;
+        }
         TalentGetLabel.setText(String.valueOf(toGetTalentCount));
     }
 
@@ -144,7 +167,9 @@ public class TradeRequestController {
 
     @FXML
     void onGetCloudPlus(MouseEvent event) {
-        toGetCloudCount++;
+        if (toGetCloudCount < players[0].getResources(ResourceType.CLOUD)) {
+            toGetCloudCount++;
+        }
         CloudGetLabel.setText(String.valueOf(toGetCloudCount));
     }
 
@@ -158,7 +183,9 @@ public class TradeRequestController {
 
     @FXML
     void onGetDataPlus(MouseEvent event) {
-        toGetDataCount++;
+        if (toGetDataCount < players[0].getResources(ResourceType.DATA)) {
+            toGetDataCount++;
+        }
         DataGetLabel.setText(String.valueOf(toGetDataCount));
     }
 
@@ -172,7 +199,9 @@ public class TradeRequestController {
 
     @FXML
     void onGetCapitalPlus(MouseEvent event) {
-        toGetCapitalCount++;
+        if (toGetCapitalCount < players[0].getResources(ResourceType.CAPITAL)) {
+            toGetCapitalCount++;
+        }
         CapitalGetLabel.setText(String.valueOf(toGetCapitalCount));
     }
 
@@ -186,7 +215,9 @@ public class TradeRequestController {
 
     @FXML
     void onGetPatentPlus(MouseEvent event) {
-        toGetPatentCount++;
+        if (toGetPatentCount < players[0].getResources(ResourceType.PATENT)) {
+            toGetPatentCount++;
+        }
         PatentGetLabel.setText(String.valueOf(toGetPatentCount));
     }
 
@@ -209,7 +240,9 @@ public class TradeRequestController {
     }
 
     @FXML
-    public void setData(Player[] players) {
+    public void setData(GameEngine gameEngine, Player[] players) {
+        this.gameEngine = gameEngine;
+        this.players = players;
     }
 
 
@@ -224,24 +257,24 @@ public class TradeRequestController {
     }
 
     @FXML
-    void ChangeRequestButtonColorToChoose(MouseEvent event){
+    void ChangeRequestButtonColorToChoose(MouseEvent event) {
         String rgbColor = "rgb(0,100,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
 
     @FXML
-    void ChangeRequestButtonColorToNotChoose(MouseEvent event){
+    void ChangeRequestButtonColorToNotChoose(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + "black" + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
 
     @FXML
-    void ChangeResetButtonColorToChoose(MouseEvent event){
+    void ChangeResetButtonColorToChoose(MouseEvent event) {
         String rgbColor = "rgb(120,0,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
 
     @FXML
-    void ChangeResetButtonColorToNotChoose(MouseEvent event){
+    void ChangeResetButtonColorToNotChoose(MouseEvent event) {
 
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + "black" + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
@@ -271,6 +304,17 @@ public class TradeRequestController {
         PatentGetLabel.setText("0");
     }
 
+    Map<ResourceType, Integer> putResources(int talent, int cloud, int data, int capital, int patent) {
+        Map<ResourceType, Integer> resources = new HashMap<>();
+        resources.put(ResourceType.TALENT, talent);
+        resources.put(ResourceType.CLOUD, cloud);
+        resources.put(ResourceType.DATA, data);
+        resources.put(ResourceType.CAPITAL, capital);
+        resources.put(ResourceType.PATENT, patent);
+        return resources;
+
+    }
+
     @FXML
     private void onRequestButton(ActionEvent event) {
         try {
@@ -278,6 +322,12 @@ public class TradeRequestController {
             Parent root = loader.load();
 
             IncomingTradeController incomingTradeController = loader.getController();
+            incomingTradeController.setPlayers(players);
+            incomingTradeController.setGameEngine(gameEngine);
+            incomingTradeController.setGiveResources(putResources(toGetTalentCount, toGetCloudCount, toGetDataCount, toGetCapitalCount, toGetPatentCount));
+            incomingTradeController.setGetResources(putResources(toGiveTalentCount, toGiveCloudCount, toGiveDataCount, toGiveCapitalCount, toGivePatentCount));
+            incomingTradeController.setIncomingTradeLabels();
+            incomingTradeController.setGameBoardController(gameBoardController);
 
             Stage tradeIncomingStage = new Stage();
             tradeIncomingStage.setTitle("Incoming Trade");

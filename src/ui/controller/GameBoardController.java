@@ -1,6 +1,7 @@
 package ui.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -499,6 +501,87 @@ public class GameBoardController {
     @FXML
     private Button EndTurnBTN;
 
+    @FXML
+    private Button trade1;
+
+    @FXML
+    private Button trade2;
+
+    @FXML
+    private Button trade3;
+
+    @FXML
+    private Label name1;
+
+    @FXML
+    private Label name2;
+
+    @FXML
+    private Label name3;
+
+    @FXML
+    private Tab Trade;
+
+    @FXML
+    private Label T1CapitalCnt;
+
+    @FXML
+    private Label T1TalentCnt;
+
+    @FXML
+    private Label T1CloudCnt;
+
+    @FXML
+    private Label T1PatentCnt;
+
+    @FXML
+    private Label T1DataCnt;
+
+    @FXML
+    private Label T2CapitalCnt;
+
+    @FXML
+    private Label T2TalentCnt;
+
+    @FXML
+    private Label T2CloudCnt;
+
+    @FXML
+    private Label T2PatentCnt;
+
+    @FXML
+    private Label T2DataCnt;
+
+    @FXML
+    private Label T3CapitalCnt;
+
+    @FXML
+    private Label T3TalentCnt;
+
+    @FXML
+    private Label T3CloudCnt;
+
+    @FXML
+    private Label T3PatentCnt;
+
+    @FXML
+    private Label T3DataCnt;
+
+    @FXML
+    private Label yourCapital;
+
+    @FXML
+    private Label yourTalent;
+
+    @FXML
+    private Label yourCloud;
+
+    @FXML
+    private Label yourPatent;
+
+    @FXML
+    private Label yourData;
+
 
     @FXML
     private GridPane mapGrid;
@@ -647,6 +730,7 @@ public class GameBoardController {
             StackPane temp = previousAuditorLocation;
             int row = gameEngine.getMap().getRows();
             int col = gameEngine.getMap().getCols();
+            boolean moveSuccessful = false;
             for (int r = 0; r < row; r++) {
                 for (int c = 0; c < col; c++) {
                     if (mapGrid.getChildren().get(r * 5 + c) == stackPane) {
@@ -654,6 +738,7 @@ public class GameBoardController {
                             setAuditorOnSector(stackPane);
                             temp = stackPane;
                             gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
+                            moveSuccessful = true;
                         } else {
                             if (previousAuditorLocation != null) setAuditorOnSector(previousAuditorLocation);
                             gameEngine.getMap().getSectors()[r][c].setAuditor(true);
@@ -664,9 +749,11 @@ public class GameBoardController {
                     }
                 }
             }
-            previousAuditorLocation = temp;
-            isActiveEndTurn = true;
-            endTurnDisable();
+            if (moveSuccessful) {
+                previousAuditorLocation = temp;
+                isActiveEndTurn = true;
+                endTurnDisable();
+            }
         }
     }
 
@@ -1127,11 +1214,34 @@ public class GameBoardController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/TradeRequest.fxml"));
             Parent root = loader.load();
+            Player player = null;
+
+            for (Player p : gameEngine.getPlayers()) {
+                if (p == gameEngine.getCurrentPlayer()) {
+                    continue;
+                }
+                if (trade1 == (Button) event.getSource()) {
+                    if (name1.getText().equals(p.getPlayerName())) {
+                        player = p;
+                    }
+                }
+                if (trade2 == (Button) event.getSource()) {
+                    if (name2.getText().equals(p.getPlayerName())) {
+                        player = p;
+                    }
+                }
+                if (trade3 == (Button) event.getSource()) {
+                    if (name3.getText().equals(p.getPlayerName())) {
+                        player = p;
+                    }
+                }
+            }
 
             TradeRequestController tradeRequestController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
-            tradeRequestController.setData(new Player[]{new Player("", null)});
+            tradeRequestController.setData(gameEngine, new Player[]{gameEngine.getCurrentPlayer(), player});
+            tradeRequestController.setGameBoardController(this);
 
             Stage tradeStage = new Stage();
             tradeStage.setTitle("Trade Request");
@@ -1332,5 +1442,56 @@ public class GameBoardController {
         P2PointColor.setText(Integer.toString(totalPoints.get(1)));
         P3PointColor.setText(Integer.toString(totalPoints.get(2)));
         P4PointColor.setText(Integer.toString(totalPoints.get(3)));
+    }
+
+    @FXML
+    void onTabChanged(Event event) {
+        if (Trade.isSelected()) {
+            updateResourceFields();
+        }
+        refreshPlayersResourcesUI();
+    }
+
+    public void updateResourceFields() {
+        List<Player> players = gameEngine.getPlayers();
+        Player p = gameEngine.getCurrentPlayer();
+        yourCapital.setText(String.valueOf(p.getResources(ResourceType.CAPITAL)));
+        yourTalent.setText(String.valueOf(p.getResources(ResourceType.TALENT)));
+        yourCloud.setText(String.valueOf(p.getResources(ResourceType.CLOUD)));
+        yourData.setText(String.valueOf(p.getResources(ResourceType.DATA)));
+        yourPatent.setText(String.valueOf(p.getResources(ResourceType.PATENT)));
+
+        boolean table1 = false, table2 = false, table3 = false;
+
+        for (Player player : players) {
+            if (player == p) {
+                continue;
+            }
+            if (!table1) {
+                name1.setText(player.getPlayerName());
+                T1CapitalCnt.setText(String.valueOf(player.getResources(ResourceType.CAPITAL)));
+                T1TalentCnt.setText(String.valueOf(player.getResources(ResourceType.TALENT)));
+                T1CloudCnt.setText(String.valueOf(player.getResources(ResourceType.CLOUD)));
+                T1DataCnt.setText(String.valueOf(player.getResources(ResourceType.DATA)));
+                T1PatentCnt.setText(String.valueOf(player.getResources(ResourceType.PATENT)));
+                table1 = true;
+            } else if (!table2) {
+                name2.setText(player.getPlayerName());
+                T2CapitalCnt.setText(String.valueOf(player.getResources(ResourceType.CAPITAL)));
+                T2TalentCnt.setText(String.valueOf(player.getResources(ResourceType.TALENT)));
+                T2CloudCnt.setText(String.valueOf(player.getResources(ResourceType.CLOUD)));
+                T2DataCnt.setText(String.valueOf(player.getResources(ResourceType.DATA)));
+                T2PatentCnt.setText(String.valueOf(player.getResources(ResourceType.PATENT)));
+                table2 = true;
+            } else if (!table3) {
+                name3.setText(player.getPlayerName());
+                T3CapitalCnt.setText(String.valueOf(player.getResources(ResourceType.CAPITAL)));
+                T3TalentCnt.setText(String.valueOf(player.getResources(ResourceType.TALENT)));
+                T3CloudCnt.setText(String.valueOf(player.getResources(ResourceType.CLOUD)));
+                T3DataCnt.setText(String.valueOf(player.getResources(ResourceType.DATA)));
+                T3PatentCnt.setText(String.valueOf(player.getResources(ResourceType.PATENT)));
+                table3 = true;
+            }
+        }
     }
 }

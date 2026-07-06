@@ -112,7 +112,7 @@ public class GameEngine {
         }
     }
 
-//    public void handleSevenOrCrisis() {
+    //    public void handleSevenOrCrisis() {
 //        for (Player player : players) {
 //            // محاسبه کل کارت‌های منبع بازیکن در حال حاضر
 //            int totalResources = 0;
@@ -129,7 +129,7 @@ public class GameEngine {
 //            }
 //        }
 //    }
-public boolean isResourceBelowCrisisThreshold(Player player) {
+    public boolean isResourceBelowCrisisThreshold(Player player) {
         int totalResources = 0;
         java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
         for (int count : resourceCount.values()) {
@@ -140,7 +140,7 @@ public boolean isResourceBelowCrisisThreshold(Player player) {
 
         return totalResources > threshold;
 
-}
+    }
 
     public boolean discardSelectedResources(Player player, java.util.Map<ResourceType, Integer> resourcesToDiscard) {
         if (player == null || resourcesToDiscard == null) return false;
@@ -192,7 +192,7 @@ public boolean isResourceBelowCrisisThreshold(Player player) {
 
         // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
         if (!setupPhaseActive) player.deductResourcesForMVP();
-        MVP mvp=new MVP(player);
+        MVP mvp = new MVP(player);
         vertex.setCompanyStructure(mvp);
         player.addCompanyStructure(mvp);
 
@@ -435,12 +435,12 @@ public boolean isResourceBelowCrisisThreshold(Player player) {
     }
 
     public List<Integer> calculatePlayerPoints() {
-        List<Integer> pointList=new ArrayList<>();
+        List<Integer> pointList = new ArrayList<>();
         updateLongestNetwork();
         for (Player player : players) {
             pointList.add(player.calculateVictoryPoints());
         }
-       return pointList;
+        return pointList;
     }
 
     public void checkAndMoveToNextSetupTurn() {
@@ -551,6 +551,28 @@ public boolean isResourceBelowCrisisThreshold(Player player) {
                 }
             }
         }
+    }
+
+    public void trade(java.util.Map<ResourceType, Integer> givenResources, java.util.Map<ResourceType, Integer> receiveResources, Player...players) {
+//        System.out.println(givenResources);
+//        System.out.println(receiveResources);
+//        System.out.println("give"+players[0].getResourceCount());
+//        System.out.println("receive"+players[1].getResourceCount());
+        for(ResourceType type : ResourceType.values()) {
+            if (type==ResourceType.REGULATORY) continue;
+            int giveAmount = givenResources.getOrDefault(type, 0);
+            int receiveAmount = receiveResources.getOrDefault(type, 0);
+
+
+            int currentP1 = players[0].getResourceCount().getOrDefault(type, 0);
+            players[0].getResourceCount().put(type, currentP1 - giveAmount + receiveAmount);
+
+
+            int currentP2 = players[1].getResourceCount().getOrDefault(type, 0);
+            players[1].getResourceCount().put(type, currentP2 + giveAmount - receiveAmount);
+        }
+//        System.out.println("give"+players[0].getResourceCount());
+//        System.out.println("receive"+players[1].getResourceCount());
     }
 
 }

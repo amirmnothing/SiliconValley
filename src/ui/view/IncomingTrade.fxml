@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="610.0">
                <children>
-                  <Label text="PLAYERNAME" textFill="WHITE">
+                  <Label fx:id="sender" text="PLAYERNAME" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -29,7 +29,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="PLAYERNAME" textFill="WHITE">
+                  <Label fx:id="receiver" text="PLAYERNAME" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                      </font>
@@ -81,7 +81,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <Label alignment="CENTER" text="10" textAlignment="CENTER" textFill="WHITE">
+                              <Label fx:id="recTalent" alignment="CENTER" text="10" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -92,7 +92,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="givTalent" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -116,7 +116,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="recCloud" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="givCloud" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -151,7 +151,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="recData" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -162,7 +162,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="givData" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -186,7 +186,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="recCapital" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -197,7 +197,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="givCapital" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -221,7 +221,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="recPatent" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -232,7 +232,7 @@
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
-                              <Label text="10" textFill="WHITE">
+                              <Label fx:id="givPatent" text="10" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>

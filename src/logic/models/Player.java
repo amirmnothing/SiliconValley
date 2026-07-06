@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Player {
-    public final String playerName;
+    private final String playerName;
     public static final int LONGEST_NETWORK_BONUS_POINTS = 2;
     public static final int DEFAULT_CRISIS_THRESHOLD = 7;
     protected Map<ResourceType, Integer> resources = new HashMap<>();
@@ -23,7 +23,7 @@ public class Player {
         this.playerName = playerName;
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type, 0);
+            resources.put(type, 10);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;
@@ -215,5 +215,9 @@ public class Player {
 
     public void setCanPlaceAuditor(boolean canPlaceAuditor) {
         this.canPlaceAuditor = canPlaceAuditor;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }

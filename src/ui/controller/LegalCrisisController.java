@@ -11,7 +11,6 @@ import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 import logic.models.Player;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LegalCrisisController {
@@ -210,7 +209,7 @@ public class LegalCrisisController {
         this.player = player;
         this.totalResourceCount = totalResourceCount;
         if (player != null) {
-            PlayerName.setText(player.playerName);
+            PlayerName.setText(player.getPlayerName());
         }
         MaxCardCount.setText(String.valueOf(totalResourceCount / 2));
     }
