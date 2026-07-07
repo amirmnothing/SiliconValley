@@ -1340,14 +1340,14 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Save Game">
+            <Tab onSelectionChanged="#openSaveGameTab" text="Save Game">
               <content>
                   <VBox alignment="TOP_CENTER" onMouseClicked="#unchooseFileNameEnterField">
                      <children>
-                        <TableView prefHeight="363.0" prefWidth="765.0">
+                        <TableView fx:id="saveGameTable" prefHeight="363.0" prefWidth="765.0">
                           <columns>
-                            <TableColumn prefWidth="512.8000121116638" text="Sava Name" />
-                            <TableColumn prefWidth="243.2000732421875" text="Date" />
+                            <TableColumn fx:id="saveGameNameCol" editable="false" prefWidth="498.4000792503357" resizable="false" sortable="false" text="Sava Name" />
+                            <TableColumn fx:id="saveGameDateCol" editable="false" prefWidth="259.1999816894531" resizable="false" sortable="false" text="Date" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -1356,19 +1356,19 @@
                               <Insets right="20.0" top="19.0" />
                            </VBox.margin>
                         </TableView>
-                        <HBox alignment="TOP_CENTER" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="66.0" prefWidth="765.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="240.0" style="-fx-background-color: #1a1a1a;" text="Delete Save" textFill="#d4af37">
+                              <Button mnemonicParsing="false" onAction="#onDeleteSave" onMouseEntered="#SaveTabButtonsMouseEnter" onMouseExited="#SaveTabButtonsMouseExit" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Delete Save" textFill="#d4af37">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="240.0" style="-fx-background-color: #1a1a1a;" text="Edit Save" textFill="#d4af37">
+                              <Button fx:id="EditSaveBtn" mnemonicParsing="false" onAction="#onEditASave" onMouseEntered="#SaveTabEditButtonMouseEnter" onMouseExited="#SaveTabEditButtonMouseExit" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Edit Save" textFill="#d4af37">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="240.0" style="-fx-background-color: #1a1a1a;" text="Create A New Save" textFill="#d4af37">
+                              <Button fx:id="CreateANewSaveBtn" mnemonicParsing="false" onAction="#onCreateANewSave" onMouseEntered="#SaveTabCreateButtonMouseEnter" onMouseExited="#SaveTabCreateButtonMouseExit" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Create A New Save" textFill="#d4af37">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
@@ -1378,38 +1378,70 @@
                               <Insets right="20.0" top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" onMouseClicked="#unchooseFileNameEnterField" prefHeight="88.0" prefWidth="765.0" style="-fx-background-color: black; -fx-border-color: #1a1a1a; -fx-border-width: 2;">
-                           <children>
-                              <Label prefHeight="27.0" prefWidth="147.0" text="Save Name : " textFill="#d4af37">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="12.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="SaveNameField" onMouseClicked="#onFileNameEnterField" onMouseEntered="#FileNameEnterFieldMouseEnter" onMouseExited="#FileNameEnterFieldMouseExit" prefHeight="46.0" prefWidth="254.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #d4af37;" stylesheets="@style.css">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                              </TextField>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="240.0" style="-fx-background-color: #1a1a1a;" text="Save Changes" textFill="#d4af37">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="100.0" right="13.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
+                        <StackPane>
                            <VBox.margin>
-                              <Insets right="20.0" top="40.0" />
+                              <Insets right="20.0" top="36.0" />
                            </VBox.margin>
-                        </HBox>
-                        <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="240.0" style="-fx-background-color: #1a1a1a;" text="Save Game" textFill="#d4af37">
+                           <children>
+                              <HBox fx:id="EditSaveFileBox" alignment="CENTER_LEFT" mouseTransparent="true" onMouseClicked="#unchooseFileNameEnterField" opacity="0.0" prefHeight="88.0" prefWidth="765.0" style="-fx-background-color: black; -fx-border-color: #1a1a1a; -fx-border-width: 2;">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="147.0" text="Save Name : " textFill="#d4af37">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="12.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="EditSaveNameField" onMouseClicked="#onFileNameEnterField" onMouseEntered="#FileNameEnterFieldMouseEnter" onMouseExited="#FileNameEnterFieldMouseExit" prefHeight="46.0" prefWidth="254.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #d4af37;" stylesheets="@style.css">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#onEditBtnSaveGameTab" onMouseEntered="#SaveTabButtonsMouseEnter" onMouseExited="#SaveTabButtonsMouseExit" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Save Changes" textFill="#d4af37">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="100.0" right="13.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="CreateSaveFileBox" alignment="CENTER_LEFT" mouseTransparent="true" onMouseClicked="#unchooseFileNameEnterField" opacity="0.0" prefHeight="88.0" prefWidth="765.0" style="-fx-background-color: black; -fx-border-color: #1a1a1a; -fx-border-width: 2;">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="147.0" text="Save Name : " textFill="#d4af37">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="12.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="CreateSaveNameField" onMouseClicked="#onFileNameEnterField" onMouseEntered="#FileNameEnterFieldMouseEnter" onMouseExited="#FileNameEnterFieldMouseExit" prefHeight="46.0" prefWidth="254.0" style="-fx-background-color: #1a1a1a; -fx-text-fill: #d4af37;" stylesheets="@style.css">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#onCreateBtnSaveGameTab" onMouseEntered="#SaveTabButtonsMouseEnter" onMouseExited="#SaveTabButtonsMouseExit" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Create" textFill="#d4af37">
+                                       <font>
+                                          <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="100.0" right="13.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                        <Button mnemonicParsing="false" onMouseEntered="#SaveTabButtonsMouseEnter" onMouseExited="#SaveTabButtonsMouseExit" prefHeight="74.0" prefWidth="241.0" style="-fx-background-color: #1a1a1a;" text="Save Game" textFill="#d4af37">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="38.0" />
                            </font>

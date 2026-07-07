@@ -1,5 +1,7 @@
 package ui.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -26,16 +29,12 @@ import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.enums.ResourceType;
-import logic.models.Edge;
-import logic.models.Sector;
-import logic.models.Vertex;
-import logic.models.Player;
+import logic.models.*;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static logic.engine.GameEngine.*;
 
@@ -788,6 +787,19 @@ public class GameBoardController {
         updatePlayersPoints();
 
         endTurnDisable();
+        saveGameTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        saveGameNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        saveGameDateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
+        saveGameNameCol.setReorderable(false);
+        saveGameDateCol.setReorderable(false);
+        saveGameTable.setItems(saveList);
+        saveGameTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                EditSaveNameField.setText(newSelection.getName());
+            }
+        });
+
+
         lines = new ArrayList<>(Arrays.asList(
                 l0_1, l0_3, l0_5, l0_7, l0_9,
                 l1_0, l1_2, l1_4, l1_6, l1_8, l1_10,
@@ -1487,35 +1499,6 @@ public class GameBoardController {
         refreshPlayersResourcesUI();
     }
 
-    // ========================== Save Tab ==========================
-    int NameFieldChoose = 0;
-
-    @FXML
-    private TextField SaveNameField;
-
-
-    @FXML
-    void FileNameEnterFieldMouseEnter(MouseEvent event) {
-        if (NameFieldChoose == 0) ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-text-fill:  #d4af37");
-    }
-
-    @FXML
-    void FileNameEnterFieldMouseExit(MouseEvent event) {
-        if (NameFieldChoose == 0) ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 2; -fx-text-fill:  #d4af37");
-    }
-
-    @FXML
-    void onFileNameEnterField(MouseEvent event) {
-        NameFieldChoose = 1;
-        ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-border-width: 3; -fx-text-fill:  #d4af37");
-    }
-
-    @FXML
-    void unchooseFileNameEnterField(MouseEvent event) {
-        NameFieldChoose = 0;
-        SaveNameField.setStyle("-fx-background-color:  #1a1a1a; -fx-text-fill:  #d4af37");
-    }
-
 
     public void updateResourceFields() {
         List<Player> players = gameEngine.getPlayers();
@@ -1559,4 +1542,307 @@ public class GameBoardController {
             }
         }
     }
+
+    // ========================== Save Tab ==========================
+    int NameFieldChoose = 0;
+    int CreateBtnChoose = 0;
+    int EditBtnChoose = 0;
+
+    private final ObservableList<FileItem> saveList = FXCollections.observableArrayList();
+
+    @FXML
+    private TableColumn<FileItem, String> saveGameDateCol;
+
+    @FXML
+    private TableColumn<FileItem, String> saveGameNameCol;
+
+    @FXML
+    private TableView<FileItem> saveGameTable;
+
+    @FXML
+    private TextField CreateSaveNameField;
+
+    @FXML
+    private TextField EditSaveNameField;
+
+    @FXML
+    private HBox EditSaveFileBox;
+
+    @FXML
+    private HBox CreateSaveFileBox;
+
+    @FXML
+    private Button EditSaveBtn;
+
+    @FXML
+    private Button CreateANewSaveBtn;
+
+    @FXML
+    void FileNameEnterFieldMouseEnter(MouseEvent event) {
+        if (NameFieldChoose == 0)
+            ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void FileNameEnterFieldMouseExit(MouseEvent event) {
+        if (NameFieldChoose == 0)
+            ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 2; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void onFileNameEnterField(MouseEvent event) {
+        NameFieldChoose = 1;
+        ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-border-width: 3; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void unchooseFileNameEnterField(MouseEvent event) {
+        NameFieldChoose = 0;
+        CreateSaveNameField.setStyle("-fx-background-color:  #1a1a1a; -fx-text-fill:  #d4af37");
+        EditSaveNameField.setStyle("-fx-background-color:  #1a1a1a; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void SaveTabButtonsMouseEnter(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+    }
+
+    @FXML
+    void SaveTabButtonsMouseExit(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a");
+    }
+
+    @FXML
+    void SaveTabCreateButtonMouseEnter(MouseEvent event) {
+        if (CreateBtnChoose == 0)
+            ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+    }
+
+    @FXML
+    void SaveTabCreateButtonMouseExit(MouseEvent event) {
+        if (CreateBtnChoose == 0) ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a");
+    }
+
+    @FXML
+    void SaveTabEditButtonMouseEnter(MouseEvent event) {
+        if (EditBtnChoose == 0)
+            ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+    }
+
+    @FXML
+    void SaveTabEditButtonMouseExit(MouseEvent event) {
+        if (EditBtnChoose == 0) ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a");
+    }
+
+    @FXML
+    void openSaveGameTab() {
+        loadSaveFiles();
+    }
+
+    @FXML
+    void onCreateANewSave(ActionEvent event) {
+        if (CreateBtnChoose == 1) {
+            closeCreateEditBoxes(event, CreateBtnChoose);
+            CreateBtnChoose = 0;
+        } else {
+            CreateBtnChoose = 1;
+            EditBtnChoose = 0;
+            EditSaveBtn.setStyle("-fx-background-color:  #1a1a1a");
+            ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 3");
+            CreateSaveFileBox.setOpacity(1);
+            EditSaveFileBox.setOpacity(0);
+            CreateSaveFileBox.setMouseTransparent(false);
+            EditSaveFileBox.setMouseTransparent(true);
+        }
+    }
+
+    @FXML
+    void onEditASave(ActionEvent event) {
+        if (EditBtnChoose == 1) {
+            closeCreateEditBoxes(event, EditBtnChoose);
+            EditBtnChoose = 0;
+        } else {
+            FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
+            if (chosenFile == null) {
+                FileNotChosenAlert();
+            } else {
+                EditSaveNameField.setText(chosenFile.getName());
+                EditBtnChoose = 1;
+                CreateBtnChoose = 0;
+                CreateANewSaveBtn.setStyle("-fx-background-color:  #1a1a1a");
+                ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 3");
+                CreateSaveFileBox.setOpacity(0);
+                EditSaveFileBox.setOpacity(1);
+                CreateSaveFileBox.setMouseTransparent(true);
+                EditSaveFileBox.setMouseTransparent(false);
+            }
+        }
+    }
+
+    private void closeCreateEditBoxes(ActionEvent event, int editBtnChoose) {
+        ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+        CreateSaveFileBox.setOpacity(0);
+        EditSaveFileBox.setOpacity(0);
+        CreateSaveFileBox.setMouseTransparent(true);
+        EditSaveFileBox.setMouseTransparent(true);
+    }
+
+    private void loadSaveFiles() {
+        saveList.clear();
+
+        File saveFolder = new File("saves");
+
+        if (!saveFolder.exists()) {
+            saveFolder.mkdir();
+        }
+
+        File[] files = saveFolder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".sv")) {
+                    saveList.add(new FileItem(file));
+                }
+            }
+        }
+    }
+
+    @FXML
+    void onCreateBtnSaveGameTab(ActionEvent event) {
+        try {
+
+            File newFile = new File("saves/" + CreateSaveNameField.getText() + ".sv");
+            if (newFile.createNewFile()) {
+                loadSaveFiles();
+                FileCreatedSuccessfullyAlert();
+            }
+            else {
+                FileAlreadyExistsErrorAlert();
+            }
+        } catch (IOException e) {
+            FailedToCreateFileErrorAlert();
+        }
+    }
+
+    void FailedToCreateFileErrorAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Failed to create save file");
+        alert.setContentText("Maybe you entered an unsupported character in file name");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    void FileCreatedSuccessfullyAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("File created successfully");
+        alert.setContentText("You can see it in saves' list now!");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    void FileAlreadyExistsErrorAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("File already exists");
+        alert.setContentText("You can not create a file which is existed!");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    @FXML
+    void onEditBtnSaveGameTab(ActionEvent event) {
+        FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
+        if (chosenFile != null){
+            File file = chosenFile.getFile();
+            if (file.renameTo(new File("saves/"+EditSaveNameField.getText()+".sv"))){
+                loadSaveFiles();
+                FileRenameSuccessfullyAlert();
+            }
+            else {
+                FileRenameFailedfullyAlert();
+            }
+
+        }
+        else FileNotChosenAlert();
+    }
+
+    void FileRenameSuccessfullyAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Save file renamed successfully");
+        alert.setContentText("You can see renamed file in saves' list");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    void FileRenameFailedfullyAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Failed to rename save file");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    @FXML
+    void onDeleteSave(ActionEvent event) {
+        FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
+        if (chosenFile != null) {
+            if (DeleteAFileConfirmation(chosenFile.getName())) {
+                if (chosenFile.getFile().delete()) {
+                    saveList.remove(chosenFile);
+                    FileDeletedSuccessfullyAlert();
+                }
+                else FileDeleteFailedfullyAlert();
+            }
+        }
+        else FileNotChosenAlert();
+    }
+
+    void FileNotChosenAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("No file has chosen");
+        alert.setContentText("You should choose a file from table");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    boolean DeleteAFileConfirmation(String FileName) {
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Delete save file");
+        confirmationAlert.setContentText("Are you sure you want to delete \"" + FileName + "\" save file?");
+        DialogPane dialogPane = confirmationAlert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.get() == ButtonType.OK) return true;
+        else return false;
+    }
+
+    void FileDeletedSuccessfullyAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Save file deleted successfully");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    void FileDeleteFailedfullyAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Failed to delete save file");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
 }
