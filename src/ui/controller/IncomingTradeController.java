@@ -95,7 +95,7 @@ public class IncomingTradeController {
 
     @FXML
     void onAcceptButton(ActionEvent event) {
-        gameEngine.trade(giveResources, getResources, players[0], players[1]);
+        gameEngine.trade(getResources, giveResources, players[0], players[1]);
         gameBoardController.updateResourceFields();
 
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
@@ -107,8 +107,8 @@ public class IncomingTradeController {
     }
 
     public void setIncomingTradeLabels() {
-        updateResourceFields(getResources,recCapital,recCloud,recData,recTalent,recPatent);
-        updateResourceFields(giveResources,givCapital,givCloud,givData,givTalent,givPatent);
+        updateResourceFields(getResources, recCapital, recCloud, recData, recTalent, recPatent);
+        updateResourceFields(giveResources, givCapital, givCloud, givData, givTalent, givPatent);
         sender.setText(players[0].getPlayerName());
         receiver.setText(players[1].getPlayerName());
     }
