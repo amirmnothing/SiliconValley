@@ -8,15 +8,13 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -1154,13 +1152,15 @@ public class GameBoardController {
 
     @FXML
     void SetResourcesToChoose(MouseEvent event) {
-        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0.1);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown())
+            ((Rectangle) (event.getSource())).setOpacity(0.1);
         mouseOnBtn = 1;
     }
 
     @FXML
     void SetResourcesToNotChoose(MouseEvent event) {
-        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown())
+            ((Rectangle) (event.getSource())).setOpacity(0);
         mouseOnBtn = 0;
     }
 
@@ -1486,6 +1486,36 @@ public class GameBoardController {
         }
         refreshPlayersResourcesUI();
     }
+
+    // ========================== Save Tab ==========================
+    int NameFieldChoose = 0;
+
+    @FXML
+    private TextField SaveNameField;
+
+
+    @FXML
+    void FileNameEnterFieldMouseEnter(MouseEvent event) {
+        if (NameFieldChoose == 0) ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void FileNameEnterFieldMouseExit(MouseEvent event) {
+        if (NameFieldChoose == 0) ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 2; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void onFileNameEnterField(MouseEvent event) {
+        NameFieldChoose = 1;
+        ((TextField) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color:  #d4af37; -fx-border-width: 3; -fx-text-fill:  #d4af37");
+    }
+
+    @FXML
+    void unchooseFileNameEnterField(MouseEvent event) {
+        NameFieldChoose = 0;
+        SaveNameField.setStyle("-fx-background-color:  #1a1a1a; -fx-text-fill:  #d4af37");
+    }
+
 
     public void updateResourceFields() {
         List<Player> players = gameEngine.getPlayers();
