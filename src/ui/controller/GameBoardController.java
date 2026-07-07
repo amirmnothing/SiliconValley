@@ -49,6 +49,7 @@ public class GameBoardController {
     private int currentCloudCount = 0;
     private int currentDataCount = 0;
 
+
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
 
@@ -59,6 +60,7 @@ public class GameBoardController {
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         if (gameEngine == null) {
+            // Todo: Show error
             return;
         }
         changePlayerTextColor();
@@ -484,6 +486,9 @@ public class GameBoardController {
     private Label TotalCount;
 
     @FXML
+    private Label TotalCount11;
+
+    @FXML
     private Button Buy;
 
     @FXML
@@ -602,7 +607,6 @@ public class GameBoardController {
         refreshPlayersResourcesUI();
         isActiveEndTurn = false;
         endTurnDisable();
-
     }
 
     @FXML
@@ -823,12 +827,31 @@ public class GameBoardController {
         TotalCount.setText(String.valueOf(total));
     }
 
+    private int getTotalPriceAfterAdd(ResourceType RT) {
+        int total = currentTalentCount * Integer.parseInt(TalentPrice.getText())
+                + currentPatentCount * Integer.parseInt(PatentPrice.getText())
+                + currentCloudCount * Integer.parseInt(CloudPrice.getText())
+                + currentDataCount * Integer.parseInt(DataPrice.getText());
+
+        if (RT == ResourceType.TALENT) return total + Integer.parseInt(TalentPrice.getText());
+        else if (RT == ResourceType.PATENT) return total + Integer.parseInt(PatentPrice.getText());
+        else if (RT == ResourceType.CLOUD) return total + Integer.parseInt(CloudPrice.getText());
+        else if (RT == ResourceType.DATA) return total + Integer.parseInt(DataPrice.getText());
+        else return -1;
+    }
+
+    @FXML
+    void onShopClick() {
+        TotalCount11.setText(Integer.toString(gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)));
+    }
 
     @FXML
     void onTalentPlus(ActionEvent event) {
-        currentTalentCount++;
-        TalentCount.setText(String.valueOf(currentTalentCount));
-        updateTotalPrice();
+        if (getTotalPriceAfterAdd(ResourceType.TALENT) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
+            currentTalentCount++;
+            TalentCount.setText(String.valueOf(currentTalentCount));
+            updateTotalPrice();
+        }
     }
 
     @FXML
@@ -843,9 +866,11 @@ public class GameBoardController {
 
     @FXML
     void onPatentPlus(ActionEvent event) {
-        currentPatentCount++;
-        PatentCount.setText(String.valueOf(currentPatentCount));
-        updateTotalPrice();
+        if (getTotalPriceAfterAdd(ResourceType.PATENT) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
+            currentPatentCount++;
+            PatentCount.setText(String.valueOf(currentPatentCount));
+            updateTotalPrice();
+        }
     }
 
     @FXML
@@ -860,9 +885,11 @@ public class GameBoardController {
 
     @FXML
     void onCloudPlus(ActionEvent event) {
-        currentCloudCount++;
-        CloudCount.setText(String.valueOf(currentCloudCount));
-        updateTotalPrice();
+        if (getTotalPriceAfterAdd(ResourceType.CLOUD) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
+            currentCloudCount++;
+            CloudCount.setText(String.valueOf(currentCloudCount));
+            updateTotalPrice();
+        }
     }
 
     @FXML
@@ -877,9 +904,11 @@ public class GameBoardController {
 
     @FXML
     void onDataPlus(ActionEvent event) {
-        currentDataCount++;
-        DataCount.setText(String.valueOf(currentDataCount));
-        updateTotalPrice();
+        if (getTotalPriceAfterAdd(ResourceType.DATA) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
+            currentDataCount++;
+            DataCount.setText(String.valueOf(currentDataCount));
+            updateTotalPrice();
+        }
     }
 
     @FXML
