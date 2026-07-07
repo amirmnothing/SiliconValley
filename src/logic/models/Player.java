@@ -220,4 +220,11 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
+
+    //TODO برای تست
+
+    @Override
+    public String toString() {
+        return playerName+"\t"+playerRole;
+    }
 }

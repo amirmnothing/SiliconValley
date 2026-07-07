@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,12 +16,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
-import logic.models.FileItem;
+import logic.engine.Map;
+import logic.enums.PlayerRole;
+import logic.models.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainMenuController {
+
+    private int playerCount = 0;
+    List<Player> players = new ArrayList<>();
+    @FXML
+    private BorderPane borderPane;
+    @FXML
 
     private final ObservableList<FileItem> saveList = FXCollections.observableArrayList();
 
@@ -39,6 +47,45 @@ public class MainMenuController {
 
     @FXML
     private Label Player4Label;
+
+    @FXML
+    private TextField PlayerName1;
+
+    @FXML
+    private TextField PlayerName2;
+
+    @FXML
+    private TextField PlayerName3;
+
+    @FXML
+    private TextField PlayerName4;
+
+    @FXML
+    private Label PlayerRole1;
+
+    @FXML
+    private Label PlayerRole2;
+
+    @FXML
+    private Label PlayerRole3;
+
+    @FXML
+    private Label PlayerRole4;
+
+    @FXML
+    private ImageView TheHackerCEO;
+    private boolean isTheHackerCEOSelected = false;
+    @FXML
+    private ImageView TheTechGuruCTO;
+    private boolean isTheTechGuruCTOSelected = false;
+
+    @FXML
+    private ImageView TheVCFunded;
+    private boolean isTheVCFundedSelected = false;
+
+    @FXML
+    private ImageView NoRole;
+
 
     @FXML
     private Group GameLobby;
@@ -59,7 +106,7 @@ public class MainMenuController {
     private TableView<FileItem> saveTable;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         Player1Label.setTextFill(Color.web(GameEngine.PLAYER1COLOR));
         Player2Label.setTextFill(Color.web(GameEngine.PLAYER2COLOR));
         Player3Label.setTextFill(Color.web(GameEngine.PLAYER3COLOR));
@@ -77,17 +124,17 @@ public class MainMenuController {
     }
 
     @FXML
-    void LoadMenuButtonsMouseEnter(MouseEvent event){
+    void LoadMenuButtonsMouseEnter(MouseEvent event) {
         ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 3; -fx-border-color:  #d4af37");
     }
 
     @FXML
-    void LoadMenuButtonsMouseExit(MouseEvent event){
+    void LoadMenuButtonsMouseExit(MouseEvent event) {
         ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a");
     }
 
     @FXML
-    void onBacktoMainMenuButton(ActionEvent event){
+    void onBacktoMainMenuButton(ActionEvent event) {
         ResetAllPages();
         MainMenu.setOpacity(1);
         MainMenu.setMouseTransparent(false);
@@ -113,20 +160,21 @@ public class MainMenuController {
     }
 
     @FXML
-    void OnStartANewGame(ActionEvent event){
+    void OnStartANewGame(ActionEvent event) {
         ResetAllPages();
         GameLobby.setOpacity(1);
         GameLobby.setMouseTransparent(false);
+        disableTextField();
     }
 
     @FXML
-    void OnLoadAGame(ActionEvent event){
+    void OnLoadAGame(ActionEvent event) {
         ResetAllPages();
         LoadMenu.setOpacity(1);
         LoadMenu.setMouseTransparent(false);
     }
 
-    void ResetAllPages(){
+    void ResetAllPages() {
         GameLobby.setOpacity(0);
         GameLobby.setMouseTransparent(true);
         MainMenu.setOpacity(0);
@@ -136,22 +184,22 @@ public class MainMenuController {
     }
 
     @FXML
-    void ButtonsMouseEnter(MouseEvent event){
+    void ButtonsMouseEnter(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black; -fx-border-color: yellow ;-fx-border-width: 5;");
     }
 
     @FXML
-    void ButtonsMouseExit(MouseEvent event){
+    void ButtonsMouseExit(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black; -fx-border-color: white ;-fx-border-width: 5;");
     }
 
     @FXML
-    void onExitButton(ActionEvent event){
+    void onExitButton(ActionEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
     @FXML
-    void RoleMouseEnter(MouseEvent event){
+    void RoleMouseEnter(MouseEvent event) {
         Lighting lighting = new Lighting();
         lighting.setDiffuseConstant(2);
         lighting.setSpecularConstant(0.25);
@@ -162,7 +210,7 @@ public class MainMenuController {
     }
 
     @FXML
-    void ChangeRoleToChoose(MouseEvent event){
+    void ChangeRoleToChoose(MouseEvent event) {
         Lighting lighting = new Lighting();
         lighting.setDiffuseConstant(2);
         lighting.setSpecularConstant(0.4);
@@ -170,43 +218,65 @@ public class MainMenuController {
         lighting.setSurfaceScale(0);
 
         ((ImageView) event.getSource()).setEffect(lighting);
+
+        if (playerCount == 0) {
+            selectRole((ImageView) event.getSource(), PlayerRole1);
+        } else if (playerCount == 1) {
+            selectRole((ImageView) event.getSource(), PlayerRole2);
+        } else if (playerCount == 2) {
+            selectRole((ImageView) event.getSource(), PlayerRole3);
+        } else if (playerCount == 3) {
+            selectRole((ImageView) event.getSource(), PlayerRole4);
+        }
+    }
+
+    public void selectRole(ImageView role, Label playerRole) {
+        if (role == TheHackerCEO && !isTheHackerCEOSelected) {
+            playerRole.setText("The Hacker CEO");
+        } else if (role == TheTechGuruCTO && !isTheTechGuruCTOSelected) {
+            playerRole.setText("The Tech Guru (CTO)");
+        } else if (role == TheVCFunded && !isTheVCFundedSelected) {
+            playerRole.setText("The VC-Funded");
+        } else if (role == NoRole) {
+            playerRole.setText("No Role");
+        }
     }
 
     @FXML
-    void ResetRole(MouseEvent event){
+    void ResetRole(MouseEvent event) {
         ((ImageView) event.getSource()).setEffect(null);
     }
 
     @FXML
-    void NextPlayerButtonMouseEnter(MouseEvent event){
+    void NextPlayerButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(0,0,225)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
-    void NextPlayerButtonMouseExit(MouseEvent event){
+    void NextPlayerButtonMouseExit(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
     }
 
     @FXML
-    void ResetAllButtonMouseEnter(MouseEvent event){
+    void ResetAllButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(220,0,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
-    void ResetAllButtonMouseExit(MouseEvent event){
+    void ResetAllButtonMouseExit(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
     }
 
     @FXML
-    void StartButtonMouseEnter(MouseEvent event){
+    void StartButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(0,110,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
     @FXML
-    void StartButtonMouseExit(MouseEvent event){
+    void StartButtonMouseExit(MouseEvent event) {
         ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
     }
 
@@ -219,16 +289,16 @@ public class MainMenuController {
 
         // Todo: Start game based on entered settings
 
-        logic.engine.Map gameMap = new logic.engine.Map(5, 5);
-        java.util.List<logic.models.Player> players = new java.util.ArrayList<>();
+        Map gameMap = new Map(5, 5);
+//        List<Player> players = new ArrayList<>();
 
-        players.add(new logic.models.TechGuruPlayer("Player 1",new java.util.ArrayList<>()));
-        players.add(new logic.models.HackerCEOPlayer("Player 2",new java.util.ArrayList<>()));
-        players.add(new logic.models.VCFundedPlayer("Player 3",new java.util.ArrayList<>()));
-        players.add(new logic.models.Player("Player 4",new java.util.ArrayList<>()));
+//        players.add(new TechGuruPlayer("Player 1", new ArrayList<>()));
+//        players.add(new HackerCEOPlayer("Player 2", new ArrayList<>()));
+//        players.add(new VCFundedPlayer("Player 3", new ArrayList<>()));
+//        players.add(new Player("Player 4", new ArrayList<>()));
 
 
-        logic.engine.GameEngine gameEngine = new logic.engine.GameEngine(gameMap, players);
+        GameEngine gameEngine = new GameEngine(gameMap, players);
         gameEngine.startSetupPhase();
 
         // پاس دادن موتور بازی به کنترلر
@@ -242,5 +312,96 @@ public class MainMenuController {
 
         gameBoardStage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    }
+
+    @FXML
+    void onResetAll(MouseEvent event) {
+        players.clear();
+        isTheHackerCEOSelected = false;
+        isTheTechGuruCTOSelected = false;
+        isTheVCFundedSelected = false;
+        playerCount=0;
+        disableTextField();
+        PlayerName1.setText(null);
+        PlayerName2.setText(null);
+        PlayerName3.setText(null);
+        PlayerName4.setText(null);
+        PlayerName1.setEditable(true);
+        PlayerName2.setEditable(true);
+        PlayerName3.setEditable(true);
+        PlayerName4.setEditable(true);
+        PlayerRole1.setText("NONE");
+        PlayerRole2.setText("NONE");
+        PlayerRole3.setText("NONE");
+        PlayerRole4.setText("NONE");
+    }
+
+    @FXML
+    void onNextPlayer(MouseEvent event) {
+        if (playerCount == 0) {
+            createPlayer(PlayerName1, PlayerRole1);
+        } else if (playerCount == 1) {
+            createPlayer(PlayerName2, PlayerRole2);
+        } else if (playerCount == 2) {
+            createPlayer(PlayerName3, PlayerRole3);
+        } else if (playerCount == 3) {
+            createPlayer(PlayerName4, PlayerRole4);
+        }
+    }
+
+    public void createPlayer(TextField playerNameTF, Label playerRole) {
+        PlayerRole playerR = role(playerRole);
+        if (playerR == null) {
+            return;
+        }
+        String playerName;
+        if (!playerNameTF.getText().isEmpty()) {
+            playerName = playerNameTF.getText();
+            Player player = switch (playerR) {
+                case THE_HACKER_CEO -> new HackerCEOPlayer(playerName, new ArrayList<>());
+                case THE_TECH_GURU_CTO -> new TechGuruPlayer(playerName, new ArrayList<>());
+                case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
+                case NONE -> new Player(playerName, new ArrayList<>());
+            };
+            player.setRole(playerR);
+            playerNameTF.setEditable(false);
+            players.add(player);
+            playerCount++;
+            disableTextField();
+        }
+    }
+
+    public PlayerRole role(Label playerRole) {
+        if (playerRole.getText().equals("The Hacker CEO") && !isTheHackerCEOSelected) {
+            isTheHackerCEOSelected = true;
+            return PlayerRole.THE_HACKER_CEO;
+        } else if (playerRole.getText().equals("The Tech Guru (CTO)") && !isTheTechGuruCTOSelected) {
+            isTheTechGuruCTOSelected = true;
+            return PlayerRole.THE_TECH_GURU_CTO;
+        } else if (playerRole.getText().equals("The VC-Funded") && !isTheVCFundedSelected) {
+            isTheVCFundedSelected = true;
+            return PlayerRole.THE_VC_FUNDED;
+        } else if (playerRole.getText().equals("No Role")) {
+            return PlayerRole.NONE;
+        }
+        return null;
+    }
+
+    public void disableTextField() {
+        if (playerCount == 0) {
+            PlayerName1.setDisable(false);
+            PlayerName2.setDisable(true);
+            PlayerName3.setDisable(true);
+            PlayerName4.setDisable(true);
+        } else if (playerCount == 1) {
+            PlayerName2.setDisable(false);
+            PlayerName3.setDisable(true);
+            PlayerName4.setDisable(true);
+        } else if (playerCount == 2) {
+            PlayerName3.setDisable(false);
+            PlayerName4.setDisable(true);
+        } else if (playerCount == 3) {
+            PlayerName4.setDisable(false);
+        }
     }
 }

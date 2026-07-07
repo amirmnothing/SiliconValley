@@ -224,7 +224,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="TheTechGuruColor" text="The Tech Guru" textFill="WHITE">
+                                                <Label fx:id="Player1Role" text="The Tech Guru" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -234,7 +234,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="TheHackerCEOColor" text="The Hacker CEO" textFill="WHITE">
+                                                <Label fx:id="Player2Role" text="The Hacker CEO" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -244,7 +244,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="TheVCFundedColor" text="The VC-Funded" textFill="WHITE">
+                                                <Label fx:id="Player3Role" text="The VC-Funded" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>
@@ -254,7 +254,7 @@
                                                       <Insets right="0.5" />
                                                    </VBox.margin>
                                                 </Line>
-                                                <Label fx:id="NoneColor" text="None" textFill="WHITE">
+                                                <Label fx:id="Player4Role" text="None" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                    </font>

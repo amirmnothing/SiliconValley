@@ -27,6 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
+import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.Edge;
 import logic.models.Sector;
@@ -389,16 +390,16 @@ public class GameBoardController {
     private Label Player4Color;
 
     @FXML
-    private Label TheTechGuruColor;
+    private Label Player1Role;
 
     @FXML
-    private Label TheHackerCEOColor;
+    private Label Player2Role;
 
     @FXML
-    private Label TheVCFundedColor;
+    private Label Player3Role;
 
     @FXML
-    private Label NoneColor;
+    private Label Player4Role;
 
     @FXML
     private Label P1PointColor;
@@ -773,7 +774,16 @@ public class GameBoardController {
         CloudCount.setText("0");
         DataCount.setText("0");
         TotalCount.setText("0");
+        List<Player> players = gameEngine.getPlayers();
+        Player1Color.setText(players.get(0).getPlayerName());
+        Player2Color.setText(players.get(1).getPlayerName());
+        Player3Color.setText(players.get(2).getPlayerName());
+        Player4Color.setText(players.get(3).getPlayerName());
 
+        Player1Role.setText(role(players.get(0).getRole()));
+        Player2Role.setText(role(players.get(1).getRole()));
+        Player3Role.setText(role(players.get(2).getRole()));
+        Player4Role.setText(role(players.get(3).getRole()));
 
         P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
         P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
@@ -781,7 +791,7 @@ public class GameBoardController {
         P1DataCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.DATA, 0)));
         P1CapitalCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
 
-        List<Player> players = gameEngine.getPlayers();
+
         P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
         P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
         P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
@@ -811,6 +821,14 @@ public class GameBoardController {
                 c8_0, c8_2, c8_4, c8_6, c8_8, c8_10,
                 c10_0, c10_2, c10_4, c10_6, c10_8, c10_10
         ));
+    }
+    public String role(PlayerRole playerRole) {
+        return switch (playerRole) {
+            case THE_HACKER_CEO -> "The Hacker CEO";
+            case THE_TECH_GURU_CTO -> "The Tech Guru";
+            case THE_VC_FUNDED -> "The VC-Funded";
+            case NONE -> "None";
+        };
     }
 
     private void endTurnDisable() {
@@ -1154,13 +1172,15 @@ public class GameBoardController {
 
     @FXML
     void SetResourcesToChoose(MouseEvent event) {
-        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0.1);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown())
+            ((Rectangle) (event.getSource())).setOpacity(0.1);
         mouseOnBtn = 1;
     }
 
     @FXML
     void SetResourcesToNotChoose(MouseEvent event) {
-        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown())
+            ((Rectangle) (event.getSource())).setOpacity(0);
         mouseOnBtn = 0;
     }
 
@@ -1381,19 +1401,19 @@ public class GameBoardController {
         int playerIndex = gameEngine.getCurrentPlayerIndex();
         if (playerIndex == 0) {
             resetLabelColor();
-            Label[] labels = {Player1Color, TheTechGuruColor, P1PointColor, P1Resources};
+            Label[] labels = {Player1Color, Player1Role, P1PointColor, P1Resources};
             setLabelColor(PLAYER1COLOR, labels);
         } else if (playerIndex == 1) {
             resetLabelColor();
-            Label[] labels = {Player2Color, TheHackerCEOColor, P2PointColor, P2Resources};
+            Label[] labels = {Player2Color, Player2Role, P2PointColor, P2Resources};
             setLabelColor(PLAYER2COLOR, labels);
         } else if (playerIndex == 2) {
             resetLabelColor();
-            Label[] labels = {Player3Color, TheVCFundedColor, P3PointColor, P3Resources};
+            Label[] labels = {Player3Color, Player3Role, P3PointColor, P3Resources};
             setLabelColor(PLAYER3COLOR, labels);
         } else if (playerIndex == 3) {
             resetLabelColor();
-            Label[] labels = {Player4Color, NoneColor, P4PointColor, P4Resources};
+            Label[] labels = {Player4Color, Player4Role, P4PointColor, P4Resources};
             setLabelColor(PLAYER4COLOR, labels);
         }
     }
@@ -1411,10 +1431,10 @@ public class GameBoardController {
         Player2Color.setTextFill(c);
         Player3Color.setTextFill(c);
         Player4Color.setTextFill(c);
-        TheTechGuruColor.setTextFill(c);
-        TheVCFundedColor.setTextFill(c);
-        TheHackerCEOColor.setTextFill(c);
-        NoneColor.setTextFill(c);
+        Player1Role.setTextFill(c);
+        Player3Role.setTextFill(c);
+        Player2Role.setTextFill(c);
+        Player4Role.setTextFill(c);
         P1PointColor.setTextFill(c);
         P2PointColor.setTextFill(c);
         P3PointColor.setTextFill(c);

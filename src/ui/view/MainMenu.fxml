@@ -67,22 +67,22 @@
                   <Line endX="300.0" stroke="WHITE" strokeWidth="3.0" />
                   <HBox alignment="CENTER" prefHeight="418.0" prefWidth="988.0" spacing="12.0">
                      <children>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="TheHackerCEO" fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheHackerCeo.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="TheTechGuruCTO" fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheTechGuru.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="TheVCFunded" fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/TheVCFunded.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="NoRole" fitHeight="415.0" fitWidth="232.0" onMouseClicked="#ChangeRoleToChoose" onMouseEntered="#RoleMouseEnter" onMouseExited="#ResetRole" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/PlayerRoles/None.png" />
                            </image>
@@ -115,7 +115,7 @@
                                                 <Insets top="2.0" />
                                              </VBox.margin>
                                           </Line>
-                                          <TextField prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
+                                          <TextField fx:id="PlayerName1" prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                              </font>
@@ -130,7 +130,7 @@
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="NONE" textFill="WHITE">
+                                                <Label fx:id="PlayerRole1" text="NONE" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
@@ -151,7 +151,7 @@
                                                 <Insets top="2.0" />
                                              </VBox.margin>
                                           </Line>
-                                          <TextField prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
+                                          <TextField fx:id="PlayerName2" prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                              </font>
@@ -166,7 +166,7 @@
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="NONE" textFill="WHITE">
+                                                <Label fx:id="PlayerRole2" text="NONE" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
@@ -191,7 +191,7 @@
                                                 <Insets top="2.0" />
                                              </VBox.margin>
                                           </Line>
-                                          <TextField prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
+                                          <TextField fx:id="PlayerName3" prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                              </font>
@@ -206,7 +206,7 @@
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="NONE" textFill="WHITE">
+                                                <Label fx:id="PlayerRole3" text="NONE" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
@@ -227,7 +227,7 @@
                                                 <Insets top="2.0" />
                                              </VBox.margin>
                                           </Line>
-                                          <TextField prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
+                                          <TextField fx:id="PlayerName4" prefHeight="28.0" prefWidth="118.0" promptText="Name" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;">
                                              <font>
                                                 <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                              </font>
@@ -242,7 +242,7 @@
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="NONE" textFill="WHITE">
+                                                <Label fx:id="PlayerRole4" text="NONE" textFill="WHITE">
                                                    <font>
                                                       <Font name="Berlin Sans FB Demi Bold" size="20.0" />
                                                    </font>
@@ -257,12 +257,12 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="222.0" prefWidth="179.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" onMouseEntered="#NextPlayerButtonMouseEnter" onMouseExited="#NextPlayerButtonMouseExit" prefHeight="48.0" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Next Player" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseClicked="#onNextPlayer" onMouseEntered="#NextPlayerButtonMouseEnter" onMouseExited="#NextPlayerButtonMouseExit" prefHeight="48.0" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Next Player" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onMouseEntered="#ResetAllButtonMouseEnter" onMouseExited="#ResetAllButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Reset All" textFill="WHITE">
+                              <Button mnemonicParsing="false" onMouseClicked="#onResetAll" onMouseEntered="#ResetAllButtonMouseEnter" onMouseExited="#ResetAllButtonMouseExit" prefWidth="170.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Reset All" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                                  </font>
