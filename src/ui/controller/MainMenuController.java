@@ -105,6 +105,9 @@ public class MainMenuController {
     @FXML
     private TableView<FileItem> saveTable;
 
+    private ImageView currentlySelectedImageView = null;
+    private java.util.Set<ImageView> lockedRoles = new java.util.HashSet<>();
+
     @FXML
     public void initialize() {
         Player1Label.setTextFill(Color.web(GameEngine.PLAYER1COLOR));
@@ -200,6 +203,9 @@ public class MainMenuController {
 
     @FXML
     void RoleMouseEnter(MouseEvent event) {
+        if (lockedRoles.contains(event.getSource()) || (ImageView) event.getSource() == currentlySelectedImageView) {
+            return;
+        }
         Lighting lighting = new Lighting();
         lighting.setDiffuseConstant(2);
         lighting.setSpecularConstant(0.25);
@@ -211,6 +217,14 @@ public class MainMenuController {
 
     @FXML
     void ChangeRoleToChoose(MouseEvent event) {
+        if (lockedRoles.contains((ImageView) event.getSource()) && (ImageView) event.getSource() != NoRole) {
+            return;
+        }
+
+        if (currentlySelectedImageView != null && !lockedRoles.contains(currentlySelectedImageView)) {
+            currentlySelectedImageView.setEffect(null);
+        }
+        currentlySelectedImageView = (ImageView) event.getSource();
         Lighting lighting = new Lighting();
         lighting.setDiffuseConstant(2);
         lighting.setSpecularConstant(0.4);
@@ -244,6 +258,9 @@ public class MainMenuController {
 
     @FXML
     void ResetRole(MouseEvent event) {
+        if (lockedRoles.contains((ImageView) event.getSource()) || (ImageView) event.getSource() == currentlySelectedImageView) {
+            return;
+        }
         ((ImageView) event.getSource()).setEffect(null);
     }
 
@@ -282,6 +299,9 @@ public class MainMenuController {
 
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
+        if (playerCount == 3) {
+            createPlayer(PlayerName4, PlayerRole4);
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
         BorderPane root = loader.load();
 
@@ -290,14 +310,6 @@ public class MainMenuController {
         // Todo: Start game based on entered settings
 
         Map gameMap = new Map(5, 5);
-//        List<Player> players = new ArrayList<>();
-
-//        players.add(new TechGuruPlayer("Player 1", new ArrayList<>()));
-//        players.add(new HackerCEOPlayer("Player 2", new ArrayList<>()));
-//        players.add(new VCFundedPlayer("Player 3", new ArrayList<>()));
-//        players.add(new Player("Player 4", new ArrayList<>()));
-
-
         GameEngine gameEngine = new GameEngine(gameMap, players);
         gameEngine.startSetupPhase();
 
@@ -316,11 +328,28 @@ public class MainMenuController {
 
     @FXML
     void onResetAll(MouseEvent event) {
+
+        TheHackerCEO.setDisable(false);
+        TheHackerCEO.setOpacity(1.0);
+        TheHackerCEO.setEffect(null);
+
+        TheTechGuruCTO.setDisable(false);
+        TheTechGuruCTO.setOpacity(1.0);
+        TheTechGuruCTO.setEffect(null);
+
+        TheVCFunded.setDisable(false);
+        TheVCFunded.setOpacity(1.0);
+        TheVCFunded.setEffect(null);
+
+
+        lockedRoles.clear();
+        currentlySelectedImageView = null;
+
         players.clear();
         isTheHackerCEOSelected = false;
         isTheTechGuruCTOSelected = false;
         isTheVCFundedSelected = false;
-        playerCount=0;
+        playerCount = 0;
         disableTextField();
         PlayerName1.setText(null);
         PlayerName2.setText(null);
@@ -338,14 +367,21 @@ public class MainMenuController {
 
     @FXML
     void onNextPlayer(MouseEvent event) {
+        int activeSlot = playerCount;
         if (playerCount == 0) {
             createPlayer(PlayerName1, PlayerRole1);
         } else if (playerCount == 1) {
             createPlayer(PlayerName2, PlayerRole2);
         } else if (playerCount == 2) {
             createPlayer(PlayerName3, PlayerRole3);
-        } else if (playerCount == 3) {
-            createPlayer(PlayerName4, PlayerRole4);
+        }
+        if (currentlySelectedImageView != null && activeSlot <3) {
+            if (currentlySelectedImageView != NoRole) {
+                lockedRoles.add(currentlySelectedImageView);
+                currentlySelectedImageView.setDisable(true);
+                currentlySelectedImageView.setOpacity(0.5);
+            }
+            currentlySelectedImageView = null;
         }
     }
 
