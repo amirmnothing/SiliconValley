@@ -49,6 +49,8 @@ public class GameBoardController {
     private int currentCloudCount = 0;
     private int currentDataCount = 0;
 
+    private int mouseOnBtn = 0;
+
 
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
@@ -1110,7 +1112,9 @@ public class GameBoardController {
     @FXML
     void SetPlayerResourcesOpacityZero(MouseEvent event) {
         int currentPlayerIndex = gameEngine.getCurrentPlayerIndex();
-        ((Rectangle) (event.getSource())).setOpacity(0.1);
+        if (mouseOnBtn == 1) ((Rectangle) (event.getSource())).setOpacity(0.1);
+        else if (mouseOnBtn == 0) ((Rectangle) (event.getSource())).setOpacity(0);
+
         if (((Rectangle) (event.getSource())).getId().equals("P1ResourceRectangle") && currentPlayerIndex == 0) {
             P1RLines.setOpacity(0);
             PlayerResources.setOpacity(0);
@@ -1150,12 +1154,14 @@ public class GameBoardController {
 
     @FXML
     void SetResourcesToChoose(MouseEvent event) {
-        ((Rectangle) (event.getSource())).setOpacity(0.1);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0.1);
+        mouseOnBtn = 1;
     }
 
     @FXML
     void SetResourcesToNotChoose(MouseEvent event) {
-        ((Rectangle) (event.getSource())).setOpacity(0);
+        if (!event.isPrimaryButtonDown() && !event.isSecondaryButtonDown()) ((Rectangle) (event.getSource())).setOpacity(0);
+        mouseOnBtn = 0;
     }
 
     @FXML
