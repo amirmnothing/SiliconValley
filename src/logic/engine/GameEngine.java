@@ -554,10 +554,6 @@ public class GameEngine {
     }
 
     public void trade(java.util.Map<ResourceType, Integer> givenResources, java.util.Map<ResourceType, Integer> receiveResources, Player...players) {
-//        System.out.println(givenResources);
-//        System.out.println(receiveResources);
-//        System.out.println("give"+players[0].getResourceCount());
-//        System.out.println("receive"+players[1].getResourceCount());
         for(ResourceType type : ResourceType.values()) {
             if (type==ResourceType.REGULATORY) continue;
             int giveAmount = givenResources.getOrDefault(type, 0);
@@ -571,8 +567,6 @@ public class GameEngine {
             int currentP2 = players[1].getResourceCount().getOrDefault(type, 0);
             players[1].getResourceCount().put(type, currentP2 + giveAmount - receiveAmount);
         }
-//        System.out.println("give"+players[0].getResourceCount());
-//        System.out.println("receive"+players[1].getResourceCount());
     }
 
 }

@@ -52,6 +52,8 @@ public class GameBoardController {
 
     private int mouseOnBtn = 0;
 
+    private boolean isDiceRolled = false;
+
 
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
@@ -507,6 +509,12 @@ public class GameBoardController {
     private Button BuildAPartnershipBTN;
 
     @FXML
+    private Button UpgradeToUnicornBTN;
+
+    @FXML
+    private Tab Shop;
+
+    @FXML
     private Button EndTurnBTN;
 
     @FXML
@@ -608,6 +616,10 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
+
+        isDiceRolled = false;
+        enableButtonsAfterDiceRoll();
+
         isActiveEndTurn = false;
         endTurnDisable();
     }
@@ -799,6 +811,8 @@ public class GameBoardController {
 
         updatePlayersPoints();
 
+        enableButtonsAfterDiceRoll();
+
         endTurnDisable();
         lines = new ArrayList<>(Arrays.asList(
                 l0_1, l0_3, l0_5, l0_7, l0_9,
@@ -822,6 +836,7 @@ public class GameBoardController {
                 c10_0, c10_2, c10_4, c10_6, c10_8, c10_10
         ));
     }
+
     public String role(PlayerRole playerRole) {
         return switch (playerRole) {
             case THE_HACKER_CEO -> "The Hacker CEO";
@@ -1114,6 +1129,7 @@ public class GameBoardController {
         }
         changePlayerTextColor();
         refreshPlayersResourcesUI();
+        enableButtonsAfterDiceRoll();
         endTurnDisable();
         updatePlayersPoints();
 
@@ -1194,7 +1210,8 @@ public class GameBoardController {
 
             Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
             Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
-
+            isDiceRolled = true;
+            enableButtonsAfterDiceRoll();
 
             isActiveEndTurn = true;
             endTurnDisable();
@@ -1210,6 +1227,16 @@ public class GameBoardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void enableButtonsAfterDiceRoll(){
+        if(!gameEngine.isSetupPhase()){
+            BuildAPartnershipBTN.setDisable(!isDiceRolled);
+            BuildAMVPBTN.setDisable(!isDiceRolled);
+            UpgradeToUnicornBTN.setDisable(!isDiceRolled);
+        }
+        Shop.setDisable(!isDiceRolled);
+        Trade.setDisable(!isDiceRolled);
     }
 
     //برای استخراج مختصات از نام circle و line
