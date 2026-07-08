@@ -45,7 +45,7 @@
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Button fx:id="UpgradeToUnicornBTN" layoutX="16.0" layoutY="160.0" mnemonicParsing="false" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Upgrade to Unicorn" textFill="WHITE">
+                        <Button fx:id="UpgradeToUnicornBTN" layoutX="16.0" layoutY="160.0" mnemonicParsing="false" onAction="#onUpgradeToUnicorn" onMouseEntered="#ChangeButtonColorToChoose" onMouseExited="#ChangeButtonColorToNotChoose" prefHeight="58.0" prefWidth="482.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2;" text="Upgrade to Unicorn" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                            </font>
@@ -1488,7 +1488,7 @@
                   <RowConstraints maxHeight="4.8" minHeight="4.8" prefHeight="4.8" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <StackPane fx:id="S0" onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -1497,7 +1497,7 @@
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <StackPane fx:id="S1" onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="0.5" />
                      </GridPane.margin>
@@ -1506,139 +1506,139 @@
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <StackPane fx:id="S2" onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                  <StackPane fx:id="S3" onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                  <StackPane fx:id="S4" onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <StackPane fx:id="S5" onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <StackPane fx:id="S6" onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <StackPane fx:id="S7" onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                  <StackPane fx:id="S8" onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                  <StackPane fx:id="S9" onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="3">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <StackPane fx:id="S10" onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <StackPane fx:id="S11" onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <StackPane fx:id="S12" onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                  <StackPane fx:id="S13" onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                  <StackPane fx:id="S14" onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="5">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <StackPane fx:id="S15" onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                  <StackPane fx:id="S16" onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                  <StackPane fx:id="S17" onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                  <StackPane fx:id="S18" onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="7">
+                  <StackPane fx:id="S19" onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="7">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <StackPane fx:id="S20" onMouseClicked="#choiceAuditor" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                  <StackPane fx:id="S21" onMouseClicked="#choiceAuditor" GridPane.columnIndex="3" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                  <StackPane fx:id="S22" onMouseClicked="#choiceAuditor" GridPane.columnIndex="5" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="9">
+                  <StackPane fx:id="S23" onMouseClicked="#choiceAuditor" GridPane.columnIndex="7" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <StackPane onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="9">
+                  <StackPane fx:id="S24" onMouseClicked="#choiceAuditor" GridPane.columnIndex="9" GridPane.rowIndex="9">
                      <children>
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="121.0" fitWidth="121.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
@@ -1944,295 +1944,295 @@
                         <Point3D />
                      </rotationAxis></Line>
                   <Line fx:id="l9_10" accessibleRole="BUTTON" endX="-100.0" endY="102.0" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseLine" startX="-100.0" stroke="#454545" strokeWidth="5.0" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                  <StackPane prefHeight="138.0" prefWidth="123.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane prefHeight="138.0" prefWidth="123.0" scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c0_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h0_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane prefWidth="18.0" scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c0_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h0_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c0_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h0_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c0_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h0_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c0_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h0_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c0_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c0_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h0_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c2_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c2_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h2_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c2_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c2_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h2_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c2_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c2_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h2_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c2_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c2_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h2_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="72.0" prefWidth="114.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane prefHeight="72.0" prefWidth="114.0" scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                      <children>
-                        <Circle fx:id="c2_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c2_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h2_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c2_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c2_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h2_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c4_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h4_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c4_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h4_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c4_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h4_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c4_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h4_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c4_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h4_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c4_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c4_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h4_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c6_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h6_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c6_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h6_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c6_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h6_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c6_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h6_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c6_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h6_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c6_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c6_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h6_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c8_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h8_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c8_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h8_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c8_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h8_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c8_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h8_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c8_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h8_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c8_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c8_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h8_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c10_0" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h10_0" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c10_2" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h10_2" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE">
+                        <Circle fx:id="c10_4" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </Circle>
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <SVGPath fx:id="h10_4" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c10_6" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h10_6" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c10_8" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h10_8" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
-                  <StackPane GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                  <StackPane scaleX="0.141" scaleY="0.141" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
                      <children>
-                        <Circle fx:id="c10_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-                        <SVGPath content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" opacity="0.0" rotate="90.0" scaleX="0.18" scaleY="0.18" scaleZ="0.0" stroke="BLACK" strokeWidth="10.0" />
+                        <Circle fx:id="c10_10" accessibleRole="BUTTON" fill="#464646" onMouseClicked="#SetColorUnchangable" onMouseEntered="#ChangeColorToChoose" onMouseExited="#ChangeColorToNotChooseCircle" radius="10.0" scaleX="7.0" scaleY="7.0" stroke="BLACK" strokeType="INSIDE" />
+                        <SVGPath fx:id="h10_10" content="M 60 0 L 120 34.64 L 120 103.92 L 60 138.56 L 0 103.92 L 0 34.64 Z" fill="#464646" mouseTransparent="true" onMouseExited="#ChangeHexadonToNotChoose" opacity="0.0" rotate="90.0" scaleX="1.27" scaleY="1.27" stroke="BLACK" strokeWidth="10.0" />
                      </children>
                   </StackPane>
                </children>

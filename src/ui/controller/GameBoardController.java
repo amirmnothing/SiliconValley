@@ -20,10 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
@@ -54,6 +51,7 @@ public class GameBoardController {
 
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
+    ArrayList<SVGPath> hexagons;
 
     // رفرنس به انجین بازی
     private GameEngine gameEngine;
@@ -178,6 +176,114 @@ public class GameBoardController {
     private Circle c8_8;
 
     @FXML
+    private SVGPath h0_0;
+
+    @FXML
+    private SVGPath h0_10;
+
+    @FXML
+    private SVGPath h0_2;
+
+    @FXML
+    private SVGPath h0_4;
+
+    @FXML
+    private SVGPath h0_6;
+
+    @FXML
+    private SVGPath h0_8;
+
+    @FXML
+    private SVGPath h10_0;
+
+    @FXML
+    private SVGPath h10_10;
+
+    @FXML
+    private SVGPath h10_2;
+
+    @FXML
+    private SVGPath h10_4;
+
+    @FXML
+    private SVGPath h10_6;
+
+    @FXML
+    private SVGPath h10_8;
+
+    @FXML
+    private SVGPath h2_0;
+
+    @FXML
+    private SVGPath h2_10;
+
+    @FXML
+    private SVGPath h2_2;
+
+    @FXML
+    private SVGPath h2_4;
+
+    @FXML
+    private SVGPath h2_6;
+
+    @FXML
+    private SVGPath h2_8;
+
+    @FXML
+    private SVGPath h4_0;
+
+    @FXML
+    private SVGPath h4_10;
+
+    @FXML
+    private SVGPath h4_2;
+
+    @FXML
+    private SVGPath h4_4;
+
+    @FXML
+    private SVGPath h4_6;
+
+    @FXML
+    private SVGPath h4_8;
+
+    @FXML
+    private SVGPath h6_0;
+
+    @FXML
+    private SVGPath h6_10;
+
+    @FXML
+    private SVGPath h6_2;
+
+    @FXML
+    private SVGPath h6_4;
+
+    @FXML
+    private SVGPath h6_6;
+
+    @FXML
+    private SVGPath h6_8;
+
+    @FXML
+    private SVGPath h8_0;
+
+    @FXML
+    private SVGPath h8_10;
+
+    @FXML
+    private SVGPath h8_2;
+
+    @FXML
+    private SVGPath h8_4;
+
+    @FXML
+    private SVGPath h8_6;
+
+    @FXML
+    private SVGPath h8_8;
+
+    @FXML
     private Line l0_1;
 
     @FXML
@@ -193,9 +299,6 @@ public class GameBoardController {
     private Line l0_9;
 
     @FXML
-    private Line l1_0;
-
-    @FXML
     private Line l10_1;
 
     @FXML
@@ -209,6 +312,9 @@ public class GameBoardController {
 
     @FXML
     private Line l10_9;
+
+    @FXML
+    private Line l1_0;
 
     @FXML
     private Line l1_10;
@@ -633,7 +739,7 @@ public class GameBoardController {
         }
         BuildAMVPBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
         BuildAPartnershipBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
-
+        UpgradeToUnicornBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
     }
 
     @FXML
@@ -648,6 +754,22 @@ public class GameBoardController {
         }
         BuildAPartnershipBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
         BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
+        UpgradeToUnicornBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
+    }
+
+    @FXML
+    void onUpgradeToUnicorn(ActionEvent event) {
+        if (gameEngine.getCurrentBuildMode() != BuildMode.UNICORN) {
+            gameEngine.setBuildMode(BuildMode.UNICORN);
+            for (Line l : lines) l.setDisable(true);
+            for (Circle c : circles) c.setDisable(false);
+        } else {
+            resetBuildMode();
+            return;
+        }
+        UpgradeToUnicornBTN.setStyle("-fx-border-color: yellow; -fx-background-color: #333; -fx-border-width: 2");
+        BuildAMVPBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
+        BuildAPartnershipBTN.setStyle("-fx-border-color: white; -fx-background-color: black; -fx-border-width: 2");
     }
 
     public void updateSectorImages() {
@@ -656,7 +778,7 @@ public class GameBoardController {
         Sector[][] logicSectors = gameEngine.getMap().getSectors();
 
         for (Node node : mapGrid.getChildren()) {
-            if (node instanceof StackPane) {
+            if (node instanceof StackPane && node.getId() != null) {
                 ImageView imageView = (ImageView) ((StackPane) node).getChildren().getFirst();
 
                 Integer columnIndex = GridPane.getColumnIndex(node);
@@ -845,6 +967,15 @@ public class GameBoardController {
                 c8_0, c8_2, c8_4, c8_6, c8_8, c8_10,
                 c10_0, c10_2, c10_4, c10_6, c10_8, c10_10
         ));
+        hexagons = new ArrayList<>(Arrays.asList(
+                h0_0, h0_2, h0_4, h0_6, h0_8, h0_10,
+                h2_0, h2_2, h2_4, h2_6, h2_8, h2_10,
+                h4_0, h4_2, h4_4, h4_6, h4_8, h4_10,
+                h6_0, h6_2, h6_4, h6_6, h6_8, h6_10,
+                h8_0, h8_2, h8_4, h8_6, h8_8, h8_10,
+                h10_0, h10_2, h10_4, h10_6, h10_8, h10_10
+        ));
+
     }
 
     public String role(PlayerRole playerRole) {
@@ -992,15 +1123,101 @@ public class GameBoardController {
     @FXML
     void ChangeColorToChoose(MouseEvent event) {
         Color color = getPlayerColor();
-        ((Shape) (event.getSource())).setFill(color);
-        ((Shape) (event.getSource())).setStroke(color);
+        Player owner = null;
+
+        if (gameEngine.getCurrentBuildMode() == BuildMode.UNICORN &&
+        event.getSource() instanceof Circle circle) {
+            int[] Coordinates = parseCoordinates(circle.getId());
+            if (gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure() != null) {
+                owner = gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure().getOwner();
+            }
+            if (owner != null && owner == gameEngine.getCurrentPlayer()) {
+                for (Node n : ((StackPane) (circle.getParent())).getChildren()) {
+                    if (n instanceof SVGPath) {
+                        SVGPath hexagon = (SVGPath) n;
+                        hexagon.setFill(color);
+                        hexagon.setOpacity(1);
+                        hexagon.setMouseTransparent(false);
+                        circle.setOpacity(0);
+                        circle.setMouseTransparent(true);
+                    }
+                }
+            }
+        }
+        else {
+            if (event.getSource() instanceof Circle circle) {
+                int[] Coordinates = parseCoordinates(circle.getId());
+                if (gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure() != null) {
+                    owner = gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure().getOwner();
+                }
+                if (owner == null) ((Shape) (event.getSource())).setFill(color);
+            }
+            else if (event.getSource() instanceof Line) ((Shape) (event.getSource())).setStroke(color);
+        }
     }
 
     @FXML
     void ChangeColorToNotChooseCircle(MouseEvent event) {
-        ((Shape) (event.getSource())).setFill(Color.rgb(70, 70, 70));
-        ((Shape) (event.getSource())).setStroke(Color.BLACK);
-        ((Shape) (event.getSource())).setStrokeWidth(1);
+        Circle circle = (Circle) event.getSource();
+        Player owner = null;
+        int[] Coordinates = parseCoordinates(circle.getId());
+        if (gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure() != null) {
+            owner = gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure().getOwner();
+        }
+        if (owner == null) {
+            ((Shape) (event.getSource())).setFill(Color.rgb(70, 70, 70));
+            ((Shape) (event.getSource())).setStroke(Color.BLACK);
+            ((Shape) (event.getSource())).setStrokeWidth(1);
+        }
+    }
+
+    @FXML
+    void ChangeHexadonToNotChoose(MouseEvent event) {
+        Player owner = null;
+
+        if (event.getSource() instanceof SVGPath hexadon) {
+            for (Node n : ((StackPane)(hexadon.getParent())).getChildren()){
+                if (n instanceof Circle) {
+                    Circle circle = (Circle) n;
+                    int[] Coordinates = parseCoordinates(circle.getId());
+                    if (gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure() != null) {
+                        owner = gameEngine.getMap().getVertices()[Coordinates[0]/2][Coordinates[1]/2].getCompanyStructure().getOwner();
+                    }
+
+                    hexadon.setOpacity(0);
+                    hexadon.setMouseTransparent(true);
+
+                    circle.setOpacity(1);
+                    circle.setMouseTransparent(false);
+                    if (owner == null) {
+                        circle.setFill(Color.rgb(70, 70, 70));
+                        circle.setStroke(Color.BLACK);
+                        circle.setStrokeWidth(1);
+                    }
+                    else {
+                        List<Player> playersList = gameEngine.getPlayers();
+                        Color color = null;
+                        for (int i = 0; i < playersList.size(); i++){
+                            if (playersList.get(i) == owner){
+                                switch (i){
+                                    case 0: color = Color.web(PLAYER1COLOR);
+                                        break;
+                                    case 1: color = Color.web(PLAYER2COLOR);
+                                        break;
+                                    case 2: color = Color.web(PLAYER3COLOR);
+                                        break;
+                                    case 3: color = Color.web(PLAYER4COLOR);
+                                        break;
+                                }
+                                circle.setFill(color);
+                                circle.setStroke(Color.BLACK);
+                                circle.setStrokeWidth(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @FXML
@@ -1015,7 +1232,8 @@ public class GameBoardController {
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
                 (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
-                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN")) ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.UNICORN && !((Button) event.getSource()).getId().equals("UpgradeToUnicornBTN"))
         )
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
@@ -1026,7 +1244,8 @@ public class GameBoardController {
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
         else if (gameEngine.getCurrentBuildMode() == BuildMode.NONE ||
                 (gameEngine.getCurrentBuildMode() == BuildMode.MVP && !((Button) event.getSource()).getId().equals("BuildAMVPBTN")) ||
-                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN"))
+                (gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP && !((Button) event.getSource()).getId().equals("BuildAPartnershipBTN")) ||
+                (gameEngine.getCurrentBuildMode() == BuildMode.UNICORN && !((Button) event.getSource()).getId().equals("UpgradeToUnicornBTN"))
         )
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
@@ -1091,10 +1310,10 @@ public class GameBoardController {
                     gameEngine.notifyMVPPlaced();
                 }
 
-                circle.setOnMouseEntered(null);
-                circle.setOnMouseExited(null);
+//                circle.setOnMouseEntered(null);
+//                circle.setOnMouseExited(null);
                 circle.setFill(color);
-                circle.setStroke(color);
+                circle.setStroke(Color.BLACK);
 
 
                 resetBuildMode();
@@ -1151,6 +1370,7 @@ public class GameBoardController {
         for (Circle c : circles) c.setDisable(false);
         BuildAMVPBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
         BuildAPartnershipBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
+        UpgradeToUnicornBTN.setStyle("-fx-background-color: black; -fx-border-color: white; -fx-border-width: 2");
     }
 
     @FXML
