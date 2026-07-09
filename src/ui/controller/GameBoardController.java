@@ -1344,6 +1344,7 @@ public class GameBoardController {
 
                 line.setOnMouseEntered(null);
                 line.setOnMouseExited(null);
+                line.setOnMouseClicked(null);
                 line.setFill(color);
                 line.setStroke(color);
                 line.setStrokeWidth(5);
@@ -1353,9 +1354,25 @@ public class GameBoardController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
 
+        else if (event.getSource() instanceof SVGPath && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN){
+            if (gameEngine.isSetupPhase()) {
+                return;
+                //TODO میتوان اکسپشن زد
+            }
+
+            // Todo : دستورات ساخت Unicorn
+
+            SVGPath hexadon = (SVGPath) event.getSource();
+            hexadon.setOnMouseExited(null);
+            hexadon.setOnMouseClicked(null);
+
+            resetBuildMode();
 
         }
+
+
         changePlayerTextColor();
         refreshPlayersResourcesUI();
         enableButtonsAfterDiceRoll();
