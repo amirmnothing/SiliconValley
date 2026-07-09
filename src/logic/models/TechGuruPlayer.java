@@ -12,7 +12,7 @@ public class TechGuruPlayer extends Player {
     }
     @Override
     public int getUpgradeCloudDiscount() {
-        return 1; // ۱ واحد تخفیف در Cloud برای ارتقا به Unicorn
+        return 1;
     }
     @Override
     public int getRolePenalty() {

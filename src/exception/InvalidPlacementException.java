@@ -7,15 +7,12 @@ public class InvalidPlacementException extends RuntimeException {
     private final Vertex vertex;
     private final Edge edge;
 
-
-    //برای MPV
     public InvalidPlacementException(Vertex vertex, String message) {
         super(message);
         this.vertex = vertex;
         this.edge = null;
     }
 
-    //برای Partnership
     public InvalidPlacementException(Edge edge, String message) {
         super(message);
         this.edge = edge;

@@ -16,7 +16,7 @@ public class Player {
     protected Map<ResourceType, Integer> resources = new HashMap<>();
     protected List<CompanyStructure> companies;
     protected PlayerRole playerRole;
-    protected boolean hasLongestNetwork = false;//یک flag برای بلندترین مسیر
+    protected boolean hasLongestNetwork = false;
     private boolean canPlaceAuditor=false;
 
     public Player(String playerName, List<CompanyStructure> companies) {
@@ -30,7 +30,6 @@ public class Player {
     }
 
 
-    // محاسبه کل امتیاز برای پاداش بلند ترین شبکه
     public int calculateVictoryPoints() {
         int totalPoints = 0;
         if (companies != null) {
@@ -54,7 +53,6 @@ public class Player {
         return resources.get(resource);
     }
 
-    //سقف تعداد کارت های منبع بازیکن برای فرار از مالیات
     public int getCrisisModifierThreshold() {
         return DEFAULT_CRISIS_THRESHOLD;
     }
@@ -63,9 +61,8 @@ public class Player {
         return 0;
     }
 
-    //جریمه برای انتخاب نقش
     public int getRolePenalty() {
-        return 0; // بازیکن معمولی هیچ جریمه امتیازی ندارد
+        return 0;
     }
 
     public void addResource(ResourceType type, int count) {
@@ -220,8 +217,6 @@ public class Player {
     public String getPlayerName() {
         return playerName;
     }
-
-    //TODO برای تست
 
     @Override
     public String toString() {

@@ -73,7 +73,6 @@ public class Market {
                 roundsWithoutTrade.put(resourceType, 0);
             }
 
-
             tradedInCurrentRound.put(resourceType, false);
         }
     }

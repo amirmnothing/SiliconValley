@@ -23,9 +23,9 @@ public class GameEngine {
 
     private boolean setupPhaseActive;
     private int setupRound;
-    private int setupDirection; //1 یعنی دور اول رو بجلو 1- یعنی دور دوم رو به عقب
-    private boolean setupPlacedMVP;//TODO
-    private boolean setupPlacedPartnership;//TODO
+    private int setupDirection; // 1 : Toward | -1 : Backward
+    private boolean setupPlacedMVP;
+    private boolean setupPlacedPartnership;
     private int setupTurnCount;
 
     private BuildMode currentBuildMode = BuildMode.NONE;
@@ -112,23 +112,6 @@ public class GameEngine {
         }
     }
 
-    //    public void handleSevenOrCrisis() {
-//        for (Player player : players) {
-//            // محاسبه کل کارت‌های منبع بازیکن در حال حاضر
-//            int totalResources = 0;
-//            java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
-//            for (int count : resourceCount.values()) {
-//                totalResources += count;
-//            }
-//
-//            int threshold = player.getCrisisModifierThreshold();
-//
-//            if (totalResources > threshold) {
-//                int countOfCardsToDiscard = totalResources / 2;
-//                // TODO : نمایش پیام و باز شدن پنجره برای انتخاب کارت ها و فراخوانی متد discardSelectedResources
-//            }
-//        }
-//    }
     public boolean isResourceBelowCrisisThreshold(Player player) {
         int totalResources = 0;
         java.util.Map<ResourceType, Integer> resourceCount = player.getResourceCount();
@@ -145,7 +128,6 @@ public class GameEngine {
     public boolean discardSelectedResources(Player player, java.util.Map<ResourceType, Integer> resourcesToDiscard) {
         if (player == null || resourcesToDiscard == null) return false;
 
-        // بررسی تعداد کارت های بازیکن و تعداد انتخاب شده برای جلوگیری از تقلب یا ...
         java.util.Map<ResourceType, Integer> playerInventory = player.getResourceCount();
         for (java.util.Map.Entry<ResourceType, Integer> entry : resourcesToDiscard.entrySet()) {
             if (entry.getValue() < 0) return false;
@@ -190,14 +172,12 @@ public class GameEngine {
             }
         }
 
-        // قرار دادن MVP گره و کم کردن منابع لازم برای ساخت آن از بازیکن
         if (!setupPhaseActive) player.deductResourcesForMVP();
         MVP mvp = new MVP(player);
         vertex.setCompanyStructure(mvp);
         player.addCompanyStructure(mvp);
 
         // TODO : Show MPV created successfully
-
     }
 
     public boolean canPlaceAuditor(Sector sector) {
@@ -310,7 +290,6 @@ public class GameEngine {
                     visitedEdges.remove(edge);
                 }
             }
-
         }
         return maxSubPathLength;
     }
@@ -334,7 +313,7 @@ public class GameEngine {
         for (Player player : players) {
             if (player == currentPartnershipHolder) continue;
             int playerPath = calculateLongestPathForPlayer(player);
-            if (playerPath > maxSubPathLength) {//احتماال وجود خطا
+            if (playerPath > maxSubPathLength) {
                 maxSubPathLength = playerPath;
                 newLongestPartnershipHolder = player;
             }
@@ -408,7 +387,6 @@ public class GameEngine {
         this.setupTurnCount = setupTurnCount;
     }
 
-    //متد های مربوط به فاز شروع بازی
     public void startSetupPhase() {
         setupPhaseActive = true;
         setupRound = 0;
@@ -553,9 +531,9 @@ public class GameEngine {
         }
     }
 
-    public void trade(java.util.Map<ResourceType, Integer> givenResources, java.util.Map<ResourceType, Integer> receiveResources, Player...players) {
-        for(ResourceType type : ResourceType.values()) {
-            if (type==ResourceType.REGULATORY) continue;
+    public void trade(java.util.Map<ResourceType, Integer> givenResources, java.util.Map<ResourceType, Integer> receiveResources, Player... players) {
+        for (ResourceType type : ResourceType.values()) {
+            if (type == ResourceType.REGULATORY) continue;
             int giveAmount = givenResources.getOrDefault(type, 0);
             int receiveAmount = receiveResources.getOrDefault(type, 0);
 
@@ -568,5 +546,4 @@ public class GameEngine {
             players[1].getResourceCount().put(type, currentP2 + giveAmount - receiveAmount);
         }
     }
-
 }

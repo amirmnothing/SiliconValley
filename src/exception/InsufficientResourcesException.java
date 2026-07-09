@@ -21,7 +21,4 @@ public class InsufficientResourcesException extends RuntimeException {
     public Map<ResourceType, Integer> getResources() {
         return resources;
     }
-
-
-
 }
