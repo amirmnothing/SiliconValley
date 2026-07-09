@@ -407,34 +407,29 @@ public class MainMenuController {
     @FXML
     void NextPlayerButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(0,0,225)";
-        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
-    }
-
-    @FXML
-    void NextPlayerButtonMouseExit(MouseEvent event) {
-        ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
 
     @FXML
     void ResetAllButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(220,0,0)";
-        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
 
     @FXML
-    void ResetAllButtonMouseExit(MouseEvent event) {
-        ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
+    void BackButtonMouseEnter(MouseEvent event) {
+        ((Button) (event.getSource())).setStyle("-fx-background-color:  #333; -fx-border-color: white; -fx-border-width: 2");
     }
 
     @FXML
     void StartButtonMouseEnter(MouseEvent event) {
         String rgbColor = "rgb(0,110,0)";
-        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2;");
+        ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
 
     @FXML
-    void StartButtonMouseExit(MouseEvent event) {
-        ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2;");
+    void LobbyButtonsMouseExit(MouseEvent event) {
+        ((Button) (event.getSource())).setStyle("-fx-background-color: black ;-fx-border-color: white ;-fx-border-width: 2");
     }
 
     @FXML
