@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -111,7 +112,7 @@
             </VBox>
          </children>
       </Group>
-      <Group fx:id="GameLobby" mouseTransparent="true">
+      <Group fx:id="GameLobby">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;">
                <children>
@@ -214,26 +215,29 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="115.0" prefWidth="71.0" spacing="10.0">
                                              <children>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P1HumanToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/Human.png" />
+                                                            <Image url="@../../assets/Icons/HumanUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="P1ToggleGroup" />
+                                                   </toggleGroup>
                                                 </ToggleButton>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P1AIToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P1ToggleGroup">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/AI.png" />
+                                                            <Image url="@../../assets/Icons/AIUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -282,26 +286,29 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="115.0" prefWidth="71.0" spacing="10.0">
                                              <children>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P2HumanToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/Human.png" />
+                                                            <Image url="@../../assets/Icons/HumanUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="P2ToggleGroup" />
+                                                   </toggleGroup>
                                                 </ToggleButton>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P2AIToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P2ToggleGroup">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/AI.png" />
+                                                            <Image url="@../../assets/Icons/AIUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -354,26 +361,29 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="115.0" prefWidth="71.0" spacing="10.0">
                                              <children>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P3HumanToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/Human.png" />
+                                                            <Image url="@../../assets/Icons/HumanUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="P3ToggleGroup" />
+                                                   </toggleGroup>
                                                 </ToggleButton>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P3AIToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P3ToggleGroup">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/AI.png" />
+                                                            <Image url="@../../assets/Icons/AIUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -422,26 +432,29 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="115.0" prefWidth="71.0" spacing="10.0">
                                              <children>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P4HumanToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/Human.png" />
+                                                            <Image url="@../../assets/Icons/HumanUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="P4ToggleGroup" />
+                                                   </toggleGroup>
                                                 </ToggleButton>
-                                                <ToggleButton maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;">
+                                                <ToggleButton fx:id="P4AIToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P4ToggleGroup">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
                                                             <Rectangle2D />
                                                          </viewport>
                                                          <image>
-                                                            <Image url="@../../assets/Icons/AI.png" />
+                                                            <Image url="@../../assets/Icons/AIUnselected.png" />
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
@@ -476,7 +489,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets left="91.0" />
+                              <Insets left="92.0" />
                            </HBox.margin>
                         </VBox>
                      </children>

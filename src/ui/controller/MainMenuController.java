@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.Lighting;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -25,9 +26,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class MainMenuController {
 
+    private final Image selectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AISelected.png")));
+    private final Image unselectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIUnselected.png")));
+    private final Image selectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanSelected.png")));
+    private final Image unselectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanUnselected.png")));
     private int playerCount = 0;
     List<Player> players = new ArrayList<>();
     @FXML
@@ -105,6 +111,43 @@ public class MainMenuController {
     @FXML
     private TableView<FileItem> saveTable;
 
+
+    @FXML
+    private ToggleButton P1AIToggle;
+
+    @FXML
+    private ToggleButton P1HumanToggle;
+
+    @FXML
+    private ToggleGroup P1ToggleGroup;
+
+    @FXML
+    private ToggleButton P2AIToggle;
+
+    @FXML
+    private ToggleButton P2HumanToggle;
+
+    @FXML
+    private ToggleGroup P2ToggleGroup;
+
+    @FXML
+    private ToggleButton P3AIToggle;
+
+    @FXML
+    private ToggleButton P3HumanToggle;
+
+    @FXML
+    private ToggleGroup P3ToggleGroup;
+
+    @FXML
+    private ToggleButton P4AIToggle;
+
+    @FXML
+    private ToggleButton P4HumanToggle;
+
+    @FXML
+    private ToggleGroup P4ToggleGroup;
+
     private ImageView currentlySelectedImageView = null;
     private java.util.Set<ImageView> lockedRoles = new java.util.HashSet<>();
 
@@ -124,6 +167,103 @@ public class MainMenuController {
 
         loadSaveFiles();
 
+        P1ToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (oldToggle != null) {
+                if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                }
+            }
+
+            if (newToggle != null) {
+                if (isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                }
+            }
+        });
+
+        P2ToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (oldToggle != null) {
+                if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                }
+            }
+
+            if (newToggle != null) {
+                if (isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                }
+            }
+        });
+
+        P3ToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (oldToggle != null) {
+                if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                }
+            }
+
+            if (newToggle != null) {
+                if (isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                }
+            }
+        });
+
+        P4ToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (oldToggle != null) {
+                if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                    setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                }
+            }
+
+            if (newToggle != null) {
+                if (isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedHumanImage);
+                }
+                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                    setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                }
+            }
+        });
+    }
+
+    private boolean isHumanToggle (String Id){
+        return Id.substring(2).equals("HumanToggle");
+    }
+
+    private void setToggleImage(ToggleButton button, Image image) {
+        ImageView imageView = (ImageView) button.getGraphic();
+        if (imageView != null) {
+            imageView.setImage(image);
+        }
+    }
+
+    public String getPlayerSelection(int N) {
+        ToggleGroup[] toggleGroups = new ToggleGroup[]{P1ToggleGroup, P2ToggleGroup, P3ToggleGroup, P4ToggleGroup};
+        ToggleButton selected = (ToggleButton) (toggleGroups[N-1]).getSelectedToggle();
+        System.out.println(selected.getId().substring(2));
+        return selected.getId().substring(2);
     }
 
     @FXML
