@@ -375,11 +375,14 @@ public class MainMenuController {
         } else if (playerCount == 2) {
             createPlayer(PlayerName3, PlayerRole3);
         }
-        if (currentlySelectedImageView != null && activeSlot <3) {
+        if (currentlySelectedImageView != null && activeSlot < 3) {
             if (currentlySelectedImageView != NoRole) {
                 lockedRoles.add(currentlySelectedImageView);
                 currentlySelectedImageView.setDisable(true);
                 currentlySelectedImageView.setOpacity(0.5);
+            }
+            else {
+                NoRole.setEffect(null);
             }
             currentlySelectedImageView = null;
         }
