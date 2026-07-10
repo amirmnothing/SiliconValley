@@ -22,4 +22,7 @@ public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     public AIBrain getBrain() {
         return brain;
     }
+    public boolean isAI(){
+        return true;
+    }
 }

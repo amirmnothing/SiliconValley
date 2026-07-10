@@ -23,4 +23,7 @@ public class AIPlayer extends Player implements PlayableAI {
     public AIBrain getBrain() {
         return brain;
     }
+    public boolean isAI(){
+        return true;
+    }
 }

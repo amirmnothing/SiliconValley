@@ -24,4 +24,7 @@ public class AIHackerCEOPlayer extends HackerCEOPlayer implements PlayableAI  {
     public AIBrain getBrain() {
         return brain;
     }
+    public boolean isAI(){
+        return true;
+    }
 }

@@ -1987,15 +1987,18 @@ public class GameBoardController {
         return aiDelay;
     }
 
-    private void setHumanControlsDisabled(boolean disable) {
+    public void setHumanControlsDisabled(boolean disable) {
+        Platform.runLater(() -> {
 
-        isDiceRolled = false;
-        RollDiceBTN.setDisable(disable);
-        EndTurnBTN.setDisable(disable);
-        Shop.setDisable(disable);
-        BuildAMVPBTN.setDisable(disable);
-        BuildAPartnershipBTN.setDisable(disable);
-        UpgradeToUnicornBTN.setDisable(disable);
+            EndTurnBTN.setDisable(disable);
+            BuildAMVPBTN.setDisable(disable);
+            BuildAPartnershipBTN.setDisable(disable);
+            UpgradeToUnicornBTN.setDisable(disable);
+            Shop.setDisable(disable);
+            Trade.setDisable(disable);
+            isDiceRolled = false;
+            RollDiceBTN.setDisable(disable);
+        });
 
 
     }
@@ -2061,6 +2064,10 @@ public class GameBoardController {
         String targetId = "#l" + uiRow + "_" + uiCol;
 
         return (Line) mapGrid.lookup(targetId);
+    }
+    public void updateControlsForCurrentPlayer() {
+        boolean isAI = gameEngine.getCurrentPlayer().isAI();
+        setHumanControlsDisabled(isAI);
     }
 
 }

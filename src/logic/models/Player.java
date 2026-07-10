@@ -229,4 +229,7 @@ public class Player {
         }
         return false;
     }
+    public boolean isAI(){
+        return false;
+    }
 }

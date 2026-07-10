@@ -3,6 +3,7 @@ package logic.engine;
 import exception.InsufficientResourcesException;
 import exception.InvalidMarketTransactionException;
 import javafx.animation.PauseTransition;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import logic.enums.ResourceType;
 import logic.models.Edge;
@@ -28,12 +29,11 @@ public class AIBrain {
 
     public void executeTurn(Player aiPlayer, GameEngine engine, Runnable onTurnComplete) {
 
+        if (controller != null) {
+            controller.setHumanControlsDisabled(true);
+        }
         if (engine.isSetupPhaseActive()) {
             executeSetupPhase(aiPlayer, engine);
-            refreshUI(engine);
-            if (onTurnComplete != null) {
-                onTurnComplete.run();
-            }
             return;
         }
         if (engine.isMainPhaseActive()) {
@@ -44,7 +44,7 @@ public class AIBrain {
                     PauseTransition actionDelay = new PauseTransition(Duration.seconds(1.5));
                     actionDelay.setOnFinished(e -> {
 
-                        if (dice.get(0)+dice.get(1)==7){
+                        if (dice.get(0) + dice.get(1) == 7) {
                             aiPlayer.setCanPlaceAuditor(true);
                             tryPlaceAuditorByAI(aiPlayer, engine);
                         }
@@ -100,13 +100,26 @@ public class AIBrain {
     }
 
     private void executeSetupPhase(Player aiPlayer, GameEngine engine) {
-        if (!engine.isSetupPlacedMVP()) {
-            placeSetupMVP(aiPlayer, engine);
-        }
+        PauseTransition mvpDelay = new PauseTransition(Duration.seconds(1.5));
+        mvpDelay.setOnFinished(e -> {
 
-        if (!engine.isSetupPlacedPartnership()) {
-            placeSetupPartnership(aiPlayer, engine);
-        }
+            if (!engine.isSetupPlacedMVP()) {
+                placeSetupMVP(aiPlayer, engine);
+            }
+
+            PauseTransition partnershipDelay = new PauseTransition(Duration.seconds(1.5));
+            partnershipDelay.setOnFinished(e2 -> {
+
+                if (!engine.isSetupPlacedPartnership()) {
+                    placeSetupPartnership(aiPlayer, engine);
+                }
+
+                refreshUI(engine);
+            });
+
+            partnershipDelay.play();
+        });
+        mvpDelay.play();
     }
 
     private void placeSetupMVP(Player aiPlayer, GameEngine engine) {
@@ -118,9 +131,10 @@ public class AIBrain {
                 if (engine.canBuildMVP(r, c)) {
                     engine.buildMVP(vertices[r][c], aiPlayer);
                     Vertex vertex = vertices[r][c];
+                    Color aiColor = controller.getPlayerColor();
                     Platform.runLater(() -> {
 
-                        controller.updateVertexUI(vertex, controller.getPlayerColor());
+                        controller.updateVertexUI(vertex, aiColor);
 
 
                         controller.refreshPlayersResourcesUI();
@@ -145,9 +159,10 @@ public class AIBrain {
                 for (Edge edge : v.getAdjacentEdges()) {
                     if (engine.canBuildPartnership(aiPlayer, edge)) {
                         engine.buildPartnership(aiPlayer, edge);
+                        Color aiColor = controller.getPlayerColor();
                         Platform.runLater(() -> {
 
-                            controller.updateEdgeUI(edge, controller.getPlayerColor());
+                            controller.updateEdgeUI(edge, aiColor);
 
 
                             controller.refreshPlayersResourcesUI();
@@ -190,10 +205,11 @@ public class AIBrain {
 
         List<ResourceType> discardPriority = Arrays.asList(
                 ResourceType.PATENT,
-                ResourceType.CAPITAL,
                 ResourceType.TALENT,
                 ResourceType.CLOUD,
-                ResourceType.DATA
+                ResourceType.DATA,
+                ResourceType.CAPITAL
+
         );
 
         for (ResourceType type : discardPriority) {
@@ -212,6 +228,7 @@ public class AIBrain {
 
         return discardMap;
     }
+
     private void tryPlaceAuditorByAI(Player aiPlayer, GameEngine engine) {
 
         Sector targetSector = findBestSectorForAuditor(engine);
@@ -245,6 +262,7 @@ public class AIBrain {
             }
         }
     }
+
     private Sector findBestSectorForAuditor(GameEngine engine) {
         Sector[][] sectors = engine.getMap().getSectors();
         for (Sector[] row : sectors) {
@@ -359,31 +377,40 @@ public class AIBrain {
         java.util.Map<ResourceType, Integer> resources = aiPlayer.getResourceCount();
 
         if (aiPlayer.hasMVP() && !aiPlayer.hasResourcesForUnicornUpgrade()) {
+            int reservedCapital = Unicorn.UPGRADE_COST.getOrDefault(ResourceType.CAPITAL, 0);
             int missingCloud = Math.max(0, (Unicorn.UPGRADE_COST.get(ResourceType.CLOUD) - aiPlayer.getUpgradeCloudDiscount()) - resources.getOrDefault(ResourceType.CLOUD, 0));
             int missingData = Math.max(0, Unicorn.UPGRADE_COST.get(ResourceType.DATA) - resources.getOrDefault(ResourceType.DATA, 0));
 
-            if (missingCloud > 0 && tryBuyResource(engine, aiPlayer, ResourceType.CLOUD)) return;
-            if (missingData > 0 && tryBuyResource(engine, aiPlayer, ResourceType.DATA)) return;
+            if (missingCloud > 0 && tryBuyResource(engine, aiPlayer, ResourceType.CLOUD, reservedCapital)) return;
+            if (missingData > 0 && tryBuyResource(engine, aiPlayer, ResourceType.DATA, reservedCapital)) return;
         }
 
         if (!aiPlayer.hasResourcesForMVP()) {
+            int reservedCapital = MVP.CONSTRUCTION_COST.getOrDefault(ResourceType.CAPITAL, 0);
             int missingTalent = Math.max(0, MVP.CONSTRUCTION_COST.get(ResourceType.TALENT) - resources.getOrDefault(ResourceType.TALENT, 0));
             int missingCloud = Math.max(0, MVP.CONSTRUCTION_COST.get(ResourceType.CLOUD) - resources.getOrDefault(ResourceType.CLOUD, 0));
             int missingData = Math.max(0, MVP.CONSTRUCTION_COST.get(ResourceType.DATA) - resources.getOrDefault(ResourceType.DATA, 0));
 
-            if (missingTalent > 0 && tryBuyResource(engine, aiPlayer, ResourceType.TALENT)) return;
-            if (missingCloud > 0 && tryBuyResource(engine, aiPlayer, ResourceType.CLOUD)) return;
-            if (missingData > 0 && tryBuyResource(engine, aiPlayer, ResourceType.DATA)) return;
+            if (missingTalent > 0 && tryBuyResource(engine, aiPlayer, ResourceType.TALENT, reservedCapital)) return;
+            if (missingCloud > 0 && tryBuyResource(engine, aiPlayer, ResourceType.CLOUD, reservedCapital)) return;
+            if (missingData > 0 && tryBuyResource(engine, aiPlayer, ResourceType.DATA, reservedCapital)) return;
         }
 
         if (!aiPlayer.hasResourcesForPartnership()) {
+            int reservedCapital = Partnership.CONSTRUCTION_COST.getOrDefault(ResourceType.CAPITAL, 0);
             int missingPatent = Math.max(0, Partnership.CONSTRUCTION_COST.get(ResourceType.PATENT) - resources.getOrDefault(ResourceType.PATENT, 0));
 
-            if (missingPatent > 0 && tryBuyResource(engine, aiPlayer, ResourceType.PATENT)) return;
+            if (missingPatent > 0 && tryBuyResource(engine, aiPlayer, ResourceType.PATENT, reservedCapital)) return;
         }
     }
 
-    private boolean tryBuyResource(GameEngine engine, Player aiPlayer, ResourceType type) {
+    private boolean tryBuyResource(GameEngine engine, Player aiPlayer, ResourceType type, int reservedCapital) {
+        int currentCapital = aiPlayer.getResourceCount().getOrDefault(ResourceType.CAPITAL, 0);
+        int marketPrice = engine.getMarket().getPrice(type);
+        if (currentCapital - marketPrice < reservedCapital) {
+            return false;
+        }
+
         try {
             engine.getMarket().buyFromMarket(engine, aiPlayer, type, 1);
             return true;
@@ -402,5 +429,6 @@ public class AIBrain {
             controller.changePlayerTextColor();
             controller.refreshPlayersResourcesUI();
         });
+        controller.updateControlsForCurrentPlayer();
     }
 }

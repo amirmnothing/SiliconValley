@@ -23,4 +23,7 @@ public class AIVCFundedPlayer extends VCFundedPlayer implements PlayableAI {
     public AIBrain getBrain() {
         return brain;
     }
+    public boolean isAI(){
+        return true;
+    }
 }

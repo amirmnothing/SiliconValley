@@ -45,10 +45,11 @@ public class GameEngine {
     }
     public void processCrisisForAIOnly() {
         for (Player p : players) {
-            // فقط اگر بازیکن از نوع PlayableAI (هوش مصنوعی) است و منابعش زیاد است، اعمال کن
-            if (p instanceof PlayableAI && isResourceBelowCrisisThreshold(p)) {
-                java.util.Map<ResourceType, Integer> discardMap = ((PlayableAI) p).getBrain().calculateResourcesToDiscard(p);
-                discardSelectedResources(p, discardMap);
+            if (p instanceof PlayableAI ) {
+                if (isResourceBelowCrisisThreshold(p)){
+                    java.util.Map<ResourceType, Integer> discardMap = ((PlayableAI) p).getBrain().calculateResourcesToDiscard(p);
+                    discardSelectedResources(p, discardMap);
+                }
             }
         }
     }
@@ -515,6 +516,7 @@ public class GameEngine {
                 setupDirection = 1;
                 currentPlayerIndex = 0;
                 isDiceRolled = false;
+                triggerNextPlayerIfAI();
                 return;
             }
             if (setupRound == 0 && currentPlayerIndex == players.size() - 1) {
@@ -523,10 +525,19 @@ public class GameEngine {
             } else {
                 currentPlayerIndex += setupDirection;
             }
+            triggerNextPlayerIfAI();
 
         }
     }
 
+    private void triggerNextPlayerIfAI() {
+        Player nextPlayer = getCurrentPlayer();
+        if (nextPlayer instanceof PlayableAI) {
+            javafx.application.Platform.runLater(() -> {
+                ((PlayableAI) nextPlayer).playTurn(this, null);
+            });
+        }
+    }
     public void endCurrentTurn() {
         if (setupPhaseActive) {
             throw new IllegalStateException("Cannot end normal turn during setup phase.");
