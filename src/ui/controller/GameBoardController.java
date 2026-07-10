@@ -825,15 +825,15 @@ public class GameBoardController {
         DataCount.setText("0");
         TotalCount.setText("0");
         List<Player> players = gameEngine.getPlayers();
-//        Player1Color.setText(players.get(0).getPlayerName());
-//        Player2Color.setText(players.get(1).getPlayerName());
-//        Player3Color.setText(players.get(2).getPlayerName());
-//        Player4Color.setText(players.get(3).getPlayerName());
-//
-//        Player1Role.setText(role(players.get(0).getRole()));
-//        Player2Role.setText(role(players.get(1).getRole()));
-//        Player3Role.setText(role(players.get(2).getRole()));
-//        Player4Role.setText(role(players.get(3).getRole()));
+        Player1Color.setText(players.get(0).getPlayerName());
+        Player2Color.setText(players.get(1).getPlayerName());
+        Player3Color.setText(players.get(2).getPlayerName());
+        Player4Color.setText(players.get(3).getPlayerName());
+
+        Player1Role.setText(role(players.get(0).getRole()));
+        Player2Role.setText(role(players.get(1).getRole()));
+        Player3Role.setText(role(players.get(2).getRole()));
+        Player4Role.setText(role(players.get(3).getRole()));
 
         P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
         P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
@@ -1401,6 +1401,7 @@ public class GameBoardController {
 
             // Todo : You must send players to TRADE window to parse their resources
             tradeRequestController.setData(gameEngine, new Player[]{gameEngine.getCurrentPlayer(), player});
+            tradeRequestController.setLabel();
             tradeRequestController.setGameBoardController(this);
 
             Stage tradeStage = new Stage();

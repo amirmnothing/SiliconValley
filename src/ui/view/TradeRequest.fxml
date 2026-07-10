@@ -25,7 +25,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label text="PLAYERNAME" textFill="WHITE">
+                  <Label fx:id="PlayerName" text="PLAYERNAME" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                      </font>
