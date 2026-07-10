@@ -61,7 +61,6 @@ public class GameBoardController {
             // Todo: Show error
             return;
         }
-        changePlayerTextColor();
         refreshPlayersResourcesUI();
     }
 
@@ -461,6 +460,22 @@ public class GameBoardController {
     @FXML
     private Line l9_8;
 
+    // ========================== Table ==========================
+
+    @FXML
+    private Group FourPlayerTable;
+
+    @FXML
+    private Group ThreePlayerTable;
+
+    @FXML
+    private Group TwoPlayerTable;
+
+    @FXML
+    private Label P1T2, P2T2, P1RT2, P2RT2, P1PT2, P2PT2, P1RET2, P2RET2;
+
+    @FXML
+    private Label P1T3, P2T3, P3T3, P1RT3, P2RT3, P3RT3, P1PT3, P2PT3, P3PT3, P1RET3, P2RET3, P3RET3;
 
     @FXML
     private Group PlayerResources;
@@ -906,6 +921,44 @@ public class GameBoardController {
         List<Player> players = gameEngine.getPlayers();
 
         switch (players.size()) {
+            case 2:
+                TwoPlayerTable.setDisable(false);
+                TwoPlayerTable.setMouseTransparent(false);
+                TwoPlayerTable.setVisible(true);
+                Player1Color = P1T2;
+                Player2Color = P2T2;
+                Player1Role = P1RT2;
+                Player2Role = P2RT2;
+                P1PointColor = P1PT2;
+                P2PointColor = P2PT2;
+                P1Resources = P1RET2;
+                P2Resources = P2RET2;
+                break;
+            case 3:
+                ThreePlayerTable.setDisable(false);
+                ThreePlayerTable.setMouseTransparent(false);
+                ThreePlayerTable.setVisible(true);
+                Player1Color = P1T3;
+                Player2Color = P2T3;
+                Player3Color = P3T3;
+                Player1Role = P1RT3;
+                Player2Role = P2RT3;
+                Player3Role = P3RT3;
+                P1PointColor = P1PT3;
+                P2PointColor = P2PT3;
+                P3PointColor = P3PT3;
+                P1Resources = P1RET3;
+                P2Resources = P2RET3;
+                P3Resources = P3RET3;
+                break;
+            case 4:
+                FourPlayerTable.setDisable(false);
+                FourPlayerTable.setMouseTransparent(false);
+                FourPlayerTable.setVisible(true);
+                break;
+        }
+
+        switch (players.size()) {
             case 4:
                 Player4Color.setText(players.get(3).getPlayerName());
                 Player4Role.setText(role(players.get(3).getRole()));
@@ -923,6 +976,8 @@ public class GameBoardController {
                 Player1Role.setText(role(players.get(0).getRole()));
                 P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
         }
+
+        changePlayerTextColor();
 
         P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
         P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
@@ -977,7 +1032,6 @@ public class GameBoardController {
                 h8_0, h8_2, h8_4, h8_6, h8_8, h8_10,
                 h10_0, h10_2, h10_4, h10_6, h10_8, h10_10
         ));
-
     }
 
     public String role(PlayerRole playerRole) {
@@ -1704,6 +1758,7 @@ public class GameBoardController {
 
     void resetLabelColor() {
         Color c = Color.WHITE;
+
         Player1Color.setTextFill(c);
         Player2Color.setTextFill(c);
         Player3Color.setTextFill(c);

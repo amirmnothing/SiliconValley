@@ -172,7 +172,7 @@
                               </Group>
                               <StackPane alignment="TOP_CENTER" layoutX="16.0">
                                  <children>
-                                    <Group mouseTransparent="true">
+                                    <Group fx:id="FourPlayerTable" disable="true" mouseTransparent="true" visible="false">
                                        <children>
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" height="202.0" layoutX="16.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="482.0" />
                                           <HBox layoutX="16.0" prefHeight="206.0" prefWidth="481.0">
@@ -376,7 +376,7 @@
                                           <Rectangle fx:id="P4ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="162.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
                                        </children>
                                     </Group>
-                                    <Group>
+                                    <Group fx:id="ThreePlayerTable" disable="true" mouseTransparent="true" visible="false">
                                        <children>
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" height="163.0" layoutX="16.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="482.0" />
                                           <HBox layoutX="16.0" prefHeight="165.0" prefWidth="481.0">
@@ -389,19 +389,19 @@
                                                          </font>
                                                       </Label>
                                                       <Line endX="148.0" startX="-67.0" stroke="WHITE" />
-                                                      <Label fx:id="Player1Color1" textFill="WHITE">
+                                                      <Label fx:id="P1T3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="148.0" startX="-68.0" stroke="WHITE" />
-                                                      <Label fx:id="Player2Color1" textFill="WHITE">
+                                                      <Label fx:id="P2T3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="148.0" startX="-68.0" stroke="WHITE" />
-                                                      <Label fx:id="Player3Color1" textFill="WHITE">
+                                                      <Label fx:id="P3T3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -428,7 +428,7 @@
                                                             <Insets right="0.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="Player1Role1" textFill="WHITE">
+                                                      <Label fx:id="P1RT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -438,7 +438,7 @@
                                                             <Insets right="0.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="Player2Role1" textFill="WHITE">
+                                                      <Label fx:id="P2RT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -448,7 +448,7 @@
                                                             <Insets right="0.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="Player3Role1" textFill="WHITE">
+                                                      <Label fx:id="P3RT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -474,19 +474,19 @@
                                                          </VBox.margin>
                                                       </Label>
                                                       <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                      <Label fx:id="P1PointColor1" textFill="WHITE">
+                                                      <Label fx:id="P1PT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                      <Label fx:id="P2PointColor1" textFill="WHITE">
+                                                      <Label fx:id="P2PT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
                                                       </Label>
                                                       <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
-                                                      <Label fx:id="P3PointColor1" textFill="WHITE">
+                                                      <Label fx:id="P3PT3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -510,7 +510,7 @@
                                                             <Insets right="1.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="P1Resources1" textFill="WHITE">
+                                                      <Label fx:id="P1RET3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -520,7 +520,7 @@
                                                             <Insets right="1.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="P2Resources1" textFill="WHITE">
+                                                      <Label fx:id="P2RET3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -530,7 +530,7 @@
                                                             <Insets right="1.5" />
                                                          </VBox.margin>
                                                       </Line>
-                                                      <Label fx:id="P3Resources1" textFill="WHITE">
+                                                      <Label fx:id="P3RET3" textFill="WHITE">
                                                          <font>
                                                             <Font name="Berlin Sans FB Demi Bold" size="14.0" />
                                                          </font>
@@ -542,9 +542,147 @@
                                                 </VBox>
                                              </children>
                                           </HBox>
-                                          <Rectangle fx:id="P1ResourceRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="42.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
-                                          <Rectangle fx:id="P2ResourceRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="82.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
-                                          <Rectangle fx:id="P3ResourceRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="122.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
+                                          <Rectangle fx:id="P1ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="42.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
+                                          <Rectangle fx:id="P2ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="82.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
+                                          <Rectangle fx:id="P3ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="122.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="TwoPlayerTable" disable="true" mouseTransparent="true" visible="false">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" height="123.0" layoutX="16.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="482.0" />
+                                          <HBox layoutX="16.0" prefHeight="124.0" prefWidth="481.0">
+                                             <children>
+                                                <VBox alignment="CENTER" maxWidth="217.0" minWidth="127.0" prefWidth="217.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Player Name" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="148.0" startX="-67.0" stroke="WHITE" />
+                                                      <Label fx:id="P1T2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="148.0" startX="-68.0" stroke="WHITE" />
+                                                      <Label fx:id="P2T2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets left="2.0" />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                                <Line endY="2.0" startY="122.0" stroke="WHITE">
+                                                   <HBox.margin>
+                                                      <Insets top="1.75" />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" maxWidth="182.0" minWidth="66.0" prefWidth="115.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Role" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="46.0" startX="-69.0" stroke="WHITE">
+                                                         <VBox.margin>
+                                                            <Insets right="0.5" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label fx:id="P1RT2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="46.0" startX="-69.0" stroke="WHITE">
+                                                         <VBox.margin>
+                                                            <Insets right="0.5" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label fx:id="P2RT2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets left="2.0" />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                                <Line endY="2.0" startY="122.0" stroke="WHITE">
+                                                   <HBox.margin>
+                                                      <Insets top="1.75" />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" maxWidth="100.0" minWidth="50.0" prefWidth="72.0" spacing="11.0">
+                                                   <children>
+                                                      <Label prefHeight="16.0" prefWidth="44.0" text="Points" textAlignment="CENTER" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets left="7.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
+                                                      <Label fx:id="P1PT2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="-23.0" startX="-95.0" stroke="WHITE" />
+                                                      <Label fx:id="P2PT2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Line endY="2.0" startY="122.0" stroke="WHITE">
+                                                   <HBox.margin>
+                                                      <Insets top="1.75" />
+                                                   </HBox.margin>
+                                                </Line>
+                                                <VBox alignment="CENTER" maxWidth="182.0" minWidth="66.0" prefWidth="74.0" spacing="11.0">
+                                                   <children>
+                                                      <Label text="Resources" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="40.0" startX="-35.0" stroke="WHITE">
+                                                         <VBox.margin>
+                                                            <Insets right="1.5" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label fx:id="P1RET2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Line endX="40.0" startX="-35.0" stroke="WHITE">
+                                                         <VBox.margin>
+                                                            <Insets right="1.5" />
+                                                         </VBox.margin>
+                                                      </Line>
+                                                      <Label fx:id="P2RET2" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets left="2.0" />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <Rectangle fx:id="P1ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="42.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
+                                          <Rectangle fx:id="P2ResourceRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.5" layoutX="422.5" layoutY="82.75" onMouseEntered="#SetResourcesToChoose" onMouseExited="#SetResourcesToNotChoose" onMousePressed="#SetPlayerResourcesOpacityOne" onMouseReleased="#SetPlayerResourcesOpacityZero" opacity="0.0" stroke="WHITE" strokeType="INSIDE" width="74.0" />
                                        </children>
                                     </Group>
                                  </children>
