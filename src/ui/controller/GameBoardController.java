@@ -718,6 +718,12 @@ public class GameBoardController {
     @FXML
     private GridPane mapGrid;
 
+    @FXML
+    private VBox TradeP1Box, TradeP2Box, TradeP3Box;
+
+    @FXML
+    private Rectangle TradeP1Rectangle, TradeP2Rectangle, TradeP3Rectangle;
+
     private boolean isActiveEndTurn = false;
     private StackPane previousAuditorLocation = null;
 
@@ -933,6 +939,14 @@ public class GameBoardController {
                 P2PointColor = P2PT2;
                 P1Resources = P1RET2;
                 P2Resources = P2RET2;
+                TradeP2Rectangle.setVisible(false);
+                TradeP2Rectangle.setMouseTransparent(true);
+                TradeP2Box.setVisible(false);
+                TradeP2Box.setMouseTransparent(true);
+                TradeP3Rectangle.setVisible(false);
+                TradeP3Rectangle.setMouseTransparent(true);
+                TradeP3Box.setVisible(false);
+                TradeP3Box.setMouseTransparent(true);
                 break;
             case 3:
                 ThreePlayerTable.setDisable(false);
@@ -950,6 +964,10 @@ public class GameBoardController {
                 P1Resources = P1RET3;
                 P2Resources = P2RET3;
                 P3Resources = P3RET3;
+                TradeP3Rectangle.setVisible(false);
+                TradeP3Rectangle.setMouseTransparent(true);
+                TradeP3Box.setVisible(false);
+                TradeP3Box.setMouseTransparent(true);
                 break;
             case 4:
                 FourPlayerTable.setDisable(false);

@@ -1118,9 +1118,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="35.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="286.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="538.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Rectangle fx:id="TradeP1Rectangle" arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="35.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Rectangle fx:id="TradeP2Rectangle" arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="286.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
+                        <Rectangle fx:id="TradeP3Rectangle" arcHeight="5.0" arcWidth="5.0" height="271.0" layoutX="538.0" layoutY="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" width="205.0" />
                         <Text fill="WHITE" layoutX="287.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trade" textAlignment="CENTER" wrappingWidth="223.510009765625">
                            <font>
                               <Font name="Elephant Italic" size="70.0" />
@@ -1131,7 +1131,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="469.0" prefWidth="754.0">
                                  <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                    <VBox fx:id="TradeP1Box" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
                                           <Label fx:id="name1" alignment="CENTER" contentDisplay="CENTER" text="Player 1" textAlignment="CENTER" textFill="WHITE">
                                              <font>
@@ -1259,7 +1259,7 @@
                                           </Button>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                    <VBox fx:id="TradeP2Box" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
                                           <Label fx:id="name2" alignment="CENTER" contentDisplay="CENTER" text="Player 2" textAlignment="CENTER" textFill="WHITE">
                                              <font>
@@ -1387,7 +1387,7 @@
                                           </Button>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
+                                    <VBox fx:id="TradeP3Box" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="255.3">
                                        <children>
                                           <Label fx:id="name3" alignment="CENTER" contentDisplay="CENTER" text="Player 3" textAlignment="CENTER" textFill="WHITE">
                                              <font>
