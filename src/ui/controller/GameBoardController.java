@@ -904,27 +904,31 @@ public class GameBoardController {
         DataCount.setText("0");
         TotalCount.setText("0");
         List<Player> players = gameEngine.getPlayers();
-        Player1Color.setText(players.get(0).getPlayerName());
-        Player2Color.setText(players.get(1).getPlayerName());
-        Player3Color.setText(players.get(2).getPlayerName());
-        Player4Color.setText(players.get(3).getPlayerName());
 
-        Player1Role.setText(role(players.get(0).getRole()));
-        Player2Role.setText(role(players.get(1).getRole()));
-        Player3Role.setText(role(players.get(2).getRole()));
-        Player4Role.setText(role(players.get(3).getRole()));
+        switch (players.size()) {
+            case 4:
+                Player4Color.setText(players.get(3).getPlayerName());
+                Player4Role.setText(role(players.get(3).getRole()));
+                P4Resources.setText(Integer.toString(totalResourcesCount(players.get(3))));
+            case 3:
+                Player3Color.setText(players.get(2).getPlayerName());
+                Player3Role.setText(role(players.get(2).getRole()));
+                P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
+            case 2:
+                Player2Color.setText(players.get(1).getPlayerName());
+                Player2Role.setText(role(players.get(1).getRole()));
+                P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
+            case 1:
+                Player1Color.setText(players.get(0).getPlayerName());
+                Player1Role.setText(role(players.get(0).getRole()));
+                P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
+        }
 
         P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
         P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
         P1CloudCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.CLOUD, 0)));
         P1DataCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.DATA, 0)));
         P1CapitalCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.CAPITAL, 0)));
-
-
-        P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
-        P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
-        P3Resources.setText(Integer.toString(totalResourcesCount(players.get(2))));
-        P4Resources.setText(Integer.toString(totalResourcesCount(players.get(3))));
 
         updatePlayersPoints();
 
@@ -1652,11 +1656,13 @@ public class GameBoardController {
         } else if (playerIndex == 3) {
             setPlayerResourcesUIText(p, labels);
         }
-        P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
-        P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
-        P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
-        P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
-
+        switch (players.size()) {
+            case 4: P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
+            case 3: P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
+            case 2: P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
+            case 1: P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
+                    break;
+        }
     }
 
     void setPlayerResourcesUIText(Player p, List<Label> label) {
@@ -1764,10 +1770,16 @@ public class GameBoardController {
 
     private void updatePlayersPoints() {
         List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
-        P1PointColor.setText(Integer.toString(totalPoints.get(0)));
-        P2PointColor.setText(Integer.toString(totalPoints.get(1)));
-        P3PointColor.setText(Integer.toString(totalPoints.get(2)));
-        P4PointColor.setText(Integer.toString(totalPoints.get(3)));
+        switch (totalPoints.size()){
+            case 4:
+                P4PointColor.setText(Integer.toString(totalPoints.get(3)));
+            case 3:
+                P3PointColor.setText(Integer.toString(totalPoints.get(2)));
+            case 2:
+                P2PointColor.setText(Integer.toString(totalPoints.get(1)));
+            case 1:
+                P1PointColor.setText(Integer.toString(totalPoints.get(0)));
+        }
     }
 
     @FXML
