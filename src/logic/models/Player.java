@@ -221,10 +221,12 @@ public class Player {
         return playerName;
     }
 
-    //TODO برای تست
-
-    @Override
-    public String toString() {
-        return playerName+"\t"+playerRole;
+    public boolean hasMVP(){
+        for(CompanyStructure comp : companies){
+            if(comp instanceof MVP){
+                return true;
+            }
+        }
+        return false;
     }
 }

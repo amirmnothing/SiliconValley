@@ -1,5 +1,7 @@
 package ui.controller;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -26,13 +27,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.*;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -595,6 +596,9 @@ public class GameBoardController {
     @FXML
     private Label yourData;
 
+    @FXML
+    private Button RollDiceBTN;
+
 
     @FXML
     private GridPane mapGrid;
@@ -614,11 +618,14 @@ public class GameBoardController {
         changePlayerTextColor();
         refreshPlayersResourcesUI();
 
-        isDiceRolled = false;
+        setDiceRolled(false);
         enableButtonsAfterDiceRoll();
 
-        isActiveEndTurn = false;
+        setActiveEndTurn(false);
         endTurnDisable();
+
+
+        startNextTurn();
     }
 
     @FXML
@@ -767,16 +774,50 @@ public class GameBoardController {
             }
             if (moveSuccessful) {
                 previousAuditorLocation = temp;
-                isActiveEndTurn = true;
+                setActiveEndTurn(true);
                 endTurnDisable();
             }
         }
     }
+    public void performAIAuditorMove(int targetRow, int targetCol) {
+        Sector targetSector = gameEngine.getMap().getSectors()[targetRow][targetCol];
 
+        if (gameEngine.moveAuditor(targetSector)) {
+
+
+            if (previousAuditorLocation != null) {
+                setAuditorNotOnSector(previousAuditorLocation);
+            }
+
+            StackPane newAuditorPane = (StackPane) mapGrid.getChildren().get(targetRow * 5 + targetCol);
+            setAuditorOnSector(newAuditorPane);
+
+            previousAuditorLocation = newAuditorPane;
+
+            gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
+        }
+    }
+
+    public boolean getIsDiceRolled() {
+        return !isDiceRolled;
+    }
+
+    public void setDiceRolled(boolean diceRolled) {
+        isDiceRolled = diceRolled;
+    }
+
+    public boolean isActiveEndTurn() {
+        return isActiveEndTurn;
+    }
+
+    public void setActiveEndTurn(boolean activeEndTurn) {
+        isActiveEndTurn = activeEndTurn;
+    }
 
     @FXML
     public void initialize(GameEngine gameEngine) {
         updateSectorImages();
+
 
         TalentCount.setText("0");
         PatentCount.setText("0");
@@ -784,15 +825,15 @@ public class GameBoardController {
         DataCount.setText("0");
         TotalCount.setText("0");
         List<Player> players = gameEngine.getPlayers();
-        Player1Color.setText(players.get(0).getPlayerName());
-        Player2Color.setText(players.get(1).getPlayerName());
-        Player3Color.setText(players.get(2).getPlayerName());
-        Player4Color.setText(players.get(3).getPlayerName());
-
-        Player1Role.setText(role(players.get(0).getRole()));
-        Player2Role.setText(role(players.get(1).getRole()));
-        Player3Role.setText(role(players.get(2).getRole()));
-        Player4Role.setText(role(players.get(3).getRole()));
+//        Player1Color.setText(players.get(0).getPlayerName());
+//        Player2Color.setText(players.get(1).getPlayerName());
+//        Player3Color.setText(players.get(2).getPlayerName());
+//        Player4Color.setText(players.get(3).getPlayerName());
+//
+//        Player1Role.setText(role(players.get(0).getRole()));
+//        Player2Role.setText(role(players.get(1).getRole()));
+//        Player3Role.setText(role(players.get(2).getRole()));
+//        Player4Role.setText(role(players.get(3).getRole()));
 
         P1TalentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.TALENT, 0)));
         P1PatentCount.setText(Integer.toString(gameEngine.getCurrentPlayer().getResourceCount().getOrDefault(ResourceType.PATENT, 0)));
@@ -809,6 +850,7 @@ public class GameBoardController {
         updatePlayersPoints();
 
         enableButtonsAfterDiceRoll();
+        startNextTurn();
 
         endTurnDisable();
         saveGameTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -856,12 +898,12 @@ public class GameBoardController {
         };
     }
 
-    private void endTurnDisable() {
+    public void endTurnDisable() {
         if (gameEngine != null && gameEngine.isSetupPhase()) {
             EndTurnBTN.setDisable(true);
             return;
         }
-        EndTurnBTN.setDisable(!isActiveEndTurn);
+        EndTurnBTN.setDisable(!isActiveEndTurn());
     }
 
     private void updateTotalPrice() {
@@ -1031,7 +1073,7 @@ public class GameBoardController {
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
-    private Color getPlayerColor() {
+    public Color getPlayerColor() {
         int index = gameEngine.getCurrentPlayerIndex();
 
         switch (index) {
@@ -1066,6 +1108,30 @@ public class GameBoardController {
     }
 
 
+    public void updateVertexUI(Vertex vertex, Color playerColor) {
+        Circle circle = findCircleForVertex(vertex);
+
+        if (circle != null) {
+            circle.setOnMouseEntered(null);
+            circle.setOnMouseExited(null);
+            circle.setFill(playerColor);
+            circle.setStroke(playerColor);
+        }
+    }
+
+
+    public void updateEdgeUI(Edge edge, Color playerColor) {
+        Line line = findLineForEdge(edge);
+
+        if (line != null) {
+            line.setOnMouseEntered(null);
+            line.setOnMouseExited(null);
+            line.setFill(playerColor);
+            line.setStroke(playerColor);
+            line.setStrokeWidth(5);
+        }
+    }
+
     @FXML
     void SetColorUnchangable(MouseEvent event) {
         if (gameEngine.getCurrentBuildMode() == BuildMode.NONE) {
@@ -1091,12 +1157,7 @@ public class GameBoardController {
                     gameEngine.notifyMVPPlaced();
                 }
 
-                circle.setOnMouseEntered(null);
-                circle.setOnMouseExited(null);
-                circle.setFill(color);
-                circle.setStroke(color);
-
-
+                updateVertexUI(vertex, color);
                 resetBuildMode();
 
             } catch (Exception e) {
@@ -1123,12 +1184,7 @@ public class GameBoardController {
                     gameEngine.notifyPartnershipPlaced();
                 }
 
-                line.setOnMouseEntered(null);
-                line.setOnMouseExited(null);
-                line.setFill(color);
-                line.setStroke(color);
-                line.setStrokeWidth(5);
-
+                updateEdgeUI(edge, color);
                 resetBuildMode();
 
             } catch (Exception e) {
@@ -1213,40 +1269,47 @@ public class GameBoardController {
     @FXML
     void RollDice(ActionEvent event) {
         try {
-            ArrayList<Integer> Dice = gameEngine.rollDiceForCurrentTurn();
-
-            String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
-            String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
-
-            Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
-            Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
-            isDiceRolled = true;
-            enableButtonsAfterDiceRoll();
-
-            isActiveEndTurn = true;
-            endTurnDisable();
-
-            refreshPlayersResourcesUI();
-
-            if (Dice.get(0) + Dice.get(1) == 7) {
-                openLegalCrisisWindow();
-                isActiveEndTurn = false;
-                endTurnDisable();
-            }
-
+            ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
+            showDiceResultsUI(dice,null);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void enableButtonsAfterDiceRoll(){
-        if(!gameEngine.isSetupPhase()){
-            BuildAPartnershipBTN.setDisable(!isDiceRolled);
-            BuildAMVPBTN.setDisable(!isDiceRolled);
-            UpgradeToUnicornBTN.setDisable(!isDiceRolled);
+    public void showDiceResultsUI(ArrayList<Integer> Dice,Runnable onDiceProcessed) {
+
+        String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
+        String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
+
+        Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
+        Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+        setDiceRolled(true);
+        enableButtonsAfterDiceRoll();
+
+        setActiveEndTurn(true);
+        endTurnDisable();
+
+        refreshPlayersResourcesUI();
+
+        if (Dice.get(0) + Dice.get(1) == 7) {
+            gameEngine.processCrisisForAIOnly();
+            openLegalCrisisWindow();
+            setActiveEndTurn(false);
+            endTurnDisable();
         }
-        Shop.setDisable(!isDiceRolled);
-        Trade.setDisable(!isDiceRolled);
+        if (onDiceProcessed != null) {
+            onDiceProcessed.run();
+        }
+    }
+
+    public void enableButtonsAfterDiceRoll() {
+        if (!gameEngine.isSetupPhase()) {
+            BuildAPartnershipBTN.setDisable(getIsDiceRolled());
+            BuildAMVPBTN.setDisable(getIsDiceRolled());
+            UpgradeToUnicornBTN.setDisable(getIsDiceRolled());
+        }
+        Shop.setDisable(getIsDiceRolled());
+        Trade.setDisable(getIsDiceRolled());
     }
 
     //برای استخراج مختصات از نام circle و line
@@ -1352,6 +1415,8 @@ public class GameBoardController {
     @FXML
     private void openLegalCrisisWindow() {
         for (Player p : gameEngine.getPlayers()) {
+            if (p instanceof PlayableAI) continue;
+
             if (!gameEngine.isResourceBelowCrisisThreshold(p)) continue;
 
 
@@ -1398,7 +1463,7 @@ public class GameBoardController {
                 player.getResourceCount().getOrDefault(ResourceType.CLOUD, 0);
     }
 
-    void refreshPlayersResourcesUI() {
+    public void refreshPlayersResourcesUI() {
         List<Player> players = gameEngine.getPlayers();
         Player p = gameEngine.getCurrentPlayer();
         int playerIndex = gameEngine.getCurrentPlayerIndex();
@@ -1434,7 +1499,7 @@ public class GameBoardController {
 
     }
 
-    void changePlayerTextColor() {
+    public void changePlayerTextColor() {
         int playerIndex = gameEngine.getCurrentPlayerIndex();
         if (playerIndex == 0) {
             resetLabelColor();
@@ -1521,14 +1586,14 @@ public class GameBoardController {
         TotalCount.setText("0");
     }
 
-    private void resetMarketPricesUI() {
+    public void resetMarketPricesUI() {
         TalentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.TALENT)));
         PatentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.PATENT)));
         CloudPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.CLOUD)));
         DataPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.DATA)));
     }
 
-    private void updatePlayersPoints() {
+    public void updatePlayersPoints() {
         List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
         P1PointColor.setText(Integer.toString(totalPoints.get(0)));
         P2PointColor.setText(Integer.toString(totalPoints.get(1)));
@@ -1759,8 +1824,7 @@ public class GameBoardController {
             if (newFile.createNewFile()) {
                 loadSaveFiles();
                 FileCreatedSuccessfullyAlert();
-            }
-            else {
+            } else {
                 FileAlreadyExistsErrorAlert();
             }
         } catch (IOException e) {
@@ -1768,7 +1832,7 @@ public class GameBoardController {
         }
     }
 
-    void FailedToCreateFileErrorAlert(){
+    void FailedToCreateFileErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to create save file");
@@ -1778,7 +1842,7 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
-    void FileCreatedSuccessfullyAlert(){
+    void FileCreatedSuccessfullyAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("File created successfully");
@@ -1788,7 +1852,7 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
-    void FileAlreadyExistsErrorAlert(){
+    void FileAlreadyExistsErrorAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("File already exists");
@@ -1801,21 +1865,19 @@ public class GameBoardController {
     @FXML
     void onEditBtnSaveGameTab(ActionEvent event) {
         FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
-        if (chosenFile != null){
+        if (chosenFile != null) {
             File file = chosenFile.getFile();
-            if (file.renameTo(new File("saves/"+EditSaveNameField.getText()+".sv"))){
+            if (file.renameTo(new File("saves/" + EditSaveNameField.getText() + ".sv"))) {
                 loadSaveFiles();
                 FileRenameSuccessfullyAlert();
-            }
-            else {
+            } else {
                 FileRenameFailedfullyAlert();
             }
 
-        }
-        else FileNotChosenAlert();
+        } else FileNotChosenAlert();
     }
 
-    void FileRenameSuccessfullyAlert(){
+    void FileRenameSuccessfullyAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Save file renamed successfully");
@@ -1825,7 +1887,7 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
-    void FileRenameFailedfullyAlert(){
+    void FileRenameFailedfullyAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to rename save file");
@@ -1842,14 +1904,12 @@ public class GameBoardController {
                 if (chosenFile.getFile().delete()) {
                     saveList.remove(chosenFile);
                     FileDeletedSuccessfullyAlert();
-                }
-                else FileDeleteFailedfullyAlert();
+                } else FileDeleteFailedfullyAlert();
             }
-        }
-        else FileNotChosenAlert();
+        } else FileNotChosenAlert();
     }
 
-    void FileNotChosenAlert(){
+    void FileNotChosenAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("No file has chosen");
@@ -1872,7 +1932,7 @@ public class GameBoardController {
         else return false;
     }
 
-    void FileDeletedSuccessfullyAlert(){
+    void FileDeletedSuccessfullyAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Save file deleted successfully");
@@ -1881,13 +1941,126 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
-    void FileDeleteFailedfullyAlert(){
+    void FileDeleteFailedfullyAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to delete save file");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
         alert.showAndWait();
+    }
+
+    //  -------------------متد های مربوط به AIPlayer-------------------
+    //----------------------------------------------------------------
+    public void startNextTurn() {
+        Player currentPlayer = gameEngine.getCurrentPlayer();
+
+        if (currentPlayer instanceof PlayableAI aiPlayer) {
+            setHumanControlsDisabled(true);
+            RollDiceBTN.setDisable(true);
+            EndTurnBTN.setDisable(true);
+
+            PauseTransition aiDelay = getPauseTransition(aiPlayer);
+            aiDelay.play();
+
+        } else {
+
+            setHumanControlsDisabled(false);
+            RollDiceBTN.setDisable(false);
+            EndTurnBTN.setDisable(true);
+        }
+    }
+
+    private PauseTransition getPauseTransition(PlayableAI aiPlayer) {
+        PauseTransition aiDelay = new PauseTransition(Duration.seconds(2.0));
+        aiDelay.setOnFinished(event -> {
+            aiPlayer.playTurn(gameEngine, () -> {
+
+                Platform.runLater(() -> {
+                    refreshPlayersResourcesUI();
+                    changePlayerTextColor();
+
+                    startNextTurn();
+                });
+            });
+        });
+        return aiDelay;
+    }
+
+    private void setHumanControlsDisabled(boolean disable) {
+
+        isDiceRolled = false;
+        RollDiceBTN.setDisable(disable);
+        EndTurnBTN.setDisable(disable);
+        Shop.setDisable(disable);
+        BuildAMVPBTN.setDisable(disable);
+        BuildAPartnershipBTN.setDisable(disable);
+        UpgradeToUnicornBTN.setDisable(disable);
+
+
+    }
+
+    public Circle findCircleForVertex(Vertex vertex) {
+        Vertex[][] vertices = gameEngine.getMap().getVertices();
+        int mapRow = -1, mapCol = -1;
+
+
+        for (int r = 0; r < vertices.length; r++) {
+            for (int c = 0; c < vertices[r].length; c++) {
+                if (vertices[r][c] == vertex) {
+                    mapRow = r;
+                    mapCol = c;
+                    break;
+                }
+            }
+        }
+        if (mapRow == -1) return null;
+
+
+        int uiRow = mapRow * 2;
+        int uiCol = mapCol * 2;
+
+        String targetId = "#c" + uiRow + "_" + uiCol;
+
+        return (Circle) mapGrid.lookup(targetId);
+    }
+
+    public Line findLineForEdge(Edge edge) {
+        Vertex v1 = edge.getStart();
+        Vertex v2 = edge.getEnd();
+
+        Vertex[][] vertices = gameEngine.getMap().getVertices();
+        int r1 = -1, c1 = -1, r2 = -1, c2 = -1;
+
+        for (int r = 0; r < vertices.length; r++) {
+            for (int c = 0; c < vertices[r].length; c++) {
+                if (vertices[r][c] == v1) {
+                    r1 = r;
+                    c1 = c;
+                }
+                if (vertices[r][c] == v2) {
+                    r2 = r;
+                    c2 = c;
+                }
+            }
+        }
+        if (r1 == -1 || r2 == -1) return null;
+
+        int uiRow, uiCol;
+
+        if (r1 == r2) {
+
+            uiRow = r1 * 2;
+            uiCol = Math.min(c1, c2) * 2 + 1;
+        } else {
+
+            uiRow = Math.min(r1, r2) * 2 + 1;
+            uiCol = c1 * 2;
+        }
+
+        String targetId = "#l" + uiRow + "_" + uiCol;
+
+        return (Line) mapGrid.lookup(targetId);
     }
 
 }
