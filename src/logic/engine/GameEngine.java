@@ -31,7 +31,7 @@ public class GameEngine {
     private BuildMode currentBuildMode = BuildMode.NONE;
 
 
-    private boolean canRollDiceThisTurn = false;
+    private boolean isDiceRolled = false;
     private boolean mainPhaseActive = false;
     private int turnNumber = 1;
     private int currentTurnNumber = 1;
@@ -43,7 +43,16 @@ public class GameEngine {
         this.market = new Market();
         this.currentPlayerIndex = 0;
     }
-
+    public void processCrisisForAIOnly() {
+        for (Player p : players) {
+            if (p instanceof PlayableAI ) {
+                if (isResourceBelowCrisisThreshold(p)){
+                    java.util.Map<ResourceType, Integer> discardMap = ((PlayableAI) p).getBrain().calculateResourcesToDiscard(p);
+                    discardSelectedResources(p, discardMap);
+                }
+            }
+        }
+    }
     public List<Player> getPlayers() {
         return players;
     }
@@ -80,9 +89,56 @@ public class GameEngine {
         return setupPlacedPartnership;
     }
 
-    public void nextTurn() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+    public void nextTurn(Runnable onTurnChanged) {
+        Player winner = winnerPlayer();
+        if (winner != null) {
+            // TODO: هندل کردن پایان بازی
+            return;
+        }
 
+
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        Player player = getCurrentPlayer();
+
+
+        if (onTurnChanged != null) {
+            javafx.application.Platform.runLater(onTurnChanged);
+        }
+
+
+        if (player instanceof PlayableAI) {
+            ((PlayableAI) player).playTurn(this, () -> {
+                nextTurn(onTurnChanged);
+            });
+        }
+    }
+    public void nextTurn() {
+        nextTurn(null);
+    }
+
+    public Player winnerPlayer() {
+        Player currentTurnPlayer = getCurrentPlayer();
+        if(currentTurnPlayer.calculateVictoryPoints()>=10){
+            return currentTurnPlayer;
+        }
+        List<Player> potentialWinners = new  ArrayList<>();
+        for (Player player : players) {
+            if (player == currentTurnPlayer) continue;
+            if (player.calculateVictoryPoints() >= 10) {
+                potentialWinners.add(player);
+            }
+        }
+
+        if (potentialWinners.isEmpty()) {
+            return null;
+        }
+        Player winner = potentialWinners.get(0);
+        for(Player player : potentialWinners) {
+            if (player.calculateVictoryPoints() > winner.calculateVictoryPoints()) {
+                winner = player;
+            }
+        }
+        return winner;
     }
 
     public ArrayList<Integer> rollDice() {
@@ -437,7 +493,8 @@ public class GameEngine {
                 setupRound = 2;
                 setupDirection = 1;
                 currentPlayerIndex = 0;
-                canRollDiceThisTurn = false;
+                isDiceRolled = false;
+                triggerNextPlayerIfAI();
                 return;
             }
             if (setupRound == 0 && currentPlayerIndex == players.size() - 1) {
@@ -446,14 +503,24 @@ public class GameEngine {
             } else {
                 currentPlayerIndex += setupDirection;
             }
+            triggerNextPlayerIfAI();
 
         }
     }
 
+    private void triggerNextPlayerIfAI() {
+        Player nextPlayer = getCurrentPlayer();
+        if (nextPlayer instanceof PlayableAI) {
+            javafx.application.Platform.runLater(() -> {
+                ((PlayableAI) nextPlayer).playTurn(this, null);
+            });
+        }
+    }
     public void endCurrentTurn() {
         if (setupPhaseActive) {
             throw new IllegalStateException("Cannot end normal turn during setup phase.");
         }
+
         int previousPlayerIndex = currentPlayerIndex;
         nextTurn();
         currentTurnNumber = turnNumber;
@@ -462,7 +529,7 @@ public class GameEngine {
             market.updateMarketAtEndOfRound();
         }
 
-        canRollDiceThisTurn = false;
+        isDiceRolled = false;
         currentBuildMode = BuildMode.NONE;
     }
 
@@ -483,12 +550,12 @@ public class GameEngine {
         this.turnNumber = turnNumber;
     }
 
-    public boolean isCanRollDiceThisTurn() {
-        return canRollDiceThisTurn;
+    public boolean isDiceRolled() {
+        return isDiceRolled;
     }
 
-    public void setCanRollDiceThisTurn(boolean canRollDiceThisTurn) {
-        this.canRollDiceThisTurn = canRollDiceThisTurn;
+    public void setIsDiceRolled(boolean canRollDiceThisTurn) {
+        this.isDiceRolled = canRollDiceThisTurn;
     }
 
     public ArrayList<Integer> rollDiceForCurrentTurn() {
@@ -496,12 +563,12 @@ public class GameEngine {
             throw new IllegalStateException("You cannot roll dice during setup phase.");
         }
 
-        if (canRollDiceThisTurn) {
+        if (isDiceRolled) {
             throw new IllegalStateException("You have rolled the dice.");
         }
 
         ArrayList<Integer> dice = rollDice();
-        canRollDiceThisTurn = true;
+        isDiceRolled = true;
         distribute(dice);
 
         return dice;

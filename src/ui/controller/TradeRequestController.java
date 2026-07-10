@@ -43,7 +43,8 @@ public class TradeRequestController {
 
     @FXML
     private AnchorPane mainRootPane;
-
+    @FXML
+    private Label PlayerName;
     @FXML
     private Label CapitalGetLabel;
     @FXML
@@ -71,7 +72,7 @@ public class TradeRequestController {
 
     @FXML
     void onGiveTalentPlus(MouseEvent event) {
-        if (toGiveTalentCount < players[1].getResources(ResourceType.TALENT)) {
+        if (toGiveTalentCount < players[0].getResources(ResourceType.TALENT)) {
             toGiveTalentCount++;
         }
         TalentGiveLabel.setText(String.valueOf(toGiveTalentCount));
@@ -87,7 +88,7 @@ public class TradeRequestController {
 
     @FXML
     void onGiveCloudPlus(MouseEvent event) {
-        if (toGiveCloudCount < players[1].getResources(ResourceType.CLOUD)) {
+        if (toGiveCloudCount < players[0].getResources(ResourceType.CLOUD)) {
             toGiveCloudCount++;
         }
         CloudGiveLabel.setText(String.valueOf(toGiveCloudCount));
@@ -103,7 +104,7 @@ public class TradeRequestController {
 
     @FXML
     void onGiveDataPlus(MouseEvent event) {
-        if (toGiveDataCount < players[1].getResources(ResourceType.DATA)) {
+        if (toGiveDataCount < players[0].getResources(ResourceType.DATA)) {
             toGiveDataCount++;
         }
         DataGiveLabel.setText(String.valueOf(toGiveDataCount));
@@ -119,7 +120,7 @@ public class TradeRequestController {
 
     @FXML
     void onGiveCapitalPlus(MouseEvent event) {
-        if (toGiveCapitalCount < players[1].getResources(ResourceType.CAPITAL)) {
+        if (toGiveCapitalCount < players[0].getResources(ResourceType.CAPITAL)) {
             toGiveCapitalCount++;
         }
         CapitalGiveLabel.setText(String.valueOf(toGiveCapitalCount));
@@ -135,7 +136,7 @@ public class TradeRequestController {
 
     @FXML
     void onGivePatentPlus(MouseEvent event) {
-        if (toGivePatentCount < players[1].getResources(ResourceType.PATENT)) {
+        if (toGivePatentCount < players[0].getResources(ResourceType.PATENT)) {
             toGivePatentCount++;
         }
         PatentGiveLabel.setText(String.valueOf(toGivePatentCount));
@@ -151,7 +152,7 @@ public class TradeRequestController {
 
     @FXML
     void onGetTalentPlus(MouseEvent event) {
-        if (toGetTalentCount < players[0].getResources(ResourceType.TALENT)) {
+        if (toGetTalentCount < players[1].getResources(ResourceType.TALENT)) {
             toGetTalentCount++;
         }
         TalentGetLabel.setText(String.valueOf(toGetTalentCount));
@@ -167,7 +168,7 @@ public class TradeRequestController {
 
     @FXML
     void onGetCloudPlus(MouseEvent event) {
-        if (toGetCloudCount < players[0].getResources(ResourceType.CLOUD)) {
+        if (toGetCloudCount < players[1].getResources(ResourceType.CLOUD)) {
             toGetCloudCount++;
         }
         CloudGetLabel.setText(String.valueOf(toGetCloudCount));
@@ -183,7 +184,7 @@ public class TradeRequestController {
 
     @FXML
     void onGetDataPlus(MouseEvent event) {
-        if (toGetDataCount < players[0].getResources(ResourceType.DATA)) {
+        if (toGetDataCount < players[1].getResources(ResourceType.DATA)) {
             toGetDataCount++;
         }
         DataGetLabel.setText(String.valueOf(toGetDataCount));
@@ -199,7 +200,7 @@ public class TradeRequestController {
 
     @FXML
     void onGetCapitalPlus(MouseEvent event) {
-        if (toGetCapitalCount < players[0].getResources(ResourceType.CAPITAL)) {
+        if (toGetCapitalCount < players[1].getResources(ResourceType.CAPITAL)) {
             toGetCapitalCount++;
         }
         CapitalGetLabel.setText(String.valueOf(toGetCapitalCount));
@@ -215,7 +216,7 @@ public class TradeRequestController {
 
     @FXML
     void onGetPatentPlus(MouseEvent event) {
-        if (toGetPatentCount < players[0].getResources(ResourceType.PATENT)) {
+        if (toGetPatentCount < players[1].getResources(ResourceType.PATENT)) {
             toGetPatentCount++;
         }
         PatentGetLabel.setText(String.valueOf(toGetPatentCount));
@@ -348,5 +349,8 @@ public class TradeRequestController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void setLabel(){
+        PlayerName.setText(players[1].getPlayerName());
     }
 }

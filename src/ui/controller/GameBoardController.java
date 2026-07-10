@@ -1,5 +1,7 @@
 package ui.controller;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,10 +18,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
 import logic.enums.MessageMode;
@@ -27,7 +33,6 @@ import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.*;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -36,7 +41,6 @@ import static logic.engine.GameEngine.*;
 
 public class GameBoardController {
 
-    // متغیرهای نگهدارنده تعداد هر کارت
     private int currentTalentCount = 0;
     private int currentPatentCount = 0;
     private int currentCloudCount = 0;
@@ -51,10 +55,8 @@ public class GameBoardController {
     ArrayList<Circle> circles;
     ArrayList<SVGPath> hexagons;
 
-    // رفرنس به انجین بازی
     private GameEngine gameEngine;
 
-    // متدی برای تزریق انجین از کلاس Main یا لودر بازی
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         if (gameEngine == null) {
@@ -714,6 +716,9 @@ public class GameBoardController {
     @FXML
     private Label yourData;
 
+    @FXML
+    private Button RollDiceBTN;
+
 
     @FXML
     private GridPane mapGrid;
@@ -739,11 +744,14 @@ public class GameBoardController {
         changePlayerTextColor();
         refreshPlayersResourcesUI();
 
-        isDiceRolled = false;
+        setDiceRolled(false);
         enableButtonsAfterDiceRoll();
 
-        isActiveEndTurn = false;
+        setActiveEndTurn(false);
         endTurnDisable();
+
+
+        startNextTurn();
     }
 
     @FXML
@@ -809,7 +817,6 @@ public class GameBoardController {
                 if (r < logicSectors.length && c < logicSectors[r].length) {
                     Sector sector = logicSectors[r][c];
 
-                    // getting folder name
                     String folderName = switch (sector.getResourceType()) {
                         case CAPITAL -> "Fintech";
                         case CLOUD -> "Cloud";
@@ -908,16 +915,50 @@ public class GameBoardController {
             }
             if (moveSuccessful) {
                 previousAuditorLocation = temp;
-                isActiveEndTurn = true;
+                setActiveEndTurn(true);
                 endTurnDisable();
             }
         }
     }
+    public void performAIAuditorMove(int targetRow, int targetCol) {
+        Sector targetSector = gameEngine.getMap().getSectors()[targetRow][targetCol];
 
+        if (gameEngine.moveAuditor(targetSector)) {
+
+
+            if (previousAuditorLocation != null) {
+                setAuditorNotOnSector(previousAuditorLocation);
+            }
+
+            StackPane newAuditorPane = (StackPane) mapGrid.getChildren().get(targetRow * 5 + targetCol);
+            setAuditorOnSector(newAuditorPane);
+
+            previousAuditorLocation = newAuditorPane;
+
+            gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
+        }
+    }
+
+    public boolean getIsDiceRolled() {
+        return !isDiceRolled;
+    }
+
+    public void setDiceRolled(boolean diceRolled) {
+        isDiceRolled = diceRolled;
+    }
+
+    public boolean isActiveEndTurn() {
+        return isActiveEndTurn;
+    }
+
+    public void setActiveEndTurn(boolean activeEndTurn) {
+        isActiveEndTurn = activeEndTurn;
+    }
 
     @FXML
     public void initialize(GameEngine gameEngine) {
         updateSectorImages();
+
 
         TalentCount.setText("0");
         PatentCount.setText("0");
@@ -1006,7 +1047,8 @@ public class GameBoardController {
         updatePlayersPoints();
 
         enableButtonsAfterDiceRoll();
-
+        startNextTurn();
+        updateTurnControls();
         endTurnDisable();
         saveGameTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         saveGameNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -1061,12 +1103,12 @@ public class GameBoardController {
         };
     }
 
-    private void endTurnDisable() {
+    public void endTurnDisable() {
         if (gameEngine != null && gameEngine.isSetupPhase()) {
             EndTurnBTN.setDisable(true);
             return;
         }
-        EndTurnBTN.setDisable(!isActiveEndTurn);
+        EndTurnBTN.setDisable(!isActiveEndTurn());
     }
 
     private void updateTotalPrice() {
@@ -1325,7 +1367,7 @@ public class GameBoardController {
             ((Button) (event.getSource())).setStyle("-fx-background-color: black;" + "-fx-border-color: white;" + "-fx-border-width: 2;");
     }
 
-    private Color getPlayerColor() {
+    public Color getPlayerColor() {
         int index = gameEngine.getCurrentPlayerIndex();
 
         switch (index) {
@@ -1360,6 +1402,28 @@ public class GameBoardController {
     }
 
 
+    public void updateVertexUI(Vertex vertex, Color playerColor) {
+        Circle circle = findCircleForVertex(vertex);
+
+        if (circle != null) {
+            circle.setFill(playerColor);
+            circle.setStroke(Color.BLACK);
+        }
+    }
+
+
+    public void updateEdgeUI(Edge edge, Color playerColor) {
+        Line line = findLineForEdge(edge);
+
+        if (line != null) {
+            line.setOnMouseEntered(null);
+            line.setOnMouseExited(null);
+            line.setOnMouseClicked(null);
+            line.setStroke(playerColor);
+            line.setStrokeWidth(5);
+        }
+    }
+
     @FXML
     void SetColorUnchangable(MouseEvent event) {
         if (gameEngine.getCurrentBuildMode() == BuildMode.NONE) {
@@ -1381,16 +1445,12 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
+                checkTurnAdvancement();
                 if (gameEngine.isSetupPhase()) {
                     gameEngine.notifyMVPPlaced();
                 }
 
-//                circle.setOnMouseEntered(null);
-//                circle.setOnMouseExited(null);
-                circle.setFill(color);
-                circle.setStroke(Color.BLACK);
-
-
+                updateVertexUI(vertex, color);
                 resetBuildMode();
 
             } catch (Exception e) {
@@ -1411,19 +1471,14 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
+                checkTurnAdvancement();
                 gameEngine.updateLongestNetwork();
 
                 if (gameEngine.isSetupPhase()) {
                     gameEngine.notifyPartnershipPlaced();
                 }
 
-                line.setOnMouseEntered(null);
-                line.setOnMouseExited(null);
-                line.setOnMouseClicked(null);
-                line.setFill(color);
-                line.setStroke(color);
-                line.setStrokeWidth(5);
-
+                updateEdgeUI(edge, color);
                 resetBuildMode();
 
             } catch (Exception e) {
@@ -1523,43 +1578,50 @@ public class GameBoardController {
     @FXML
     void RollDice(ActionEvent event) {
         try {
-            ArrayList<Integer> Dice = gameEngine.rollDiceForCurrentTurn();
-
-            String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
-            String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
-
-            Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
-            Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
-            isDiceRolled = true;
-            enableButtonsAfterDiceRoll();
-
-            isActiveEndTurn = true;
-            endTurnDisable();
-
-            refreshPlayersResourcesUI();
-
-            if (Dice.get(0) + Dice.get(1) == 7) {
-                openLegalCrisisWindow();
-                isActiveEndTurn = false;
-                endTurnDisable();
-            }
-
+            ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
+            showDiceResultsUI(dice, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        updateTurnControls();
     }
 
-    private void enableButtonsAfterDiceRoll() {
-        if (!gameEngine.isSetupPhase()) {
-            BuildAPartnershipBTN.setDisable(!isDiceRolled);
-            BuildAMVPBTN.setDisable(!isDiceRolled);
-            UpgradeToUnicornBTN.setDisable(!isDiceRolled);
+    public void showDiceResultsUI(ArrayList<Integer> Dice, Runnable onDiceProcessed) {
+
+        String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
+        String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
+
+        Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
+        Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
+        setDiceRolled(true);
+        enableButtonsAfterDiceRoll();
+
+        setActiveEndTurn(true);
+        endTurnDisable();
+
+        refreshPlayersResourcesUI();
+
+        if (Dice.get(0) + Dice.get(1) == 7) {
+            gameEngine.processCrisisForAIOnly();
+            openLegalCrisisWindow();
+            setActiveEndTurn(false);
+            endTurnDisable();
         }
-        Shop.setDisable(!isDiceRolled);
-        Trade.setDisable(!isDiceRolled);
+        if (onDiceProcessed != null) {
+            onDiceProcessed.run();
+        }
     }
 
-    //برای استخراج مختصات از نام circle و line
+    public void enableButtonsAfterDiceRoll() {
+        if (!gameEngine.isSetupPhase()) {
+            BuildAPartnershipBTN.setDisable(getIsDiceRolled());
+            BuildAMVPBTN.setDisable(getIsDiceRolled());
+            UpgradeToUnicornBTN.setDisable(getIsDiceRolled());
+        }
+        Shop.setDisable(getIsDiceRolled());
+        Trade.setDisable(getIsDiceRolled());
+    }
+
     private int[] parseCoordinates(String id) {
         id = id.substring(1);
         String[] parts = id.split("_");
@@ -1638,11 +1700,14 @@ public class GameBoardController {
                     }
                 }
             }
-
+            if (player == null || player instanceof logic.models.PlayableAI) {
+                return;
+            }
             TradeRequestController tradeRequestController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
             tradeRequestController.setData(gameEngine, new Player[]{gameEngine.getCurrentPlayer(), player});
+            tradeRequestController.setLabel();
             tradeRequestController.setGameBoardController(this);
 
             Stage tradeStage = new Stage();
@@ -1662,6 +1727,8 @@ public class GameBoardController {
     @FXML
     private void openLegalCrisisWindow() {
         for (Player p : gameEngine.getPlayers()) {
+            if (p instanceof PlayableAI) continue;
+
             if (!gameEngine.isResourceBelowCrisisThreshold(p)) continue;
 
 
@@ -1708,7 +1775,7 @@ public class GameBoardController {
                 player.getResourceCount().getOrDefault(ResourceType.CLOUD, 0);
     }
 
-    void refreshPlayersResourcesUI() {
+    public void refreshPlayersResourcesUI() {
         List<Player> players = gameEngine.getPlayers();
         Player p = gameEngine.getCurrentPlayer();
         int playerIndex = gameEngine.getCurrentPlayerIndex();
@@ -1735,6 +1802,7 @@ public class GameBoardController {
             case 1: P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
                     break;
         }
+        updateDynamicTradeButtons();
     }
 
     void setPlayerResourcesUIText(Player p, List<Label> label) {
@@ -1746,7 +1814,7 @@ public class GameBoardController {
 
     }
 
-    void changePlayerTextColor() {
+    public void changePlayerTextColor() {
         int playerIndex = gameEngine.getCurrentPlayerIndex();
         if (playerIndex == 0) {
             resetLabelColor();
@@ -1834,14 +1902,14 @@ public class GameBoardController {
         TotalCount.setText("0");
     }
 
-    private void resetMarketPricesUI() {
+    public void resetMarketPricesUI() {
         TalentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.TALENT)));
         PatentPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.PATENT)));
         CloudPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.CLOUD)));
         DataPrice.setText(String.valueOf(gameEngine.getMarket().getPrice(ResourceType.DATA)));
     }
 
-    private void updatePlayersPoints() {
+    public void updatePlayersPoints() {
         List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
         switch (totalPoints.size()){
             case 4:
@@ -2205,6 +2273,186 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
+    //  -------------------متد های مربوط به AIPlayer-------------------
+    //----------------------------------------------------------------
+    public void startNextTurn() {
+        Player currentPlayer = gameEngine.getCurrentPlayer();
+
+        if (currentPlayer instanceof PlayableAI aiPlayer) {
+            updateTurnControls();
+            PauseTransition aiDelay = getPauseTransition(aiPlayer);
+            aiDelay.play();
+
+        } else {
+            updateTurnControls();
+        }
+    }
+
+    private PauseTransition getPauseTransition(PlayableAI aiPlayer) {
+        PauseTransition aiDelay = new PauseTransition(Duration.seconds(2.0));
+        aiDelay.setOnFinished(event -> {
+            aiPlayer.playTurn(gameEngine, () -> {
+
+                Platform.runLater(() -> {
+                    refreshPlayersResourcesUI();
+                    changePlayerTextColor();
+
+                    startNextTurn();
+                });
+            });
+        });
+        return aiDelay;
+    }
+
+    public void setHumanControlsDisabled(boolean disable) {
+        Platform.runLater(() -> {
+
+            EndTurnBTN.setDisable(disable);
+            BuildAMVPBTN.setDisable(disable);
+            BuildAPartnershipBTN.setDisable(disable);
+            UpgradeToUnicornBTN.setDisable(disable);
+            Shop.setDisable(disable);
+            Trade.setDisable(disable);
+            RollDiceBTN.setDisable(disable);
+        });
+    }
+
+    public Circle findCircleForVertex(Vertex vertex) {
+        Vertex[][] vertices = gameEngine.getMap().getVertices();
+        int mapRow = -1, mapCol = -1;
+
+
+        for (int r = 0; r < vertices.length; r++) {
+            for (int c = 0; c < vertices[r].length; c++) {
+                if (vertices[r][c] == vertex) {
+                    mapRow = r;
+                    mapCol = c;
+                    break;
+                }
+            }
+        }
+        if (mapRow == -1) return null;
+
+
+        int uiRow = mapRow * 2;
+        int uiCol = mapCol * 2;
+
+        String targetId = "#c" + uiRow + "_" + uiCol;
+
+        return (Circle) mapGrid.lookup(targetId);
+    }
+
+    public Line findLineForEdge(Edge edge) {
+        Vertex v1 = edge.getStart();
+        Vertex v2 = edge.getEnd();
+
+        Vertex[][] vertices = gameEngine.getMap().getVertices();
+        int r1 = -1, c1 = -1, r2 = -1, c2 = -1;
+
+        for (int r = 0; r < vertices.length; r++) {
+            for (int c = 0; c < vertices[r].length; c++) {
+                if (vertices[r][c] == v1) {
+                    r1 = r;
+                    c1 = c;
+                }
+                if (vertices[r][c] == v2) {
+                    r2 = r;
+                    c2 = c;
+                }
+            }
+        }
+        if (r1 == -1 || r2 == -1) return null;
+
+        int uiRow, uiCol;
+
+        if (r1 == r2) {
+
+            uiRow = r1 * 2;
+            uiCol = Math.min(c1, c2) * 2 + 1;
+        } else {
+
+            uiRow = Math.min(r1, r2) * 2 + 1;
+            uiCol = c1 * 2;
+        }
+
+        String targetId = "#l" + uiRow + "_" + uiCol;
+
+        return (Line) mapGrid.lookup(targetId);
+    }
+    public void updateDynamicTradeButtons() {
+        Platform.runLater(() -> {
+            if (gameEngine == null || gameEngine.getPlayers() == null) return;
+            trade1.setDisable(false);
+            trade2.setDisable(false);
+            trade3.setDisable(false);
+            for (Player p : gameEngine.getPlayers()) {
+                if (p == gameEngine.getCurrentPlayer()) continue;
+                if (p instanceof logic.models.PlayableAI) {
+                    if (name1 != null && name1.getText().contains(p.getPlayerName())) {
+                        trade1.setDisable(true);
+                    } else if (name2 != null && name2.getText().contains(p.getPlayerName())) {
+                        trade2.setDisable(true);
+                    } else if (name3 != null && name3.getText().contains(p.getPlayerName())) {
+                        trade3.setDisable(true);
+                    }
+                }
+            }
+        });
+    }
+    public void updateTurnControls() {
+        Platform.runLater(() -> {
+            if (gameEngine.getCurrentPlayer() instanceof logic.models.PlayableAI) {
+                setHumanControlsDisabled(true);
+                return;
+            }
+            if (gameEngine.isSetupPhase()) {
+                UpgradeToUnicornBTN.setDisable(true);
+                Shop.setDisable(true);
+                Trade.setDisable(true);
+                RollDiceBTN.setDisable(true);
+                BuildAMVPBTN.setDisable(false);
+                BuildAPartnershipBTN.setDisable(false);
+                EndTurnBTN.setDisable(true);
+                return;
+            }
+            boolean isDiceRolled = gameEngine.isDiceRolled();
+
+            RollDiceBTN.setDisable(isDiceRolled);
+
+            boolean canPerformActions = isDiceRolled;
+
+            UpgradeToUnicornBTN.setDisable(!canPerformActions);
+            Shop.setDisable(!canPerformActions);
+            BuildAMVPBTN.setDisable(!canPerformActions);
+            BuildAPartnershipBTN.setDisable(!canPerformActions);
+            EndTurnBTN.setDisable(!canPerformActions);
+
+            if (canPerformActions) {
+                Trade.setDisable(false);
+                updateDynamicTradeButtons();
+            } else {
+                Trade.setDisable(true);
+            }
+        });
+    }
+    public void checkTurnAdvancement() {
+        Player previousPlayer = gameEngine.getCurrentPlayer();
+        boolean wasSetupPhase = gameEngine.isSetupPhase();
+
+
+        gameEngine.checkAndMoveToNextSetupTurn();
+
+        Player newPlayer = gameEngine.getCurrentPlayer();
+        boolean isNowMainPhase = !gameEngine.isSetupPhase();
+
+        // برای تغییر فاز از ستاپ به اصلی
+        if (previousPlayer != newPlayer || (wasSetupPhase && isNowMainPhase)) {
+            resetBuildMode();
+            startNextTurn();
+        } else {
+            updateTurnControls();
+        }
+    }
     // ========================== Message Box ==========================
 
     private final Image SuccessImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/Success.png")));
