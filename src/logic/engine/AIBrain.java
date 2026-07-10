@@ -429,6 +429,7 @@ public class AIBrain {
             controller.changePlayerTextColor();
             controller.refreshPlayersResourcesUI();
         });
-        controller.updateControlsForCurrentPlayer();
+        controller.updateTurnControls();
+
     }
 }

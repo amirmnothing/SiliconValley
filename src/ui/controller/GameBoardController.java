@@ -851,7 +851,7 @@ public class GameBoardController {
 
         enableButtonsAfterDiceRoll();
         startNextTurn();
-
+        updateTurnControls();
         endTurnDisable();
         saveGameTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         saveGameNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -1153,6 +1153,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
+                checkTurnAdvancement();
                 if (gameEngine.isSetupPhase()) {
                     gameEngine.notifyMVPPlaced();
                 }
@@ -1178,6 +1179,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
+                checkTurnAdvancement();
                 gameEngine.updateLongestNetwork();
 
                 if (gameEngine.isSetupPhase()) {
@@ -1270,13 +1272,14 @@ public class GameBoardController {
     void RollDice(ActionEvent event) {
         try {
             ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
-            showDiceResultsUI(dice,null);
+            showDiceResultsUI(dice, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        updateTurnControls();
     }
 
-    public void showDiceResultsUI(ArrayList<Integer> Dice,Runnable onDiceProcessed) {
+    public void showDiceResultsUI(ArrayList<Integer> Dice, Runnable onDiceProcessed) {
 
         String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
         String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
@@ -1391,7 +1394,9 @@ public class GameBoardController {
                     }
                 }
             }
-
+            if (player == null || player instanceof logic.models.PlayableAI) {
+                return;
+            }
             TradeRequestController tradeRequestController = loader.getController();
 
             // Todo : You must send players to TRADE window to parse their resources
@@ -1487,7 +1492,7 @@ public class GameBoardController {
         P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
         P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
         P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
-
+        updateDynamicTradeButtons();
     }
 
     void setPlayerResourcesUIText(Player p, List<Label> label) {
@@ -1956,18 +1961,12 @@ public class GameBoardController {
         Player currentPlayer = gameEngine.getCurrentPlayer();
 
         if (currentPlayer instanceof PlayableAI aiPlayer) {
-            setHumanControlsDisabled(true);
-            RollDiceBTN.setDisable(true);
-            EndTurnBTN.setDisable(true);
-
+            updateTurnControls();
             PauseTransition aiDelay = getPauseTransition(aiPlayer);
             aiDelay.play();
 
         } else {
-
-            setHumanControlsDisabled(false);
-            RollDiceBTN.setDisable(false);
-            EndTurnBTN.setDisable(true);
+            updateTurnControls();
         }
     }
 
@@ -1996,11 +1995,8 @@ public class GameBoardController {
             UpgradeToUnicornBTN.setDisable(disable);
             Shop.setDisable(disable);
             Trade.setDisable(disable);
-            isDiceRolled = false;
             RollDiceBTN.setDisable(disable);
         });
-
-
     }
 
     public Circle findCircleForVertex(Vertex vertex) {
@@ -2065,9 +2061,78 @@ public class GameBoardController {
 
         return (Line) mapGrid.lookup(targetId);
     }
-    public void updateControlsForCurrentPlayer() {
-        boolean isAI = gameEngine.getCurrentPlayer().isAI();
-        setHumanControlsDisabled(isAI);
+    public void updateDynamicTradeButtons() {
+        Platform.runLater(() -> {
+            if (gameEngine == null || gameEngine.getPlayers() == null) return;
+            trade1.setDisable(false);
+            trade2.setDisable(false);
+            trade3.setDisable(false);
+            for (Player p : gameEngine.getPlayers()) {
+                if (p == gameEngine.getCurrentPlayer()) continue;
+                if (p instanceof logic.models.PlayableAI) {
+                    if (name1 != null && name1.getText().contains(p.getPlayerName())) {
+                        trade1.setDisable(true);
+                    } else if (name2 != null && name2.getText().contains(p.getPlayerName())) {
+                        trade2.setDisable(true);
+                    } else if (name3 != null && name3.getText().contains(p.getPlayerName())) {
+                        trade3.setDisable(true);
+                    }
+                }
+            }
+        });
     }
+    public void updateTurnControls() {
+        Platform.runLater(() -> {
+            if (gameEngine.getCurrentPlayer() instanceof logic.models.PlayableAI) {
+                setHumanControlsDisabled(true);
+                return;
+            }
+            if (gameEngine.isSetupPhase()) {
+                UpgradeToUnicornBTN.setDisable(true);
+                Shop.setDisable(true);
+                Trade.setDisable(true);
+                RollDiceBTN.setDisable(true);
+                BuildAMVPBTN.setDisable(false);
+                BuildAPartnershipBTN.setDisable(false);
+                EndTurnBTN.setDisable(true);
+                return;
+            }
+            boolean isDiceRolled = gameEngine.isDiceRolled();
 
+            RollDiceBTN.setDisable(isDiceRolled);
+
+            boolean canPerformActions = isDiceRolled;
+
+            UpgradeToUnicornBTN.setDisable(!canPerformActions);
+            Shop.setDisable(!canPerformActions);
+            BuildAMVPBTN.setDisable(!canPerformActions);
+            BuildAPartnershipBTN.setDisable(!canPerformActions);
+            EndTurnBTN.setDisable(!canPerformActions);
+
+            if (canPerformActions) {
+                Trade.setDisable(false);
+                updateDynamicTradeButtons();
+            } else {
+                Trade.setDisable(true);
+            }
+        });
+    }
+    public void checkTurnAdvancement() {
+        Player previousPlayer = gameEngine.getCurrentPlayer();
+        boolean wasSetupPhase = gameEngine.isSetupPhase();
+
+
+        gameEngine.checkAndMoveToNextSetupTurn();
+
+        Player newPlayer = gameEngine.getCurrentPlayer();
+        boolean isNowMainPhase = !gameEngine.isSetupPhase();
+
+        // برای تغییر فاز از ستاپ به اصلی
+        if (previousPlayer != newPlayer || (wasSetupPhase && isNowMainPhase)) {
+            resetBuildMode();
+            startNextTurn();
+        } else {
+            updateTurnControls();
+        }
+    }
 }
