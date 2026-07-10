@@ -22,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.BuildMode;
+import logic.enums.MessageMode;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.*;
@@ -2134,7 +2135,14 @@ public class GameBoardController {
     private Label MessageBody;
 
     @FXML
-    void showMessage(String messageHeader, String messageBody) {
+    void showMessage(String messageHeader, String messageBody, MessageMode mode) {
+
+        if (mode == MessageMode.ERROR) {
+
+        }
+
+
+
         MessageLine.setEndX(20 * messageHeader.length());
         MessageHeader.setText(messageHeader);
         MessageBody.setText(messageBody);
