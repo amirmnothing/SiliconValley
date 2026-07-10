@@ -2122,8 +2122,15 @@ public class GameBoardController {
 
     // ========================== Message Box ==========================
 
+    private final Image SuccessImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/Success.png")));
+    private final Image ErrorImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/Error.png")));
+    private final Image NormalImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/Normal.png")));
+
     @FXML
-    private VBox MessageBox;
+    private ImageView MessageIcon;
+
+    @FXML
+    private VBox MessageVBox;
 
     @FXML
     private Label MessageHeader;
@@ -2135,14 +2142,30 @@ public class GameBoardController {
     private Label MessageBody;
 
     @FXML
+    private Group MessageBox;
+
+    @FXML
     void showMessage(String messageHeader, String messageBody, MessageMode mode) {
 
         if (mode == MessageMode.ERROR) {
-
+            MessageIcon.setImage(ErrorImage);
+            MessageVBox.setStyle("-fx-border-color: red; -fx-border-width: 2");
+            MessageLine.setStroke(Color.RED);
+            MessageHeader.setTextFill(Color.RED);
+            MessageBody.setTextFill(Color.RED);
+        } else if (mode == MessageMode.SUCCESS) {
+            MessageIcon.setImage(SuccessImage);
+            MessageVBox.setStyle("-fx-border-color: green; -fx-border-width: 2");
+            MessageLine.setStroke(Color.GREEN);
+            MessageHeader.setTextFill(Color.GREEN);
+            MessageBody.setTextFill(Color.GREEN);
+        } else if (mode == MessageMode.NORMAL) {
+            MessageIcon.setImage(NormalImage);
+            MessageVBox.setStyle("-fx-border-color: white; -fx-border-width: 2");
+            MessageLine.setStroke(Color.WHITE);
+            MessageHeader.setTextFill(Color.WHITE);
+            MessageBody.setTextFill(Color.WHITE);
         }
-
-
-
         MessageLine.setEndX(20 * messageHeader.length());
         MessageHeader.setText(messageHeader);
         MessageBody.setText(messageBody);
