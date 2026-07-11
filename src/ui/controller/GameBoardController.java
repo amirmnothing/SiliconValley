@@ -2595,6 +2595,7 @@ public class GameBoardController {
             for (int j = 0; j < logicSectors[0].length; j++){
                 if (logicSectors[i][j].isAuditor()) {
                     StackPane stackPane = sectors.get(i + 5*j);
+                    previousAuditorLocation = stackPane;
 
                     Node sectorImage = stackPane.getChildren().get(0);
                     ColorAdjust colorAdjust = new ColorAdjust();
