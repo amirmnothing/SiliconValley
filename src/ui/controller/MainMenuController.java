@@ -280,7 +280,6 @@ public class MainMenuController {
     public String getPlayerSelection(int N) {
         ToggleGroup[] toggleGroups = new ToggleGroup[]{P1ToggleGroup, P2ToggleGroup, P3ToggleGroup, P4ToggleGroup};
         ToggleButton selected = (ToggleButton) (toggleGroups[N]).getSelectedToggle();
-        System.out.println(selected.getId().substring(2));
         return selected.getId().substring(2);
     }
 
@@ -577,7 +576,6 @@ public class MainMenuController {
             playerNameTF.setEditable(false);
             players.add(player);
             playerCount++;
-            System.out.println(players);
             disableGroup();
         }
 
