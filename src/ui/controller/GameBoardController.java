@@ -55,6 +55,7 @@ public class GameBoardController {
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
     ArrayList<SVGPath> hexagons;
+    ArrayList<StackPane> sectors;
 
     private GameEngine gameEngine;
 
@@ -462,6 +463,9 @@ public class GameBoardController {
 
     @FXML
     private Line l9_8;
+
+    @FXML
+    private StackPane S0,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24;
 
     // ========================== Table ==========================
 
@@ -1093,6 +1097,14 @@ public class GameBoardController {
                 h8_0, h8_2, h8_4, h8_6, h8_8, h8_10,
                 h10_0, h10_2, h10_4, h10_6, h10_8, h10_10
         ));
+        sectors = new ArrayList<>(Arrays.asList(
+                S0, S1, S2, S3, S4,
+                S5, S6, S7, S8, S9,
+                S10, S11, S12, S13, S14,
+                S15, S16, S17, S18, S19,
+                S20, S21, S22, S23, S24
+        ));
+
         LoadCompaniesAndPartnerships();
     }
 
@@ -2575,6 +2587,37 @@ public class GameBoardController {
                     line.setOnMouseClicked(null);
                     line.setOnMouseEntered(null);
                     line.setOnMouseExited(null);
+                }
+            }
+        }
+        Sector[][] logicSectors = gameEngine.getMap().getSectors();
+        for (int i = 0; i < logicSectors.length; i++){
+            for (int j = 0; j < logicSectors[0].length; j++){
+                if (logicSectors[i][j].isAuditor()) {
+                    StackPane stackPane = sectors.get(i + 5*j);
+
+                    Node sectorImage = stackPane.getChildren().get(0);
+                    ColorAdjust colorAdjust = new ColorAdjust();
+                    colorAdjust.setBrightness(-0.3);
+                    colorAdjust.setContrast(0);
+                    colorAdjust.setHue(0);
+                    colorAdjust.setSaturation(-1.0);
+
+                    ((ImageView) sectorImage).setEffect(colorAdjust);
+
+                    Node auditorSector = stackPane.getChildren().get(1);
+                    String auditorImagePath = "/assets/Sectors/Auditor.png";
+                    try (var stream = getClass().getResourceAsStream(auditorImagePath)) {
+                        if (stream != null) {
+                            Image auditorImage = new Image(stream);
+                            ((ImageView) auditorSector).setImage(auditorImage);
+                        } else {
+                            // Todo : Show error : Image not found... (print image path)
+                        }
+                    } catch (Exception e) {
+                        // Todo : Show error with a messagebox
+                    }
+                return;
                 }
             }
 
