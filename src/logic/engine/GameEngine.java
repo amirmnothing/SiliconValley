@@ -8,9 +8,11 @@ import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 import logic.models.*;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class GameEngine {
+public class GameEngine implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final Map map;
     private final List<Player> players;
     private final Market market;

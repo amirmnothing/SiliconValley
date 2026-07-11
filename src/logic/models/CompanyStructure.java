@@ -1,6 +1,9 @@
 package logic.models;
 
-public abstract class CompanyStructure {
+import java.io.Serializable;
+
+public abstract class CompanyStructure implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final Player owner;
     public CompanyStructure(Player owner){
         this.owner=owner;

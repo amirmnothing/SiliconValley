@@ -2,10 +2,12 @@ package logic.models;
 import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Sector {
+public class Sector implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ResourceType resourceType;
     private int activationNumber;
     private boolean isInspector;

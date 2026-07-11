@@ -1,7 +1,10 @@
 package logic.models;
 
 
-public class Edge {
+import java.io.Serializable;
+
+public class Edge implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Vertex start;
     private Vertex end;
     private Partnership partnership;

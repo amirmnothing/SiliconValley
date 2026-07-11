@@ -420,7 +420,7 @@
                               <Font name="Berlin Sans FB Demi Bold" size="32.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="LOAD GAME" textFill="#d4af37">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onLoadGame" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="LOAD GAME" textFill="#d4af37">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="32.0" />
                            </font>

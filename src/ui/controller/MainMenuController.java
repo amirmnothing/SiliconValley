@@ -21,13 +21,11 @@ import logic.engine.GameEngine;
 import logic.engine.Map;
 import logic.enums.PlayerRole;
 import logic.models.*;
+import logic.save.SaveManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class MainMenuController {
 
@@ -165,7 +163,7 @@ public class MainMenuController {
     private ToggleGroup P4ToggleGroup;
 
     private ImageView currentlySelectedImageView = null;
-    private java.util.Set<ImageView> lockedRoles = new java.util.HashSet<>();
+    private Set<ImageView> lockedRoles = new HashSet<>();
 
     @FXML
     public void initialize() {
@@ -298,6 +296,35 @@ public class MainMenuController {
         ResetAllPages();
         MainMenu.setOpacity(1);
         MainMenu.setMouseTransparent(false);
+    }
+
+    @FXML
+    void onLoadGame(ActionEvent event) throws IOException {
+        GameEngine gameEngine;
+        try {
+            gameEngine = SaveManager.load(saveTable.getSelectionModel().getSelectedItem().getFile());
+        } catch (IOException | ClassNotFoundException e) {
+            // Todo : Show error
+            return;
+        }
+        if (playerCount == 3) {
+            createPlayer(PlayerName4, PlayerRole4);
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
+        BorderPane root = loader.load();
+
+        GameBoardController controller = loader.getController();
+
+        controller.setGameEngine(gameEngine);
+        controller.initialize(gameEngine);
+
+        Stage gameBoardStage = new Stage();
+        gameBoardStage.setScene(new Scene(root));
+        gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
+        gameBoardStage.setResizable(false);
+
+        gameBoardStage.show();
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
     private void loadSaveFiles() {
