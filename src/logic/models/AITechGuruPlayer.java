@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     private final AIBrain brain;
-    public AITechGuruPlayer(int id, GameBoardController controller) {
-            super("AI Player"+id,new ArrayList<>());
+    public AITechGuruPlayer(String name, GameBoardController controller) {
+            super(name+" AI",new ArrayList<>());
         this.brain = new AIBrain(controller);
         this.playerRole = PlayerRole.THE_TECH_GURU_CTO;
     }
@@ -24,5 +24,8 @@ public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     }
     public boolean isAI(){
         return true;
+    }
+    public void setController(GameBoardController controller) {
+        this.brain.setController(controller);
     }
 }

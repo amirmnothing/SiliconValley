@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.engine.GameEngine;
@@ -36,6 +37,8 @@ public class MainMenuController {
     private final Image unselectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanUnselected.png")));
     private int playerCount = 0;
     List<Player> players = new ArrayList<>();
+    GameBoardController controller;
+    BorderPane root;
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -77,6 +80,19 @@ public class MainMenuController {
 
     @FXML
     private Label PlayerRole4;
+
+    @FXML
+    private HBox P1;
+
+    @FXML
+    private HBox P2;
+
+    @FXML
+    private HBox P3;
+
+    @FXML
+    private HBox P4;
+
 
     @FXML
     private ImageView TheHackerCEO;
@@ -153,6 +169,16 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
+            root = loader.load();
+
+            controller = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         Player1Label.setTextFill(Color.web(GameEngine.PLAYER1COLOR));
         Player2Label.setTextFill(Color.web(GameEngine.PLAYER2COLOR));
         Player3Label.setTextFill(Color.web(GameEngine.PLAYER3COLOR));
@@ -171,8 +197,7 @@ public class MainMenuController {
             if (oldToggle != null) {
                 if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
                 }
             }
@@ -180,8 +205,7 @@ public class MainMenuController {
             if (newToggle != null) {
                 if (isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
                 }
             }
@@ -191,8 +215,7 @@ public class MainMenuController {
             if (oldToggle != null) {
                 if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
                 }
             }
@@ -200,8 +223,7 @@ public class MainMenuController {
             if (newToggle != null) {
                 if (isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
                 }
             }
@@ -211,8 +233,7 @@ public class MainMenuController {
             if (oldToggle != null) {
                 if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
                 }
             }
@@ -220,8 +241,7 @@ public class MainMenuController {
             if (newToggle != null) {
                 if (isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
                 }
             }
@@ -231,8 +251,7 @@ public class MainMenuController {
             if (oldToggle != null) {
                 if (isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
                 }
             }
@@ -240,15 +259,14 @@ public class MainMenuController {
             if (newToggle != null) {
                 if (isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
-                }
-                else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
+                } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
                 }
             }
         });
     }
 
-    private boolean isHumanToggle (String Id){
+    private boolean isHumanToggle(String Id) {
         return Id.substring(2).equals("HumanToggle");
     }
 
@@ -261,7 +279,7 @@ public class MainMenuController {
 
     public String getPlayerSelection(int N) {
         ToggleGroup[] toggleGroups = new ToggleGroup[]{P1ToggleGroup, P2ToggleGroup, P3ToggleGroup, P4ToggleGroup};
-        ToggleButton selected = (ToggleButton) (toggleGroups[N-1]).getSelectedToggle();
+        ToggleButton selected = (ToggleButton) (toggleGroups[N]).getSelectedToggle();
         System.out.println(selected.getId().substring(2));
         return selected.getId().substring(2);
     }
@@ -307,7 +325,9 @@ public class MainMenuController {
         ResetAllPages();
         GameLobby.setOpacity(1);
         GameLobby.setMouseTransparent(false);
-        disableTextField();
+        disableGroup();
+
+
     }
 
     @FXML
@@ -434,23 +454,28 @@ public class MainMenuController {
 
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
-        if (playerCount == 3) {
-            createPlayer(PlayerName4, PlayerRole4);
+        if (playerCount == 1) {
+            createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"));
+        } else if (playerCount == 2) {
+            createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"));
+        } else if (playerCount == 3) {
+            createPlayer(PlayerName4, PlayerRole4,  getPlayerSelection(3).equals("AIToggle"));
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
-        BorderPane root = loader.load();
 
-        GameBoardController controller = loader.getController();
 
         // Todo: Start game based on entered settings
 
         Map gameMap = new Map(5, 5);
         GameEngine gameEngine = new GameEngine(gameMap, players);
+
+
+        controller.setGameEngine(gameEngine);
+        controller.initialize(gameEngine);
+
         gameEngine.startSetupPhase();
 
         // پاس دادن موتور بازی به کنترلر
-        controller.setGameEngine(gameEngine);
-        controller.initialize(gameEngine);
+
 
         Stage gameBoardStage = new Stage();
         gameBoardStage.setScene(new Scene(root));
@@ -485,7 +510,7 @@ public class MainMenuController {
         isTheTechGuruCTOSelected = false;
         isTheVCFundedSelected = false;
         playerCount = 0;
-        disableTextField();
+        disableGroup();
         PlayerName1.setText(null);
         PlayerName2.setText(null);
         PlayerName3.setText(null);
@@ -504,26 +529,25 @@ public class MainMenuController {
     void onNextPlayer(MouseEvent event) {
         int activeSlot = playerCount;
         if (playerCount == 0) {
-            createPlayer(PlayerName1, PlayerRole1);
+            createPlayer(PlayerName1, PlayerRole1, getPlayerSelection(0).equals("AIToggle"));
         } else if (playerCount == 1) {
-            createPlayer(PlayerName2, PlayerRole2);
+            createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"));
         } else if (playerCount == 2) {
-            createPlayer(PlayerName3, PlayerRole3);
+            createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"));
         }
         if (currentlySelectedImageView != null && activeSlot < 3) {
             if (currentlySelectedImageView != NoRole) {
                 lockedRoles.add(currentlySelectedImageView);
                 currentlySelectedImageView.setDisable(true);
                 currentlySelectedImageView.setOpacity(0.5);
-            }
-            else {
+            } else {
                 NoRole.setEffect(null);
             }
             currentlySelectedImageView = null;
         }
     }
 
-    public void createPlayer(TextField playerNameTF, Label playerRole) {
+    public void createPlayer(TextField playerNameTF, Label playerRole, boolean isAI) {
         PlayerRole playerR = role(playerRole);
         if (playerR == null) {
             return;
@@ -531,18 +555,32 @@ public class MainMenuController {
         String playerName;
         if (!playerNameTF.getText().isEmpty()) {
             playerName = playerNameTF.getText();
-            Player player = switch (playerR) {
-                case THE_HACKER_CEO -> new HackerCEOPlayer(playerName, new ArrayList<>());
-                case THE_TECH_GURU_CTO -> new TechGuruPlayer(playerName, new ArrayList<>());
-                case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
-                case NONE -> new Player(playerName, new ArrayList<>());
-            };
+            Player player = null;
+            if (!isAI) {
+                player = switch (playerR) {
+                    case THE_HACKER_CEO -> new HackerCEOPlayer(playerName, new ArrayList<>());
+                    case THE_TECH_GURU_CTO -> new TechGuruPlayer(playerName, new ArrayList<>());
+                    case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
+                    case NONE -> new Player(playerName, new ArrayList<>());
+                };
+            } else {
+                player = switch (playerR) {
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller);
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller);
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller);
+                    case NONE -> new AIPlayer(playerName, controller);
+                };
+            }
+
+
             player.setRole(playerR);
             playerNameTF.setEditable(false);
             players.add(player);
             playerCount++;
-            disableTextField();
+            System.out.println(players);
+            disableGroup();
         }
+
     }
 
     public PlayerRole role(Label playerRole) {
@@ -561,21 +599,27 @@ public class MainMenuController {
         return null;
     }
 
-    public void disableTextField() {
+    public void disableGroup() {
         if (playerCount == 0) {
-            PlayerName1.setDisable(false);
-            PlayerName2.setDisable(true);
-            PlayerName3.setDisable(true);
-            PlayerName4.setDisable(true);
+            P1.setDisable(false);
+            P2.setDisable(true);
+            P3.setDisable(true);
+            P4.setDisable(true);
         } else if (playerCount == 1) {
-            PlayerName2.setDisable(false);
-            PlayerName3.setDisable(true);
-            PlayerName4.setDisable(true);
+            P1.setDisable(true);
+            P2.setDisable(false);
+            P3.setDisable(true);
+            P4.setDisable(true);
         } else if (playerCount == 2) {
-            PlayerName3.setDisable(false);
-            PlayerName4.setDisable(true);
+            P1.setDisable(true);
+            P2.setDisable(true);
+            P3.setDisable(false);
+            P4.setDisable(true);
         } else if (playerCount == 3) {
-            PlayerName4.setDisable(false);
+            P1.setDisable(true);
+            P2.setDisable(true);
+            P3.setDisable(true);
+            P4.setDisable(false);
         }
     }
 }

@@ -69,7 +69,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="115.0" prefWidth="988.0" spacing="30.0">
                                  <children>
-                                    <HBox>
+                                    <HBox fx:id="P1">
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="375.0">
                                              <children>
@@ -140,7 +140,7 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox>
+                                    <HBox fx:id="P2">
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="375.0">
                                              <children>
@@ -215,7 +215,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
-                                    <HBox>
+                                    <HBox fx:id="P3">
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="375.0">
                                              <children>
@@ -286,7 +286,7 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox>
+                                    <HBox fx:id="P4">
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="115.0" prefWidth="375.0">
                                              <children>

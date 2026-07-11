@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class AIPlayer extends Player implements PlayableAI {
     private final AIBrain brain;
 
-    public AIPlayer(int id, GameBoardController controller) {
-        super("AI Player" + id, new ArrayList<>());
+    public AIPlayer(String name, GameBoardController controller) {
+        super(name+" AI", new ArrayList<>());
         this.playerRole = null;
         this.brain = new AIBrain(controller);
     }
@@ -25,5 +25,8 @@ public class AIPlayer extends Player implements PlayableAI {
     }
     public boolean isAI(){
         return true;
+    }
+    public void setController(GameBoardController controller) {
+        this.brain.setController(controller);
     }
 }

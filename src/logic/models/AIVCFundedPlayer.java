@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class AIVCFundedPlayer extends VCFundedPlayer implements PlayableAI {
     private final AIBrain brain;
 
-    public AIVCFundedPlayer(int id, GameBoardController controller) {
-        super("AI Player"+id,new ArrayList<>());
+    public AIVCFundedPlayer(String name, GameBoardController controller) {
+        super(name+" AI",new ArrayList<>());
         this.brain = new AIBrain(controller);
         this.playerRole= PlayerRole.THE_VC_FUNDED;
     }
@@ -25,5 +25,8 @@ public class AIVCFundedPlayer extends VCFundedPlayer implements PlayableAI {
     }
     public boolean isAI(){
         return true;
+    }
+    public void setController(GameBoardController controller) {
+        this.brain.setController(controller);
     }
 }

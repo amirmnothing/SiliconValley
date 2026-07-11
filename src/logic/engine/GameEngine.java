@@ -1,5 +1,6 @@
 package logic.engine;
 
+import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
 import javafx.scene.paint.Color;
 import logic.enums.BuildMode;
@@ -43,16 +44,18 @@ public class GameEngine {
         this.market = new Market();
         this.currentPlayerIndex = 0;
     }
+
     public void processCrisisForAIOnly() {
         for (Player p : players) {
-            if (p instanceof PlayableAI ) {
-                if (isResourceBelowCrisisThreshold(p)){
+            if (p instanceof PlayableAI) {
+                if (isResourceBelowCrisisThreshold(p)) {
                     java.util.Map<ResourceType, Integer> discardMap = ((PlayableAI) p).getBrain().calculateResourcesToDiscard(p);
                     discardSelectedResources(p, discardMap);
                 }
             }
         }
     }
+
     public List<Player> getPlayers() {
         return players;
     }
@@ -112,16 +115,17 @@ public class GameEngine {
             });
         }
     }
+
     public void nextTurn() {
         nextTurn(null);
     }
 
     public Player winnerPlayer() {
         Player currentTurnPlayer = getCurrentPlayer();
-        if(currentTurnPlayer.calculateVictoryPoints()>=10){
+        if (currentTurnPlayer.calculateVictoryPoints() >= 10) {
             return currentTurnPlayer;
         }
-        List<Player> potentialWinners = new  ArrayList<>();
+        List<Player> potentialWinners = new ArrayList<>();
         for (Player player : players) {
             if (player == currentTurnPlayer) continue;
             if (player.calculateVictoryPoints() >= 10) {
@@ -133,7 +137,7 @@ public class GameEngine {
             return null;
         }
         Player winner = potentialWinners.get(0);
-        for(Player player : potentialWinners) {
+        for (Player player : potentialWinners) {
             if (player.calculateVictoryPoints() > winner.calculateVictoryPoints()) {
                 winner = player;
             }
@@ -323,6 +327,30 @@ public class GameEngine {
         if (!setupPhaseActive) player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
         // TODO : Show Partnership created successfully
+    }
+
+
+    public boolean canUpgradeToUnicorn(int row, int col) {
+        if (setupPhaseActive) return false;
+        Vertex[][] vertices = map.getVertices();
+        Vertex vertex = vertices[row][col];
+        if (vertex.getCompanyStructure() instanceof MVP) {
+            return vertex.getCompanyStructure().getOwner() == getCurrentPlayer();
+        }
+        return false;
+    }
+
+    public void upgradeToUnicorn(Vertex vertex,Player player) {
+        if(vertex.getCompanyStructure()==null||vertex.getCompanyStructure().getOwner()!=getCurrentPlayer() ){
+            throw new InvalidPlacementException(vertex,"You can't make unicorns here");
+        }
+        player.deductResourcesForUnicornUpgrade();
+        CompanyStructure oldMvp = vertex.getCompanyStructure();
+        Unicorn newUnicorn = new Unicorn(player);
+        vertex.setCompanyStructure(newUnicorn);
+        player.removeCompanyStructure(oldMvp);
+        player.addCompanyStructure(newUnicorn);
+
     }
 
 
@@ -516,6 +544,7 @@ public class GameEngine {
             });
         }
     }
+
     public void endCurrentTurn() {
         if (setupPhaseActive) {
             throw new IllegalStateException("Cannot end normal turn during setup phase.");

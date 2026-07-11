@@ -1,5 +1,6 @@
 package ui.controller;
 
+import exception.InvalidPlacementException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -920,6 +921,7 @@ public class GameBoardController {
             }
         }
     }
+
     public void performAIAuditorMove(int targetRow, int targetCol) {
         Sector targetSector = gameEngine.getMap().getSectors()[targetRow][targetCol];
 
@@ -1424,6 +1426,17 @@ public class GameBoardController {
         }
     }
 
+    public void updateUnicornUI(Vertex vertex, Color playerColor) {
+        SVGPath hexagon = findSVGPathForVertex(vertex);
+        hexagon.setOnMouseExited(null);
+        hexagon.setOnMouseClicked(null);
+
+        hexagon.setFill(playerColor);
+        hexagon.setStroke(Color.BLACK); // اگر نیاز به حاشیه دارید
+        hexagon.setOpacity(1.0); // اگر قبلاً نامرئی یا کم‌رنگ بوده، حتماً کامل نمایش داده شود
+        hexagon.setVisible(true);
+    }
+
     @FXML
     void SetColorUnchangable(MouseEvent event) {
         if (gameEngine.getCurrentBuildMode() == BuildMode.NONE) {
@@ -1445,6 +1458,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
+                showMessage("Build MVP", "Congratulations! " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the MVP", MessageMode.SUCCESS);
                 checkTurnAdvancement();
                 if (gameEngine.isSetupPhase()) {
                     gameEngine.notifyMVPPlaced();
@@ -1452,9 +1466,8 @@ public class GameBoardController {
 
                 updateVertexUI(vertex, color);
                 resetBuildMode();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InvalidPlacementException e) {
+                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
             }
         } else if (event.getSource() instanceof Line line && gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP) {
 
@@ -1471,6 +1484,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
+                showMessage("Build Partnership", "Congratulations! " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Partnership.", MessageMode.SUCCESS);
                 checkTurnAdvancement();
                 gameEngine.updateLongestNetwork();
 
@@ -1482,21 +1496,34 @@ public class GameBoardController {
                 resetBuildMode();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
+
             }
-        } else if (event.getSource() instanceof SVGPath && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN) {
+        } else if (event.getSource() instanceof SVGPath hexagon && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN) {
             if (gameEngine.isSetupPhase()) {
                 return;
                 //TODO میتوان اکسپشن زد
             }
+            Vertex vertex = getVertexFromCircle(hexagon);
+            int[] coordinates = parseCoordinates(hexagon.getId());
 
-            // Todo : دستورات ساخت Unicorn
+            if (!gameEngine.canUpgradeToUnicorn(coordinates[0] / 2, coordinates[1] / 2)) {
+                return;
+            }
 
-            SVGPath hexadon = (SVGPath) event.getSource();
-            hexadon.setOnMouseExited(null);
-            hexadon.setOnMouseClicked(null);
+            try {
+                Color color = getPlayerColor();
+                gameEngine.upgradeToUnicorn(vertex, gameEngine.getCurrentPlayer());
+                showMessage("Build Unicorn", "Congratulations!  " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Unicorn.", MessageMode.SUCCESS);
 
-            resetBuildMode();
+                checkTurnAdvancement();
+                updateUnicornUI(vertex, color);
+                resetBuildMode();
+
+            } catch (Exception e) {
+                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
+
+            }
 
         }
 
@@ -1634,6 +1661,14 @@ public class GameBoardController {
 
     private Vertex getVertexFromCircle(Circle circle) {
         int[] coordinates = parseCoordinates(circle.getId());
+        int mapRow = coordinates[0] / 2;
+        int mapCol = coordinates[1] / 2;
+
+        return gameEngine.getMap().getVertices()[mapRow][mapCol];
+    }
+
+    private Vertex getVertexFromCircle(SVGPath hexagon) {
+        int[] coordinates = parseCoordinates(hexagon.getId());
         int mapRow = coordinates[0] / 2;
         int mapCol = coordinates[1] / 2;
 
@@ -1796,11 +1831,15 @@ public class GameBoardController {
             setPlayerResourcesUIText(p, labels);
         }
         switch (players.size()) {
-            case 4: P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
-            case 3: P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
-            case 2: P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
-            case 1: P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
-                    break;
+            case 4:
+                P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
+            case 3:
+                P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
+            case 2:
+                P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
+            case 1:
+                P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
+                break;
         }
         updateDynamicTradeButtons();
     }
@@ -1911,7 +1950,7 @@ public class GameBoardController {
 
     public void updatePlayersPoints() {
         List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
-        switch (totalPoints.size()){
+        switch (totalPoints.size()) {
             case 4:
                 P4PointColor.setText(Integer.toString(totalPoints.get(3)));
             case 3:
@@ -2379,6 +2418,32 @@ public class GameBoardController {
 
         return (Line) mapGrid.lookup(targetId);
     }
+
+    public SVGPath findSVGPathForVertex(Vertex vertex) {
+        Vertex[][] vertices = gameEngine.getMap().getVertices();
+        int mapRow = -1, mapCol = -1;
+
+
+        for (int r = 0; r < vertices.length; r++) {
+            for (int c = 0; c < vertices[r].length; c++) {
+                if (vertices[r][c] == vertex) {
+                    mapRow = r;
+                    mapCol = c;
+                    break;
+                }
+            }
+        }
+        if (mapRow == -1) return null;
+
+
+        int uiRow = mapRow * 2;
+        int uiCol = mapCol * 2;
+
+        String targetId = "#h" + uiRow + "_" + uiCol;
+
+        return (SVGPath) mapGrid.lookup(targetId);
+    }
+
     public void updateDynamicTradeButtons() {
         Platform.runLater(() -> {
             if (gameEngine == null || gameEngine.getPlayers() == null) return;
@@ -2399,6 +2464,7 @@ public class GameBoardController {
             }
         });
     }
+
     public void updateTurnControls() {
         Platform.runLater(() -> {
             if (gameEngine.getCurrentPlayer() instanceof logic.models.PlayableAI) {
@@ -2435,6 +2501,7 @@ public class GameBoardController {
             }
         });
     }
+
     public void checkTurnAdvancement() {
         Player previousPlayer = gameEngine.getCurrentPlayer();
         boolean wasSetupPhase = gameEngine.isSetupPhase();

@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AIBrain {
-    private final GameBoardController controller;
+    private GameBoardController controller;
 
     public AIBrain(GameBoardController controller) {
         this.controller = controller;
@@ -54,8 +54,8 @@ public class AIBrain {
                             refreshUI(engine);
 
                             scheduleAction(() -> {
-//                                tryUpgradeToUnicorn(aiPlayer, engine);
-//                                refreshUI(engine);
+                                tryUpgradeToUnicorn(aiPlayer, engine);
+                                refreshUI(engine);
 
                                 scheduleAction(() -> {
                                     tryBuildMVP(aiPlayer, engine);
@@ -362,7 +362,13 @@ public class AIBrain {
                             v.setCompanyStructure(newUnicorn);
                             aiPlayer.removeCompanyStructure(oldMvp);
                             aiPlayer.addCompanyStructure(newUnicorn);
+                            Platform.runLater(() -> {
+                                controller.updateUnicornUI(v, controller.getPlayerColor());
 
+                                controller.refreshPlayersResourcesUI();
+                                controller.updatePlayersPoints();
+                            });
+                            refreshUI(engine);
                             return;
                         } catch (InsufficientResourcesException e) {
                             e.printStackTrace();
@@ -431,5 +437,8 @@ public class AIBrain {
         });
         controller.updateTurnControls();
 
+    }
+    public void setController(GameBoardController controller) {
+        this.controller=controller;
     }
 }
