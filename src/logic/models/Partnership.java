@@ -2,11 +2,13 @@ package logic.models;
 
 import logic.enums.ResourceType;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Partnership {
+public class Partnership implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final Player owner;
 
     public static final Map<ResourceType, Integer> CONSTRUCTION_COST;

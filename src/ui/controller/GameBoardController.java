@@ -32,6 +32,7 @@ import logic.enums.MessageMode;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.*;
+import logic.save.SaveManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -1092,6 +1093,7 @@ public class GameBoardController {
                 h8_0, h8_2, h8_4, h8_6, h8_8, h8_10,
                 h10_0, h10_2, h10_4, h10_6, h10_8, h10_10
         ));
+        LoadCompaniesAndPartnerships();
     }
 
     public String role(PlayerRole playerRole) {
@@ -1286,11 +1288,11 @@ public class GameBoardController {
     }
 
     @FXML
-    void ChangeHexadonToNotChoose(MouseEvent event) {
+    void ChangeHexagonToNotChoose(MouseEvent event) {
         Player owner = null;
 
-        if (event.getSource() instanceof SVGPath hexadon) {
-            for (Node n : ((StackPane) (hexadon.getParent())).getChildren()) {
+        if (event.getSource() instanceof SVGPath hexagon) {
+            for (Node n : ((StackPane) (hexagon.getParent())).getChildren()) {
                 if (n instanceof Circle) {
                     Circle circle = (Circle) n;
                     int[] Coordinates = parseCoordinates(circle.getId());
@@ -1298,8 +1300,8 @@ public class GameBoardController {
                         owner = gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure().getOwner();
                     }
 
-                    hexadon.setOpacity(0);
-                    hexadon.setMouseTransparent(true);
+                    hexagon.setOpacity(0);
+                    hexagon.setMouseTransparent(true);
 
                     circle.setOpacity(1);
                     circle.setMouseTransparent(false);
@@ -1308,34 +1310,17 @@ public class GameBoardController {
                         circle.setStroke(Color.BLACK);
                         circle.setStrokeWidth(1);
                     } else {
-                        List<Player> playersList = gameEngine.getPlayers();
-                        Color color = null;
-                        for (int i = 0; i < playersList.size(); i++) {
-                            if (playersList.get(i) == owner) {
-                                switch (i) {
-                                    case 0:
-                                        color = Color.web(PLAYER1COLOR);
-                                        break;
-                                    case 1:
-                                        color = Color.web(PLAYER2COLOR);
-                                        break;
-                                    case 2:
-                                        color = Color.web(PLAYER3COLOR);
-                                        break;
-                                    case 3:
-                                        color = Color.web(PLAYER4COLOR);
-                                        break;
-                                }
-                                circle.setFill(color);
-                                circle.setStroke(Color.BLACK);
-                                circle.setStrokeWidth(1);
+                            List<Player> playersList = gameEngine.getPlayers();
+                            Color color = null;
+                            color = getPlayerColor(owner, playersList);
+                            circle.setFill(color);
+                            circle.setStroke(Color.BLACK);
+                            circle.setStrokeWidth(1);
                             }
                         }
                     }
                 }
             }
-        }
-    }
 
     @FXML
     void ChangeColorToNotChooseLine(MouseEvent event) {
@@ -1382,6 +1367,24 @@ public class GameBoardController {
             default:
                 return Color.BLACK;
         }
+    }
+
+    public Color getPlayerColor (Player player, List<Player> playersList) {
+        for (int i = 0; i < playersList.size(); i++) {
+            if (playersList.get(i) == player) {
+                switch (i) {
+                    case 0:
+                        return (Color.web(PLAYER1COLOR));
+                    case 1:
+                        return (Color.web(PLAYER2COLOR));
+                    case 2:
+                        return (Color.web(PLAYER3COLOR));
+                    case 3:
+                        return (Color.web(PLAYER4COLOR));
+                }
+            }
+        }
+        return Color.BLACK;
     }
 
     @FXML
@@ -1492,9 +1495,9 @@ public class GameBoardController {
 
             // Todo : دستورات ساخت Unicorn
 
-            SVGPath hexadon = (SVGPath) event.getSource();
-            hexadon.setOnMouseExited(null);
-            hexadon.setOnMouseClicked(null);
+            SVGPath hexagon = (SVGPath) event.getSource();
+            hexagon.setOnMouseExited(null);
+            hexagon.setOnMouseClicked(null);
 
             resetBuildMode();
 
@@ -2145,6 +2148,11 @@ public class GameBoardController {
 
             File newFile = new File("saves/" + CreateSaveNameField.getText() + ".sv");
             if (newFile.createNewFile()) {
+                try {
+                    SaveManager.save(gameEngine, newFile);
+                } catch (IOException e){
+                    FileSaveFailedAlert(e.getMessage());
+                }
                 loadSaveFiles();
                 FileCreatedSuccessfullyAlert();
             } else {
@@ -2227,7 +2235,7 @@ public class GameBoardController {
                 if (chosenFile.getFile().delete()) {
                     saveList.remove(chosenFile);
                     FileDeletedSuccessfullyAlert();
-                } else FileDeleteFailedfullyAlert();
+                } else FileDeleteFailedAlert();
             }
         } else FileNotChosenAlert();
     }
@@ -2264,10 +2272,40 @@ public class GameBoardController {
         alert.showAndWait();
     }
 
-    void FileDeleteFailedfullyAlert() {
+    void FileDeleteFailedAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to delete save file");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    @FXML
+    void onSaveGame(ActionEvent event) {
+        FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
+        try {
+            SaveManager.save(gameEngine, chosenFile.getFile());
+            FileSavedSuccessfullyAlert();
+        } catch (IOException e){
+            FileSaveFailedAlert(e.getMessage());
+        }
+    }
+
+    void FileSaveFailedAlert(String Message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Failed to save file");
+        alert.setContentText(Message);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        alert.showAndWait();
+    }
+
+    void FileSavedSuccessfullyAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Game saved successfully");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
         alert.showAndWait();
@@ -2503,5 +2541,43 @@ public class GameBoardController {
         MessageHeader.setText(messageHeader);
         MessageBody.setText(messageBody);
         MessageBox.setVisible(true);
+    }
+
+    // ======================= Load UI =======================
+
+    void LoadCompaniesAndPartnerships(){
+        Player owner;
+        for (Circle circle : circles) {
+            if (getVertexFromCircle(circle).getCompanyStructure() != null) {
+                owner = getVertexFromCircle(circle).getCompanyStructure().getOwner();
+                if (owner != null) {
+                    if (getVertexFromCircle(circle).getCompanyStructure() instanceof MVP) {
+                        circle.setFill(getPlayerColor(owner, gameEngine.getPlayers()));
+                    }
+                    else if (getVertexFromCircle(circle).getCompanyStructure() instanceof Unicorn) {
+                        SVGPath hexagon = hexagons.get(circles.indexOf(circle));
+                        circle.setOpacity(0);
+                        circle.setMouseTransparent(true);
+                        hexagon.setOnMouseExited(null);
+                        hexagon.setOnMouseClicked(null);
+                        hexagon.setFill(getPlayerColor(owner, gameEngine.getPlayers()));
+                        hexagon.setOpacity(1);
+                        hexagon.setMouseTransparent(false);
+                    }
+                }
+            }
+        }
+        for (Line line : lines) {
+            if (getEdgeFromLine(line).getPartnership() != null){
+                owner = getEdgeFromLine(line).getPartnership().getOwner();
+                if (owner != null) {
+                    line.setStroke(getPlayerColor(owner, gameEngine.getPlayers()));
+                    line.setOnMouseClicked(null);
+                    line.setOnMouseEntered(null);
+                    line.setOnMouseExited(null);
+                }
+            }
+
+        }
     }
 }

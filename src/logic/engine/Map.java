@@ -6,11 +6,12 @@ import logic.models.Edge;
 import logic.models.Sector;
 import logic.models.Vertex;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Map {
+public class Map implements Serializable {
     private final int rows;
     private final int cols;
 

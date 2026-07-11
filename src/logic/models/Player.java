@@ -4,12 +4,14 @@ import exception.InsufficientResourcesException;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final String playerName;
     public static final int LONGEST_NETWORK_BONUS_POINTS = 2;
     public static final int DEFAULT_CRISIS_THRESHOLD = 7;
@@ -124,7 +126,6 @@ public class Player {
                 }
             }
             throw new InsufficientResourcesException(this, "There are not enough resources to build an Partnership", missingResources);
-
         }
     }
 
