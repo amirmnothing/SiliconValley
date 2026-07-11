@@ -1470,6 +1470,7 @@ public class GameBoardController {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                checkTurnAdvancement();
             }
         } else if (event.getSource() instanceof Line line && gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP) {
 
@@ -1498,6 +1499,7 @@ public class GameBoardController {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                checkTurnAdvancement();
             }
         } else if (event.getSource() instanceof SVGPath && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN) {
             if (gameEngine.isSetupPhase()) {
@@ -1512,7 +1514,7 @@ public class GameBoardController {
             hexagon.setOnMouseClicked(null);
 
             resetBuildMode();
-
+            checkTurnAdvancement();
         }
 
 
