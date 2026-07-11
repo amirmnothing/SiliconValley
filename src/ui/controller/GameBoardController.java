@@ -465,7 +465,7 @@ public class GameBoardController {
     private Line l9_8;
 
     @FXML
-    private StackPane S0,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24;
+    private StackPane S0, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19, S20, S21, S22, S23, S24;
 
     // ========================== Table ==========================
 
@@ -925,6 +925,7 @@ public class GameBoardController {
             }
         }
     }
+
     public void performAIAuditorMove(int targetRow, int targetCol) {
         Sector targetSector = gameEngine.getMap().getSectors()[targetRow][targetCol];
 
@@ -1322,17 +1323,17 @@ public class GameBoardController {
                         circle.setStroke(Color.BLACK);
                         circle.setStrokeWidth(1);
                     } else {
-                            List<Player> playersList = gameEngine.getPlayers();
-                            Color color = null;
-                            color = getPlayerColor(owner, playersList);
-                            circle.setFill(color);
-                            circle.setStroke(Color.BLACK);
-                            circle.setStrokeWidth(1);
-                            }
-                        }
+                        List<Player> playersList = gameEngine.getPlayers();
+                        Color color = null;
+                        color = getPlayerColor(owner, playersList);
+                        circle.setFill(color);
+                        circle.setStroke(Color.BLACK);
+                        circle.setStrokeWidth(1);
                     }
                 }
             }
+        }
+    }
 
     @FXML
     void ChangeColorToNotChooseLine(MouseEvent event) {
@@ -1381,7 +1382,7 @@ public class GameBoardController {
         }
     }
 
-    public Color getPlayerColor (Player player, List<Player> playersList) {
+    public Color getPlayerColor(Player player, List<Player> playersList) {
         for (int i = 0; i < playersList.size(); i++) {
             if (playersList.get(i) == player) {
                 switch (i) {
@@ -1813,11 +1814,15 @@ public class GameBoardController {
             setPlayerResourcesUIText(p, labels);
         }
         switch (players.size()) {
-            case 4: P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
-            case 3: P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
-            case 2: P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
-            case 1: P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
-                    break;
+            case 4:
+                P4Resources.setText(String.valueOf(totalResourcesCount(players.get(3))));
+            case 3:
+                P3Resources.setText(String.valueOf(totalResourcesCount(players.get(2))));
+            case 2:
+                P2Resources.setText(String.valueOf(totalResourcesCount(players.get(1))));
+            case 1:
+                P1Resources.setText(String.valueOf(totalResourcesCount(players.get(0))));
+                break;
         }
         updateDynamicTradeButtons();
     }
@@ -1928,7 +1933,7 @@ public class GameBoardController {
 
     public void updatePlayersPoints() {
         List<Integer> totalPoints = gameEngine.calculatePlayerPoints();
-        switch (totalPoints.size()){
+        switch (totalPoints.size()) {
             case 4:
                 P4PointColor.setText(Integer.toString(totalPoints.get(3)));
             case 3:
@@ -2164,7 +2169,7 @@ public class GameBoardController {
             if (newFile.createNewFile()) {
                 try {
                     SaveManager.save(gameEngine, newFile);
-                } catch (IOException e){
+                } catch (IOException e) {
                     FileSaveFailedAlert(e.getMessage());
                 }
                 loadSaveFiles();
@@ -2301,7 +2306,7 @@ public class GameBoardController {
         try {
             SaveManager.save(gameEngine, chosenFile.getFile());
             FileSavedSuccessfullyAlert();
-        } catch (IOException e){
+        } catch (IOException e) {
             FileSaveFailedAlert(e.getMessage());
         }
     }
@@ -2431,6 +2436,7 @@ public class GameBoardController {
 
         return (Line) mapGrid.lookup(targetId);
     }
+
     public void updateDynamicTradeButtons() {
         Platform.runLater(() -> {
             if (gameEngine == null || gameEngine.getPlayers() == null) return;
@@ -2451,6 +2457,7 @@ public class GameBoardController {
             }
         });
     }
+
     public void updateTurnControls() {
         Platform.runLater(() -> {
             if (gameEngine.getCurrentPlayer() instanceof logic.models.PlayableAI) {
@@ -2487,6 +2494,7 @@ public class GameBoardController {
             }
         });
     }
+
     public void checkTurnAdvancement() {
         Player previousPlayer = gameEngine.getCurrentPlayer();
         boolean wasSetupPhase = gameEngine.isSetupPhase();
@@ -2559,7 +2567,7 @@ public class GameBoardController {
 
     // ======================= Load UI =======================
 
-    void LoadCompaniesAndPartnerships(){
+    void LoadCompaniesAndPartnerships() {
         Player owner;
         for (Circle circle : circles) {
             if (getVertexFromCircle(circle).getCompanyStructure() != null) {
@@ -2567,8 +2575,7 @@ public class GameBoardController {
                 if (owner != null) {
                     if (getVertexFromCircle(circle).getCompanyStructure() instanceof MVP) {
                         circle.setFill(getPlayerColor(owner, gameEngine.getPlayers()));
-                    }
-                    else if (getVertexFromCircle(circle).getCompanyStructure() instanceof Unicorn) {
+                    } else if (getVertexFromCircle(circle).getCompanyStructure() instanceof Unicorn) {
                         SVGPath hexagon = hexagons.get(circles.indexOf(circle));
                         circle.setOpacity(0);
                         circle.setMouseTransparent(true);
@@ -2582,7 +2589,7 @@ public class GameBoardController {
             }
         }
         for (Line line : lines) {
-            if (getEdgeFromLine(line).getPartnership() != null){
+            if (getEdgeFromLine(line).getPartnership() != null) {
                 owner = getEdgeFromLine(line).getPartnership().getOwner();
                 if (owner != null) {
                     line.setStroke(getPlayerColor(owner, gameEngine.getPlayers()));
@@ -2593,10 +2600,10 @@ public class GameBoardController {
             }
         }
         Sector[][] logicSectors = gameEngine.getMap().getSectors();
-        for (int i = 0; i < logicSectors.length; i++){
-            for (int j = 0; j < logicSectors[0].length; j++){
+        for (int i = 0; i < logicSectors.length; i++) {
+            for (int j = 0; j < logicSectors[0].length; j++) {
                 if (logicSectors[i][j].isAuditor()) {
-                    StackPane stackPane = sectors.get(i + 5*j);
+                    StackPane stackPane = sectors.get(i + 5 * j);
                     previousAuditorLocation = stackPane;
 
                     Node sectorImage = stackPane.getChildren().get(0);
@@ -2620,7 +2627,7 @@ public class GameBoardController {
                     } catch (Exception e) {
                         // Todo : Show error with a messagebox
                     }
-                return;
+                    return;
                 }
             }
 
