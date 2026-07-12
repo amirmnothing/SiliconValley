@@ -15,16 +15,18 @@ import ui.controller.GameBoardController;
 import javafx.application.Platform;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class AIBrain {
-    private GameBoardController controller;
+public class AIBrain implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private static GameBoardController controller;
 
     public AIBrain(GameBoardController controller) {
-        this.controller = controller;
+        AIBrain.controller = controller;
     }
 
     public void executeTurn(Player aiPlayer, GameEngine engine, Runnable onTurnComplete) {
@@ -438,7 +440,7 @@ public class AIBrain {
         controller.updateTurnControls();
 
     }
-    public void setController(GameBoardController controller) {
-        this.controller=controller;
+    public static void setController(GameBoardController c) {
+        controller = c;
     }
 }

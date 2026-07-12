@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import logic.engine.AIBrain;
 import logic.engine.GameEngine;
 import logic.engine.Map;
 import logic.enums.PlayerRole;
@@ -307,15 +308,14 @@ public class MainMenuController {
             // Todo : Show error
             return;
         }
-        if (playerCount == 3) {
-            createPlayer(PlayerName4, PlayerRole4);
-        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
         BorderPane root = loader.load();
 
         GameBoardController controller = loader.getController();
 
         controller.setGameEngine(gameEngine);
+        logic.engine.AIBrain.setController(controller);
         controller.initialize(gameEngine);
 
         Stage gameBoardStage = new Stage();

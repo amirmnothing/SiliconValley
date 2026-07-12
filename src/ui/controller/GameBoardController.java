@@ -41,7 +41,7 @@ import java.util.*;
 
 import static logic.engine.GameEngine.*;
 
-public class GameBoardController {
+public class GameBoardController  {
 
     private int currentTalentCount = 0;
     private int currentPatentCount = 0;
