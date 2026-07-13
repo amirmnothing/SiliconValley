@@ -2,6 +2,7 @@ package logic.engine;
 
 import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import logic.enums.BuildMode;
 import logic.enums.CornerDirection;
@@ -95,13 +96,6 @@ public class GameEngine implements Serializable {
     }
 
     public void nextTurn(Runnable onTurnChanged) {
-        Player winner = winnerPlayer();
-        if (winner != null) {
-            // TODO: هندل کردن پایان بازی
-            return;
-        }
-
-
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
         Player player = getCurrentPlayer();
 
@@ -149,8 +143,10 @@ public class GameEngine implements Serializable {
 
     public ArrayList<Integer> rollDice() {
         ArrayList<Integer> diceList = new ArrayList<>();
-        diceList.add(random.nextInt(6) + 1);
-        diceList.add(random.nextInt(6) + 1);
+//        diceList.add(random.nextInt(6) + 1);
+//        diceList.add(random.nextInt(6) + 1);
+        diceList.add(1);
+        diceList.add(6);
         return diceList;
     }
 
@@ -260,7 +256,9 @@ public class GameEngine implements Serializable {
     }
 
     public boolean moveAuditor(Sector sector) {
-        if (sector == null) return false;
+        if (sector == null){
+            return false;
+        }
         if (!canPlaceAuditor(sector)) return false;
 
         Sector[][] sectors = map.getSectors();
