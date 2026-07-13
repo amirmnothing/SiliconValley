@@ -1,5 +1,8 @@
 package ui.controller;
 
+import exception.InvalidPlayerNameException;
+import exception.PlayerRoleNotSelectedException;
+import exception.PlayerTypeNotSelectedException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -282,8 +285,12 @@ public class MainMenuController {
 
     public String getPlayerSelection(int N) {
         ToggleGroup[] toggleGroups = new ToggleGroup[]{P1ToggleGroup, P2ToggleGroup, P3ToggleGroup, P4ToggleGroup};
-        ToggleButton selected = (ToggleButton) (toggleGroups[N]).getSelectedToggle();
-        return selected.getId().substring(2);
+        try {
+            ToggleButton selected = (ToggleButton) (toggleGroups[N]).getSelectedToggle();
+            return selected.getId().substring(2);
+        } catch (NullPointerException e) {
+            throw new PlayerTypeNotSelectedException(N + 1);
+        }
     }
 
     @FXML
@@ -564,20 +571,50 @@ public class MainMenuController {
     @FXML
     void onNextPlayer(MouseEvent event) {
         int activeSlot = playerCount;
-        if (playerCount == 0) {
-            if (!createPlayer(PlayerName1, PlayerRole1, getPlayerSelection(0).equals("AIToggle"))) {
-                return;
+        boolean turnImageOff = true;
+        try {
+            if (playerCount == 0) {
+                if (!createPlayer(PlayerName1, PlayerRole1, getPlayerSelection(0).equals("AIToggle"))) {
+                    return;
+                }
+            } else if (playerCount == 1) {
+                if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
+                    return;
+                }
+            } else if (playerCount == 2) {
+                if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
+                    return;
+                }
             }
-        } else if (playerCount == 1) {
-            if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
-                return;
-            }
-        } else if (playerCount == 2) {
-            if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
-                return;
-            }
+        } catch (PlayerTypeNotSelectedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Player Type Not Selected");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            turnImageOff = false;
+        } catch (PlayerRoleNotSelectedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Player Role Not Selected");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            turnImageOff = false;
+        } catch (InvalidPlayerNameException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Invalid Player Name");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            turnImageOff = false;
         }
-        if (currentlySelectedImageView != null && activeSlot < 3) {
+        if (currentlySelectedImageView != null && turnImageOff && activeSlot < 3) {
             if (currentlySelectedImageView != NoRole) {
                 lockedRoles.add(currentlySelectedImageView);
                 currentlySelectedImageView.setDisable(true);
@@ -592,13 +629,13 @@ public class MainMenuController {
     public boolean createPlayer(TextField playerNameTF, Label playerRole, boolean isAI) {
         PlayerRole playerR = role(playerRole);
         if (playerR == null) {
-            return false;
+            throw new PlayerRoleNotSelectedException(players.size() + 1);
         }
         String playerName;
         if (!playerNameTF.getText().isEmpty()) {
             playerName = playerNameTF.getText();
             if (equals(playerName) || !isNameValid(playerName)) {
-                return false;
+                throw new InvalidPlayerNameException(players.size() + 1, playerName);
             }
             Player player = null;
             if (!isAI) {
@@ -617,7 +654,6 @@ public class MainMenuController {
                 };
             }
 
-
             player.setRole(playerR);
             playerNameTF.setEditable(false);
             players.add(player);
@@ -631,8 +667,9 @@ public class MainMenuController {
             }
             disableGroup();
             return true;
+        } else {
+            throw new InvalidPlayerNameException(players.size() + 1, "");
         }
-        return false;
     }
 
     private boolean equals(String playerName) {
