@@ -190,8 +190,6 @@ public class LegalCrisisController {
                 stage.close();
             }
         }
-
-
     }
 
 

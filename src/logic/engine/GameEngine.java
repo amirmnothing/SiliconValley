@@ -19,6 +19,7 @@ public class GameEngine implements Serializable {
     private final Market market;
     private int currentPlayerIndex;
     private final Random random = new Random();
+    public List<Integer> LastDice;
 
     final public static String PLAYER1COLOR = "rgb(150, 0, 0)";
     final public static String PLAYER2COLOR = "rgb(0, 0, 170)";
@@ -143,8 +144,11 @@ public class GameEngine implements Serializable {
 
     public ArrayList<Integer> rollDice() {
         ArrayList<Integer> diceList = new ArrayList<>();
-        diceList.add(random.nextInt(6) + 1);
-        diceList.add(random.nextInt(6) + 1);
+        int Die1 = random.nextInt(6) + 1;
+        int Die2 = random.nextInt(6) + 1;
+        diceList.add(Die1);
+        diceList.add(Die2);
+        LastDice = diceList;
         return diceList;
     }
 

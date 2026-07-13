@@ -959,7 +959,7 @@ public class GameBoardController {
         isDiceRolled = diceRolled;
     }
 
-    public boolean isActiveEndTurn() {
+    public boolean getIsActiveEndTurn() {
         return isActiveEndTurn;
     }
 
@@ -1129,7 +1129,7 @@ public class GameBoardController {
             EndTurnBTN.setDisable(true);
             return;
         }
-        EndTurnBTN.setDisable(!isActiveEndTurn());
+        EndTurnBTN.setDisable(!getIsActiveEndTurn());
     }
 
     private void updateTotalPrice() {
@@ -2538,7 +2538,6 @@ public class GameBoardController {
         return (SVGPath) mapGrid.lookup(targetId);
     }
 
-
     public void updateDynamicTradeButtons() {
         Platform.runLater(() -> {
             if (gameEngine == null || gameEngine.getPlayers() == null) return;
@@ -2586,7 +2585,7 @@ public class GameBoardController {
             Shop.setDisable(!canPerformActions);
             BuildAMVPBTN.setDisable(!canPerformActions);
             BuildAPartnershipBTN.setDisable(!canPerformActions);
-            EndTurnBTN.setDisable(!canPerformActions);
+            if (gameEngine.LastDice.getFirst() + gameEngine.LastDice.getLast() != 7) EndTurnBTN.setDisable(!canPerformActions);
 
             if (canPerformActions) {
                 Trade.setDisable(false);
