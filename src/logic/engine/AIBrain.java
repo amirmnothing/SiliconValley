@@ -39,7 +39,7 @@ public class AIBrain implements Serializable {
             return;
         }
         if (engine.isMainPhaseActive()) {
-            if (!engine.isDiceRolled()) {
+            if (!engine.getIsDiceRolled()) {
                 ArrayList<Integer> dice = engine.rollDiceForCurrentTurn();
 
                 Runnable continueAITurn = () -> {

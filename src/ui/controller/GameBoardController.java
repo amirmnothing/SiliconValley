@@ -1112,7 +1112,7 @@ public class GameBoardController {
                 S20, S21, S22, S23, S24
         ));
 
-        LoadCompaniesAndPartnerships();
+        LoadUIElements();
     }
 
     public String role(PlayerRole playerRole) {
@@ -2575,7 +2575,7 @@ public class GameBoardController {
                 EndTurnBTN.setDisable(true);
                 return;
             }
-            boolean isDiceRolled = gameEngine.isDiceRolled();
+            boolean isDiceRolled = gameEngine.getIsDiceRolled();
 
             RollDiceBTN.setDisable(isDiceRolled);
 
@@ -2664,11 +2664,13 @@ public class GameBoardController {
         MessageHeader.setText(messageHeader);
         MessageBody.setText(messageBody);
         MessageBox.setVisible(true);
+        gameEngine.setIsMessageShowed(true);
+        gameEngine.setLastMessage(messageHeader, messageBody, mode.toString());
     }
 
     // ======================= Load UI =======================
 
-    void LoadCompaniesAndPartnerships() {
+    void LoadUIElements() {
         Player owner;
         for (Circle circle : circles) {
             if (getVertexFromCircle(circle).getCompanyStructure() != null) {
@@ -2701,6 +2703,22 @@ public class GameBoardController {
             }
         }
         Sector[][] logicSectors = gameEngine.getMap().getSectors();
+
+        if (gameEngine.getIsDiceRolled()) {
+            showDiceResultsUI((ArrayList<Integer>) gameEngine.LastDice, null);
+        }
+
+        if (gameEngine.getIsMessageShowed()) {
+            List<String> Message = gameEngine.getLastMessage();
+            if (Message.getLast().equals("NORMAL")) {
+                showMessage(Message.get(0), Message.get(1), MessageMode.NORMAL);
+            } else if (Message.getLast().equals("ERROR")) {
+                showMessage(Message.get(0), Message.get(1), MessageMode.ERROR);
+            } else if (Message.getLast().equals("SUCCESS")) {
+                showMessage(Message.get(0), Message.get(1), MessageMode.SUCCESS);
+            }
+        }
+
         for (int i = 0; i < logicSectors.length; i++) {
             for (int j = 0; j < logicSectors[0].length; j++) {
                 if (logicSectors[i][j].isAuditor()) {

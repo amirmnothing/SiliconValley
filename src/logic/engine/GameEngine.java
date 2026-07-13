@@ -1,11 +1,9 @@
 package logic.engine;
 
-import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
-import javafx.scene.control.Alert;
-import javafx.scene.paint.Color;
 import logic.enums.BuildMode;
 import logic.enums.CornerDirection;
+import logic.enums.MessageMode;
 import logic.enums.ResourceType;
 import logic.models.*;
 
@@ -20,6 +18,7 @@ public class GameEngine implements Serializable {
     private int currentPlayerIndex;
     private final Random random = new Random();
     public List<Integer> LastDice;
+    public List<String> LastMessage;
 
     final public static String PLAYER1COLOR = "rgb(150, 0, 0)";
     final public static String PLAYER2COLOR = "rgb(0, 0, 170)";
@@ -37,6 +36,7 @@ public class GameEngine implements Serializable {
 
 
     private boolean isDiceRolled = false;
+    private boolean isMessageShowed = false;
     private boolean mainPhaseActive = false;
     private int turnNumber = 1;
     private int currentTurnNumber = 1;
@@ -581,7 +581,7 @@ public class GameEngine implements Serializable {
         this.turnNumber = turnNumber;
     }
 
-    public boolean isDiceRolled() {
+    public boolean getIsDiceRolled() {
         return isDiceRolled;
     }
 
@@ -643,5 +643,21 @@ public class GameEngine implements Serializable {
             int currentP2 = players[1].getResourceCount().getOrDefault(type, 0);
             players[1].getResourceCount().put(type, currentP2 + giveAmount - receiveAmount);
         }
+    }
+
+    public boolean getIsMessageShowed() {
+        return isMessageShowed;
+    }
+
+    public void setIsMessageShowed(boolean isMessageShowed) {
+        this.isMessageShowed = isMessageShowed;
+    }
+
+    public List<String> getLastMessage() {
+        return LastMessage;
+    }
+
+    public void setLastMessage(String Header, String Body, String mode) {
+        LastMessage = List.of(new String[]{Header, Body, mode});
     }
 }
