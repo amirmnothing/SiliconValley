@@ -2,6 +2,7 @@ package logic.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
 import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;

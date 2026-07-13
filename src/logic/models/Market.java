@@ -57,7 +57,7 @@ public class Market implements Serializable {
         for (ResourceType resourceType : ResourceType.values()) {
             if (resourceType == ResourceType.CAPITAL) continue;
 
-            if(tradedInCurrentRound.get(resourceType)){
+            if (tradedInCurrentRound.get(resourceType)) {
                 currentPrices.put(resourceType, currentPrices.get(resourceType) + 1);
             }
 

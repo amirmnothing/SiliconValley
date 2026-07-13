@@ -5,11 +5,11 @@ import logic.enums.ResourceType;
 
 import java.util.List;
 
-public class HackerCEOPlayer extends  Player {
+public class HackerCEOPlayer extends Player {
 
-    public HackerCEOPlayer(String playerName,List<CompanyStructure> companies) {
-        super(playerName,companies);
-        this.playerRole=PlayerRole.THE_HACKER_CEO;
+    public HackerCEOPlayer(String playerName, List<CompanyStructure> companies) {
+        super(playerName, companies);
+        this.playerRole = PlayerRole.THE_HACKER_CEO;
     }
 
     @Override
@@ -17,6 +17,7 @@ public class HackerCEOPlayer extends  Player {
 
         return Math.max((currentMarketPrice * 3) / 4, 2);
     }
+
     @Override
     public int getRolePenalty() {
         return 1;

@@ -440,6 +440,7 @@ public class AIBrain implements Serializable {
         controller.updateTurnControls();
 
     }
+
     public static void setController(GameBoardController c) {
         controller = c;
     }

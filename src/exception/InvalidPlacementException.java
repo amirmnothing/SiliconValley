@@ -18,9 +18,11 @@ public class InvalidPlacementException extends RuntimeException {
         this.edge = edge;
         this.vertex = null;
     }
+
     public Vertex getVertex() {
         return vertex;
     }
+
     public Edge getEdge() {
         return edge;
     }

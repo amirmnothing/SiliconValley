@@ -10,6 +10,7 @@ import java.util.Map;
 public class MVP extends CompanyStructure implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final Map<ResourceType, Integer> CONSTRUCTION_COST;
+
     static {
         Map<ResourceType, Integer> cost = new HashMap<>();
         cost.put(ResourceType.CAPITAL, 1);

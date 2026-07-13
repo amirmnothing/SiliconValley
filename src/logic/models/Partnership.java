@@ -12,6 +12,7 @@ public class Partnership implements Serializable {
     private final Player owner;
 
     public static final Map<ResourceType, Integer> CONSTRUCTION_COST;
+
     static {
         Map<ResourceType, Integer> cost = new HashMap<>();
         cost.put(ResourceType.CAPITAL, 1);
@@ -19,7 +20,7 @@ public class Partnership implements Serializable {
         CONSTRUCTION_COST = Collections.unmodifiableMap(cost);
     }
 
-    public Partnership(Player owner){
+    public Partnership(Player owner) {
         this.owner = owner;
     }
 

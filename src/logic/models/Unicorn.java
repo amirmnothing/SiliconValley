@@ -10,6 +10,7 @@ import java.util.Map;
 public class Unicorn extends CompanyStructure implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final Map<ResourceType, Integer> UPGRADE_COST;
+
     static {
         Map<ResourceType, Integer> cost = new HashMap<>();
         cost.put(ResourceType.DATA, 3);

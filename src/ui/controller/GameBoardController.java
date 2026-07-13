@@ -756,10 +756,11 @@ public class GameBoardController {
 
         setActiveEndTurn(false);
         endTurnDisable();
-        if(!(gameEngine.getCurrentPlayer() instanceof PlayableAI)){
-            showMessage("Dice","Please roll the dice.",MessageMode.NORMAL);
+        if (!(gameEngine.getCurrentPlayer() instanceof PlayableAI)) {
+            showMessage("Dice", "Please roll the dice.", MessageMode.NORMAL);
         }
 
+        MessageBox.setVisible(false);
         startNextTurn();
     }
 
@@ -2585,7 +2586,8 @@ public class GameBoardController {
             Shop.setDisable(!canPerformActions);
             BuildAMVPBTN.setDisable(!canPerformActions);
             BuildAPartnershipBTN.setDisable(!canPerformActions);
-            if (gameEngine.LastDice.getFirst() + gameEngine.LastDice.getLast() != 7) EndTurnBTN.setDisable(!canPerformActions);
+            if (gameEngine.LastDice.getFirst() + gameEngine.LastDice.getLast() != 7)
+                EndTurnBTN.setDisable(!canPerformActions);
 
             if (canPerformActions) {
                 Trade.setDisable(false);

@@ -6,14 +6,16 @@ import java.util.List;
 
 public class TechGuruPlayer extends Player {
 
-    public TechGuruPlayer(String playerName,List<CompanyStructure> companies) {
-        super(playerName,companies);
-        this.playerRole=PlayerRole.THE_TECH_GURU_CTO;
+    public TechGuruPlayer(String playerName, List<CompanyStructure> companies) {
+        super(playerName, companies);
+        this.playerRole = PlayerRole.THE_TECH_GURU_CTO;
     }
+
     @Override
     public int getUpgradeCloudDiscount() {
         return 1;
     }
+
     @Override
     public int getRolePenalty() {
         return 1;

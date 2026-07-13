@@ -19,7 +19,7 @@ public class Player implements Serializable {
     protected List<CompanyStructure> companies;
     protected PlayerRole playerRole;
     protected boolean hasLongestNetwork = false;
-    private boolean canPlaceAuditor=false;
+    private boolean canPlaceAuditor = false;
 
     public Player(String playerName, List<CompanyStructure> companies) {
         this.playerName = playerName;
@@ -219,19 +219,21 @@ public class Player implements Serializable {
         return playerName;
     }
 
-    public boolean hasMVP(){
-        for(CompanyStructure comp : companies){
-            if(comp instanceof MVP){
+    public boolean hasMVP() {
+        for (CompanyStructure comp : companies) {
+            if (comp instanceof MVP) {
                 return true;
             }
         }
         return false;
     }
+
     public boolean isAI() {
         return false;
     }
+
     @Override
     public String toString() {
-        return playerName+"\t"+playerRole;
+        return playerName + "\t" + playerRole;
     }
 }

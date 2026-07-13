@@ -1,4 +1,5 @@
 package logic.models;
+
 import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 
@@ -49,9 +50,9 @@ public class Sector implements Serializable {
             this.getCorners().put(cornerDirection, vertex);
     }
 
-    public boolean hasAnyCompanyOnSector(){
-        for (CornerDirection cornerDirection : CornerDirection.values()){
-            if (this.getCorner(cornerDirection) != null){
+    public boolean hasAnyCompanyOnSector() {
+        for (CornerDirection cornerDirection : CornerDirection.values()) {
+            if (this.getCorner(cornerDirection) != null) {
                 if (this.getCorner(cornerDirection).getCompanyStructure() != null) return true;
             }
         }

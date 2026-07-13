@@ -29,7 +29,6 @@ public class LegalCrisisController {
     }
 
 
-
     @FXML
     private Label PlayerName;
 

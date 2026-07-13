@@ -350,7 +350,8 @@ public class TradeRequestController {
             e.printStackTrace();
         }
     }
-    public void setLabel(){
+
+    public void setLabel() {
         PlayerName.setText(players[1].getPlayerName());
     }
 }

@@ -258,7 +258,7 @@ public class GameEngine implements Serializable {
     }
 
     public boolean moveAuditor(Sector sector) {
-        if (sector == null){
+        if (sector == null) {
             return false;
         }
         if (!canPlaceAuditor(sector)) return false;
@@ -342,9 +342,9 @@ public class GameEngine implements Serializable {
         return false;
     }
 
-    public void upgradeToUnicorn(Vertex vertex,Player player) {
-        if(vertex.getCompanyStructure()==null||vertex.getCompanyStructure().getOwner()!=getCurrentPlayer() ){
-            throw new InvalidPlacementException(vertex,"You can't make unicorns here");
+    public void upgradeToUnicorn(Vertex vertex, Player player) {
+        if (vertex.getCompanyStructure() == null || vertex.getCompanyStructure().getOwner() != getCurrentPlayer()) {
+            throw new InvalidPlacementException(vertex, "You can't make unicorns here");
         }
         player.deductResourcesForUnicornUpgrade();
         CompanyStructure oldMvp = vertex.getCompanyStructure();
@@ -534,7 +534,6 @@ public class GameEngine implements Serializable {
                 currentPlayerIndex += setupDirection;
             }
             triggerNextPlayerIfAI();
-
         }
     }
 

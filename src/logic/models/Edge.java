@@ -22,7 +22,7 @@ public class Edge implements Serializable {
         }
     }
 
-    public Vertex getOppositeVertex(Vertex current){
+    public Vertex getOppositeVertex(Vertex current) {
         if (current == start) return end;
         if (current == end) return start;
         else return null;
