@@ -143,10 +143,8 @@ public class GameEngine implements Serializable {
 
     public ArrayList<Integer> rollDice() {
         ArrayList<Integer> diceList = new ArrayList<>();
-//        diceList.add(random.nextInt(6) + 1);
-//        diceList.add(random.nextInt(6) + 1);
-        diceList.add(1);
-        diceList.add(6);
+        diceList.add(random.nextInt(6) + 1);
+        diceList.add(random.nextInt(6) + 1);
         return diceList;
     }
 
