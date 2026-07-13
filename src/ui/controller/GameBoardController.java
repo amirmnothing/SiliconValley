@@ -1473,9 +1473,9 @@ public class GameBoardController {
             Vertex vertex = getVertexFromCircle(circle);
             int[] coordinates = parseCoordinates(circle.getId());
 
-            if (!gameEngine.canBuildMVP(coordinates[0] / 2, coordinates[1] / 2)) {
-                return;
-            }
+//            if (!gameEngine.canBuildMVP(coordinates[0] / 2, coordinates[1] / 2)) {
+//                return;
+//            }
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
@@ -1487,6 +1487,7 @@ public class GameBoardController {
 
                 updateVertexUI(vertex, color);
                 resetBuildMode();
+
             } catch (InvalidPlacementException e) {
                 showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
                 checkTurnAdvancement();
@@ -1503,9 +1504,9 @@ public class GameBoardController {
 
             Edge edge = getEdgeFromLine(line);
 
-            if (edge == null || !gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
-                return;
-            }
+//            if (edge == null || !gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
+//                return;
+//            }
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
@@ -1535,9 +1536,9 @@ public class GameBoardController {
             Vertex vertex = getVertexFromCircle(hexagon);
             int[] coordinates = parseCoordinates(hexagon.getId());
 
-            if (!gameEngine.canUpgradeToUnicorn(coordinates[0] / 2, coordinates[1] / 2)) {
-                return;
-            }
+//            if (!gameEngine.canUpgradeToUnicorn(coordinates[0] / 2, coordinates[1] / 2)) {
+//                return;
+//            }
 
             try {
                 Color color = getPlayerColor();
