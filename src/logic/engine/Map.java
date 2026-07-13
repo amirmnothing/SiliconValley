@@ -8,6 +8,7 @@ import logic.models.Vertex;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -30,46 +31,61 @@ public class Map implements Serializable {
         initMap();
     }
 
-    private void initMap(){
+    private void initMap() {
 
         Random random = new Random();
         // ساخت همه گره ها و قرار دادن آنها در آرایه دو بعدی گره ها
-        for (int r = 0; r <= rows; r++){
-            for (int c = 0; c <= cols; c++){
+        for (int r = 0; r <= rows; r++) {
+            for (int c = 0; c <= cols; c++) {
                 vertices[r][c] = new Vertex();
             }
         }
-
-        for (int r = 0; r < rows; r++){
-            for (int c = 0; c < cols; c++){
-
-                // TODO : الگوریتم رندوم برای خونه ها باید هوشمند سازی بشه تا تعداد هر کدوم از انواع سکتور ها، منطقی باشد
-                ResourceType RT = ResourceType.values()[random.nextInt(6)];
-                sectors[r][c] = new Sector(RT ,
-                        RT == ResourceType.REGULATORY ? 0 : random.nextInt(11) + 2 ,
-                        false);
+        int totalSectors = rows * cols;
+        int capitalCount = (int) (totalSectors * 0.4);
+        int regulatoryCount = (int) (totalSectors * 0.08);
+        int remainingCount = totalSectors - capitalCount - regulatoryCount;
+        List<ResourceType> resourceTypes = new ArrayList<>();
+        for (int i = 0; i < capitalCount; i++) {
+            resourceTypes.add(ResourceType.CAPITAL);
+        }
+        for (int i = 0; i < regulatoryCount; i++) {
+            resourceTypes.add(ResourceType.REGULATORY);
+        }
+        ResourceType[] otherTypes = {ResourceType.TALENT, ResourceType.CLOUD, ResourceType.PATENT, ResourceType.DATA};
+        for (int i = 0; i < remainingCount; i++) {
+            resourceTypes.add(otherTypes[random.nextInt(otherTypes.length)]);
+        }
+        Collections.shuffle(resourceTypes, random);
+        int index = 0;
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                ResourceType RT = resourceTypes.get(index);
+                index++;
+                sectors[r][c] = new Sector(RT, RT == ResourceType.REGULATORY ? 0 : random.nextInt(11) + 2, false);
 
                 // اتصال 4 گره اطراف هر سکتور به آن
                 sectors[r][c].setCorner(CornerDirection.TOP_LEFT, vertices[r][c]);
                 sectors[r][c].setCorner(CornerDirection.TOP_RIGHT, vertices[r][c + 1]);
                 sectors[r][c].setCorner(CornerDirection.BOTTOM_LEFT, vertices[r + 1][c]);
                 sectors[r][c].setCorner(CornerDirection.BOTTOM_RIGHT, vertices[r + 1][c + 1]);
+
             }
         }
 
-        for (int r = 0; r <= rows; r++){
-            for (int c = 0; c <= cols; c++){
+        for (int r = 0; r <= rows; r++) {
+            for (int c = 0; c <= cols; c++) {
 
                 // تولید یال های عمودی
                 if (r < rows)
-                    edges.add(new Edge(vertices[r][c],vertices[r + 1][c]));
+                    edges.add(new Edge(vertices[r][c], vertices[r + 1][c]));
 
                 // تولید یال های افقی
                 if (c < cols)
-                    edges.add(new Edge(vertices[r][c],vertices[r][c + 1]));
+                    edges.add(new Edge(vertices[r][c], vertices[r][c + 1]));
             }
         }
     }
+
     public Sector[][] getSectors() {
         return sectors;
     }
