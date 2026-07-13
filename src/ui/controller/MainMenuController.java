@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainMenuController {
 
@@ -455,11 +457,17 @@ public class MainMenuController {
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
         if (playerCount == 1) {
-            createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"));
+            if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
+                return;
+            }
         } else if (playerCount == 2) {
-            createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"));
+            if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
+                return;
+            }
         } else if (playerCount == 3) {
-            createPlayer(PlayerName4, PlayerRole4,  getPlayerSelection(3).equals("AIToggle"));
+            if (!createPlayer(PlayerName4, PlayerRole4, getPlayerSelection(3).equals("AIToggle"))) {
+                return;
+            }
         }
 
 
@@ -529,11 +537,17 @@ public class MainMenuController {
     void onNextPlayer(MouseEvent event) {
         int activeSlot = playerCount;
         if (playerCount == 0) {
-            createPlayer(PlayerName1, PlayerRole1, getPlayerSelection(0).equals("AIToggle"));
+            if (!createPlayer(PlayerName1, PlayerRole1, getPlayerSelection(0).equals("AIToggle"))) {
+                return;
+            }
         } else if (playerCount == 1) {
-            createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"));
+            if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
+                return;
+            }
         } else if (playerCount == 2) {
-            createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"));
+            if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
+                return;
+            }
         }
         if (currentlySelectedImageView != null && activeSlot < 3) {
             if (currentlySelectedImageView != NoRole) {
@@ -547,14 +561,17 @@ public class MainMenuController {
         }
     }
 
-    public void createPlayer(TextField playerNameTF, Label playerRole, boolean isAI) {
+    public boolean createPlayer(TextField playerNameTF, Label playerRole, boolean isAI) {
         PlayerRole playerR = role(playerRole);
         if (playerR == null) {
-            return;
+            return false;
         }
         String playerName;
         if (!playerNameTF.getText().isEmpty()) {
             playerName = playerNameTF.getText();
+            if (equals(playerName) || !isNameValid(playerName)) {
+                return false;
+            }
             Player player = null;
             if (!isAI) {
                 player = switch (playerR) {
@@ -577,21 +594,39 @@ public class MainMenuController {
             playerNameTF.setEditable(false);
             players.add(player);
             playerCount++;
-            System.out.println(players);
+            if (playerR == PlayerRole.THE_HACKER_CEO) {
+                isTheHackerCEOSelected = true;
+            } else if (playerR == PlayerRole.THE_TECH_GURU_CTO) {
+                isTheTechGuruCTOSelected = true;
+            } else if (playerR == PlayerRole.THE_VC_FUNDED) {
+                isTheVCFundedSelected = true;
+            }
             disableGroup();
+            return true;
         }
+        return false;
+    }
 
+    private boolean equals(String playerName) {
+        for (Player player : players) {
+            if (player.getPlayerName().equals(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNameValid(String playerName) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+(?:\\s[a-zA-Z0-9]+)*$");
+        return pattern.matcher(playerName).matches();
     }
 
     public PlayerRole role(Label playerRole) {
         if (playerRole.getText().equals("The Hacker CEO") && !isTheHackerCEOSelected) {
-            isTheHackerCEOSelected = true;
             return PlayerRole.THE_HACKER_CEO;
         } else if (playerRole.getText().equals("The Tech Guru (CTO)") && !isTheTechGuruCTOSelected) {
-            isTheTechGuruCTOSelected = true;
             return PlayerRole.THE_TECH_GURU_CTO;
         } else if (playerRole.getText().equals("The VC-Funded") && !isTheVCFundedSelected) {
-            isTheVCFundedSelected = true;
             return PlayerRole.THE_VC_FUNDED;
         } else if (playerRole.getText().equals("No Role")) {
             return PlayerRole.NONE;

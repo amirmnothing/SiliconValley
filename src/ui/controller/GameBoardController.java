@@ -1,5 +1,6 @@
 package ui.controller;
 
+import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -750,7 +751,9 @@ public class GameBoardController {
 
         setActiveEndTurn(false);
         endTurnDisable();
-
+        if(!(gameEngine.getCurrentPlayer() instanceof PlayableAI)){
+            showMessage("Dice","Please roll the dice.",MessageMode.NORMAL);
+        }
 
         startNextTurn();
     }
@@ -901,12 +904,14 @@ public class GameBoardController {
                     if (mapGrid.getChildren().get(r * 5 + c) == stackPane) {
                         if (gameEngine.moveAuditor(gameEngine.getMap().getSectors()[r][c])) {
                             setAuditorOnSector(stackPane);
+                            showMessage("Auditor deployment", "The auditor was successfully placed in your desired location", MessageMode.SUCCESS);
                             temp = stackPane;
                             gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
                             moveSuccessful = true;
                         } else {
                             if (previousAuditorLocation != null) setAuditorOnSector(previousAuditorLocation);
                             gameEngine.getMap().getSectors()[r][c].setAuditor(true);
+                            showMessage("Invalid Place", "This is an inappropriate location for the Auditor", MessageMode.ERROR);
                         }
                     } else if (previousAuditorLocation != null && mapGrid.getChildren().get(r * 5 + c) == previousAuditorLocation) {
                         setAuditorNotOnSector(previousAuditorLocation);
@@ -1432,8 +1437,8 @@ public class GameBoardController {
         hexagon.setOnMouseClicked(null);
 
         hexagon.setFill(playerColor);
-        hexagon.setStroke(Color.BLACK); // اگر نیاز به حاشیه دارید
-        hexagon.setOpacity(1.0); // اگر قبلاً نامرئی یا کم‌رنگ بوده، حتماً کامل نمایش داده شود
+        hexagon.setStroke(Color.BLACK);
+        hexagon.setOpacity(1.0);
         hexagon.setVisible(true);
     }
 
@@ -1468,6 +1473,8 @@ public class GameBoardController {
                 resetBuildMode();
             } catch (InvalidPlacementException e) {
                 showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
+            } catch (InsufficientResourcesException e) {
+                showMessage("Insufficient resources", "You don't have enough resources to build an MVP.", MessageMode.ERROR);
             }
         } else if (event.getSource() instanceof Line line && gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP) {
 
@@ -1495,9 +1502,10 @@ public class GameBoardController {
                 updateEdgeUI(edge, color);
                 resetBuildMode();
 
-            } catch (Exception e) {
-                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
-
+            } catch (InvalidPlacementException e) {
+                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the Partnership in an inappropriate location", MessageMode.ERROR);
+            } catch (InsufficientResourcesException e) {
+                showMessage("Insufficient resources", "You don't have enough resources to build a Partnership.", MessageMode.ERROR);
             }
         } else if (event.getSource() instanceof SVGPath hexagon && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN) {
             if (gameEngine.isSetupPhase()) {
@@ -1514,15 +1522,16 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.upgradeToUnicorn(vertex, gameEngine.getCurrentPlayer());
-                showMessage("Build Unicorn", "Congratulations!  " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Unicorn.", MessageMode.SUCCESS);
+                showMessage("Upgrade to unicorn", "Congratulations!  " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Unicorn.", MessageMode.SUCCESS);
 
                 checkTurnAdvancement();
                 updateUnicornUI(vertex, color);
                 resetBuildMode();
 
-            } catch (Exception e) {
-                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + " wanted to build the MVP in an inappropriate location", MessageMode.ERROR);
-
+            } catch (InvalidPlacementException e) {
+                showMessage("Invalid Place", gameEngine.getCurrentPlayer().getPlayerName() + ", you can’t build a Unicorn here.", MessageMode.ERROR);
+            } catch (InsufficientResourcesException e) {
+                showMessage("Insufficient resources", "You don't have enough resources to build a Unicorn.", MessageMode.ERROR);
             }
 
         }
@@ -1533,6 +1542,32 @@ public class GameBoardController {
         enableButtonsAfterDiceRoll();
         endTurnDisable();
         updatePlayersPoints();
+        Player winner = gameEngine.winnerPlayer();
+        if (winner != null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("🏆 Game Over 🏆");
+            alert.setHeaderText("🎉 CHAMPION OF SILICON VALLEY 🎉");
+            alert.setContentText("Player <<" + winner.getPlayerName() + ">> won with " + winner.calculateVictoryPoints() + " Points!");
+            DialogPane dialogPane = alert.getDialogPane();
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+                dialogPane.getStyleClass().add("game-over-alert");
+            }
+            alert.showAndWait();
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/MainMenu.fxml"));
+                StackPane root = loader.load();
+                Scene scene = new Scene(root);
+                currentStage.setScene(scene);
+                currentStage.setTitle("Silicon Valley: The Tech Cartel");
+                currentStage.setResizable(false);
+                currentStage.centerOnScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -1623,7 +1658,7 @@ public class GameBoardController {
         setDiceRolled(true);
         enableButtonsAfterDiceRoll();
 
-        setActiveEndTurn(true);
+        setActiveEndTurn(false);
         endTurnDisable();
 
         refreshPlayersResourcesUI();
@@ -1631,6 +1666,9 @@ public class GameBoardController {
         if (Dice.get(0) + Dice.get(1) == 7) {
             gameEngine.processCrisisForAIOnly();
             openLegalCrisisWindow();
+            if (!(gameEngine.getCurrentPlayer() instanceof PlayableAI)) {
+                showMessage("Auditor deployment", "Please place the auditor at the place of your choice", MessageMode.NORMAL);
+            }
             setActiveEndTurn(false);
             endTurnDisable();
         }
