@@ -742,6 +742,7 @@ public class GameBoardController {
 
     @FXML
     void onEndTurnBTN(ActionEvent event) {
+        resetBuildMode();
         if (gameEngine == null) return;
 
         gameEngine.endCurrentTurn();
@@ -753,14 +754,13 @@ public class GameBoardController {
 
         setDiceRolled(false);
         enableButtonsAfterDiceRoll();
-
+        MessageBox.setVisible(false);
         setActiveEndTurn(false);
         endTurnDisable();
         if (!(gameEngine.getCurrentPlayer() instanceof PlayableAI)) {
             showMessage("Dice", "Please roll the dice.", MessageMode.NORMAL);
         }
 
-        MessageBox.setVisible(false);
         startNextTurn();
     }
 
@@ -1848,6 +1848,8 @@ public class GameBoardController {
                     alert.setTitle("Hold On!");
                     alert.setHeaderText(null);
                     alert.setContentText("You can't close the window until you return requested resources to the bank");
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
                     alert.showAndWait();
                 });
 
@@ -2561,6 +2563,11 @@ public class GameBoardController {
     }
 
     public void updateTurnControls() {
+        P1RLines.setOpacity(0);
+        P2RLines.setOpacity(0);
+        P3RLines.setOpacity(0);
+        P4RLines.setOpacity(0);
+        PlayerResources.setOpacity(0);
         Platform.runLater(() -> {
             if (gameEngine.getCurrentPlayer() instanceof logic.models.PlayableAI) {
                 setHumanControlsDisabled(true);

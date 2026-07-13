@@ -491,18 +491,57 @@ public class MainMenuController {
 
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
-        if (playerCount == 1) {
-            if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
-                return;
+        if (playerCount == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Count");
+            alert.setHeaderText("Not Enough Players");
+            alert.setContentText("You need at least 2 players to start the game. Please add more players and try again.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            return;
+        }
+        try {
+            if (playerCount == 1) {
+                if (!createPlayer(PlayerName2, PlayerRole2, getPlayerSelection(1).equals("AIToggle"))) {
+                    return;
+                }
+            } else if (playerCount == 2) {
+                if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
+                    return;
+                }
+            } else if (playerCount == 3) {
+                if (!createPlayer(PlayerName4, PlayerRole4, getPlayerSelection(3).equals("AIToggle"))) {
+                    return;
+                }
             }
-        } else if (playerCount == 2) {
-            if (!createPlayer(PlayerName3, PlayerRole3, getPlayerSelection(2).equals("AIToggle"))) {
-                return;
-            }
-        } else if (playerCount == 3) {
-            if (!createPlayer(PlayerName4, PlayerRole4, getPlayerSelection(3).equals("AIToggle"))) {
-                return;
-            }
+        } catch (PlayerTypeNotSelectedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Player Type Not Selected");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            return;
+        } catch (PlayerRoleNotSelectedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Player Role Not Selected");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            return;
+        } catch (InvalidPlayerNameException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Player Configuration");
+            alert.setHeaderText("Invalid Player Name");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+            return;
         }
 
 
