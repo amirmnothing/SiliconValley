@@ -427,12 +427,12 @@ public class MainMenuController {
 
     @FXML
     void ButtonsMouseEnter(MouseEvent event) {
-        ((Button) (event.getSource())).setStyle("-fx-background-color: black; -fx-border-color: yellow ;-fx-border-width: 5;");
+        ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #d4af37 ;-fx-border-width: 5;");
     }
 
     @FXML
     void ButtonsMouseExit(MouseEvent event) {
-        ((Button) (event.getSource())).setStyle("-fx-background-color: black; -fx-border-color: white ;-fx-border-width: 5;");
+        ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a;");
     }
 
     @FXML

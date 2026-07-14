@@ -23,128 +23,6 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.MainMenuController">
    <children>
-      <Group fx:id="Settings" mouseTransparent="true" visible="false">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="452.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="307.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="163.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="473.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="328.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="185.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
-               <children>
-                  <Text fill="#b3922e" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
-                     <font>
-                        <Font name="Elephant Italic" size="64.0" />
-                     </font>
-                  </Text>
-                  <Line endX="265.0" stroke="#b3922e" strokeWidth="7.0" />
-                  <HBox alignment="CENTER" prefHeight="285.0" prefWidth="983.0" spacing="30.0">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="197.0">
-                           <children>
-                              <Label text="Menu Music" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="Game Music" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="100.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label text="SFX" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="105.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="436.0">
-                           <children>
-                              <Slider fx:id="MenuVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
-                                 <VBox.margin>
-                                    <Insets top="17.0" />
-                                 </VBox.margin>
-                              </Slider>
-                              <Slider fx:id="GameVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
-                                 <VBox.margin>
-                                    <Insets top="105.0" />
-                                 </VBox.margin>
-                              </Slider>
-                              <Slider fx:id="SFXVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
-                                 <VBox.margin>
-                                    <Insets top="105.0" />
-                                 </VBox.margin>
-                              </Slider>
-                           </children>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="70.0">
-                           <children>
-                              <Label fx:id="MenuVolumeLabel" text="100" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="GameVolumeLabel" text="100" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="101.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="SFXVolumeLabel" text="100" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="102.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="80.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBacktoMainMenuButton" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="BACK TO MAIN MENU" textAlignment="CENTER" textFill="#d4af37">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="32.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets right="550.0" top="125.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </Group>
       <Group fx:id="GameLobby" mouseTransparent="true" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;">
@@ -521,6 +399,128 @@
             </VBox>
          </children>
       </Group>
+      <Group fx:id="Settings" mouseTransparent="true" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="452.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="307.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="80.0" layoutX="100.0" layoutY="163.0" stroke="#3b3b3b" strokeType="INSIDE" width="788.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="473.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="328.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e2e2e" height="40.0" layoutX="797.0" layoutY="185.0" stroke="#b3922e" strokeType="INSIDE" width="80.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
+               <children>
+                  <Text fill="#b3922e" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                     <font>
+                        <Font name="Elephant Italic" size="64.0" />
+                     </font>
+                  </Text>
+                  <Line endX="265.0" stroke="#b3922e" strokeWidth="7.0" />
+                  <HBox alignment="CENTER" prefHeight="285.0" prefWidth="983.0" spacing="30.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="197.0">
+                           <children>
+                              <Label text="Menu Music" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Game Music" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="100.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="SFX" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="105.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="436.0">
+                           <children>
+                              <Slider fx:id="MenuVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
+                                 <VBox.margin>
+                                    <Insets top="17.0" />
+                                 </VBox.margin>
+                              </Slider>
+                              <Slider fx:id="GameVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
+                                 <VBox.margin>
+                                    <Insets top="105.0" />
+                                 </VBox.margin>
+                              </Slider>
+                              <Slider fx:id="SFXVolumeSlider" prefHeight="30.0" prefWidth="194.0" stylesheets="@style.css" value="100.0">
+                                 <VBox.margin>
+                                    <Insets top="105.0" />
+                                 </VBox.margin>
+                              </Slider>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="70.0">
+                           <children>
+                              <Label fx:id="MenuVolumeLabel" text="100" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="GameVolumeLabel" text="100" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="101.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="SFXVolumeLabel" text="100" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="102.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="80.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBacktoMainMenuButton" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="BACK TO MAIN MENU" textAlignment="CENTER" textFill="#d4af37">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="32.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="550.0" top="125.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </Group>
       <Group fx:id="LoadMenu" mouseTransparent="true" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
@@ -562,13 +562,13 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu">
+                  <Text fill="#d4af37" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu">
                      <font>
                         <Font name="Elephant Italic" size="64.0" />
                      </font>
                   </Text>
-                  <Line endX="410.0" stroke="WHITE" strokeWidth="7.0" />
-                  <Button mnemonicParsing="false" onAction="#OnStartANewGame" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="START A NEW GAME" textFill="WHITE">
+                  <Line endX="410.0" stroke="#d4af37" strokeWidth="7.0" />
+                  <Button mnemonicParsing="false" onAction="#OnStartANewGame" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" text="START A NEW GAME" textFill="#d4af37">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>
@@ -576,7 +576,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="48.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#OnLoadAGame" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="LOAD A GAME" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#OnLoadAGame" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" text="LOAD A GAME" textFill="#d4af37">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -584,7 +584,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="48.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="SETTINGS" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onSettings" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" text="SETTINGS" textFill="#d4af37">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -592,7 +592,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="48.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="ABOUT US" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" text="ABOUT US" textFill="#d4af37">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -600,7 +600,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="48.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onExitButton" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 5;" text="EXIT" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onExitButton" onMouseEntered="#ButtonsMouseEnter" onMouseExited="#ButtonsMouseExit" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: #1a1a1a;" text="EXIT" textFill="#d4af37">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="48.0" />
                      </font>
