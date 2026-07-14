@@ -216,3 +216,57 @@
 .dialog-pane .image-view {
     -fx-effect: dropshadow(three-pass-box, rgba(212, 175, 55, 0.4), 10, 0, 0, 0);
 }
+
+.slider {
+    -fx-padding: 10px;
+}
+
+.slider .track {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #3d3d3d;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-pref-height: 8px;
+}
+
+.slider .filled-track {
+    -fx-background-color: #d4af37;
+    -fx-background-radius: 4px;
+}
+
+.slider .thumb {
+    -fx-background-color: #0d0d0d;
+    -fx-border-color: #555555;
+    -fx-border-width: 1.5px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-pref-width: 18px;
+    -fx-pref-height: 18px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+
+.slider .thumb:hover,
+.slider .thumb:pressed {
+    -fx-background-color: #d4af37;
+    -fx-border-color: #b3922e;
+    -fx-effect: dropshadow(three-pass-box, rgba(212, 175, 55, 0.4), 8, 0.0, 0, 0);
+}
+
+.slider .axis {
+    -fx-tick-label-fill: #888888;
+    -fx-tick-label-font-family: "Berlin Sans FB Demi";
+    -fx-tick-label-font-size: 12px;
+}
+
+.slider .axis .axis-tick-mark {
+    -fx-stroke: #555555;
+    -fx-stroke-width: 1px;
+}
+
+.slider:focused,
+.slider .thumb:focused {
+    -fx-focus-color: transparent !important;
+    -fx-inner-border-color: transparent !important;
+}

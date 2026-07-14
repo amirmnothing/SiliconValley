@@ -17,7 +17,7 @@ public class SoundManager {
             Media media = new Media(resource.toExternalForm());
             backgroundMusic = new MediaPlayer(media);
             backgroundMusic.setCycleCount(MediaPlayer.INDEFINITE);
-            backgroundMusic.setVolume(0.3);
+            backgroundMusic.setVolume(1.0);
 
             backgroundMusic.play();
 
@@ -28,8 +28,10 @@ public class SoundManager {
 
     public static void setVolume(double volume) {
         if (backgroundMusic != null) {
-            if (volume >= 0.0 && volume <= 1.0) {
+            if (volume > 0.0 && volume <= 1.0) {
                 backgroundMusic.setVolume(volume);
+            } else if (volume == 0.0) {
+                backgroundMusic.pause();
             }
         }
     }

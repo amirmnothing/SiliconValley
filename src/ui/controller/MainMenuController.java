@@ -43,6 +43,8 @@ public class MainMenuController {
     private final Image selectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanSelected.png")));
     private final Image unselectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanUnselected.png")));
     private int playerCount = 0;
+    private double gameSoundVolume = 1.0;
+    private double SFXSoundVolume = 1.0;
     List<Player> players = new ArrayList<>();
     GameBoardController controller;
     BorderPane root;
@@ -126,6 +128,10 @@ public class MainMenuController {
     private Group LoadMenu;
 
     @FXML
+    private Group Settings;
+
+
+    @FXML
     private TableColumn<FileItem, String> saveDateCol;
 
     @FXML
@@ -170,6 +176,13 @@ public class MainMenuController {
 
     @FXML
     private ToggleGroup P4ToggleGroup;
+
+    // ========================== Settings ==========================
+    @FXML
+    private Slider MenuVolumeSlider, GameVolumeSlider, SFXVolumeSlider;
+
+    @FXML
+    private Label MenuVolumeLabel, GameVolumeLabel, SFXVolumeLabel;
 
     private ImageView currentlySelectedImageView = null;
     private Set<ImageView> lockedRoles = new HashSet<>();
@@ -273,6 +286,24 @@ public class MainMenuController {
                 }
             }
         });
+
+        MenuVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            MenuVolumeLabel.setText(String.valueOf((newVal.intValue())));
+            if (oldVal.doubleValue() == 0.0 && newVal.doubleValue() > 0.0) {
+                SoundManager.resumeMusic();
+            }
+            SoundManager.setVolume(newVal.doubleValue()/100);
+        });
+
+        GameVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            GameVolumeLabel.setText(String.valueOf((newVal.intValue())));
+            gameSoundVolume = newVal.doubleValue() / 100;
+        });
+
+        SFXVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            SFXVolumeLabel.setText(String.valueOf((newVal.intValue())));
+            SFXSoundVolume = newVal.doubleValue() / 100;
+        });
     }
 
     private boolean isHumanToggle(String Id) {
@@ -309,7 +340,7 @@ public class MainMenuController {
     @FXML
     void onBacktoMainMenuButton(ActionEvent event) {
         ResetAllPages();
-        MainMenu.setOpacity(1);
+        MainMenu.setVisible(true);
         MainMenu.setMouseTransparent(false);
     }
 
@@ -363,7 +394,7 @@ public class MainMenuController {
     @FXML
     void OnStartANewGame(ActionEvent event) {
         ResetAllPages();
-        GameLobby.setOpacity(1);
+        GameLobby.setVisible(true);
         GameLobby.setMouseTransparent(false);
         disableGroup();
     }
@@ -371,17 +402,27 @@ public class MainMenuController {
     @FXML
     void OnLoadAGame(ActionEvent event) {
         ResetAllPages();
-        LoadMenu.setOpacity(1);
+        LoadMenu.setVisible(true);
         LoadMenu.setMouseTransparent(false);
     }
 
+
+    @FXML
+    void onSettings(ActionEvent event) {
+        ResetAllPages();
+        Settings.setVisible(true);
+        Settings.setMouseTransparent(false);
+    }
+
     void ResetAllPages() {
-        GameLobby.setOpacity(0);
+        GameLobby.setVisible(false);
         GameLobby.setMouseTransparent(true);
-        MainMenu.setOpacity(0);
+        MainMenu.setVisible(false);
         MainMenu.setMouseTransparent(true);
-        LoadMenu.setOpacity(0);
+        LoadMenu.setVisible(false);
         LoadMenu.setMouseTransparent(true);
+        Settings.setVisible(false);
+        Settings.setMouseTransparent(true);
     }
 
     @FXML
@@ -569,6 +610,7 @@ public class MainMenuController {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         SoundManager.stopMusic();
         SoundManager.playBackgroundMusic("SiliconValley.mp3");
+        SoundManager.setVolume(gameSoundVolume);
     }
 
     @FXML
@@ -764,4 +806,5 @@ public class MainMenuController {
             P4.setDisable(false);
         }
     }
+
 }
