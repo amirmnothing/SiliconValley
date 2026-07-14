@@ -26,6 +26,7 @@ import logic.engine.Map;
 import logic.enums.PlayerRole;
 import logic.models.*;
 import logic.save.SaveManager;
+import logic.sound.SoundManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -175,6 +176,8 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
+        SoundManager.playBackgroundMusic("MainMenu.mp3");
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
             root = loader.load();
@@ -363,8 +366,6 @@ public class MainMenuController {
         GameLobby.setOpacity(1);
         GameLobby.setMouseTransparent(false);
         disableGroup();
-
-
     }
 
     @FXML
@@ -566,6 +567,8 @@ public class MainMenuController {
 
         gameBoardStage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        SoundManager.stopMusic();
+        SoundManager.playBackgroundMusic("SiliconValley.mp3");
     }
 
     @FXML
