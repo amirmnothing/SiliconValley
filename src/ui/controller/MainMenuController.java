@@ -1,8 +1,6 @@
 package ui.controller;
 
-import exception.InvalidPlayerNameException;
-import exception.PlayerRoleNotSelectedException;
-import exception.PlayerTypeNotSelectedException;
+import exception.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +24,7 @@ import logic.engine.Map;
 import logic.enums.PlayerRole;
 import logic.models.*;
 import logic.save.SaveManager;
+import logic.sound.SFXManager;
 import logic.sound.SoundManager;
 
 import java.io.File;
@@ -43,8 +42,7 @@ public class MainMenuController {
     private final Image selectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanSelected.png")));
     private final Image unselectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanUnselected.png")));
     private int playerCount = 0;
-    private double gameSoundVolume = 1.0;
-    private double SFXSoundVolume = 1.0;
+    private static double gameSoundVolume = 1.0;
     List<Player> players = new ArrayList<>();
     GameBoardController controller;
     BorderPane root;
@@ -189,7 +187,28 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
-        SoundManager.playBackgroundMusic("MainMenu.mp3");
+        try {
+            SFXManager.preload("MouseEnter.mp3");
+        } catch (SFXNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load files");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+        }
+        try {
+            SoundManager.playBackgroundMusic("MainMenu.mp3");
+        } catch (MusicFileNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load files");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/GameBoard.fxml"));
@@ -302,7 +321,7 @@ public class MainMenuController {
 
         SFXVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             SFXVolumeLabel.setText(String.valueOf((newVal.intValue())));
-            SFXSoundVolume = newVal.doubleValue() / 100;
+            SFXManager.setVolume(newVal.doubleValue() / 100);
         });
     }
 
@@ -329,6 +348,7 @@ public class MainMenuController {
 
     @FXML
     void LoadMenuButtonsMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-width: 3; -fx-border-color:  #d4af37");
     }
 
@@ -427,11 +447,13 @@ public class MainMenuController {
 
     @FXML
     void ButtonsMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a; -fx-border-color: #d4af37 ;-fx-border-width: 5;");
     }
 
     @FXML
     void ButtonsMouseExit(MouseEvent event) {
+//        SFXManager.play("MouseExit.mp3");
         ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a;");
     }
 
@@ -442,6 +464,7 @@ public class MainMenuController {
 
     @FXML
     void RoleMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         if (lockedRoles.contains(event.getSource()) || (ImageView) event.getSource() == currentlySelectedImageView) {
             return;
         }
@@ -505,23 +528,27 @@ public class MainMenuController {
 
     @FXML
     void NextPlayerButtonMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(0,0,225)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
 
     @FXML
     void ResetAllButtonMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(220,0,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
 
     @FXML
     void BackButtonMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Button) (event.getSource())).setStyle("-fx-background-color:  #333; -fx-border-color: white; -fx-border-width: 2");
     }
 
     @FXML
     void StartButtonMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(0,110,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 2");
     }
@@ -586,9 +613,6 @@ public class MainMenuController {
             return;
         }
 
-
-        // Todo: Start game based on entered settings
-
         Map gameMap = new Map(5, 5);
         GameEngine gameEngine = new GameEngine(gameMap, players);
 
@@ -598,9 +622,6 @@ public class MainMenuController {
 
         gameEngine.startSetupPhase();
 
-        // پاس دادن موتور بازی به کنترلر
-
-
         Stage gameBoardStage = new Stage();
         gameBoardStage.setScene(new Scene(root));
         gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
@@ -608,9 +629,6 @@ public class MainMenuController {
 
         gameBoardStage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        SoundManager.stopMusic();
-        SoundManager.playBackgroundMusic("SiliconValley.mp3");
-        SoundManager.setVolume(gameSoundVolume);
     }
 
     @FXML
@@ -807,4 +825,11 @@ public class MainMenuController {
         }
     }
 
+    public static double getGameSoundVolume() {
+        return gameSoundVolume;
+    }
+
+    public static void setGameSoundVolume(double Volume) {
+        gameSoundVolume = Volume;
+    }
 }

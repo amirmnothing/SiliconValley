@@ -8,6 +8,6 @@ public class MusicFileNotFoundException extends RuntimeException {
     }
 
     public MusicFileNotFoundException(String Message) {
-        super(Message);
+        super("Couldn't find \"" + Message + "\" music");
     }
 }

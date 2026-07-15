@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 import logic.models.Player;
+import logic.sound.SFXManager;
 
 import java.util.Map;
 
@@ -213,6 +214,7 @@ public class LegalCrisisController {
 
     @FXML
     void ChangeBorderWidthToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Circle) event.getSource()).setStrokeWidth(3);
     }
 
@@ -223,6 +225,7 @@ public class LegalCrisisController {
 
     @FXML
     void ChangeReturnButtonToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(0,100,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }

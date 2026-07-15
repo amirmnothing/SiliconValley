@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 import logic.models.Player;
+import logic.sound.SFXManager;
 
 import java.util.Map;
 
@@ -72,6 +73,7 @@ public class IncomingTradeController {
 
     @FXML
     void ChangeAcceptButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(0,100,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
@@ -83,6 +85,7 @@ public class IncomingTradeController {
 
     @FXML
     void ChangeRejectButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(120,0,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }

@@ -2,6 +2,8 @@ package ui.controller;
 
 import exception.InsufficientResourcesException;
 import exception.InvalidPlacementException;
+import exception.MusicFileNotFoundException;
+import exception.SFXNotFoundException;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -35,6 +37,8 @@ import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 import logic.models.*;
 import logic.save.SaveManager;
+import logic.sound.SFXManager;
+import logic.sound.SoundManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -757,9 +761,6 @@ public class GameBoardController {
         MessageBox.setVisible(false);
         setActiveEndTurn(false);
         endTurnDisable();
-        if (!(gameEngine.getCurrentPlayer() instanceof PlayableAI)) {
-            showMessage("Dice", "Please roll the dice.", MessageMode.NORMAL);
-        }
 
         startNextTurn();
     }
@@ -971,7 +972,30 @@ public class GameBoardController {
     @FXML
     public void initialize(GameEngine gameEngine) {
         updateSectorImages();
-
+        SoundManager.stopMusic();
+        try {
+            SoundManager.playBackgroundMusic("SiliconValley.mp3");
+        } catch (MusicFileNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load files");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+        }
+        SoundManager.setVolume(MainMenuController.getGameSoundVolume());
+        try {
+            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3");
+        } catch (SFXNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load files");
+            alert.setContentText(e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
+        }
 
         TalentCount.setText("0");
         PatentCount.setText("0");
@@ -1236,6 +1260,7 @@ public class GameBoardController {
 
     @FXML
     void ChangeShopButtonsToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(33, 33, 33)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
@@ -1248,6 +1273,7 @@ public class GameBoardController {
 
     @FXML
     void ChangeShopBuyButtonToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(00, 100, 18)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";");
     }
@@ -1272,6 +1298,7 @@ public class GameBoardController {
             if (owner != null && owner == gameEngine.getCurrentPlayer()) {
                 for (Node n : ((StackPane) (circle.getParent())).getChildren()) {
                     if (n instanceof SVGPath) {
+                        SFXManager.play("MouseExit.mp3");
                         SVGPath hexagon = (SVGPath) n;
                         hexagon.setFill(color);
                         hexagon.setOpacity(1);
@@ -1282,6 +1309,7 @@ public class GameBoardController {
                 }
             }
         } else {
+            SFXManager.play("MouseExit.mp3");
             if (event.getSource() instanceof Circle circle) {
                 int[] Coordinates = parseCoordinates(circle.getId());
                 if (gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure() != null) {
@@ -1349,6 +1377,7 @@ public class GameBoardController {
 
     @FXML
     void ChangeButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(37,37,37)";
         if (((Button) event.getSource()).getId().equals("RollDiceBTN"))
             ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: blue;" + "-fx-border-width: 2;");
@@ -1409,6 +1438,7 @@ public class GameBoardController {
 
     @FXML
     void ChangeTradeButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(37,37,37)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 4;");
     }
@@ -1429,6 +1459,7 @@ public class GameBoardController {
         Circle circle = findCircleForVertex(vertex);
 
         if (circle != null) {
+            SFXManager.play("Build.mp3");
             circle.setFill(playerColor);
             circle.setStroke(Color.BLACK);
         }
@@ -1439,6 +1470,7 @@ public class GameBoardController {
         Line line = findLineForEdge(edge);
 
         if (line != null) {
+            SFXManager.play("Build.mp3");
             line.setOnMouseEntered(null);
             line.setOnMouseExited(null);
             line.setOnMouseClicked(null);
@@ -1452,6 +1484,7 @@ public class GameBoardController {
         hexagon.setOnMouseExited(null);
         hexagon.setOnMouseClicked(null);
 
+        SFXManager.play("Upgrade.mp3");
         hexagon.setFill(playerColor);
         hexagon.setStroke(Color.BLACK);
         hexagon.setOpacity(1.0);
@@ -1479,6 +1512,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
+                SFXManager.play("Build.mp3");
                 showMessage("Build MVP", "Congratulations! " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the MVP", MessageMode.SUCCESS);
                 checkTurnAdvancement();
                 if (gameEngine.isSetupPhase()) {
@@ -1510,6 +1544,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
+                SFXManager.play("Build.mp3");
                 showMessage("Build Partnership", "Congratulations! " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Partnership.", MessageMode.SUCCESS);
                 checkTurnAdvancement();
                 gameEngine.updateLongestNetwork();
@@ -1543,6 +1578,7 @@ public class GameBoardController {
             try {
                 Color color = getPlayerColor();
                 gameEngine.upgradeToUnicorn(vertex, gameEngine.getCurrentPlayer());
+                SFXManager.play("Upgrade.mp3");
                 showMessage("Upgrade to unicorn", "Congratulations!  " + gameEngine.getCurrentPlayer().getPlayerName() + " have successfully built the Unicorn.", MessageMode.SUCCESS);
 
                 checkTurnAdvancement();
@@ -1662,6 +1698,7 @@ public class GameBoardController {
 
     @FXML
     void RollDice(ActionEvent event) {
+        MessageBox.setVisible(false);
         try {
             ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
             showDiceResultsUI(dice, null);
@@ -1672,7 +1709,7 @@ public class GameBoardController {
     }
 
     public void showDiceResultsUI(ArrayList<Integer> Dice, Runnable onDiceProcessed) {
-
+        SFXManager.play("Dice.mp3");
         String D1Addr = "/assets/dice/dice_" + Dice.get(0) + ".png";
         String D2Addr = "/assets/dice/dice_" + Dice.get(1) + ".png";
 
@@ -2139,6 +2176,7 @@ public class GameBoardController {
 
     @FXML
     void SaveTabButtonsMouseEnter(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
     }
 
@@ -2149,8 +2187,10 @@ public class GameBoardController {
 
     @FXML
     void SaveTabCreateButtonMouseEnter(MouseEvent event) {
-        if (CreateBtnChoose == 0)
+        if (CreateBtnChoose == 0) {
+            SFXManager.play("MouseEnter.mp3");
             ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+        }
     }
 
     @FXML
@@ -2160,8 +2200,10 @@ public class GameBoardController {
 
     @FXML
     void SaveTabEditButtonMouseEnter(MouseEvent event) {
-        if (EditBtnChoose == 0)
+        if (EditBtnChoose == 0) {
+            SFXManager.play("MouseEnter.mp3");
             ((Button) event.getSource()).setStyle("-fx-background-color:  #1a1a1a; -fx-border-color: #d4af37; -fx-border-width: 2");
+        }
     }
 
     @FXML
@@ -2586,6 +2628,7 @@ public class GameBoardController {
             }
             boolean isDiceRolled = gameEngine.getIsDiceRolled();
 
+            if (!isDiceRolled) showMessage("Dice", "Please roll the dice.", MessageMode.NORMAL);
             RollDiceBTN.setDisable(isDiceRolled);
 
             boolean canPerformActions = isDiceRolled;

@@ -9,9 +9,9 @@ public class SoundManager {
     private static MediaPlayer backgroundMusic;
     public static void playBackgroundMusic(String fileName) {
         try {
-            URL resource = SoundManager.class.getResource("/assets/Sounds/" + fileName);
+            URL resource = SoundManager.class.getResource("/assets/Sounds/Musics/" + fileName);
             if (resource == null) {
-                throw new MusicFileNotFoundException();
+                throw new MusicFileNotFoundException(fileName);
             }
 
             Media media = new Media(resource.toExternalForm());
@@ -35,6 +35,8 @@ public class SoundManager {
             }
         }
     }
+
+    public static double getVolume() {return backgroundMusic.getVolume();}
 
     public static void stopMusic() {
         if (backgroundMusic != null) {

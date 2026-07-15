@@ -18,6 +18,7 @@ import javafx.stage.Window;
 import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 import logic.models.Player;
+import logic.sound.SFXManager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -249,6 +250,7 @@ public class TradeRequestController {
 
     @FXML
     void ChangeBorderWidthToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         ((Circle) event.getSource()).setStrokeWidth(3);
     }
 
@@ -259,6 +261,7 @@ public class TradeRequestController {
 
     @FXML
     void ChangeRequestButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(0,100,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
@@ -270,6 +273,7 @@ public class TradeRequestController {
 
     @FXML
     void ChangeResetButtonColorToChoose(MouseEvent event) {
+        SFXManager.play("MouseEnter.mp3");
         String rgbColor = "rgb(120,0,0)";
         ((Button) (event.getSource())).setStyle("-fx-background-color: " + rgbColor + ";" + "-fx-border-color: white;" + "-fx-border-width: 3;");
     }
