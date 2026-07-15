@@ -5,6 +5,7 @@ import exception.InvalidMarketTransactionException;
 import javafx.animation.PauseTransition;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 import logic.models.Edge;
 import logic.models.Player;
@@ -231,52 +232,104 @@ public class AIBrain implements Serializable {
         return discardMap;
     }
 
+//    private void tryPlaceAuditorByAI(Player aiPlayer, GameEngine engine) {
+//
+//        Sector targetSector = findBestSectorForAuditor(engine);
+//
+//        if (targetSector != null) {
+//            int targetRow = -1;
+//            int targetCol = -1;
+//            Sector[][] sectors = engine.getMap().getSectors();
+//
+//
+//            for (int r = 0; r < engine.getMap().getRows(); r++) {
+//                for (int c = 0; c < engine.getMap().getCols(); c++) {
+//                    if (sectors[r][c] == targetSector) {
+//                        targetRow = r;
+//                        targetCol = c;
+//                        break;
+//                    }
+//                }
+//                if (targetRow != -1) break;
+//            }
+//
+//
+//            if (targetRow != -1 && targetCol != -1) {
+//                final int finalRow = targetRow;
+//                final int finalCol = targetCol;
+//
+//                Platform.runLater(() -> {
+//
+//                    controller.performAIAuditorMove(finalRow, finalCol);
+//                });
+//            }
+//        }
+//    }
+//
+//    private Sector findBestSectorForAuditor(GameEngine engine) {
+//        Sector[][] sectors = engine.getMap().getSectors();
+//        for (Sector[] row : sectors) {
+//            for (Sector sector : row) {
+//                if (sector != null && engine.canPlaceAuditor(sector)) {
+//                    return sector;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+
     private void tryPlaceAuditorByAI(Player aiPlayer, GameEngine engine) {
 
-        Sector targetSector = findBestSectorForAuditor(engine);
+        int[] targetCoords = findBestSectorCoordsForAuditor(engine, aiPlayer);
 
-        if (targetSector != null) {
-            int targetRow = -1;
-            int targetCol = -1;
-            Sector[][] sectors = engine.getMap().getSectors();
+        if (targetCoords != null) {
+            int targetRow = targetCoords[0];
+            int targetCol = targetCoords[1];
 
+            Platform.runLater(() -> {
+                controller.performAIAuditorMove(targetRow, targetCol);
+            });
+        }
+    }
 
-            for (int r = 0; r < engine.getMap().getRows(); r++) {
-                for (int c = 0; c < engine.getMap().getCols(); c++) {
-                    if (sectors[r][c] == targetSector) {
-                        targetRow = r;
-                        targetCol = c;
-                        break;
+    private int[] findBestSectorCoordsForAuditor(GameEngine engine, Player aiPlayer) {
+        Sector[][] sectors = engine.getMap().getSectors();
+        int bestScore = -1;
+        int[] bestCoords = null;
+
+        for (int r = 0; r < engine.getMap().getRows(); r++) {
+            for (int c = 0; c < engine.getMap().getCols(); c++) {
+                Sector sector = sectors[r][c];
+                if (sector != null && engine.canPlaceAuditor(sector)) {
+                    int currentScore = calculateEnemyPresence(sector, aiPlayer);
+                    if (currentScore > bestScore) {
+                        bestScore = currentScore;
+                        bestCoords = new int[]{r, c};
                     }
                 }
-                if (targetRow != -1) break;
-            }
-
-
-            if (targetRow != -1 && targetCol != -1) {
-                final int finalRow = targetRow;
-                final int finalCol = targetCol;
-
-                Platform.runLater(() -> {
-
-                    controller.performAIAuditorMove(finalRow, finalCol);
-                });
             }
         }
+
+        return bestCoords;
     }
 
-    private Sector findBestSectorForAuditor(GameEngine engine) {
-        Sector[][] sectors = engine.getMap().getSectors();
-        for (Sector[] row : sectors) {
-            for (Sector sector : row) {
-                if (sector != null && engine.canPlaceAuditor(sector)) {
-                    return sector;
+
+    private int calculateEnemyPresence(Sector sector, Player aiPlayer) {
+        int score = 0;
+        java.util.Map<CornerDirection, Vertex> corners = sector.getCorners();
+        for (CornerDirection direction : CornerDirection.values()) {
+            Vertex vertex = corners.get(direction);
+            CompanyStructure structure = vertex.getCompanyStructure();
+            if (structure != null && !structure.getOwner().equals(aiPlayer)) {
+                if (structure instanceof Unicorn) {
+                    score += 2;
+                } else if (structure instanceof MVP) {
+                    score += 1;
                 }
             }
         }
-        return null;
+        return score;
     }
-
 
     private void tryBuildMVP(Player aiPlayer, GameEngine engine) {
         if (!aiPlayer.hasResourcesForMVP()) return;
