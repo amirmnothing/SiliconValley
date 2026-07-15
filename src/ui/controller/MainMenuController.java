@@ -128,6 +128,9 @@ public class MainMenuController {
     @FXML
     private Group Settings;
 
+    @FXML
+    private Group AboutUs;
+
 
     @FXML
     private TableColumn<FileItem, String> saveDateCol;
@@ -442,6 +445,13 @@ public class MainMenuController {
         Settings.setMouseTransparent(false);
     }
 
+    @FXML
+    void onAboutUs(ActionEvent event) {
+        ResetAllPages();
+        AboutUs.setVisible(true);
+        AboutUs.setMouseTransparent(false);
+    }
+
     void ResetAllPages() {
         GameLobby.setVisible(false);
         GameLobby.setMouseTransparent(true);
@@ -449,6 +459,8 @@ public class MainMenuController {
         MainMenu.setMouseTransparent(true);
         LoadMenu.setVisible(false);
         LoadMenu.setMouseTransparent(true);
+        AboutUs.setVisible(false);
+        AboutUs.setMouseTransparent(true);
         Settings.setVisible(false);
         Settings.setMouseTransparent(true);
     }
