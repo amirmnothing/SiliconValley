@@ -911,6 +911,7 @@ public class GameBoardController {
                     if (mapGrid.getChildren().get(r * 5 + c) == stackPane) {
                         if (gameEngine.moveAuditor(gameEngine.getMap().getSectors()[r][c])) {
                             setAuditorOnSector(stackPane);
+                            SFXManager.play("Auditor.mp3");
                             showMessage("Auditor deployment", "The auditor was successfully placed in your desired location", MessageMode.SUCCESS);
                             temp = stackPane;
                             gameEngine.getCurrentPlayer().setCanPlaceAuditor(false);
@@ -946,6 +947,7 @@ public class GameBoardController {
 
             StackPane newAuditorPane = (StackPane) mapGrid.getChildren().get(targetRow * 5 + targetCol);
             setAuditorOnSector(newAuditorPane);
+            SFXManager.play("Auditor.mp3");
 
             previousAuditorLocation = newAuditorPane;
 
@@ -986,7 +988,7 @@ public class GameBoardController {
         }
         SoundManager.setVolume(MainMenuController.getGameSoundVolume());
         try {
-            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3");
+            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3", "Auditor.mp3", "Purchase.mp3");
         } catch (SFXNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -2018,6 +2020,7 @@ public class GameBoardController {
             if (currentDataCount > 0)
                 gameEngine.getMarket().buyFromMarket(gameEngine, p, ResourceType.DATA, currentDataCount);
 
+            SFXManager.play("Purchase.mp3");
             resetMarketSelectionUI();
             resetMarketPricesUI();
             refreshPlayersResourcesUI();

@@ -306,6 +306,14 @@ public class MainMenuController {
             }
         });
 
+        MenuVolumeSlider.setValue(SoundManager.getVolume() * 100);
+        GameVolumeSlider.setValue(gameSoundVolume * 100);
+        SFXVolumeSlider.setValue(SFXManager.getVolume() * 100);
+
+        MenuVolumeLabel.setText(String.valueOf((int) SoundManager.getVolume() * 100));
+        GameVolumeLabel.setText(String.valueOf((int) gameSoundVolume * 100));
+        SFXVolumeLabel.setText(String.valueOf((int) SFXManager.getVolume() * 100));
+
         MenuVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             MenuVolumeLabel.setText(String.valueOf((newVal.intValue())));
             if (oldVal.doubleValue() == 0.0 && newVal.doubleValue() > 0.0) {
