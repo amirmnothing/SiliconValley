@@ -126,7 +126,7 @@
                                                       <ToggleGroup fx:id="P1ToggleGroup" />
                                                    </toggleGroup>
                                                 </ToggleButton>
-                                                <ToggleButton fx:id="P1AIToggle" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P1ToggleGroup">
+                                                <ToggleButton fx:id="P1AIToggle" disable="true" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: null;" toggleGroup="$P1ToggleGroup">
                                                    <graphic>
                                                       <ImageView fitHeight="40.0" fitWidth="40.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                                          <viewport>
