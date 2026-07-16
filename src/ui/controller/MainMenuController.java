@@ -222,7 +222,23 @@ public class MainMenuController {
 
             controller = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Critical System Error");
+            alert.setHeaderText("Failed to Load Game Board");
+            Label messageLabel = new Label("A critical error occurred while trying to launch the game screen. " +
+                    "The board interface file could not be loaded.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
         }
 
 

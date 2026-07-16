@@ -7,10 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -351,7 +354,22 @@ public class TradeRequestController {
             currentStage.close();
             tradeIncomingStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("System Error");
+            alert.setHeaderText("Failed to Open Incoming Trade Window");
+            Label messageLabel = new Label("An error occurred while trying to process and display the incoming trade offer.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
         }
     }
 

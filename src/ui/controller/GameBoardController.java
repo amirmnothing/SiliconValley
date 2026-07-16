@@ -1709,8 +1709,24 @@ public class GameBoardController {
                 currentStage.setTitle("Silicon Valley: The Tech Cartel");
                 currentStage.setResizable(false);
                 currentStage.centerOnScreen();
+                SoundManager.stopMusic();
             } catch (IOException e) {
-                e.printStackTrace();
+                SFXManager.play("Error 2.mp3");
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("System Error");
+                alert2.setHeaderText("Failed to Load Main Menu");
+                Label messageLabel = new Label("An error occurred while trying to return to the Main Menu.\n\n" +
+                        "Details: " + e.getMessage());
+                messageLabel.setWrapText(true);
+                messageLabel.setPrefWidth(450);
+                DialogPane dialogPane2 = alert2.getDialogPane();
+                dialogPane2.setContent(messageLabel);
+                if (getClass().getResource("/ui/view/style.css") != null) {
+                    String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                    dialogPane2.getStylesheets().add(cssPath);
+                }
+                dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                alert.showAndWait();
             }
         }
     }
@@ -1788,7 +1804,22 @@ public class GameBoardController {
             ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
             showDiceResultsUI(dice, null);
         } catch (Exception e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gameplay Error");
+            alert.setHeaderText("Failed to Roll Dice");
+            Label messageLabel = new Label("An unexpected error occurred while attempting to roll the dice.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
         }
         updateTurnControls();
     }
@@ -1937,7 +1968,22 @@ public class GameBoardController {
             tradeStage.showAndWait();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("System Error");
+            alert.setHeaderText("Failed to Open Trade Window");
+            Label messageLabel = new Label("Could not load the trade interface. The FXML file might be missing or corrupted.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
         }
     }
 
@@ -1981,7 +2027,22 @@ public class GameBoardController {
                 refreshPlayersResourcesUI();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                SFXManager.play("Error 2.mp3");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("System Error");
+                alert.setHeaderText("Failed to Open Legal Crisis Window");
+                Label messageLabel = new Label("Could not open the Legal Crisis interface.\n\n" +
+                        "Details: " + e.getMessage());
+                messageLabel.setWrapText(true);
+                messageLabel.setPrefWidth(450);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.setContent(messageLabel);
+                if (getClass().getResource("/ui/view/style.css") != null) {
+                    String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                    dialogPane.getStylesheets().add(cssPath);
+                }
+                dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                alert.showAndWait();
             }
 
         }
@@ -2109,9 +2170,23 @@ public class GameBoardController {
             refreshPlayersResourcesUI();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Market Error");
+            alert.setHeaderText("Transaction Failed");
+            Label messageLabel = new Label("Could not complete the purchase from the market.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
         }
-
     }
 
     private void resetMarketSelectionUI() {
