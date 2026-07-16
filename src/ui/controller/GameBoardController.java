@@ -895,7 +895,7 @@ public class GameBoardController {
         colorAdjust.setHue(0);
         colorAdjust.setSaturation(-1.0);
 
-        ((ImageView) sectorImage).setEffect(colorAdjust);
+        sectorImage.setEffect(colorAdjust);
 
         Node auditorSector = stackPane.getChildren().get(1);
         String auditorImagePath = "/assets/Sectors/Auditor.png";
@@ -943,7 +943,7 @@ public class GameBoardController {
 
     public void setAuditorNotOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
-        ((ImageView) sectorImage).setEffect(null);
+        sectorImage.setEffect(null);
 
         Node auditorSector = stackPane.getChildren().get(1);
         ((ImageView) auditorSector).setImage(null);
@@ -1130,8 +1130,8 @@ public class GameBoardController {
                 P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
             case 1:
                 Player1Color.setText(players.get(0).getPlayerName());
-                Player1Role.setText(role(players.get(0).getRole()));
-                P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
+                Player1Role.setText(role(players.getFirst().getRole()));
+                P1Resources.setText(Integer.toString(totalResourcesCount(players.getFirst())));
         }
 
         changePlayerTextColor();
@@ -1375,9 +1375,8 @@ public class GameBoardController {
             }
             if (owner != null && owner == gameEngine.getCurrentPlayer()) {
                 for (Node n : ((StackPane) (circle.getParent())).getChildren()) {
-                    if (n instanceof SVGPath) {
+                    if (n instanceof SVGPath hexagon) {
                         SFXManager.play("MouseExit.mp3");
-                        SVGPath hexagon = (SVGPath) n;
                         hexagon.setFill(color);
                         hexagon.setOpacity(1);
                         hexagon.setMouseTransparent(false);
@@ -1424,8 +1423,7 @@ public class GameBoardController {
 
         if (event.getSource() instanceof SVGPath hexagon) {
             for (Node n : ((StackPane) (hexagon.getParent())).getChildren()) {
-                if (n instanceof Circle) {
-                    Circle circle = (Circle) n;
+                if (n instanceof Circle circle) {
                     int[] Coordinates = parseCoordinates(circle.getId());
                     if (gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure() != null) {
                         owner = gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure().getOwner();
@@ -1487,18 +1485,13 @@ public class GameBoardController {
     public Color getPlayerColor() {
         int index = gameEngine.getCurrentPlayerIndex();
 
-        switch (index) {
-            case 0:
-                return Color.web(PLAYER1COLOR);
-            case 1:
-                return Color.web(PLAYER2COLOR);
-            case 2:
-                return Color.web(PLAYER3COLOR);
-            case 3:
-                return Color.web(PLAYER4COLOR);
-            default:
-                return Color.BLACK;
-        }
+        return switch (index) {
+            case 0 -> Color.web(PLAYER1COLOR);
+            case 1 -> Color.web(PLAYER2COLOR);
+            case 2 -> Color.web(PLAYER3COLOR);
+            case 3 -> Color.web(PLAYER4COLOR);
+            default -> Color.BLACK;
+        };
     }
 
     public Color getPlayerColor(Player player, List<Player> playersList) {
@@ -1590,7 +1583,6 @@ public class GameBoardController {
                 return;
             }
             Vertex vertex = getVertexFromCircle(circle);
-            int[] coordinates = parseCoordinates(circle.getId());
 
             try {
                 Color color = getPlayerColor();
@@ -1655,7 +1647,6 @@ public class GameBoardController {
                 return;
             }
             Vertex vertex = getVertexFromCircle(hexagon);
-            int[] coordinates = parseCoordinates(hexagon.getId());
 
             try {
                 Color color = getPlayerColor();

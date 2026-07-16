@@ -41,52 +41,56 @@ public class SimpleAIBrain implements Serializable, AIBrain {
         }
         if (engine.isMainPhaseActive()) {
             if (!engine.getIsDiceRolled()) {
-                ArrayList<Integer> dice = engine.rollDiceForCurrentTurn();
+               PauseTransition pause = new PauseTransition(Duration.seconds(1.0));
+               pause.setOnFinished(event -> {
+                   ArrayList<Integer> dice = engine.rollDiceForCurrentTurn();
 
-                Runnable continueAITurn = () -> {
-                    PauseTransition actionDelay = new PauseTransition(Duration.seconds(1.5));
-                    actionDelay.setOnFinished(e -> {
+                   Runnable continueAITurn = () -> {
+                       PauseTransition actionDelay = new PauseTransition(Duration.seconds(2));
+                       actionDelay.setOnFinished(e -> {
 
-                        if (dice.get(0) + dice.get(1) == 7) {
-                            aiPlayer.setCanPlaceAuditor(true);
-                            tryPlaceAuditorByAI(aiPlayer, engine);
-                        }
+                           if (dice.get(0) + dice.get(1) == 7) {
+                               aiPlayer.setCanPlaceAuditor(true);
+                               tryPlaceAuditorByAI(aiPlayer, engine);
+                           }
 
-                        scheduleAction(() -> {
-                            tryMarketTrade(aiPlayer, engine);
-                            refreshUI(engine);
+                           scheduleAction(() -> {
+                               tryMarketTrade(aiPlayer, engine);
+                               refreshUI(engine);
 
-                            scheduleAction(() -> {
-                                tryUpgradeToUnicorn(aiPlayer, engine);
-                                refreshUI(engine);
+                               scheduleAction(() -> {
+                                   tryUpgradeToUnicorn(aiPlayer, engine);
+                                   refreshUI(engine);
 
-                                scheduleAction(() -> {
-                                    tryBuildMVP(aiPlayer, engine);
-                                    refreshUI(engine);
+                                   scheduleAction(() -> {
+                                       tryBuildMVP(aiPlayer, engine);
+                                       refreshUI(engine);
 
-                                    scheduleAction(() -> {
-                                        tryBuildPartnership(aiPlayer, engine);
-                                        refreshUI(engine);
+                                       scheduleAction(() -> {
+                                           tryBuildPartnership(aiPlayer, engine);
+                                           refreshUI(engine);
 
-                                        scheduleAction(() -> {
-                                            engine.endCurrentTurn();
-                                            refreshUI(engine);
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                    actionDelay.play();
-                };
+                                           scheduleAction(() -> {
+                                               engine.endCurrentTurn();
+                                               refreshUI(engine);
+                                           });
+                                       });
+                                   });
+                               });
+                           });
+                       });
+                       actionDelay.play();
+                   };
 
 
-                Platform.runLater(() -> {
+                   Platform.runLater(() -> {
 
-                    controller.showDiceResultsUI(dice, continueAITurn);
-                    refreshUI(engine);
-                });
+                       controller.showDiceResultsUI(dice, continueAITurn);
+                       refreshUI(engine);
+                   });
 
+               });
+                pause.play();
             }
             return;
         }

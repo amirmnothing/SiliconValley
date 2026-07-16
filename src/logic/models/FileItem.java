@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.io.File;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileItem implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private final StringProperty name;
     private final StringProperty date;
@@ -42,10 +44,6 @@ public class FileItem implements Serializable {
 
     public StringProperty nameProperty() {
         return name;
-    }
-
-    public String getDate() {
-        return date.get();
     }
 
     public StringProperty dateProperty() {

@@ -3,11 +3,13 @@ package logic.models;
 import logic.enums.CornerDirection;
 import logic.enums.ResourceType;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Sector implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private ResourceType resourceType;
     private int activationNumber;
@@ -25,16 +27,8 @@ public class Sector implements Serializable {
         return resourceType;
     }
 
-    public void setResourceType(ResourceType resourceType) {
-        this.resourceType = resourceType;
-    }
-
     public int getactivationNumber() {
         return activationNumber;
-    }
-
-    public void setactivationNumber(int activationNumber) {
-        this.activationNumber = activationNumber;
     }
 
     public boolean isAuditor() {
