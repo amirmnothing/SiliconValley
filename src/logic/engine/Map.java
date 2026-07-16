@@ -34,7 +34,7 @@ public class Map implements Serializable {
     private void initMap() {
 
         Random random = new Random();
-        // ساخت همه گره ها و قرار دادن آنها در آرایه دو بعدی گره ها
+
         for (int r = 0; r <= rows; r++) {
             for (int c = 0; c <= cols; c++) {
                 vertices[r][c] = new Vertex();
@@ -63,7 +63,6 @@ public class Map implements Serializable {
                 index++;
                 sectors[r][c] = new Sector(RT, RT == ResourceType.REGULATORY ? 0 : random.nextInt(11) + 2, false);
 
-                // اتصال 4 گره اطراف هر سکتور به آن
                 sectors[r][c].setCorner(CornerDirection.TOP_LEFT, vertices[r][c]);
                 sectors[r][c].setCorner(CornerDirection.TOP_RIGHT, vertices[r][c + 1]);
                 sectors[r][c].setCorner(CornerDirection.BOTTOM_LEFT, vertices[r + 1][c]);
@@ -75,11 +74,9 @@ public class Map implements Serializable {
         for (int r = 0; r <= rows; r++) {
             for (int c = 0; c <= cols; c++) {
 
-                // تولید یال های عمودی
                 if (r < rows)
                     edges.add(new Edge(vertices[r][c], vertices[r + 1][c]));
 
-                // تولید یال های افقی
                 if (c < cols)
                     edges.add(new Edge(vertices[r][c], vertices[r][c + 1]));
             }

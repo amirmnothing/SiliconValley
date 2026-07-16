@@ -4,6 +4,7 @@ import exception.InsufficientResourcesException;
 import logic.enums.PlayerRole;
 import logic.enums.ResourceType;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
@@ -11,11 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Player implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private final String playerName;
     public static final int LONGEST_NETWORK_BONUS_POINTS = 2;
     public static final int DEFAULT_CRISIS_THRESHOLD = 7;
-    protected Map<ResourceType, Integer> resources = new HashMap<>();
+    protected Map<ResourceType, Integer> resources;
     protected List<CompanyStructure> companies;
     protected PlayerRole playerRole;
     protected boolean hasLongestNetwork = false;
@@ -179,16 +181,8 @@ public class Player implements Serializable {
         return resources;
     }
 
-    public void setResourceCount(Map<ResourceType, Integer> resourceCount) {
-        this.resources = resourceCount;
-    }
-
     public List<CompanyStructure> getCompanies() {
         return companies;
-    }
-
-    public void setCompanies(List<CompanyStructure> companies) {
-        this.companies = companies;
     }
 
     public PlayerRole getRole() {

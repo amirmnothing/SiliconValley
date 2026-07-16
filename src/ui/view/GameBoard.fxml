@@ -699,7 +699,7 @@
                         </Button>
                         <Group fx:id="MessageBox" layoutX="-3.9613983631134033" layoutY="436.0386047363281" visible="false">
                            <children>
-                              <VBox fx:id="MessageVBox" alignment="TOP_CENTER" layoutX="19.961398363113403" layoutY="14.961395263671875" prefWidth="482.0" style="-fx-border-color: white; -fx-border-width: 2;">
+                              <VBox fx:id="MessageVBox" alignment="TOP_CENTER" layoutX="19.961398363113403" layoutY="14.961395263671875" maxWidth="482.0" minWidth="482.0" prefWidth="482.0" style="-fx-border-color: white; -fx-border-width: 2;">
                                  <children>
                                     <Label fx:id="MessageHeader" text="HEADER" textAlignment="CENTER" textFill="WHITE">
                                        <font>

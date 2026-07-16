@@ -59,8 +59,4 @@ public class SFXManager {
     public static double getVolume() {
         return sfxVolume;
     }
-
-    public static void clearCache() {
-        sfxCache.clear();
-    }
 }

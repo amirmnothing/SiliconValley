@@ -2,12 +2,14 @@ package logic.models;
 
 import logic.enums.ResourceType;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Unicorn extends CompanyStructure implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     public static final Map<ResourceType, Integer> UPGRADE_COST;
 

@@ -16,10 +16,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import logic.engine.AIBrain;
+import logic.engine.MCTSAIBrain;
+import logic.engine.SimpleAIBrain;
 import logic.engine.GameEngine;
 import logic.engine.Map;
 import logic.enums.PlayerRole;
@@ -33,11 +35,11 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainMenuController {
 
+    private final Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
     private final Image selectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AISelected.png")));
     private final Image selectedHardAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIHardSelected.png")));
     private final Image unselectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIUnselected.png")));
@@ -178,6 +180,7 @@ public class MainMenuController {
     private ToggleGroup P4ToggleGroup;
 
     // ========================== Settings ==========================
+
     @FXML
     private Slider MenuVolumeSlider, GameVolumeSlider, SFXVolumeSlider;
 
@@ -190,25 +193,29 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         try {
-            SFXManager.preload("MouseEnter.mp3");
+            SFXManager.preload("MouseEnter.mp3", "Error 2.mp3");
         } catch (SFXNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
         try {
             SoundManager.playBackgroundMusic("MainMenu.mp3");
         } catch (MusicFileNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
 
@@ -218,7 +225,24 @@ public class MainMenuController {
 
             controller = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Critical System Error");
+            alert.setHeaderText("Failed to Load Game Board");
+            Label messageLabel = new Label("A critical error occurred while trying to launch the game screen. " +
+                    "The board interface file could not be loaded.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
         }
 
 
@@ -413,7 +437,30 @@ public class MainMenuController {
         try {
             gameEngine = SaveManager.load(saveTable.getSelectionModel().getSelectedItem().getFile());
         } catch (IOException | ClassNotFoundException e) {
-            // Todo : Show error
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to read file");
+            Label messageLabel = new Label("The file might be corrupted, inaccessible, or in use by another program.");
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            alert.getDialogPane().setContent(messageLabel);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
+            return;
+        } catch (NullPointerException e) {
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No File Selected");
+            alert.setContentText("Please choose a file before loading.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
+            alert.showAndWait();
             return;
         }
 
@@ -423,10 +470,13 @@ public class MainMenuController {
         GameBoardController controller = loader.getController();
 
         controller.setGameEngine(gameEngine);
-        logic.engine.AIBrain.setController(controller);
+        SimpleAIBrain.setController(controller);
+        MCTSAIBrain.setController(controller);
         controller.initialize(gameEngine);
 
         Stage gameBoardStage = new Stage();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
+        gameBoardStage.getIcons().add(image);
         gameBoardStage.setScene(new Scene(root));
         gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
         gameBoardStage.setResizable(false);
@@ -505,7 +555,6 @@ public class MainMenuController {
 
     @FXML
     void ButtonsMouseExit(MouseEvent event) {
-//        SFXManager.play("MouseExit.mp3");
         ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a;");
     }
 
@@ -613,12 +662,14 @@ public class MainMenuController {
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
         if (playerCount == 0) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Count");
             alert.setHeaderText("Not Enough Players");
             alert.setContentText("You need at least 2 players to start the game. Please add more players and try again.");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -637,30 +688,36 @@ public class MainMenuController {
                 }
             }
         } catch (PlayerTypeNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Type Not Selected");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         } catch (PlayerRoleNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Role Not Selected");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         } catch (InvalidPlayerNameException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Invalid Player Name");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -675,6 +732,8 @@ public class MainMenuController {
         gameEngine.startSetupPhase();
 
         Stage gameBoardStage = new Stage();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
+        gameBoardStage.getIcons().add(image);
         gameBoardStage.setScene(new Scene(root));
         gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
         gameBoardStage.setResizable(false);
@@ -741,30 +800,36 @@ public class MainMenuController {
                 }
             }
         } catch (PlayerTypeNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Type Not Selected");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         } catch (PlayerRoleNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Role Not Selected");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         } catch (InvalidPlayerNameException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Invalid Player Name");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         }
@@ -799,12 +864,26 @@ public class MainMenuController {
                     case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
                     case NONE -> new Player(playerName, new ArrayList<>());
                 };
-            } else {
+            } else if (playerCount == 1) {
                 player = switch (playerR) {
-                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller);
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller);
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller);
-                    case NONE -> new AIPlayer(playerName, controller);
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                };
+            } else if (playerCount == 2) {
+                player = switch (playerR) {
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                };
+            } else if (playerCount == 3) {
+                player = switch (playerR) {
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P4HardCheckBox.isSelected());
                 };
             }
 
@@ -888,5 +967,13 @@ public class MainMenuController {
 
     public static void setGameSoundVolume(double Volume) {
         gameSoundVolume = Volume;
+    }
+
+    private void setAlertIcon(Alert alert) {
+        try {
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(icon);
+        } catch (Exception e) {
+        }
     }
 }

@@ -1,8 +1,10 @@
 package logic.models;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class CompanyStructure implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private final Player owner;
 
@@ -13,7 +15,6 @@ public abstract class CompanyStructure implements Serializable {
     public Player getOwner() {
         return owner;
     }
-
 
     public abstract void produce(Sector sector);
 

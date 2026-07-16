@@ -5,11 +5,13 @@ import exception.InvalidMarketTransactionException;
 import logic.engine.GameEngine;
 import logic.enums.ResourceType;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Market implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private final Map<ResourceType, Integer> currentPrices = new HashMap<>();
     private final Map<ResourceType, Integer> roundsWithoutTrade = new HashMap<>();
@@ -58,7 +60,10 @@ public class Market implements Serializable {
             if (resourceType == ResourceType.CAPITAL) continue;
 
             if (tradedInCurrentRound.get(resourceType)) {
-                currentPrices.put(resourceType, currentPrices.get(resourceType) + 1);
+                int currentPrice = currentPrices.get(resourceType);
+                if (currentPrice < 6) {
+                    currentPrices.put(resourceType, currentPrice + 1);
+                }
             }
 
             if (!tradedInCurrentRound.get(resourceType)) {

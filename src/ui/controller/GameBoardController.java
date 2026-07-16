@@ -57,6 +57,7 @@ public class GameBoardController {
 
     private boolean isDiceRolled = false;
 
+    private final Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
 
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
@@ -68,7 +69,24 @@ public class GameBoardController {
     public void setGameEngine(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         if (gameEngine == null) {
-            // Todo: Show error
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("System Error");
+            alert.setHeaderText("Game Engine Initialization Failed");
+            Label messageLabel = new Label("The game engine could not be initialized or is missing. " +
+                    "The UI cannot be updated. Please restart the game or contact support.");
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            try {
+                dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            } catch (NullPointerException e) {
+                System.err.println("Warning: CSS file not found for Alert style.");
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
             return;
         }
         refreshPlayersResourcesUI();
@@ -581,37 +599,13 @@ public class GameBoardController {
     private Label DataPrice;
 
     @FXML
-    private Button TalentL;
-
-    @FXML
-    private Button TalentR;
-
-    @FXML
     private Label TalentCount;
-
-    @FXML
-    private Button PatentL;
-
-    @FXML
-    private Button PatentR;
 
     @FXML
     private Label PatentCount;
 
     @FXML
-    private Button CloudL;
-
-    @FXML
-    private Button CloudR;
-
-    @FXML
     private Label CloudCount;
-
-    @FXML
-    private Button DataL;
-
-    @FXML
-    private Button DataR;
 
     @FXML
     private Label DataCount;
@@ -621,9 +615,6 @@ public class GameBoardController {
 
     @FXML
     private Label TotalCount11;
-
-    @FXML
-    private Button Buy;
 
     @FXML
     private ImageView Dice1;
@@ -735,23 +726,23 @@ public class GameBoardController {
     private GridPane mapGrid;
 
     @FXML
-    private VBox TradeP1Box, TradeP2Box, TradeP3Box;
+    private VBox TradeP2Box, TradeP3Box;
 
     @FXML
-    private Rectangle TradeP1Rectangle, TradeP2Rectangle, TradeP3Rectangle;
+    private Rectangle TradeP2Rectangle, TradeP3Rectangle;
 
     @FXML
-    private Slider MenuVolumeSlider, GameVolumeSlider, SFXVolumeSlider;
+    private Slider GameVolumeSlider, SFXVolumeSlider;
 
     @FXML
-    private Label MenuVolumeLabel, GameVolumeLabel, SFXVolumeLabel;
+    private Label GameVolumeLabel, SFXVolumeLabel;
 
     private boolean isActiveEndTurn = false;
     private StackPane previousAuditorLocation = null;
 
 
     @FXML
-    void onEndTurnBTN(ActionEvent event) {
+    void onEndTurnBTN() {
         resetBuildMode();
         if (gameEngine == null) return;
 
@@ -772,7 +763,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onBuildAMVPBTN(ActionEvent event) {
+    void onBuildAMVPBTN() {
         if (gameEngine.getCurrentBuildMode() != BuildMode.MVP) {
             gameEngine.setBuildMode(BuildMode.MVP);
             for (Line l : lines) l.setDisable(true);
@@ -787,7 +778,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onBuildAPartnershipBTN(ActionEvent event) {
+    void onBuildAPartnershipBTN() {
         if (gameEngine.getCurrentBuildMode() != BuildMode.PARTNERSHIP) {
             for (Circle c : circles) c.setDisable(true);
             for (Line l : lines) l.setDisable(false);
@@ -802,7 +793,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onUpgradeToUnicorn(ActionEvent event) {
+    void onUpgradeToUnicorn() {
         if (gameEngine.getCurrentBuildMode() != BuildMode.UNICORN) {
             gameEngine.setBuildMode(BuildMode.UNICORN);
             for (Line l : lines) l.setDisable(true);
@@ -856,10 +847,44 @@ public class GameBoardController {
                             Image sectorImage = new Image(stream);
                             imageView.setImage(sectorImage);
                         } else {
-                            // Todo : Show error : Image not found... (print image path)
+                            SFXManager.play("Error 2.mp3");
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Asset Error");
+                            alert.setHeaderText("Texture/Image Not Found");
+                            Label messageLabel = new Label("The required game asset (image) could not be found at the specified path.\n\nMissing Path: " + fullPath);
+                            messageLabel.setWrapText(true);
+                            messageLabel.setPrefWidth(450);
+                            DialogPane dialogPane = alert.getDialogPane();
+                            dialogPane.setContent(messageLabel);
+                            try {
+                                dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                            } catch (Exception ignored) {
+                            }
+                            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                            setAlertIcon(alert);
+                            alert.showAndWait();
                         }
                     } catch (Exception e) {
-                        // Todo : Show error with a messagebox
+                        SFXManager.play("Error 2.mp3");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Loading Exception");
+                        alert.setHeaderText("Failed to load map texture");
+                        Label messageLabel = new Label("An unexpected error occurred while processing the image file.\n\n" +
+                                "File: " + fullPath + "\n\n" +
+                                "Details: " + e.getMessage());
+                        messageLabel.setWrapText(true);
+                        messageLabel.setPrefWidth(450);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.setContent(messageLabel);
+
+                        try {
+                            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                        } catch (Exception ignored) {
+                        }
+
+                        dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                        setAlertIcon(alert);
+                        alert.showAndWait();
                     }
                 }
             }
@@ -867,14 +892,14 @@ public class GameBoardController {
     }
 
     public void setAuditorOnSector(StackPane stackPane) {
-        Node sectorImage = stackPane.getChildren().get(0);
+        Node sectorImage = stackPane.getChildren().getFirst();
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.3);
         colorAdjust.setContrast(0);
         colorAdjust.setHue(0);
         colorAdjust.setSaturation(-1.0);
 
-        ((ImageView) sectorImage).setEffect(colorAdjust);
+        sectorImage.setEffect(colorAdjust);
 
         Node auditorSector = stackPane.getChildren().get(1);
         String auditorImagePath = "/assets/Sectors/Auditor.png";
@@ -883,16 +908,48 @@ public class GameBoardController {
                 Image auditorImage = new Image(stream);
                 ((ImageView) auditorSector).setImage(auditorImage);
             } else {
-                // Todo : Show error : Image not found... (print image path)
+                SFXManager.play("Error 2.mp3");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Asset Error");
+                alert.setHeaderText("Auditor Image Not Found");
+                Label messageLabel = new Label("The auditor icon asset could not be found at the specified path.\n\nMissing Path: " + auditorImagePath);
+                messageLabel.setWrapText(true);
+                messageLabel.setPrefWidth(450);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.setContent(messageLabel);
+                try {
+                    dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                } catch (Exception ignored) {
+                }
+                dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
+                alert.showAndWait();
             }
         } catch (Exception e) {
-            // Todo : Show error with a messagebox
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Loading Exception");
+            alert.setHeaderText("Failed to load auditor asset");
+            Label messageLabel = new Label("An unexpected error occurred while loading the auditor image file.\n\n" +
+                    "File: " + auditorImagePath + "\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            try {
+                dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            } catch (Exception ignored) {
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
         }
     }
 
     public void setAuditorNotOnSector(StackPane stackPane) {
         Node sectorImage = stackPane.getChildren().get(0);
-        ((ImageView) sectorImage).setEffect(null);
+        sectorImage.setEffect(null);
 
         Node auditorSector = stackPane.getChildren().get(1);
         ((ImageView) auditorSector).setImage(null);
@@ -984,24 +1041,28 @@ public class GameBoardController {
         try {
             SoundManager.playBackgroundMusic("SiliconValley.mp3");
         } catch (MusicFileNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
         SoundManager.setVolume(MainMenuController.getGameSoundVolume());
         try {
-            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3", "Auditor.mp3", "Purchase.mp3");
+            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3", "Auditor.mp3", "Purchase.mp3", "Error.mp3", "Error 2.mp3", "Victory.mp3");
         } catch (SFXNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
 
@@ -1077,8 +1138,8 @@ public class GameBoardController {
                 P2Resources.setText(Integer.toString(totalResourcesCount(players.get(1))));
             case 1:
                 Player1Color.setText(players.get(0).getPlayerName());
-                Player1Role.setText(role(players.get(0).getRole()));
-                P1Resources.setText(Integer.toString(totalResourcesCount(players.get(0))));
+                Player1Role.setText(role(players.getFirst().getRole()));
+                P1Resources.setText(Integer.toString(totalResourcesCount(players.getFirst())));
         }
 
         changePlayerTextColor();
@@ -1170,7 +1231,7 @@ public class GameBoardController {
             case THE_HACKER_CEO -> "The Hacker CEO";
             case THE_TECH_GURU_CTO -> "The Tech Guru";
             case THE_VC_FUNDED -> "The VC-Funded";
-            case NONE -> "None";
+            case NONE -> "No Role";
         };
     }
 
@@ -1209,7 +1270,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onTalentPlus(ActionEvent event) {
+    void onTalentPlus() {
         if (getTotalPriceAfterAdd(ResourceType.TALENT) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
             currentTalentCount++;
             TalentCount.setText(String.valueOf(currentTalentCount));
@@ -1218,7 +1279,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onTalentMinus(ActionEvent event) {
+    void onTalentMinus() {
         if (currentTalentCount > 0) {
             currentTalentCount--;
             TalentCount.setText(String.valueOf(currentTalentCount));
@@ -1228,7 +1289,7 @@ public class GameBoardController {
 
 
     @FXML
-    void onPatentPlus(ActionEvent event) {
+    void onPatentPlus() {
         if (getTotalPriceAfterAdd(ResourceType.PATENT) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
             currentPatentCount++;
             PatentCount.setText(String.valueOf(currentPatentCount));
@@ -1237,7 +1298,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onPatentMinus(ActionEvent event) {
+    void onPatentMinus() {
         if (currentPatentCount > 0) {
             currentPatentCount--;
             PatentCount.setText(String.valueOf(currentPatentCount));
@@ -1247,7 +1308,7 @@ public class GameBoardController {
 
 
     @FXML
-    void onCloudPlus(ActionEvent event) {
+    void onCloudPlus() {
         if (getTotalPriceAfterAdd(ResourceType.CLOUD) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
             currentCloudCount++;
             CloudCount.setText(String.valueOf(currentCloudCount));
@@ -1256,7 +1317,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onCloudMinus(ActionEvent event) {
+    void onCloudMinus() {
         if (currentCloudCount > 0) {
             currentCloudCount--;
             CloudCount.setText(String.valueOf(currentCloudCount));
@@ -1266,7 +1327,7 @@ public class GameBoardController {
 
 
     @FXML
-    void onDataPlus(ActionEvent event) {
+    void onDataPlus() {
         if (getTotalPriceAfterAdd(ResourceType.DATA) <= gameEngine.getCurrentPlayer().getResources(ResourceType.CAPITAL)) {
             currentDataCount++;
             DataCount.setText(String.valueOf(currentDataCount));
@@ -1275,7 +1336,7 @@ public class GameBoardController {
     }
 
     @FXML
-    void onDataMinus(ActionEvent event) {
+    void onDataMinus() {
         if (currentDataCount > 0) {
             currentDataCount--;
             DataCount.setText(String.valueOf(currentDataCount));
@@ -1322,9 +1383,8 @@ public class GameBoardController {
             }
             if (owner != null && owner == gameEngine.getCurrentPlayer()) {
                 for (Node n : ((StackPane) (circle.getParent())).getChildren()) {
-                    if (n instanceof SVGPath) {
+                    if (n instanceof SVGPath hexagon) {
                         SFXManager.play("MouseExit.mp3");
-                        SVGPath hexagon = (SVGPath) n;
                         hexagon.setFill(color);
                         hexagon.setOpacity(1);
                         hexagon.setMouseTransparent(false);
@@ -1334,14 +1394,19 @@ public class GameBoardController {
                 }
             }
         } else {
-            SFXManager.play("MouseExit.mp3");
             if (event.getSource() instanceof Circle circle) {
                 int[] Coordinates = parseCoordinates(circle.getId());
                 if (gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure() != null) {
                     owner = gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure().getOwner();
                 }
-                if (owner == null) ((Shape) (event.getSource())).setFill(color);
-            } else if (event.getSource() instanceof Line) ((Shape) (event.getSource())).setStroke(color);
+                if (owner == null) {
+                    SFXManager.play("MouseExit.mp3");
+                    ((Shape) (event.getSource())).setFill(color);
+                }
+            } else if (event.getSource() instanceof Line) {
+                SFXManager.play("MouseExit.mp3");
+                ((Shape) (event.getSource())).setStroke(color);
+            }
         }
     }
 
@@ -1366,8 +1431,7 @@ public class GameBoardController {
 
         if (event.getSource() instanceof SVGPath hexagon) {
             for (Node n : ((StackPane) (hexagon.getParent())).getChildren()) {
-                if (n instanceof Circle) {
-                    Circle circle = (Circle) n;
+                if (n instanceof Circle circle) {
                     int[] Coordinates = parseCoordinates(circle.getId());
                     if (gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure() != null) {
                         owner = gameEngine.getMap().getVertices()[Coordinates[0] / 2][Coordinates[1] / 2].getCompanyStructure().getOwner();
@@ -1429,18 +1493,13 @@ public class GameBoardController {
     public Color getPlayerColor() {
         int index = gameEngine.getCurrentPlayerIndex();
 
-        switch (index) {
-            case 0:
-                return Color.web(PLAYER1COLOR);
-            case 1:
-                return Color.web(PLAYER2COLOR);
-            case 2:
-                return Color.web(PLAYER3COLOR);
-            case 3:
-                return Color.web(PLAYER4COLOR);
-            default:
-                return Color.BLACK;
-        }
+        return switch (index) {
+            case 0 -> Color.web(PLAYER1COLOR);
+            case 1 -> Color.web(PLAYER2COLOR);
+            case 2 -> Color.web(PLAYER3COLOR);
+            case 3 -> Color.web(PLAYER4COLOR);
+            default -> Color.BLACK;
+        };
     }
 
     public Color getPlayerColor(Player player, List<Player> playersList) {
@@ -1525,15 +1584,14 @@ public class GameBoardController {
 
         if (event.getSource() instanceof Circle circle && gameEngine.getCurrentBuildMode() == BuildMode.MVP) {
             if (gameEngine.isSetupPhase() && gameEngine.isSetupPlacedMVP()) {
+                showMessage("MVP Limit Reached",
+                        "During the Setup Phase, you are only allowed to build a single MVP or Partnership.\n\n" +
+                                "You have already established an MVP and cannot build another one at this stage.",
+                        MessageMode.ERROR);
                 return;
-                //TODO میتوان اکسپشن زد
             }
             Vertex vertex = getVertexFromCircle(circle);
-            int[] coordinates = parseCoordinates(circle.getId());
 
-//            if (!gameEngine.canBuildMVP(coordinates[0] / 2, coordinates[1] / 2)) {
-//                return;
-//            }
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildMVP(vertex, gameEngine.getCurrentPlayer());
@@ -1557,15 +1615,15 @@ public class GameBoardController {
         } else if (event.getSource() instanceof Line line && gameEngine.getCurrentBuildMode() == BuildMode.PARTNERSHIP) {
 
             if (gameEngine.isSetupPhase() && gameEngine.isSetupPlacedPartnership()) {
+                showMessage("Partnership Limit Reached",
+                        "During the Setup Phase, you are only allowed to build a single MVP or Partnership.\n\n" +
+                                "You have already established an MVP and cannot build another one at this stage.",
+                        MessageMode.ERROR);
                 return;
-                //TODO میتوان اکسپشن زد
             }
 
             Edge edge = getEdgeFromLine(line);
 
-//            if (edge == null || !gameEngine.canBuildPartnership(gameEngine.getCurrentPlayer(), edge)) {
-//                return;
-//            }
             try {
                 Color color = getPlayerColor();
                 gameEngine.buildPartnership(gameEngine.getCurrentPlayer(), edge);
@@ -1590,15 +1648,13 @@ public class GameBoardController {
             }
         } else if (event.getSource() instanceof SVGPath hexagon && gameEngine.getCurrentBuildMode() == BuildMode.UNICORN) {
             if (gameEngine.isSetupPhase()) {
+                showMessage("Unicorn Construction Blocked",
+                        "Unicorns are highly advanced structures and cannot be built during the Setup Phase.\n\n" +
+                                "At this stage, you must focus on establishing your initial MVP or Partnership first.",
+                        MessageMode.ERROR);
                 return;
-                //TODO میتوان اکسپشن زد
             }
             Vertex vertex = getVertexFromCircle(hexagon);
-            int[] coordinates = parseCoordinates(hexagon.getId());
-
-//            if (!gameEngine.canUpgradeToUnicorn(coordinates[0] / 2, coordinates[1] / 2)) {
-//                return;
-//            }
 
             try {
                 Color color = getPlayerColor();
@@ -1617,9 +1673,7 @@ public class GameBoardController {
                 showMessage("Insufficient resources", "You don't have enough resources to build a Unicorn.", MessageMode.ERROR);
                 checkTurnAdvancement();
             }
-
         }
-
 
         changePlayerTextColor();
         refreshPlayersResourcesUI();
@@ -1627,7 +1681,13 @@ public class GameBoardController {
         endTurnDisable();
         updatePlayersPoints();
         Player winner = gameEngine.winnerPlayer();
+        showGameOverScreen(winner);
+
+    }
+
+    public void showGameOverScreen(Player winner) {
         if (winner != null) {
+            SFXManager.play("Victory.mp3");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("🏆 Game Over 🏆");
             alert.setHeaderText("🎉 CHAMPION OF SILICON VALLEY 🎉");
@@ -1638,8 +1698,9 @@ public class GameBoardController {
                 dialogPane.getStylesheets().add(cssPath);
                 dialogPane.getStyleClass().add("game-over-alert");
             }
+            setAlertIcon(alert);
             alert.showAndWait();
-            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage currentStage = (Stage) (S12).getScene().getWindow();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/MainMenu.fxml"));
                 StackPane root = loader.load();
@@ -1648,11 +1709,28 @@ public class GameBoardController {
                 currentStage.setTitle("Silicon Valley: The Tech Cartel");
                 currentStage.setResizable(false);
                 currentStage.centerOnScreen();
+                currentStage.getIcons().add(icon);
+                SoundManager.stopMusic();
             } catch (IOException e) {
-                e.printStackTrace();
+                SFXManager.play("Error 2.mp3");
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("System Error");
+                alert2.setHeaderText("Failed to Load Main Menu");
+                Label messageLabel = new Label("An error occurred while trying to return to the Main Menu.\n\n" +
+                        "Details: " + e.getMessage());
+                messageLabel.setWrapText(true);
+                messageLabel.setPrefWidth(450);
+                DialogPane dialogPane2 = alert2.getDialogPane();
+                dialogPane2.setContent(messageLabel);
+                if (getClass().getResource("/ui/view/style.css") != null) {
+                    String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                    dialogPane2.getStylesheets().add(cssPath);
+                }
+                dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
+                alert.showAndWait();
             }
         }
-
     }
 
     private void resetBuildMode() {
@@ -1728,7 +1806,23 @@ public class GameBoardController {
             ArrayList<Integer> dice = gameEngine.rollDiceForCurrentTurn();
             showDiceResultsUI(dice, null);
         } catch (Exception e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gameplay Error");
+            alert.setHeaderText("Failed to Roll Dice");
+            Label messageLabel = new Label("An unexpected error occurred while attempting to roll the dice.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
         }
         updateTurnControls();
     }
@@ -1863,7 +1957,6 @@ public class GameBoardController {
             }
             TradeRequestController tradeRequestController = loader.getController();
 
-            // Todo : You must send players to TRADE window to parse their resources
             tradeRequestController.setData(gameEngine, new Player[]{gameEngine.getCurrentPlayer(), player});
             tradeRequestController.setLabel();
             tradeRequestController.setGameBoardController(this);
@@ -1873,12 +1966,29 @@ public class GameBoardController {
             tradeStage.setScene(new Scene(root));
             tradeStage.setResizable(false);
             tradeStage.initModality(Modality.APPLICATION_MODAL);
+            tradeStage.getIcons().add(icon);
             tradeStage.initOwner(((Node) event.getSource()).getScene().getWindow());
 
             tradeStage.showAndWait();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("System Error");
+            alert.setHeaderText("Failed to Open Trade Window");
+            Label messageLabel = new Label("Could not load the trade interface. The FXML file might be missing or corrupted.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
         }
     }
 
@@ -1904,8 +2014,10 @@ public class GameBoardController {
                 legalCrisisStage.setScene(new Scene(root));
                 legalCrisisStage.setResizable(false);
                 legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
+                legalCrisisStage.getIcons().add(icon);
                 legalCrisisStage.setOnCloseRequest(e -> {
                     e.consume();
+                    SFXManager.play("Error 2.mp3");
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.initOwner(legalCrisisStage);
                     alert.setTitle("Hold On!");
@@ -1913,6 +2025,7 @@ public class GameBoardController {
                     alert.setContentText("You can't close the window until you return requested resources to the bank");
                     DialogPane dialogPane = alert.getDialogPane();
                     dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                    setAlertIcon(alert);
                     alert.showAndWait();
                 });
 
@@ -1921,7 +2034,23 @@ public class GameBoardController {
                 refreshPlayersResourcesUI();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                SFXManager.play("Error 2.mp3");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("System Error");
+                alert.setHeaderText("Failed to Open Legal Crisis Window");
+                Label messageLabel = new Label("Could not open the Legal Crisis interface.\n\n" +
+                        "Details: " + e.getMessage());
+                messageLabel.setWrapText(true);
+                messageLabel.setPrefWidth(450);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.setContent(messageLabel);
+                if (getClass().getResource("/ui/view/style.css") != null) {
+                    String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                    dialogPane.getStylesheets().add(cssPath);
+                }
+                dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
+                alert.showAndWait();
             }
 
         }
@@ -2049,9 +2178,24 @@ public class GameBoardController {
             refreshPlayersResourcesUI();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Market Error");
+            alert.setHeaderText("Transaction Failed");
+            Label messageLabel = new Label("Could not complete the purchase from the market.\n\n" +
+                    "Details: " + e.getMessage());
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.setContent(messageLabel);
+            if (getClass().getResource("/ui/view/style.css") != null) {
+                String cssPath = getClass().getResource("/ui/view/style.css").toExternalForm();
+                dialogPane.getStylesheets().add(cssPath);
+            }
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
+            alert.showAndWait();
         }
-
     }
 
     private void resetMarketSelectionUI() {
@@ -2331,12 +2475,14 @@ public class GameBoardController {
     }
 
     void FailedToCreateFileErrorAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to create save file");
         alert.setContentText("Maybe you entered an unsupported character in file name");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2347,16 +2493,19 @@ public class GameBoardController {
         alert.setContentText("You can see it in saves' list now!");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
     void FileAlreadyExistsErrorAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("File already exists");
         alert.setContentText("You can not create a file which is existed!");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2382,15 +2531,18 @@ public class GameBoardController {
         alert.setContentText("You can see renamed file in saves' list");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
     void FileRenameFailedfullyAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to rename save file");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2408,12 +2560,14 @@ public class GameBoardController {
     }
 
     void FileNotChosenAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("No file has chosen");
         alert.setContentText("You should choose a file from table");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2424,6 +2578,7 @@ public class GameBoardController {
         confirmationAlert.setContentText("Are you sure you want to delete \"" + FileName + "\" save file?");
         DialogPane dialogPane = confirmationAlert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(confirmationAlert);
         Optional<ButtonType> result = confirmationAlert.showAndWait();
 
         if (result.get() == ButtonType.OK) return true;
@@ -2436,36 +2591,43 @@ public class GameBoardController {
         alert.setHeaderText("Save file deleted successfully");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
     void FileDeleteFailedAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to delete save file");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
     @FXML
     void onSaveGame(ActionEvent event) {
         FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
-        try {
-            SaveManager.save(gameEngine, chosenFile.getFile());
-            FileSavedSuccessfullyAlert();
-        } catch (IOException e) {
-            FileSaveFailedAlert(e.getMessage());
-        }
+        if (chosenFile != null) {
+            try {
+                SaveManager.save(gameEngine, chosenFile.getFile());
+                FileSavedSuccessfullyAlert();
+            } catch (IOException e) {
+                FileSaveFailedAlert(e.getMessage());
+            }
+        } else FileNotChosenAlert();
     }
 
     void FileSaveFailedAlert(String Message) {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to save file");
         alert.setContentText(Message);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2475,11 +2637,12 @@ public class GameBoardController {
         alert.setHeaderText("Game saved successfully");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
-    //  -------------------متد های مربوط به AIPlayer-------------------
-    //----------------------------------------------------------------
+    // ========================== AIPlayer methods ==========================
+
     public void startNextTurn() {
         Player currentPlayer = gameEngine.getCurrentPlayer();
 
@@ -2685,7 +2848,6 @@ public class GameBoardController {
         Player newPlayer = gameEngine.getCurrentPlayer();
         boolean isNowMainPhase = !gameEngine.isSetupPhase();
 
-        // برای تغییر فاز از ستاپ به اصلی
         if (previousPlayer != newPlayer || (wasSetupPhase && isNowMainPhase)) {
             resetBuildMode();
             startNextTurn();
@@ -2693,6 +2855,7 @@ public class GameBoardController {
             updateTurnControls();
         }
     }
+
     // ========================== Message Box ==========================
 
     private final Image SuccessImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/Success.png")));
@@ -2721,6 +2884,7 @@ public class GameBoardController {
     void showMessage(String messageHeader, String messageBody, MessageMode mode) {
 
         if (mode == MessageMode.ERROR) {
+            SFXManager.play("Error.mp3");
             MessageIcon.setImage(ErrorImage);
             MessageVBox.setStyle("-fx-border-color: red; -fx-border-width: 2");
             MessageLine.setStroke(Color.RED);
@@ -2747,7 +2911,7 @@ public class GameBoardController {
         gameEngine.setLastMessage(messageHeader, messageBody, mode.toString());
     }
 
-    // ======================= Load UI =======================
+    // ========================== Load UI ==========================
 
     void LoadUIElements() {
         Player owner;
@@ -2820,10 +2984,43 @@ public class GameBoardController {
                             Image auditorImage = new Image(stream);
                             ((ImageView) auditorSector).setImage(auditorImage);
                         } else {
-                            // Todo : Show error : Image not found... (print image path)
+                            SFXManager.play("Error 2.mp3");
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Asset Error");
+                            alert.setHeaderText("Auditor Image Missing");
+                            Label messageLabel = new Label("The game could not find the auditor icon asset at the expected location.\n\n" +
+                                    "Missing Path: " + auditorImagePath);
+                            messageLabel.setWrapText(true);
+                            messageLabel.setPrefWidth(450);
+                            DialogPane dialogPane = alert.getDialogPane();
+                            dialogPane.setContent(messageLabel);
+                            try {
+                                dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                            } catch (Exception ignored) {
+                            }
+                            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                            setAlertIcon(alert);
+                            alert.showAndWait();
                         }
                     } catch (Exception e) {
-                        // Todo : Show error with a messagebox
+                        SFXManager.play("Error 2.mp3");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Loading Exception");
+                        alert.setHeaderText("Failed to Load Auditor Asset");
+                        Label messageLabel = new Label("An unexpected system error occurred while trying to load the auditor image.\n\n" +
+                                "Target File: " + auditorImagePath + "\n\n" +
+                                "Details: " + e.getMessage());
+                        messageLabel.setWrapText(true);
+                        messageLabel.setPrefWidth(450);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.setContent(messageLabel);
+                        try {
+                            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                        } catch (Exception ignored) {
+                        }
+                        dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                        setAlertIcon(alert);
+                        alert.showAndWait();
                     }
                     return;
                 }
@@ -2837,5 +3034,13 @@ public class GameBoardController {
         SFXVolumeSlider.setValue(SFXManager.getVolume() * 100);
         GameVolumeLabel.setText(String.valueOf((int) (SoundManager.getVolume() * 100)));
         SFXVolumeLabel.setText(String.valueOf((int) (SFXManager.getVolume() * 100)));
+    }
+
+    private void setAlertIcon(Alert alert) {
+        try {
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(icon);
+        } catch (Exception _) {
+        }
     }
 }
