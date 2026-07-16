@@ -2,6 +2,7 @@ package logic.sound;
 
 import exception.SFXNotFoundException;
 import javafx.scene.media.AudioClip;
+
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,24 +27,24 @@ public class SFXManager {
                 clip = new AudioClip(resource.toExternalForm());
                 sfxCache.put(fileName, clip);
             } catch (Exception e) {
-                System.err.println("[SFX ERROR] خطا در لود فایل: " + fileName + " -> " + e.getMessage());
+                System.err.println("[SFX ERROR] " + fileName + " -> " + e.getMessage());
                 return;
             }
         }
 
-        // پخش صدا با ولوم مشخص شده
         clip.play(sfxVolume);
     }
 
     public static void preload(String... fileNames) {
         for (String fileName : fileNames) {
+            if (sfxCache.containsKey(fileName)) continue;
             URL resource = SFXManager.class.getResource("/assets/Sounds/SFX Sounds/" + fileName);
-            if (resource != null && !sfxCache.containsKey(fileName)) {
+            if (resource != null) {
                 try {
                     sfxCache.put(fileName, new AudioClip(resource.toExternalForm()));
-                } catch (Exception ignored) {}
-            }
-            else {
+                } catch (Exception ignored) {
+                }
+            } else {
                 throw new SFXNotFoundException(fileName);
             }
         }

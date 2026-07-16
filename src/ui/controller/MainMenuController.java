@@ -354,7 +354,7 @@ public class MainMenuController {
             if (oldVal.doubleValue() == 0.0 && newVal.doubleValue() > 0.0) {
                 SoundManager.resumeMusic();
             }
-            SoundManager.setVolume(newVal.doubleValue()/100);
+            SoundManager.setVolume(newVal.doubleValue() / 100);
         });
 
         GameVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -878,7 +878,7 @@ public class MainMenuController {
     }
 
     @FXML
-    void HardAICheckboxesMouseEnter(MouseEvent event){
+    void HardAICheckboxesMouseEnter(MouseEvent event) {
         SFXManager.play("MouseEnter.mp3");
     }
 

@@ -1156,7 +1156,7 @@ public class GameBoardController {
             if (oldVal.doubleValue() == 0.0 && newVal.doubleValue() > 0.0) {
                 SoundManager.resumeMusic();
             }
-            SoundManager.setVolume(newVal.doubleValue()/100);
+            SoundManager.setVolume(newVal.doubleValue() / 100);
         });
 
         SFXVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
