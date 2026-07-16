@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.engine.AIBrain;
@@ -38,6 +39,7 @@ import java.util.regex.Pattern;
 public class MainMenuController {
 
     private final Image selectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AISelected.png")));
+    private final Image selectedHardAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIHardSelected.png")));
     private final Image unselectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIUnselected.png")));
     private final Image selectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanSelected.png")));
     private final Image unselectedHumanImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/HumanUnselected.png")));
@@ -89,16 +91,13 @@ public class MainMenuController {
     private Label PlayerRole4;
 
     @FXML
-    private HBox P1;
+    private HBox P1, P2, P3, P4;
 
     @FXML
-    private HBox P2;
+    private VBox P2Hard, P3Hard, P4Hard;
 
     @FXML
-    private HBox P3;
-
-    @FXML
-    private HBox P4;
+    private CheckBox P2HardCheckBox, P3HardCheckBox, P4HardCheckBox;
 
 
     @FXML
@@ -261,6 +260,7 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                    P2Hard.setVisible(false);
                 }
             }
 
@@ -269,6 +269,8 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                    P2Hard.setVisible(true);
+                    P2HardCheckBox.setSelected(false);
                 }
             }
         });
@@ -279,6 +281,7 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                    P3Hard.setVisible(false);
                 }
             }
 
@@ -287,6 +290,8 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                    P3Hard.setVisible(true);
+                    P3HardCheckBox.setSelected(false);
                 }
             }
         });
@@ -297,6 +302,7 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) oldToggle, unselectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) oldToggle).getId())) {
                     setToggleImage((ToggleButton) oldToggle, unselectedAIImage);
+                    P4Hard.setVisible(false);
                 }
             }
 
@@ -305,7 +311,33 @@ public class MainMenuController {
                     setToggleImage((ToggleButton) newToggle, selectedHumanImage);
                 } else if (!isHumanToggle(((ToggleButton) newToggle).getId())) {
                     setToggleImage((ToggleButton) newToggle, selectedAIImage);
+                    P4Hard.setVisible(true);
+                    P4HardCheckBox.setSelected(false);
                 }
+            }
+        });
+
+        P2HardCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                setToggleImage(P2AIToggle, selectedHardAIImage);
+            } else {
+                setToggleImage(P2AIToggle, selectedAIImage);
+            }
+        });
+
+        P3HardCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                setToggleImage(P3AIToggle, selectedHardAIImage);
+            } else {
+                setToggleImage(P3AIToggle, selectedAIImage);
+            }
+        });
+
+        P4HardCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                setToggleImage(P4AIToggle, selectedHardAIImage);
+            } else {
+                setToggleImage(P4AIToggle, selectedAIImage);
             }
         });
 
@@ -843,6 +875,11 @@ public class MainMenuController {
             P3.setDisable(true);
             P4.setDisable(false);
         }
+    }
+
+    @FXML
+    void HardAICheckboxesMouseEnter(MouseEvent event){
+        SFXManager.play("MouseEnter.mp3");
     }
 
     public static double getGameSoundVolume() {
