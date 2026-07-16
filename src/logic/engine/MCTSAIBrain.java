@@ -454,9 +454,11 @@ public class MCTSAIBrain implements AIBrain, Serializable {
                                 // از متد اصلی بازار شما استفاده می‌کنیم تا قیمت‌ها جابجا شود و خطاها هندل شوند
                                 e.getMarket().buyFromMarket(e, p, targetResource, 1);
 
+
                                 javafx.application.Platform.runLater(() -> {
                                     controller.refreshPlayersResourcesUI();
                                     controller.resetMarketPricesUI();
+
                                     // اگر نیاز به رفرش پنل بازار هم هست، متدش را اینجا صدا بزنید
                                 });
                             } catch (exception.InsufficientResourcesException |

@@ -1223,7 +1223,7 @@ public class GameBoardController {
             case THE_HACKER_CEO -> "The Hacker CEO";
             case THE_TECH_GURU_CTO -> "The Tech Guru";
             case THE_VC_FUNDED -> "The VC-Funded";
-            case NONE -> "None";
+            case NONE -> "No Role";
         };
     }
 
