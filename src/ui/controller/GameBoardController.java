@@ -740,6 +740,12 @@ public class GameBoardController {
     @FXML
     private Rectangle TradeP1Rectangle, TradeP2Rectangle, TradeP3Rectangle;
 
+    @FXML
+    private Slider MenuVolumeSlider, GameVolumeSlider, SFXVolumeSlider;
+
+    @FXML
+    private Label MenuVolumeLabel, GameVolumeLabel, SFXVolumeLabel;
+
     private boolean isActiveEndTurn = false;
     private StackPane previousAuditorLocation = null;
 
@@ -1140,6 +1146,23 @@ public class GameBoardController {
         ));
 
         LoadUIElements();
+        GameVolumeSlider.setValue(SoundManager.getVolume() * 100);
+        SFXVolumeSlider.setValue(SFXManager.getVolume() * 100);
+        GameVolumeLabel.setText(String.valueOf((int) SoundManager.getVolume() * 100));
+        SFXVolumeLabel.setText(String.valueOf((int) SFXManager.getVolume() * 100));
+
+        GameVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            GameVolumeLabel.setText(String.valueOf((newVal.intValue())));
+            if (oldVal.doubleValue() == 0.0 && newVal.doubleValue() > 0.0) {
+                SoundManager.resumeMusic();
+            }
+            SoundManager.setVolume(newVal.doubleValue() / 100);
+        });
+
+        SFXVolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            SFXVolumeLabel.setText(String.valueOf((newVal.intValue())));
+            SFXManager.setVolume(newVal.doubleValue() / 100);
+        });
     }
 
     public String role(PlayerRole playerRole) {
@@ -2808,7 +2831,14 @@ public class GameBoardController {
                     return;
                 }
             }
-
         }
+    }
+
+    @FXML
+    void openSettingsTab() {
+        GameVolumeSlider.setValue(SoundManager.getVolume() * 100);
+        SFXVolumeSlider.setValue(SFXManager.getVolume() * 100);
+        GameVolumeLabel.setText(String.valueOf((int) (SoundManager.getVolume() * 100)));
+        SFXVolumeLabel.setText(String.valueOf((int) (SFXManager.getVolume() * 100)));
     }
 }
