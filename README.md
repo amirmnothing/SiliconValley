@@ -109,141 +109,684 @@
 
 ```mermaid
 classDiagram
-    direction BT
-    
-    %% Abstract & Interface definitions
-    class PlayableAI {
-        <<Interface>>
-    }
-    class AIBrain {
-        <<Interface>>
-    }
-    class CompanyStructure {
-        <<abstract>>
-    }
-    
-    %% Enumerations
-    class BuildMode {
-        <<enumeration>>
-        MVP
-        UNICORN
-        PARTNERSHIP
-    }
-    class PlayerRole {
-        <<enumeration>>
-        HACKER_CEO
-        TECH_GURU
-        VC_FUNDED
-    }
-    class ResourceType {
-        <<enumeration>>
-        CAPITAL
-        TALENT
-        CLOUD
-        PATENT
-        DATA
-    }
-    class CornerDirection {
-        <<enumeration>>
-    }
-    class MessageMode {
-        <<enumeration>>
-    }
-    
-    %% Player Inheritance structure
-    class Player {
-        +String name
-        +PlayerRole role
-        +int victoryPoints
-        +Map resources
-        +canBuild()
-    }
-    class HackerCEOPlayer {
-        +getMarketRate()
-    }
-    class TechGuruPlayer {
-        +getUpgradeCost()
-    }
-    class VCFundedPlayer {
-        +getMaxHandSize()
-    }
-    
-    Player <|-- HackerCEOPlayer
-    Player <|-- TechGuruPlayer
-    Player <|-- VCFundedPlayer
-    
-    %% AI Implementations
-    class AIPlayer
-    class AIHackerCEOPlayer
-    class AITechGuruPlayer
-    class AIVCFundedPlayer
-    
-    Player <|-- AIPlayer
-    AIPlayer ..|> PlayableAI
-    
-    HackerCEOPlayer <|-- AIHackerCEOPlayer
-    AIHackerCEOPlayer ..|> PlayableAI
-    
-    TechGuruPlayer <|-- AITechGuruPlayer
-    AITechGuruPlayer ..|> PlayableAI
-    
-    VCFundedPlayer <|-- AIVCFundedPlayer
-    AIVCFundedPlayer ..|> PlayableAI
-    
-    %% AI Brain logic
-    class SimpleAIBrain
-    class MCTSAIBrain
-    
-    SimpleAIBrain ..|> AIBrain
-    MCTSAIBrain ..|> AIBrain
-    
-    %% Structures
-    class MVP
-    class Unicorn
-    class Partnership
-    
-    CompanyStructure <|-- MVP
-    CompanyStructure <|-- Unicorn
-    
-    %% Map Elements
-    class Map
-    class Sector
-    class Vertex
-    class Edge
-    
-    Map --> "*" Sector
-    Map --> "*" Vertex
-    Map --> "*" Edge
-    
-    %% Core Engines
-    class GameEngine
-    class Market
-    class SaveManager
-    class SoundManager
-    class SFXManager
-    
-    GameEngine --> "1" Map
-    GameEngine --> "1" Market
-    GameEngine --> "*" Player : manages
-    
-    %% Custom Exceptions
-    class InsufficientResourcesException
-    class InvalidPlacementException
-    class InvalidAuditorMovementException
-    class InvalidMarketTransactionException
-    class InvalidPlayerNameException
-    class PlayerRoleNotSelectedException
-    class PlayerTypeNotSelectedException
-    class MusicFileNotFoundException
-    class SFXNotFoundException
-    
-    %% Controllers and UI
-    class Main
-    class GameBoardController
-    class MainMenuController
-    class IncomingTradeController
-    class TradeRequestController
-    class LegalCrisisController
+direction BT
+class AIBrain {
+<<Interface>>
+  + executeTurn(Player, GameEngine, Runnable) void
+  + calculateResourcesToDiscard(Player) Map~ResourceType, Integer~
+}
+class AIHackerCEOPlayer {
+  + AIHackerCEOPlayer(String, GameBoardController, boolean) 
+  - AIBrain brain
+  + playTurn(GameEngine, Runnable) void
+   GameBoardController controller
+   boolean AI
+   AIBrain brain
+}
+class AIPlayer {
+  + AIPlayer(String, GameBoardController, boolean) 
+  - AIBrain brain
+  + playTurn(GameEngine, Runnable) void
+   GameBoardController controller
+   boolean AI
+   AIBrain brain
+}
+class AITechGuruPlayer {
+  + AITechGuruPlayer(String, GameBoardController, boolean) 
+  - AIBrain brain
+  + playTurn(GameEngine, Runnable) void
+   GameBoardController controller
+   boolean AI
+   AIBrain brain
+}
+class AIVCFundedPlayer {
+  + AIVCFundedPlayer(String, GameBoardController, boolean) 
+  - AIBrain brain
+  + playTurn(GameEngine, Runnable) void
+   GameBoardController controller
+   boolean AI
+   AIBrain brain
+}
+class BuildMode {
+<<enumeration>>
+  + BuildMode() 
+  + values() BuildMode[]
+  + valueOf(String) BuildMode
+}
+class CompanyStructure {
+  + CompanyStructure(Player) 
+  - Player owner
+  + produce(Sector) void
+   int victoryPoints
+   Player owner
+}
+class CornerDirection {
+<<enumeration>>
+  + CornerDirection() 
+  + values() CornerDirection[]
+  + valueOf(String) CornerDirection
+}
+class Edge {
+  + Edge(Vertex, Vertex) 
+  - Vertex start
+  - Vertex end
+  - Partnership partnership
+  + getOppositeVertex(Vertex) Vertex
+   Partnership partnership
+   Vertex end
+   Vertex start
+}
+class FileItem {
+  + FileItem(File) 
+  - StringProperty name
+  - File file
+  + nameProperty() StringProperty
+  - getFileCreationOrModifiedDate(File) String
+  + dateProperty() StringProperty
+   File file
+   String name
+}
+class GameBoardController {
+  + GameBoardController() 
+  - boolean isDiceRolled
+  - boolean isActiveEndTurn
+  - GameEngine gameEngine
+  ~ onCloudMinus() void
+  ~ FileSaveFailedAlert(String) void
+  ~ onBuildAPartnershipBTN() void
+  ~ FileRenameSuccessfullyAlert() void
+  ~ onUpgradeToUnicorn() void
+  ~ ChangeShopButtonsToNotChoose(MouseEvent) void
+  ~ onEditBtnSaveGameTab(ActionEvent) void
+  ~ choiceAuditor(MouseEvent) void
+  + initialize(GameEngine) void
+  + showGameOverScreen(Player) void
+  - parseCoordinates(String) int[]
+  ~ onCreateBtnSaveGameTab(ActionEvent) void
+  ~ showMessage(String, String, MessageMode) void
+  ~ SetResourcesToChoose(MouseEvent) void
+  - getEdgeFromLine(Line) Edge
+  + updateEdgeUI(Edge, Color) void
+  ~ onEditASave(ActionEvent) void
+  - loadSaveFiles() void
+  + updateUnicornUI(Vertex, Color) void
+  ~ onEndTurnBTN() void
+  ~ onPatentMinus() void
+  ~ ChangeShopButtonsToChoose(MouseEvent) void
+  - openLegalCrisisWindow() void
+  ~ SetPlayerResourcesOpacityOne(MouseEvent) void
+  ~ openSettingsTab() void
+  - getTotalPriceAfterAdd(ResourceType) int
+  ~ setPlayerResourcesUIText(Player, List~Label~) void
+  + findSVGPathForVertex(Vertex) SVGPath
+  ~ DeleteAFileConfirmation(String) boolean
+  ~ totalResourcesCount(Player) int
+  + getIsDiceRolled() boolean
+  ~ ChangeTradeButtonColorToPressed(MouseEvent) void
+  + showDiceResultsUI(ArrayList~Integer~, Runnable) void
+  + findLineForEdge(Edge) Line
+  + startNextTurn() void
+  ~ onTalentMinus() void
+  ~ FileCreatedSuccessfullyAlert() void
+  ~ onTalentPlus() void
+  ~ SetColorUnchangable(MouseEvent) void
+  ~ onCloudPlus() void
+  ~ onCreateANewSave(ActionEvent) void
+  + resetMarketPricesUI() void
+  ~ SetResourcesToNotChoose(MouseEvent) void
+  ~ ChangeButtonColorToNotChoose(MouseEvent) void
+  ~ onDeleteSave(ActionEvent) void
+  ~ onDataPlus() void
+  ~ FileNameEnterFieldMouseExit(MouseEvent) void
+  ~ LoadUIElements() void
+  + getIsActiveEndTurn() boolean
+  ~ ChangeTradeButtonColorToNotChoose(MouseEvent) void
+  + changePlayerTextColor() void
+  + findCircleForVertex(Vertex) Circle
+  ~ ChangeColorToNotChooseCircle(MouseEvent) void
+  ~ SaveTabCreateButtonMouseEnter(MouseEvent) void
+  ~ ChangeShopBuyButtonToChoose(MouseEvent) void
+  ~ ChangeShopBuyButtonToNotChoose(MouseEvent) void
+  ~ unchooseFileNameEnterField(MouseEvent) void
+  ~ FileSavedSuccessfullyAlert() void
+  ~ onShopClick() void
+  + updatePlayersPoints() void
+  ~ RollDice(ActionEvent) void
+  ~ FileNameEnterFieldMouseEnter(MouseEvent) void
+  + updateDynamicTradeButtons() void
+  ~ SaveTabEditButtonMouseEnter(MouseEvent) void
+  ~ ChangeButtonColorToChoose(MouseEvent) void
+  - getPauseTransition(PlayableAI) PauseTransition
+  + checkTurnAdvancement() void
+  ~ FileDeleteFailedAlert() void
+  ~ SaveTabEditButtonMouseExit(MouseEvent) void
+  ~ openSaveGameTab() void
+  + updateVertexUI(Vertex, Color) void
+  ~ resetLabelColor() void
+  ~ ChangeTradeButtonColorToChoose(MouseEvent) void
+  + getPlayerColor(Player, List~Player~) Color
+  - resetBuildMode() void
+  ~ onTabChanged(Event) void
+  ~ SaveTabButtonsMouseExit(MouseEvent) void
+  + enableButtonsAfterDiceRoll() void
+  ~ FileDeletedSuccessfullyAlert() void
+  ~ onDataMinus() void
+  ~ onSaveGame(ActionEvent) void
+  + role(PlayerRole) String
+  - resetMarketSelectionUI() void
+  + endTurnDisable() void
+  ~ SetPlayerResourcesOpacityZero(MouseEvent) void
+  + refreshPlayersResourcesUI() void
+  + performAIAuditorMove(int, int) void
+  ~ setLabelColor(String, Label[]) void
+  + updateResourceFields() void
+  ~ onPatentPlus() void
+  - closeCreateEditBoxes(ActionEvent, int) void
+  - updateTotalPrice() void
+  ~ ChangeColorToNotChooseLine(MouseEvent) void
+  - openTradeWindow(ActionEvent) void
+  ~ FileRenameFailedfullyAlert() void
+  ~ FailedToCreateFileErrorAlert() void
+  ~ SaveTabButtonsMouseEnter(MouseEvent) void
+  - findEdge(Vertex, Vertex) Edge?
+  ~ onBuyFromMarket(ActionEvent) void
+  - getVertexFromCircle(SVGPath) Vertex
+  ~ FileNotChosenAlert() void
+  ~ onFileNameEnterField(MouseEvent) void
+  ~ FileAlreadyExistsErrorAlert() void
+  + updateTurnControls() void
+  ~ onBuildAMVPBTN() void
+  ~ SaveTabCreateButtonMouseExit(MouseEvent) void
+  ~ ChangeColorToChoose(MouseEvent) void
+  - getVertexFromCircle(Circle) Vertex
+  ~ ChangeHexagonToNotChoose(MouseEvent) void
+  + updateSectorImages() void
+   GameEngine gameEngine
+   StackPane auditorOnSector
+   Color playerColor
+   StackPane auditorNotOnSector
+   boolean isActiveEndTurn
+   boolean humanControlsDisabled
+   Alert alertIcon
+   boolean isDiceRolled
+}
+class GameEngine {
+  + GameEngine(Map, List~Player~) 
+  - boolean setupPlacedPartnership
+  - Market market
+  - int currentPlayerIndex
+  - int setupRound
+  - boolean setupPlacedMVP
+  - boolean setupPhaseActive
+  - int currentTurnNumber
+  - List~Player~ players
+  - Map map
+  - BuildMode currentBuildMode
+  - boolean mainPhaseActive
+  + List~String~ LastMessage
+  - int setupTurnCount
+  - int setupDirection
+  - int turnNumber
+  + checkAndMoveToNextSetupTurn() void
+  + distributeSetupResources() void
+  + DFS(Vertex, Player, Set~Edge~) int
+  + notifyMVPPlaced() void
+  + moveAuditor(Sector) boolean
+  + isResourceBelowCrisisThreshold(Player) boolean
+  + updateLongestNetwork() void
+  + distribute(ArrayList~Integer~) void
+  + discardSelectedResources(Player, Map~ResourceType, Integer~) boolean
+  + endCurrentTurn() void
+  + buildMVP(Vertex, Player) void
+  + trade(Map~ResourceType, Integer~, Map~ResourceType, Integer~, Player[]) void
+  + setLastMessage(String, String, String) void
+  + upgradeToUnicorn(Vertex, Player) void
+  + rollDice() ArrayList~Integer~
+  + buildPartnership(Player, Edge) void
+  + winnerPlayer() Player
+  + startSetupPhase() void
+  + rollDiceForCurrentTurn() ArrayList~Integer~
+  + processCrisisForAIOnly() void
+  + canBuildPartnership(Player, Edge) boolean
+  - triggerNextPlayerIfAI() void
+  - calculateLongestPathForPlayer(Player) int
+  + canPlaceAuditor(Sector) boolean
+  + nextTurn(Runnable) void
+  + calculatePlayerPoints() List~Integer~
+  + notifyPartnershipPlaced() void
+  + deepCopy() GameEngine
+  + canBuildMVP(int, int) boolean
+  + nextTurn() void
+  + canUpgradeToUnicorn(int, int) boolean
+   int currentTurnNumber
+   BuildMode buildMode
+   boolean isMessageShowed
+   int currentPlayerIndex
+   BuildMode currentBuildMode
+   boolean setupPlacedMVP
+   boolean setupPhaseActive
+   boolean mainPhaseActive
+   int turnNumber
+   List~Player~ players
+   boolean setupPhase
+   boolean setupPlacedPartnership
+   int setupDirection
+   Player currentPlayer
+   Map map
+   List~String~ LastMessage
+   int setupTurnCount
+   Market market
+   int setupRound
+   boolean isDiceRolled
+}
+class HackerCEOPlayer {
+  + HackerCEOPlayer(String, List~CompanyStructure~) 
+  + calculateMarketPrice(ResourceType, int) int
+   int rolePenalty
+}
+class IncomingTradeController {
+  + IncomingTradeController() 
+  ~ GameEngine gameEngine
+  ~ GameBoardController gameBoardController
+  ~ Player[] players
+  ~ Map~ResourceType, Integer~ giveResources
+  ~ Map~ResourceType, Integer~ getResources
+  ~ ChangeRejectButtonColorToNotChoose(MouseEvent) void
+  ~ onRejectButton(ActionEvent) void
+  + setIncomingTradeLabels() void
+  ~ onAcceptButton(ActionEvent) void
+  - updateResourceFields(Map~ResourceType, Integer~, Label, Label, Label, Label, Label) void
+  ~ ChangeAcceptButtonColorToChoose(MouseEvent) void
+  ~ ChangeRejectButtonColorToChoose(MouseEvent) void
+  ~ ChangeAcceptButtonColorToNotChoose(MouseEvent) void
+   GameEngine gameEngine
+   Map~ResourceType, Integer~ getResources
+   Map~ResourceType, Integer~ giveResources
+   GameBoardController gameBoardController
+   Player[] players
+}
+class InsufficientResourcesException {
+  + InsufficientResourcesException(Player, String, Map~ResourceType, Integer~) 
+  - Map~ResourceType, Integer~ resources
+  - Player player
+   Player player
+   Map~ResourceType, Integer~ resources
+}
+class InvalidAuditorMovementException {
+  + InvalidAuditorMovementException(String, Sector, Sector) 
+  - Sector sourceSector
+  - Sector destinationSector
+   Sector destinationSector
+   Sector sourceSector
+}
+class InvalidMarketTransactionException {
+  + InvalidMarketTransactionException(ResourceType, String) 
+  - ResourceType resourceType
+   ResourceType resourceType
+}
+class InvalidPlacementException {
+  + InvalidPlacementException(Edge, String) 
+  + InvalidPlacementException(Vertex, String) 
+  - Vertex vertex
+  - Edge edge
+   Edge edge
+   Vertex vertex
+}
+class InvalidPlayerNameException {
+  + InvalidPlayerNameException(int, String) 
+  - int playerNumber
+  - String invalidName
+   String invalidName
+   int playerNumber
+}
+class LegalCrisisController {
+  + LegalCrisisController() 
+  ~ GameEngine gameEngine
+  ~ onReturnToBank(MouseEvent) void
+  - totalCardCount() int
+  ~ onPatentMinus(MouseEvent) void
+  ~ ChangeBorderWidthToChoose(MouseEvent) void
+  ~ onDataMinus(MouseEvent) void
+  - updateTotalCardCount() void
+  ~ ChangeBorderWidthToNotChoose(MouseEvent) void
+  ~ onCloudPlus(MouseEvent) void
+  ~ ChangeReturnButtonToNotChoose(MouseEvent) void
+  ~ onTalentPlus(MouseEvent) void
+  ~ onCapitalMinus(MouseEvent) void
+  ~ onTalentMinus(MouseEvent) void
+  ~ onCloudMinus(MouseEvent) void
+  ~ onPatentPlus(MouseEvent) void
+  ~ onCapitalPlus(MouseEvent) void
+  ~ totalResourcesCount(Map~ResourceType, Integer~) int
+  ~ onDataPlus(MouseEvent) void
+  + initData(Player, int) void
+  + initialize() void
+  ~ ChangeReturnButtonToChoose(MouseEvent) void
+   GameEngine gameEngine
+}
+class MCTSAIBrain {
+  + MCTSAIBrain(GameBoardController) 
+  - GameBoardController controller
+  - selectPromisingNode(MCTSNode) MCTSNode
+  + calculateResourcesToDiscard(Player) Map~ResourceType, Integer~
+  - calculateNeededResourcesForPlayer(Player) Map~ResourceType, Integer~
+  - getPossibleMoves(GameEngine, Player) List~MCTSMove~
+  - isGameOver(GameEngine) boolean
+  - backPropagate(MCTSNode, double) void
+  - upgradeUnicorn_UI(GameEngine, Vertex) void
+  - evaluatePlayout(GameEngine, int) double
+  - mergeRequiredCosts(Map~ResourceType, Integer~, Map~ResourceType, Integer~) void
+  - processNextMove(GameEngine, Player, Runnable, int) void
+  - calculateBestMoveWithMCTS(GameEngine) MCTSMove?
+  - buildMVP_UI(GameEngine, Vertex) void
+  - getDiceProbability(int) int
+  - endTurnSafely(GameEngine, Runnable) void
+  - refreshUI(GameEngine) void
+  + executeTurn(Player, GameEngine, Runnable) void
+  - simulateRandomPlayout(MCTSNode, int) double
+  - findBestSetupMVP(GameEngine) Vertex
+  - canAndShouldBuyResource(GameEngine, Player, ResourceType) boolean
+  - expandNode(MCTSNode) void
+  - findBestSectorCoordsForAuditor(GameEngine, Player) int[]
+  - executeSetupPhaseUI(Player, GameEngine) void
+  - getBestChild(MCTSNode, double) MCTSNode?
+  - findBestSetupPartnership(GameEngine, Player) Edge
+  - isVertexInSector(Vertex, Sector) boolean
+  - tryPlaceAuditorByAI(Player, GameEngine) void
+  - evaluateVertexForSetup(Vertex, Sector[][]) double
+  - buildPartnership_UI(GameEngine, Edge) void
+  - calculateEnemyPresence(Sector, Player) int
+   GameBoardController controller
+}
+class MCTSMove {
+<<Interface>>
+  + execute(GameEngine, Player, boolean) void
+   boolean rollDiceMove
+   boolean endTurn
+}
+class MCTSNode {
+  + MCTSNode(MCTSNode, MCTSMove, GameEngine) 
+   boolean terminal
+}
+class MVP {
+  + MVP(Player) 
+  + produce(Sector) void
+   int victoryPoints
+}
+class Main {
+  + Main() 
+  + main(String[]) void
+  + start(Stage) void
+}
+class MainMenuController {
+  + MainMenuController() 
+  - double gameSoundVolume
+  + createPlayer(TextField, Label, boolean) boolean
+  ~ onExitButton(ActionEvent) void
+  ~ ResetRole(MouseEvent) void
+  ~ onBacktoMainMenuButton(ActionEvent) void
+  ~ LoadMenuButtonsMouseEnter(MouseEvent) void
+  ~ onNextPlayer(MouseEvent) void
+  ~ ButtonsMouseEnter(MouseEvent) void
+  ~ ButtonsMouseExit(MouseEvent) void
+  ~ onStartGame(ActionEvent) void
+  ~ onLoadGame(ActionEvent) void
+  ~ LobbyButtonsMouseExit(MouseEvent) void
+  ~ ResetAllPages() void
+  ~ LoadMenuButtonsMouseExit(MouseEvent) void
+  ~ HardAICheckboxesMouseEnter(MouseEvent) void
+  ~ StartButtonMouseEnter(MouseEvent) void
+  ~ OnStartANewGame(ActionEvent) void
+  - loadSaveFiles() void
+  + initialize() void
+  ~ OnLoadAGame(ActionEvent) void
+  ~ onSettings(ActionEvent) void
+  - isNameValid(String) boolean
+  ~ BackButtonMouseEnter(MouseEvent) void
+  ~ ChangeRoleToChoose(MouseEvent) void
+  ~ NextPlayerButtonMouseEnter(MouseEvent) void
+  ~ RoleMouseEnter(MouseEvent) void
+  + disableGroup() void
+  + getPlayerSelection(int) String
+  - equals(String) boolean
+  - setToggleImage(ToggleButton, Image) void
+  ~ onAboutUs(ActionEvent) void
+  - isHumanToggle(String) boolean
+  + selectRole(ImageView, Label) void
+  + role(Label) PlayerRole
+  ~ ResetAllButtonMouseEnter(MouseEvent) void
+  ~ onResetAll(MouseEvent) void
+   double gameSoundVolume
+   Alert alertIcon
+}
+class Map {
+  + Map(int, int) 
+  - int rows
+  - int cols
+  - Sector[][] sectors
+  - Vertex[][] vertices
+  - List~Edge~ edges
+  - initMap() void
+   Vertex[][] vertices
+   int rows
+   Sector[][] sectors
+   List~Edge~ edges
+   int cols
+}
+class Market {
+  + Market() 
+  + getPrice(ResourceType) int
+  + updateMarketAtEndOfRound() void
+  + buyFromMarket(GameEngine, Player, ResourceType, int) void
+}
+class MessageMode {
+<<enumeration>>
+  + MessageMode() 
+  + values() MessageMode[]
+  + valueOf(String) MessageMode
+}
+class MusicFileNotFoundException {
+  + MusicFileNotFoundException() 
+  + MusicFileNotFoundException(String) 
+}
+class Partnership {
+  + Partnership(Player) 
+  - Player owner
+   Player owner
+}
+class PlayableAI {
+<<Interface>>
+  + playTurn(GameEngine, Runnable) void
+   AIBrain brain
+}
+class Player {
+  + Player(String, List~CompanyStructure~) 
+  # List~CompanyStructure~ companies
+  - boolean canPlaceAuditor
+  - String playerName
+  # boolean hasLongestNetwork
+  + calculateMarketPrice(ResourceType, int) int
+  + addCompanyStructure(CompanyStructure) void
+  + hasMVP() boolean
+  + deductResourcesForPartnership() void
+  + getResources(ResourceType) int
+  + removeCompanyStructure(CompanyStructure) void
+  + deductResourcesForMVP() void
+  + deductResource(ResourceType, int) void
+  + deductResourcesForUnicornUpgrade() void
+  + hasResourcesForMVP() boolean
+  + hasResourcesForUnicornUpgrade() boolean
+  + addResource(ResourceType, int) void
+  + hasResourcesForPartnership() boolean
+  + toString() String
+  + calculateVictoryPoints() int
+   int crisisModifierThreshold
+   String playerName
+   int rolePenalty
+   int upgradeCloudDiscount
+   Map~ResourceType, Integer~ resourceCount
+   List~CompanyStructure~ companies
+   PlayerRole role
+   boolean AI
+   boolean hasLongestNetwork
+   boolean canPlaceAuditor
+}
+class PlayerRole {
+<<enumeration>>
+  + PlayerRole() 
+  + valueOf(String) PlayerRole
+  + values() PlayerRole[]
+}
+class PlayerRoleNotSelectedException {
+  + PlayerRoleNotSelectedException(int) 
+  - int playerNumber
+   int playerNumber
+}
+class PlayerTypeNotSelectedException {
+  + PlayerTypeNotSelectedException(int) 
+  - int playerNumber
+   int playerNumber
+}
+class ResourceType {
+<<enumeration>>
+  + ResourceType() 
+  + valueOf(String) ResourceType
+  + values() ResourceType[]
+}
+class SFXManager {
+  + SFXManager() 
+  + play(String) void
+  + preload(String[]) void
+   double volume
+}
+class SFXNotFoundException {
+  + SFXNotFoundException(String) 
+  + SFXNotFoundException() 
+}
+class SaveManager {
+  + SaveManager() 
+  + load(File) GameEngine
+  + save(GameEngine, File) void
+}
+class Sector {
+  + Sector(ResourceType, int, boolean) 
+  - Map~CornerDirection, Vertex~ corners
+  - ResourceType resourceType
+  + hasAnyCompanyOnSector() boolean
+  + getactivationNumber() int
+  + getCorner(CornerDirection) Vertex
+  + setCorner(CornerDirection, Vertex) void
+   boolean auditor
+   Map~CornerDirection, Vertex~ corners
+   ResourceType resourceType
+}
+class SimpleAIBrain {
+  + SimpleAIBrain(GameBoardController) 
+  - GameBoardController controller
+  + executeTurn(Player, GameEngine, Runnable) void
+  - findBestSectorCoordsForAuditor(GameEngine, Player) int[]
+  - calculateEnemyPresence(Sector, Player) int
+  - placeSetupPartnership(Player, GameEngine) void
+  - tryPlaceAuditorByAI(Player, GameEngine) void
+  - tryUpgradeToUnicorn(Player, GameEngine) void
+  - scheduleAction(Runnable) void
+  + calculateResourcesToDiscard(Player) Map~ResourceType, Integer~
+  - executeSetupPhase(Player, GameEngine) void
+  - placeSetupMVP(Player, GameEngine) void
+  - tryBuildMVP(Player, GameEngine) void
+  - tryMarketTrade(Player, GameEngine) void
+  - tryBuildPartnership(Player, GameEngine) void
+  - refreshUI(GameEngine) void
+  - tryBuyResource(GameEngine, Player, ResourceType, int) boolean
+   GameBoardController controller
+}
+class SoundManager {
+  + SoundManager() 
+  + resumeMusic() void
+  + playBackgroundMusic(String) void
+  + pauseMusic() void
+  + stopMusic() void
+   double volume
+}
+class TechGuruPlayer {
+  + TechGuruPlayer(String, List~CompanyStructure~) 
+   int rolePenalty
+   int upgradeCloudDiscount
+}
+class TradeRequestController {
+  + TradeRequestController() 
+  ~ GameBoardController gameBoardController
+  ~ onGiveTalentPlus(MouseEvent) void
+  ~ onGetCloudPlus(MouseEvent) void
+  + initialize() void
+  ~ onGetPatentMinus(MouseEvent) void
+  ~ ChangeResetButtonColorToChoose(MouseEvent) void
+  ~ onGetTalentPlus(MouseEvent) void
+  ~ onGetCloudMinus(MouseEvent) void
+  ~ ChangeRequestButtonColorToChoose(MouseEvent) void
+  ~ onGivePatentPlus(MouseEvent) void
+  ~ ChangeRequestButtonColorToNotChoose(MouseEvent) void
+  ~ onGetCapitalPlus(MouseEvent) void
+  ~ onGiveTalentMinus(MouseEvent) void
+  ~ onGiveCloudPlus(MouseEvent) void
+  - resetAll() void
+  ~ ChangeResetButtonColorToNotChoose(MouseEvent) void
+  ~ onGiveCapitalMinus(MouseEvent) void
+  ~ onGetPatentPlus(MouseEvent) void
+  ~ onGiveDataMinus(MouseEvent) void
+  ~ onGetDataMinus(MouseEvent) void
+  ~ onResetAll(ActionEvent) void
+  ~ onGetDataPlus(MouseEvent) void
+  ~ onGiveCapitalPlus(MouseEvent) void
+  + setData(GameEngine, Player[]) void
+  ~ onGiveCloudMinus(MouseEvent) void
+  ~ onGivePatentMinus(MouseEvent) void
+  ~ ChangeBorderWidthToNotChoose(MouseEvent) void
+  - onRequestButton(ActionEvent) void
+  ~ onGetTalentMinus(MouseEvent) void
+  + setLabel() void
+  ~ onGiveDataPlus(MouseEvent) void
+  ~ onGetCapitalMinus(MouseEvent) void
+  ~ putResources(int, int, int, int, int) Map~ResourceType, Integer~
+  ~ ChangeBorderWidthToChoose(MouseEvent) void
+   GameBoardController gameBoardController
+}
+class Unicorn {
+  + Unicorn(Player) 
+  + produce(Sector) void
+   int victoryPoints
+}
+class VCFundedPlayer {
+  + VCFundedPlayer(String, List~CompanyStructure~) 
+   int crisisModifierThreshold
+   int rolePenalty
+}
+class Vertex {
+  + Vertex() 
+  - CompanyStructure companyStructure
+  - List~Edge~ adjacentEdges
+  + addAdjacentEdge(Edge) void
+   CompanyStructure companyStructure
+   List~Edge~ adjacentEdges
+}
+
+AIHackerCEOPlayer  -->  HackerCEOPlayer 
+AIHackerCEOPlayer  ..>  PlayableAI 
+AIPlayer  ..>  PlayableAI 
+AIPlayer  -->  Player 
+AITechGuruPlayer  ..>  PlayableAI 
+AITechGuruPlayer  -->  TechGuruPlayer 
+AIVCFundedPlayer  ..>  PlayableAI 
+AIVCFundedPlayer  -->  VCFundedPlayer 
+HackerCEOPlayer  -->  Player 
+MCTSAIBrain  ..>  AIBrain 
+MCTSAIBrain  -->  MCTSMove 
+MCTSAIBrain  -->  MCTSNode 
+MVP  -->  CompanyStructure 
+SimpleAIBrain  ..>  AIBrain 
+TechGuruPlayer  -->  Player 
+Unicorn  -->  CompanyStructure 
+VCFundedPlayer  -->  Player 
 ```
 
 ## 👥 گزارش تفصیلی تقسیم کار اعضای گروه
