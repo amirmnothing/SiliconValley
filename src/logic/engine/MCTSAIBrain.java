@@ -12,6 +12,7 @@ import logic.models.Sector;
 import logic.models.Vertex;
 //import logic.models.Map;
 import ui.controller.GameBoardController;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,6 +34,7 @@ public class MCTSAIBrain implements AIBrain, Serializable {
         thread.setDaemon(true); // جهت بسته شدن خودکار ترد در صورت خروج از برنامه
         return thread;
     });
+
     public MCTSAIBrain(GameBoardController controller) {
         this.controller = controller;
     }

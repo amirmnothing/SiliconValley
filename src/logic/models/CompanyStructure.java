@@ -14,7 +14,6 @@ public abstract class CompanyStructure implements Serializable {
         return owner;
     }
 
-
     public abstract void produce(Sector sector);
 
     public abstract int getVictoryPoints();

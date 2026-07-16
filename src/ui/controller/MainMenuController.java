@@ -179,6 +179,7 @@ public class MainMenuController {
     private ToggleGroup P4ToggleGroup;
 
     // ========================== Settings ==========================
+
     @FXML
     private Slider MenuVolumeSlider, GameVolumeSlider, SFXVolumeSlider;
 
@@ -530,7 +531,6 @@ public class MainMenuController {
 
     @FXML
     void ButtonsMouseExit(MouseEvent event) {
-//        SFXManager.play("MouseExit.mp3");
         ((Button) (event.getSource())).setStyle("-fx-background-color: #1a1a1a;");
     }
 
@@ -831,26 +831,26 @@ public class MainMenuController {
                     case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
                     case NONE -> new Player(playerName, new ArrayList<>());
                 };
-            } else if(playerCount==1){
+            } else if (playerCount == 1) {
                 player = switch (playerR) {
-                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P2HardCheckBox.isSelected());
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P2HardCheckBox.isSelected());
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P2HardCheckBox.isSelected());
-                    case NONE -> new AIPlayer(playerName, controller,P2HardCheckBox.isSelected());
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P2HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P2HardCheckBox.isSelected());
                 };
-            }else if(playerCount==2){
+            } else if (playerCount == 2) {
                 player = switch (playerR) {
-                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P3HardCheckBox.isSelected());
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P3HardCheckBox.isSelected());
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P3HardCheckBox.isSelected());
-                    case NONE -> new AIPlayer(playerName, controller,P3HardCheckBox.isSelected());
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P3HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P3HardCheckBox.isSelected());
                 };
-            }else if(playerCount==3){
+            } else if (playerCount == 3) {
                 player = switch (playerR) {
-                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P4HardCheckBox.isSelected());
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P4HardCheckBox.isSelected());
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P4HardCheckBox.isSelected());
-                    case NONE -> new AIPlayer(playerName, controller,P4HardCheckBox.isSelected());
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller, P4HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller, P4HardCheckBox.isSelected());
                 };
             }
 

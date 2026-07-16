@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class AIVCFundedPlayer extends VCFundedPlayer implements PlayableAI {
     private final AIBrain brain;
 
-    public AIVCFundedPlayer(String name, GameBoardController controller,boolean isHardMode) {
+    public AIVCFundedPlayer(String name, GameBoardController controller, boolean isHardMode) {
         super(name + " AI", new ArrayList<>());
         this.playerRole = PlayerRole.THE_VC_FUNDED;
-        if(isHardMode) {
+        if (isHardMode) {
             this.brain = new MCTSAIBrain(controller);
-        }else {
+        } else {
             this.brain = new SimpleAIBrain(controller);
         }
     }

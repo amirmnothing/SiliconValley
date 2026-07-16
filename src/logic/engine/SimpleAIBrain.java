@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class SimpleAIBrain implements Serializable,AIBrain {
+public class SimpleAIBrain implements Serializable, AIBrain {
     private static final long serialVersionUID = 1L;
     private static GameBoardController controller;
 
@@ -71,9 +71,6 @@ public class SimpleAIBrain implements Serializable,AIBrain {
                                         scheduleAction(() -> {
                                             engine.endCurrentTurn();
                                             refreshUI(engine);
-//                                            if (onTurnComplete != null) {
-//                                                onTurnComplete.run();
-//                                            }
                                         });
                                     });
                                 });
@@ -179,21 +176,7 @@ public class SimpleAIBrain implements Serializable,AIBrain {
         }
     }
 
-//    private void handleCrisis(Player aiPlayer, GameEngine engine) {
-//        if (engine.isResourceBelowCrisisThreshold(aiPlayer)) {
-//            java.util.Map<ResourceType, Integer> resourcesToDiscard = calculateResourcesToDiscard(aiPlayer);
-//            engine.discardSelectedResources(aiPlayer, resourcesToDiscard);
-//        }
-//
-//        if (aiPlayer.isCanPlaceAuditor()) {
-//            Sector bestSectorToBlock = findBestSectorForAuditor(engine);
-//            if (bestSectorToBlock != null && engine.moveAuditor(bestSectorToBlock)) {
-//                aiPlayer.setCanPlaceAuditor(false);
-//            }
-//        }
-//    }
-
-   public java.util.Map<ResourceType, Integer> calculateResourcesToDiscard(Player aiPlayer) {
+    public java.util.Map<ResourceType, Integer> calculateResourcesToDiscard(Player aiPlayer) {
         java.util.Map<ResourceType, Integer> discardMap = new HashMap<>();
         java.util.Map<ResourceType, Integer> currentResources = aiPlayer.getResourceCount();
 
@@ -202,9 +185,9 @@ public class SimpleAIBrain implements Serializable,AIBrain {
             if (resourceType == ResourceType.REGULATORY) continue;
             totalResources += currentResources.getOrDefault(resourceType, 0);
         }
-       if (totalResources <= aiPlayer.getCrisisModifierThreshold()) {
-           return new java.util.HashMap<>();
-       }
+        if (totalResources <= aiPlayer.getCrisisModifierThreshold()) {
+            return new java.util.HashMap<>();
+        }
         int targetDiscardCount = totalResources / 2;
         int discarded = 0;
 
@@ -233,52 +216,6 @@ public class SimpleAIBrain implements Serializable,AIBrain {
 
         return discardMap;
     }
-
-//    private void tryPlaceAuditorByAI(Player aiPlayer, GameEngine engine) {
-//
-//        Sector targetSector = findBestSectorForAuditor(engine);
-//
-//        if (targetSector != null) {
-//            int targetRow = -1;
-//            int targetCol = -1;
-//            Sector[][] sectors = engine.getMap().getSectors();
-//
-//
-//            for (int r = 0; r < engine.getMap().getRows(); r++) {
-//                for (int c = 0; c < engine.getMap().getCols(); c++) {
-//                    if (sectors[r][c] == targetSector) {
-//                        targetRow = r;
-//                        targetCol = c;
-//                        break;
-//                    }
-//                }
-//                if (targetRow != -1) break;
-//            }
-//
-//
-//            if (targetRow != -1 && targetCol != -1) {
-//                final int finalRow = targetRow;
-//                final int finalCol = targetCol;
-//
-//                Platform.runLater(() -> {
-//
-//                    controller.performAIAuditorMove(finalRow, finalCol);
-//                });
-//            }
-//        }
-//    }
-//
-//    private Sector findBestSectorForAuditor(GameEngine engine) {
-//        Sector[][] sectors = engine.getMap().getSectors();
-//        for (Sector[] row : sectors) {
-//            for (Sector sector : row) {
-//                if (sector != null && engine.canPlaceAuditor(sector)) {
-//                    return sector;
-//                }
-//            }
-//        }
-//        return null;
-//    }
 
     private void tryPlaceAuditorByAI(Player aiPlayer, GameEngine engine) {
 

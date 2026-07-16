@@ -3,10 +3,12 @@ package logic.sound;
 import exception.MusicFileNotFoundException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+
 import java.net.URL;
 
 public class SoundManager {
     private static MediaPlayer backgroundMusic;
+
     public static void playBackgroundMusic(String fileName) {
         try {
             URL resource = SoundManager.class.getResource("/assets/Sounds/Musics/" + fileName);
@@ -36,7 +38,9 @@ public class SoundManager {
         }
     }
 
-    public static double getVolume() {return backgroundMusic.getVolume();}
+    public static double getVolume() {
+        return backgroundMusic.getVolume();
+    }
 
     public static void stopMusic() {
         if (backgroundMusic != null) {

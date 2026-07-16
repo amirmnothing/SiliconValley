@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     private final AIBrain brain;
 
-    public AITechGuruPlayer(String name, GameBoardController controller,boolean isHardMode) {
+    public AITechGuruPlayer(String name, GameBoardController controller, boolean isHardMode) {
         super(name + " AI", new ArrayList<>());
         this.playerRole = PlayerRole.THE_TECH_GURU_CTO;
-        if(isHardMode) {
+        if (isHardMode) {
             this.brain = new MCTSAIBrain(controller);
-        }else {
+        } else {
             this.brain = new SimpleAIBrain(controller);
         }
     }

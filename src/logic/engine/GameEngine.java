@@ -17,7 +17,8 @@ public class GameEngine implements Serializable {
     private final Market market;
     private int currentPlayerIndex;
     private final Random random = new Random();
-    public List<Integer> LastDice=new ArrayList<>(Arrays.asList(1, 1));;
+    public List<Integer> LastDice = new ArrayList<>(Arrays.asList(1, 1));
+    ;
     public List<String> LastMessage;
 
     final public static String PLAYER1COLOR = "rgb(150, 0, 0)";
@@ -42,6 +43,7 @@ public class GameEngine implements Serializable {
     private int currentTurnNumber = 1;
 
     public boolean isSimulation = false;
+
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
         this.players = players;
@@ -155,7 +157,6 @@ public class GameEngine implements Serializable {
     public void distribute(ArrayList<Integer> diceList) {
         int activationNumber = diceList.get(0) + diceList.get(1);
 
-        // بحران قانونی
         if (activationNumber == 7) {
             getCurrentPlayer().setCanPlaceAuditor(true);
             return;
@@ -236,8 +237,6 @@ public class GameEngine implements Serializable {
         MVP mvp = new MVP(player);
         vertex.setCompanyStructure(mvp);
         player.addCompanyStructure(mvp);
-
-        // TODO : Show MPV created successfully
     }
 
     public boolean canPlaceAuditor(Sector sector) {
@@ -328,7 +327,6 @@ public class GameEngine implements Serializable {
 
         if (!setupPhaseActive) player.deductResourcesForPartnership();
         edge.setPartnership(new Partnership(player));
-        // TODO : Show Partnership created successfully
     }
 
 
@@ -564,13 +562,6 @@ public class GameEngine implements Serializable {
 
         currentTurnNumber = turnNumber;
         nextTurn();
-//        if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
-//            turnNumber++;
-//            market.updateMarketAtEndOfRound();
-//        }
-
-//        isDiceRolled = false;
-//        currentBuildMode = BuildMode.NONE;
     }
 
 

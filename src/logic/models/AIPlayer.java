@@ -14,9 +14,9 @@ public class AIPlayer extends Player implements PlayableAI {
     public AIPlayer(String name, GameBoardController controller, boolean isHardMode) {
         super(name + " AI", new ArrayList<>());
         this.playerRole = null;
-        if(isHardMode) {
+        if (isHardMode) {
             this.brain = new MCTSAIBrain(controller);
-        }else {
+        } else {
             this.brain = new SimpleAIBrain(controller);
         }
     }
