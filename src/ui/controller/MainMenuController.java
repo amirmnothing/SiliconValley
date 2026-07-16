@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import logic.engine.MCTSAIBrain;
 import logic.engine.SimpleAIBrain;
 import logic.engine.GameEngine;
 import logic.engine.Map;
@@ -423,6 +424,7 @@ public class MainMenuController {
 
         controller.setGameEngine(gameEngine);
         SimpleAIBrain.setController(controller);
+        MCTSAIBrain.setController(controller);
         controller.initialize(gameEngine);
 
         Stage gameBoardStage = new Stage();

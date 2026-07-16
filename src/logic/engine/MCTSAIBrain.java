@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class MCTSAIBrain implements AIBrain, Serializable {
     private static final long serialVersionUID = 1L;
-    private transient GameBoardController controller;
+    private static GameBoardController controller;
     // فلگ برای جلوگیری از فراخوانی همزمان و تداخل نوبت‌ها
     private transient boolean isThinking = false;
     // محدودیت‌ها برای جلوگیری از کرش و OOM
@@ -667,8 +667,8 @@ public class MCTSAIBrain implements AIBrain, Serializable {
         });
     }
 
-    public void setController(GameBoardController controller) {
-        this.controller = controller;
+    public static void setController(GameBoardController controller) {
+        MCTSAIBrain.controller = controller;
     }
 
     private void refreshUI(GameEngine engine) {
@@ -1007,7 +1007,6 @@ public class MCTSAIBrain implements AIBrain, Serializable {
                 }
             }
         }
-
         return false;
     }
 }
