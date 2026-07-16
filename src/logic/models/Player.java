@@ -25,7 +25,7 @@ public class Player implements Serializable {
         this.playerName = playerName;
         resources = new HashMap<>();
         for (ResourceType type : ResourceType.values()) {
-            resources.put(type, 0);
+            resources.put(type, 5);
         }
         this.companies = companies != null ? companies : new ArrayList<>();
         this.playerRole = null;

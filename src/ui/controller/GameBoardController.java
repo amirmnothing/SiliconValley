@@ -1604,6 +1604,11 @@ public class GameBoardController {
         endTurnDisable();
         updatePlayersPoints();
         Player winner = gameEngine.winnerPlayer();
+        showGameOverScreen(winner);
+
+    }
+
+    public void showGameOverScreen(Player winner){
         if (winner != null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("🏆 Game Over 🏆");
@@ -1616,7 +1621,7 @@ public class GameBoardController {
                 dialogPane.getStyleClass().add("game-over-alert");
             }
             alert.showAndWait();
-            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage currentStage = (Stage) ( S12).getScene().getWindow();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/view/MainMenu.fxml"));
                 StackPane root = loader.load();
@@ -1629,9 +1634,7 @@ public class GameBoardController {
                 e.printStackTrace();
             }
         }
-
     }
-
     private void resetBuildMode() {
         gameEngine.setBuildMode(BuildMode.NONE);
         for (Line l : lines) l.setDisable(false);

@@ -18,7 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import logic.engine.AIBrain;
+import logic.engine.SimpleAIBrain;
 import logic.engine.GameEngine;
 import logic.engine.Map;
 import logic.enums.PlayerRole;
@@ -32,7 +32,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainMenuController {
@@ -388,7 +387,7 @@ public class MainMenuController {
         GameBoardController controller = loader.getController();
 
         controller.setGameEngine(gameEngine);
-        logic.engine.AIBrain.setController(controller);
+        SimpleAIBrain.setController(controller);
         controller.initialize(gameEngine);
 
         Stage gameBoardStage = new Stage();
@@ -757,10 +756,10 @@ public class MainMenuController {
                 };
             } else {
                 player = switch (playerR) {
-                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller);
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller);
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller);
-                    case NONE -> new AIPlayer(playerName, controller);
+                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller,true);
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,true);
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,true);
+                    case NONE -> new AIPlayer(playerName, controller,true);
                 };
             }
 

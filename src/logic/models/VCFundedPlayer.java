@@ -12,6 +12,7 @@ public class VCFundedPlayer extends Player {
         super(playerName, companies);
         this.playerRole = PlayerRole.THE_VC_FUNDED;
         this.addResource(ResourceType.CAPITAL, 2);
+
     }
 
     @Override

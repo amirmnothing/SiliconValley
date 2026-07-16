@@ -7,7 +7,7 @@ import logic.enums.MessageMode;
 import logic.enums.ResourceType;
 import logic.models.*;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 public class GameEngine implements Serializable {
@@ -17,7 +17,7 @@ public class GameEngine implements Serializable {
     private final Market market;
     private int currentPlayerIndex;
     private final Random random = new Random();
-    public List<Integer> LastDice;
+    public List<Integer> LastDice=new ArrayList<>(Arrays.asList(1, 1));;
     public List<String> LastMessage;
 
     final public static String PLAYER1COLOR = "rgb(150, 0, 0)";
@@ -41,7 +41,7 @@ public class GameEngine implements Serializable {
     private int turnNumber = 1;
     private int currentTurnNumber = 1;
 
-
+    public boolean isSimulation = false;
     public GameEngine(Map map, List<Player> players) {
         this.map = map;
         this.players = players;
@@ -105,7 +105,7 @@ public class GameEngine implements Serializable {
             javafx.application.Platform.runLater(onTurnChanged);
         }
 
-
+        if (isSimulation) return;
         if (player instanceof PlayableAI) {
             ((PlayableAI) player).playTurn(this, () -> {
                 nextTurn(onTurnChanged);
@@ -538,6 +538,7 @@ public class GameEngine implements Serializable {
     }
 
     private void triggerNextPlayerIfAI() {
+        if (isSimulation) return;
         Player nextPlayer = getCurrentPlayer();
         if (nextPlayer instanceof PlayableAI) {
             javafx.application.Platform.runLater(() -> {
@@ -658,5 +659,32 @@ public class GameEngine implements Serializable {
 
     public void setLastMessage(String Header, String Body, String mode) {
         LastMessage = List.of(new String[]{Header, Body, mode});
+    }
+
+
+    /**
+     * یک کپی کاملاً مستقل از وضعیت فعلی بازی برای شبیه‌سازی هوش مصنوعی می‌سازد.
+     */
+    public GameEngine deepCopy() {
+        try {
+            // تبدیل شیء فعلی به جریان بایت‌ها (نوشتن در حافظه)
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+            oos.flush();
+            oos.close();
+
+            // خواندن مجدد بایت‌ها و ساخت یک شیء کاملاً جدید
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+//            return (GameEngine) ois.readObject();
+            GameEngine copy = (GameEngine) ois.readObject();
+            copy.isSimulation = true; // <--- این خط حیاتی است!
+            return copy;
+        } catch (Exception e) {
+            System.err.println("خطا در کپی کردن GameEngine! آیا همه کلاس‌ها Serializable هستند؟");
+            e.printStackTrace();
+            return null;
+        }
     }
 }

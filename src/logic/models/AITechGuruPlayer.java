@@ -1,6 +1,8 @@
 package logic.models;
 
 import logic.engine.AIBrain;
+import logic.engine.MCTSAIBrain;
+import logic.engine.SimpleAIBrain;
 import logic.engine.GameEngine;
 import logic.enums.PlayerRole;
 import ui.controller.GameBoardController;
@@ -10,10 +12,14 @@ import java.util.ArrayList;
 public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     private final AIBrain brain;
 
-    public AITechGuruPlayer(String name, GameBoardController controller) {
+    public AITechGuruPlayer(String name, GameBoardController controller,boolean isHardMode) {
         super(name + " AI", new ArrayList<>());
-        this.brain = new AIBrain(controller);
         this.playerRole = PlayerRole.THE_TECH_GURU_CTO;
+        if(isHardMode) {
+            this.brain = new MCTSAIBrain(controller);
+        }else {
+            this.brain = new SimpleAIBrain(controller);
+        }
     }
 
     @Override
@@ -30,6 +36,6 @@ public class AITechGuruPlayer extends TechGuruPlayer implements PlayableAI {
     }
 
     public void setController(GameBoardController controller) {
-        this.brain.setController(controller);
+        SimpleAIBrain.setController(controller);
     }
 }
