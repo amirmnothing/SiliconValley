@@ -6,8 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import ui.controller.GameBoardController;
 import ui.controller.MainMenuController;
 
 import java.util.Objects;

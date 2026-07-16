@@ -1,10 +1,12 @@
 package logic.models;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private CompanyStructure companyStructure;
     private List<Edge> adjacentEdges;

@@ -1,9 +1,11 @@
 package logic.models;
 
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Edge implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private Vertex start;
     private Vertex end;
@@ -32,16 +34,8 @@ public class Edge implements Serializable {
         return start;
     }
 
-    public void setStart(Vertex start) {
-        this.start = start;
-    }
-
     public Vertex getEnd() {
         return end;
-    }
-
-    public void setEnd(Vertex end) {
-        this.end = end;
     }
 
     public Partnership getPartnership() {
