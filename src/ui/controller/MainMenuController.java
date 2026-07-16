@@ -190,8 +190,9 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         try {
-            SFXManager.preload("MouseEnter.mp3");
+            SFXManager.preload("MouseEnter.mp3", "Error 2.mp3");
         } catch (SFXNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
@@ -203,6 +204,7 @@ public class MainMenuController {
         try {
             SoundManager.playBackgroundMusic("MainMenu.mp3");
         } catch (MusicFileNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
@@ -614,6 +616,7 @@ public class MainMenuController {
     @FXML
     void onStartGame(ActionEvent event) throws IOException {
         if (playerCount == 0) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Count");
             alert.setHeaderText("Not Enough Players");
@@ -638,6 +641,7 @@ public class MainMenuController {
                 }
             }
         } catch (PlayerTypeNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Type Not Selected");
@@ -647,6 +651,7 @@ public class MainMenuController {
             alert.showAndWait();
             return;
         } catch (PlayerRoleNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Role Not Selected");
@@ -656,6 +661,7 @@ public class MainMenuController {
             alert.showAndWait();
             return;
         } catch (InvalidPlayerNameException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Invalid Player Name");
@@ -742,6 +748,7 @@ public class MainMenuController {
                 }
             }
         } catch (PlayerTypeNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Type Not Selected");
@@ -751,6 +758,7 @@ public class MainMenuController {
             alert.showAndWait();
             turnImageOff = false;
         } catch (PlayerRoleNotSelectedException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Player Role Not Selected");
@@ -760,6 +768,7 @@ public class MainMenuController {
             alert.showAndWait();
             turnImageOff = false;
         } catch (InvalidPlayerNameException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Player Configuration");
             alert.setHeaderText("Invalid Player Name");

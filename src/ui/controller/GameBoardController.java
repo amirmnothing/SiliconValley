@@ -984,6 +984,7 @@ public class GameBoardController {
         try {
             SoundManager.playBackgroundMusic("SiliconValley.mp3");
         } catch (MusicFileNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
@@ -994,8 +995,9 @@ public class GameBoardController {
         }
         SoundManager.setVolume(MainMenuController.getGameSoundVolume());
         try {
-            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3", "Auditor.mp3", "Purchase.mp3");
+            SFXManager.preload("Build.mp3", "Dice.mp3", "Upgrade.mp3", "MouseExit.mp3", "Auditor.mp3", "Purchase.mp3", "Error.mp3", "Error 2.mp3", "Victory.mp3");
         } catch (SFXNotFoundException e) {
+            SFXManager.play("Error 2.mp3");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Failed to load files");
@@ -1633,6 +1635,7 @@ public class GameBoardController {
 
     public void showGameOverScreen(Player winner){
         if (winner != null) {
+            SFXManager.play("Victory.mp3");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("🏆 Game Over 🏆");
             alert.setHeaderText("🎉 CHAMPION OF SILICON VALLEY 🎉");
@@ -1909,6 +1912,7 @@ public class GameBoardController {
                 legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
                 legalCrisisStage.setOnCloseRequest(e -> {
                     e.consume();
+                    SFXManager.play("Error 2.mp3");
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.initOwner(legalCrisisStage);
                     alert.setTitle("Hold On!");
@@ -2334,6 +2338,7 @@ public class GameBoardController {
     }
 
     void FailedToCreateFileErrorAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to create save file");
@@ -2354,6 +2359,7 @@ public class GameBoardController {
     }
 
     void FileAlreadyExistsErrorAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("File already exists");
@@ -2389,6 +2395,7 @@ public class GameBoardController {
     }
 
     void FileRenameFailedfullyAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to rename save file");
@@ -2411,6 +2418,7 @@ public class GameBoardController {
     }
 
     void FileNotChosenAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("No file has chosen");
@@ -2443,6 +2451,7 @@ public class GameBoardController {
     }
 
     void FileDeleteFailedAlert() {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to delete save file");
@@ -2463,6 +2472,7 @@ public class GameBoardController {
     }
 
     void FileSaveFailedAlert(String Message) {
+        SFXManager.play("Error 2.mp3");
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Failed to save file");
@@ -2724,6 +2734,7 @@ public class GameBoardController {
     void showMessage(String messageHeader, String messageBody, MessageMode mode) {
 
         if (mode == MessageMode.ERROR) {
+            SFXManager.play("Error.mp3");
             MessageIcon.setImage(ErrorImage);
             MessageVBox.setStyle("-fx-border-color: red; -fx-border-width: 2");
             MessageLine.setStroke(Color.RED);
