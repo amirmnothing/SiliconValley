@@ -73,8 +73,7 @@ public class GameBoardController {
         }
         refreshPlayersResourcesUI();
     }
-//رفق باگ قیمت های شاپ
-//Comrade bug shop prices
+
     @FXML
     private Circle c0_0;
 
