@@ -57,6 +57,7 @@ public class GameBoardController {
 
     private boolean isDiceRolled = false;
 
+    private final Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
 
     ArrayList<Line> lines;
     ArrayList<Circle> circles;
@@ -84,6 +85,7 @@ public class GameBoardController {
                 System.err.println("Warning: CSS file not found for Alert style.");
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -859,6 +861,7 @@ public class GameBoardController {
                             } catch (Exception ignored) {
                             }
                             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                            setAlertIcon(alert);
                             alert.showAndWait();
                         }
                     } catch (Exception e) {
@@ -880,6 +883,7 @@ public class GameBoardController {
                         }
 
                         dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                        setAlertIcon(alert);
                         alert.showAndWait();
                     }
                 }
@@ -918,6 +922,7 @@ public class GameBoardController {
                 } catch (Exception ignored) {
                 }
                 dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
                 alert.showAndWait();
             }
         } catch (Exception e) {
@@ -937,6 +942,7 @@ public class GameBoardController {
             } catch (Exception ignored) {
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
         }
     }
@@ -1042,6 +1048,7 @@ public class GameBoardController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
         SoundManager.setVolume(MainMenuController.getGameSoundVolume());
@@ -1055,6 +1062,7 @@ public class GameBoardController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
 
@@ -1699,6 +1707,7 @@ public class GameBoardController {
                 dialogPane.getStylesheets().add(cssPath);
                 dialogPane.getStyleClass().add("game-over-alert");
             }
+            setAlertIcon(alert);
             alert.showAndWait();
             Stage currentStage = (Stage) (S12).getScene().getWindow();
             try {
@@ -1709,6 +1718,7 @@ public class GameBoardController {
                 currentStage.setTitle("Silicon Valley: The Tech Cartel");
                 currentStage.setResizable(false);
                 currentStage.centerOnScreen();
+                currentStage.getIcons().add(icon);
                 SoundManager.stopMusic();
             } catch (IOException e) {
                 SFXManager.play("Error 2.mp3");
@@ -1726,6 +1736,7 @@ public class GameBoardController {
                     dialogPane2.getStylesheets().add(cssPath);
                 }
                 dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
                 alert.showAndWait();
             }
         }
@@ -1819,6 +1830,7 @@ public class GameBoardController {
                 dialogPane.getStylesheets().add(cssPath);
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
         }
         updateTurnControls();
@@ -1963,6 +1975,7 @@ public class GameBoardController {
             tradeStage.setScene(new Scene(root));
             tradeStage.setResizable(false);
             tradeStage.initModality(Modality.APPLICATION_MODAL);
+            tradeStage.getIcons().add(icon);
             tradeStage.initOwner(((Node) event.getSource()).getScene().getWindow());
 
             tradeStage.showAndWait();
@@ -1983,6 +1996,7 @@ public class GameBoardController {
                 dialogPane.getStylesheets().add(cssPath);
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
         }
     }
@@ -2009,6 +2023,7 @@ public class GameBoardController {
                 legalCrisisStage.setScene(new Scene(root));
                 legalCrisisStage.setResizable(false);
                 legalCrisisStage.initModality(Modality.APPLICATION_MODAL);
+                legalCrisisStage.getIcons().add(icon);
                 legalCrisisStage.setOnCloseRequest(e -> {
                     e.consume();
                     SFXManager.play("Error 2.mp3");
@@ -2019,6 +2034,7 @@ public class GameBoardController {
                     alert.setContentText("You can't close the window until you return requested resources to the bank");
                     DialogPane dialogPane = alert.getDialogPane();
                     dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+                    setAlertIcon(alert);
                     alert.showAndWait();
                 });
 
@@ -2042,6 +2058,7 @@ public class GameBoardController {
                     dialogPane.getStylesheets().add(cssPath);
                 }
                 dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                setAlertIcon(alert);
                 alert.showAndWait();
             }
 
@@ -2185,6 +2202,7 @@ public class GameBoardController {
                 dialogPane.getStylesheets().add(cssPath);
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
         }
     }
@@ -2473,6 +2491,7 @@ public class GameBoardController {
         alert.setContentText("Maybe you entered an unsupported character in file name");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2483,6 +2502,7 @@ public class GameBoardController {
         alert.setContentText("You can see it in saves' list now!");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2494,6 +2514,7 @@ public class GameBoardController {
         alert.setContentText("You can not create a file which is existed!");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2519,6 +2540,7 @@ public class GameBoardController {
         alert.setContentText("You can see renamed file in saves' list");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2529,6 +2551,7 @@ public class GameBoardController {
         alert.setHeaderText("Failed to rename save file");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2553,6 +2576,7 @@ public class GameBoardController {
         alert.setContentText("You should choose a file from table");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2563,6 +2587,7 @@ public class GameBoardController {
         confirmationAlert.setContentText("Are you sure you want to delete \"" + FileName + "\" save file?");
         DialogPane dialogPane = confirmationAlert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(confirmationAlert);
         Optional<ButtonType> result = confirmationAlert.showAndWait();
 
         if (result.get() == ButtonType.OK) return true;
@@ -2575,6 +2600,7 @@ public class GameBoardController {
         alert.setHeaderText("Save file deleted successfully");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2585,18 +2611,21 @@ public class GameBoardController {
         alert.setHeaderText("Failed to delete save file");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
     @FXML
     void onSaveGame(ActionEvent event) {
         FileItem chosenFile = saveGameTable.getSelectionModel().getSelectedItem();
-        try {
-            SaveManager.save(gameEngine, chosenFile.getFile());
-            FileSavedSuccessfullyAlert();
-        } catch (IOException e) {
-            FileSaveFailedAlert(e.getMessage());
-        }
+        if (chosenFile != null) {
+            try {
+                SaveManager.save(gameEngine, chosenFile.getFile());
+                FileSavedSuccessfullyAlert();
+            } catch (IOException e) {
+                FileSaveFailedAlert(e.getMessage());
+            }
+        } else FileNotChosenAlert();
     }
 
     void FileSaveFailedAlert(String Message) {
@@ -2607,6 +2636,7 @@ public class GameBoardController {
         alert.setContentText(Message);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2616,6 +2646,7 @@ public class GameBoardController {
         alert.setHeaderText("Game saved successfully");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+        setAlertIcon(alert);
         alert.showAndWait();
     }
 
@@ -2977,6 +3008,7 @@ public class GameBoardController {
                             } catch (Exception ignored) {
                             }
                             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                            setAlertIcon(alert);
                             alert.showAndWait();
                         }
                     } catch (Exception e) {
@@ -2996,6 +3028,7 @@ public class GameBoardController {
                         } catch (Exception ignored) {
                         }
                         dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+                        setAlertIcon(alert);
                         alert.showAndWait();
                     }
                     return;
@@ -3010,5 +3043,13 @@ public class GameBoardController {
         SFXVolumeSlider.setValue(SFXManager.getVolume() * 100);
         GameVolumeLabel.setText(String.valueOf((int) (SoundManager.getVolume() * 100)));
         SFXVolumeLabel.setText(String.valueOf((int) (SFXManager.getVolume() * 100)));
+    }
+
+    private void setAlertIcon(Alert alert) {
+        try {
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(icon);
+        } catch (Exception _) {
+        }
     }
 }

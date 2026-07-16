@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
@@ -26,6 +27,7 @@ import logic.sound.SFXManager;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class TradeRequestController {
     GameBoardController gameBoardController;
@@ -369,6 +371,9 @@ public class TradeRequestController {
                 dialogPane.getStylesheets().add(cssPath);
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            Stage stage = (Stage) dialogPane.getScene().getWindow();
+            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
+            stage.getIcons().add(icon);
             alert.showAndWait();
         }
     }

@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 
 public class MainMenuController {
 
+    private final Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
     private final Image selectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AISelected.png")));
     private final Image selectedHardAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIHardSelected.png")));
     private final Image unselectedAIImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/AIUnselected.png")));
@@ -201,6 +202,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
         try {
@@ -213,6 +215,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
         }
 
@@ -238,6 +241,7 @@ public class MainMenuController {
                 dialogPane.getStylesheets().add(cssPath);
             }
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
         }
 
@@ -444,6 +448,7 @@ public class MainMenuController {
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
             dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         } catch (NullPointerException e) {
@@ -454,6 +459,7 @@ public class MainMenuController {
             alert.setContentText("Please choose a file before loading.");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -469,6 +475,8 @@ public class MainMenuController {
         controller.initialize(gameEngine);
 
         Stage gameBoardStage = new Stage();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
+        gameBoardStage.getIcons().add(image);
         gameBoardStage.setScene(new Scene(root));
         gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
         gameBoardStage.setResizable(false);
@@ -661,6 +669,7 @@ public class MainMenuController {
             alert.setContentText("You need at least 2 players to start the game. Please add more players and try again.");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -686,6 +695,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         } catch (PlayerRoleNotSelectedException e) {
@@ -696,6 +706,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         } catch (InvalidPlayerNameException e) {
@@ -706,6 +717,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             return;
         }
@@ -720,6 +732,8 @@ public class MainMenuController {
         gameEngine.startSetupPhase();
 
         Stage gameBoardStage = new Stage();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Icons/SiliconValley.png")));
+        gameBoardStage.getIcons().add(image);
         gameBoardStage.setScene(new Scene(root));
         gameBoardStage.setTitle("Silicon Valley: The Tech Cartel");
         gameBoardStage.setResizable(false);
@@ -793,6 +807,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         } catch (PlayerRoleNotSelectedException e) {
@@ -803,6 +818,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         } catch (InvalidPlayerNameException e) {
@@ -813,6 +829,7 @@ public class MainMenuController {
             alert.setContentText(e.getMessage());
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            setAlertIcon(alert);
             alert.showAndWait();
             turnImageOff = false;
         }
@@ -950,5 +967,13 @@ public class MainMenuController {
 
     public static void setGameSoundVolume(double Volume) {
         gameSoundVolume = Volume;
+    }
+
+    private void setAlertIcon(Alert alert) {
+        try {
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(icon);
+        } catch (Exception e) {
+        }
     }
 }
