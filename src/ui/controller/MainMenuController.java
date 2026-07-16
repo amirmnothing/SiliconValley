@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -415,7 +416,28 @@ public class MainMenuController {
         try {
             gameEngine = SaveManager.load(saveTable.getSelectionModel().getSelectedItem().getFile());
         } catch (IOException | ClassNotFoundException e) {
-            // Todo : Show error
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to read file");
+            Label messageLabel = new Label("The file might be corrupted, inaccessible, or in use by another program.");
+            messageLabel.setWrapText(true);
+            messageLabel.setPrefWidth(450);
+            alert.getDialogPane().setContent(messageLabel);
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+            return;
+        } catch (NullPointerException e) {
+            SFXManager.play("Error 2.mp3");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No File Selected");
+            alert.setContentText("Please choose a file before loading.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ui/view/style.css")).toExternalForm());
+            alert.showAndWait();
             return;
         }
 

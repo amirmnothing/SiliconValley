@@ -271,57 +271,49 @@
     -fx-inner-border-color: transparent !important;
 }
 
-/* ۱. استایل کلی بدنه CheckBox (شامل متن و باکس) */
 .check-box {
     -fx-font-family: "Segoe UI", "Tahoma", sans-serif;
     -fx-font-size: 14px;
-    -fx-text-fill: #d4d4d8; /* رنگ متن خاکستری روشن */
+    -fx-text-fill: #d4d4d8;
     -fx-cursor: hand;
     -fx-padding: 5px;
 }
 
-/* ۲. تغییر رنگ متن وقتی موس روی کل چک‌باکس می‌رود */
 .check-box:hover {
-    -fx-text-fill: #ffffff; /* سفید شدن متن در حالت Hover */
+    -fx-text-fill: #ffffff;
 }
 
-/* ۳. استایل باکسِ کوچک (پوسته مربعی چک‌باکس) */
 .check-box .box {
-    -fx-background-color: #1e1e24; /* پس‌زمینه تیره داخل باکس */
-    -fx-background-radius: 4px;    /* لبه‌های کمی گرد برای ظاهر مدرن‌تر */
-    -fx-border-color: #3f3f46;     /* مرز خاکستری ملایم */
+    -fx-background-color: #1e1e24;
+    -fx-background-radius: 4px;
+    -fx-border-color: #3f3f46;
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
 }
 
-/* ۴. استایل باکس وقتی موس روی آن می‌رود (Hover) */
 .check-box:hover .box {
-    -fx-border-color: #a1a1aa;     /* مرز نقره‌ای/خاکستری روشن */
-    -fx-background-color: #27272a; /* کمی روشن‌تر شدن پس‌زمینه */
+    -fx-border-color: #a1a1aa;
+    -fx-background-color: #27272a;
 }
 
-/* ۵. استایل باکس در حالت فوکوس یا فعال بودن */
 .check-box:focused .box {
-    -fx-border-color: #f4f4f5;     /* مرز سفید ملایم هنگام فوکوس */
+    -fx-border-color: #f4f4f5;
 }
 
-/* ۶. استایل علامت تیک (Mark) داخل باکس در حالت عادی (پنهان) */
 .check-box .mark {
     -fx-background-color: transparent;
-    -fx-shape: "M1.5,4.5 L4.5,7.5 L10.5,1.5 L11.5,2.5 L4.5,9.5 L0.5,5.5 Z"; /* شکل تیک استاندارد */
+    -fx-shape: "M1.5,4.5 L4.5,7.5 L10.5,1.5 L11.5,2.5 L4.5,9.5 L0.5,5.5 Z";
 }
 
-/* ۷. استایل تیک داخل باکس وقتی چک‌باکس انتخاب می‌شود (Selected) */
 .check-box:selected .box {
-    -fx-background-color: #f4f4f5; /* سفید/نقره‌ای شدن کل پس‌زمینه باکس */
+    -fx-background-color: #f4f4f5;
     -fx-border-color: #ffffff;
 }
 
 .check-box:selected .mark {
-    -fx-background-color: #18181b; /* مشکی/تیره شدن علامت تیک برای تضاد عالی با پس‌زمینه سفید */
+    -fx-background-color: #18181b;
 }
 
-/* ۸. استایل حالت نامشخص (Indeterminate) - اگر در پروژه‌ات استفاده می‌کنی */
 .check-box:indeterminate .box {
     -fx-background-color: #f4f4f5;
     -fx-border-color: #ffffff;
@@ -329,5 +321,5 @@
 
 .check-box:indeterminate .mark {
     -fx-background-color: #18181b;
-    -fx-shape: "M2,4 L8,4 L8,6 L2,6 Z"; /* خط افقی به جای تیک */
+    -fx-shape: "M2,4 L8,4 L8,6 L2,6 Z";
 }
