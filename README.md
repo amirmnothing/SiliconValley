@@ -93,6 +93,166 @@
   </li>
 </ul>
 
+## 📐 الگوهای طراحی (Design Patterns)
+
+<ul dir="rtl">
+  <li><b>الگوی MVC:</b> معماری اصلی پروژه بر پایه تفکیک کامل منطق از رابط کاربری است.</li>
+  <li><b>ارث‌بری و چندریختی:</b> استفاده از کلاس انتزاعی <code>CompanyStructure</code> برای تمامی سازه‌ها.</li>
+  <li><b>الگوی متد الگو (Template Method):</b> به کار رفته در کلاس <code>CompanyStructure</code> برای تعریف ساختار کلی متدهای مربوط به تولید منبع و امتیازدهی در سازه‌های مختلف.</li>
+  <li><b>الگوی استراتژی (Strategy Pattern):</b> این الگو در بخش هوش مصنوعی (AI) برای انتخاب استراتژی‌های مختلف ساخت و معامله به کار رفته است.</li>
+  <li><b>الگوی تک‌نسخه (Singleton/Utility Pattern):</b> برای مدیریت و دسترسی متمرکز به منابع مشترک در کلاس‌هایی مانند <code>SoundManager</code> (مدیریت صدا) و <code>SaveManager</code> (مدیریت ذخیره‌سازی).</li>
+</ul>
+
+## 📊 نمودار کلاس‌ها (UML Diagram)
+
+نمودار کلاس‌های پروژه در ساختار کلی شیء‌گرا به شرح زیر پیاده‌سازی شده است:
+
+```mermaid
+classDiagram
+    direction BT
+    
+    %% Abstract & Interface definitions
+    class PlayableAI {
+        <<Interface>>
+    }
+    class AIBrain {
+        <<Interface>>
+    }
+    class CompanyStructure {
+        <<abstract>>
+    }
+    
+    %% Enumerations
+    class BuildMode {
+        <<enumeration>>
+        MVP
+        UNICORN
+        PARTNERSHIP
+    }
+    class PlayerRole {
+        <<enumeration>>
+        HACKER_CEO
+        TECH_GURU
+        VC_FUNDED
+    }
+    class ResourceType {
+        <<enumeration>>
+        CAPITAL
+        TALENT
+        CLOUD
+        PATENT
+        DATA
+    }
+    class CornerDirection {
+        <<enumeration>>
+    }
+    class MessageMode {
+        <<enumeration>>
+    }
+    
+    %% Player Inheritance structure
+    class Player {
+        +String name
+        +PlayerRole role
+        +int victoryPoints
+        +Map resources
+        +canBuild()
+    }
+    class HackerCEOPlayer {
+        +getMarketRate()
+    }
+    class TechGuruPlayer {
+        +getUpgradeCost()
+    }
+    class VCFundedPlayer {
+        +getMaxHandSize()
+    }
+    
+    Player <|-- HackerCEOPlayer
+    Player <|-- TechGuruPlayer
+    Player <|-- VCFundedPlayer
+    
+    %% AI Implementations
+    class AIPlayer
+    class AIHackerCEOPlayer
+    class AITechGuruPlayer
+    class AIVCFundedPlayer
+    
+    Player <|-- AIPlayer
+    AIPlayer ..|> PlayableAI
+    
+    HackerCEOPlayer <|-- AIHackerCEOPlayer
+    AIHackerCEOPlayer ..|> PlayableAI
+    
+    TechGuruPlayer <|-- AITechGuruPlayer
+    AITechGuruPlayer ..|> PlayableAI
+    
+    VCFundedPlayer <|-- AIVCFundedPlayer
+    AIVCFundedPlayer ..|> PlayableAI
+    
+    %% AI Brain logic
+    class SimpleAIBrain
+    class MCTSAIBrain
+    
+    SimpleAIBrain ..|> AIBrain
+    MCTSAIBrain ..|> AIBrain
+    
+    %% Structures
+    class MVP
+    class Unicorn
+    class Partnership
+    
+    CompanyStructure <|-- MVP
+    CompanyStructure <|-- Unicorn
+    
+    %% Map Elements
+    class Map
+    class Sector
+    class Vertex
+    class Edge
+    
+    Map --> "*" Sector
+    Map --> "*" Vertex
+    Map --> "*" Edge
+    
+    %% Core Engines
+    class GameEngine
+    class Market
+    class SaveManager
+    class SoundManager
+    class SFXManager
+    
+    GameEngine --> "1" Map
+    GameEngine --> "1" Market
+    GameEngine --> "*" Player : manages
+    
+    %% Custom Exceptions
+    class InsufficientResourcesException
+    class InvalidPlacementException
+    class InvalidAuditorMovementException
+    class InvalidMarketTransactionException
+    class InvalidPlayerNameException
+    class PlayerRoleNotSelectedException
+    class PlayerTypeNotSelectedException
+    class MusicFileNotFoundException
+    class SFXNotFoundException
+    
+    %% Controllers and UI
+    class Main
+    class GameBoardController
+    class MainMenuController
+    class IncomingTradeController
+    class TradeRequestController
+    class LegalCrisisController
+```
+
+## 👥 گزارش تفصیلی تقسیم کار اعضای گروه
+
+| توسعه‌دهنده | بخش‌های تحت مسئولیت اختصاصی | بخش‌های توسعه‌یافته به صورت مشترک (Shared) |
+| :--- | :--- | :--- |
+| **امیرمهدی سهیلی** | <ul><li>طراحی و پیاده‌سازی کامل رابط کاربری (UI/UX) بازی در JavaFX</li><li>طراحی، قالب‌بندی و استایل‌دهی فایل‌های نمایشی FXML با SceneBuilder</li><li>صداگذاری، افکت‌های صوتی و توسعه لایه مدیریت صوت (Sound/SFX Managers)</li></ul> | <ul style="margin-bottom: 0;"><li><b>کلاس‌های اولیه پروژه (Initial Classes):</b> طراحی و معماری اولیه کلاس‌های پایه مانند <code>Player</code>، <code>Sector</code>، <code>Vertex</code>، <code>Edge</code> و کلاس‌های استثنای سفارشی.</li><li><b>کنترلرهای پروژه (Controllers):</b> همکاری نزدیک در پیاده‌سازی و اتصال کدهای منطقی به کنترلرهای لایه نمایش (مانند <code>GameBoardController</code> و <code>MainMenuController</code>) جهت یکپارچه‌سازی رابط کاربری و موتور بازی.</li></ul> |
+| **رضا معصومی** | <ul><li>طراحی و توسعه موتور اصلی بازی (Core Game Engine) و شبیه‌سازی منطق نوبت‌ها</li><li>طراحی و توسعه سیستم هوش مصنوعی بازی (AIBrain) و هدایت خودکار ربات‌ها</li><li>پیاده‌سازی مکانیزم‌های ریاضیاتی مانند الگوی جستجوی عمق اول (DFS) برای کشف بلندترین مسیر شبکه</li></ul> | <ul style="margin-bottom: 0;"><li><b>کلاس‌های اولیه پروژه (Initial Classes):</b> طراحی و معماری اولیه کلاس‌های پایه مانند <code>Player</code>، <code>Sector</code>، <code>Vertex</code>، <code>Edge</code> و کلاس‌های استثنای سفارشی.</li><li><b>کنترلرهای پروژه (Controllers):</b> همکاری نزدیک در پیاده‌سازی و اتصال کدهای منطقی به کنترلرهای لایه نمایش (مانند <code>GameBoardController</code> و <code>MainMenuController</code>) جهت یکپارچه‌سازی رابط کاربری و موتور بازی.</li></ul> |
+
 ## 💻 جزئیات فنی
 
 <ul dir="rtl">
@@ -111,17 +271,6 @@
   <li>تحویل دادن هوشمندانه منابع هنگام رخ دادن بحران قانونی</li>
   <li>استقرار هدفمند بازرس (Auditor)</li>
 </ul>
-
-## 📐 الگوهای طراحی (Design Patterns)
-
-<ul dir="rtl">
-  <li><b>الگوی MVC:</b> معماری اصلی پروژه بر پایه تفکیک کامل منطق از رابط کاربری است.</li>
-  <li><b>ارث‌بری و چندریختی:</b> استفاده از کلاس انتزاعی <code>CompanyStructure</code> برای تمامی سازه‌ها.</li>
-  <li><b>الگوی متد الگو (Template Method):</b> به کار رفته در کلاس <code>CompanyStructure</code> برای تعریف ساختار کلی متدهای مربوط به تولید منبع و امتیازدهی در سازه‌های مختلف.</li>
-  <li><b>الگوی استراتژی (Strategy Pattern):</b> این الگو در بخش هوش مصنوعی (AI) برای انتخاب استراتژی‌های مختلف ساخت و معامله به کار رفته است.</li>
-  <li><b>الگوی تک‌نسخه (Singleton/Utility Pattern):</b> برای مدیریت و دسترسی متمرکز به منابع مشترک در کلاس‌هایی مانند <code>SoundManager</code> (مدیریت صدا) و <code>SaveManager</code> (مدیریت ذخیره‌سازی).</li>
-</ul>
-
 
 ## 🚀 نحوه اجرا
 
@@ -209,6 +358,164 @@ Players can select roles with unique abilities:
   - A **Save Game** button is available in the top right corner.
   - The main scoreboard displays each player's role, victory points, and total resource count. During your turn, clicking on your total resource count will expand a detailed breakdown of the specific resources you own.
 
+## 📐 Design Patterns
+
+- **MVC Pattern:** Complete separation of logic from the user interface.
+- **Inheritance & Polymorphism:** Using the abstract `CompanyStructure` class for all physical structures.
+- **Template Method Pattern:** Applied in the `CompanyStructure` to define the structural logic of resource production and scoring in its subclasses.
+- **Strategy Pattern:** Applied in the AI's logic to choose different building and trading strategies dynamically.
+- **Singleton / Utility Pattern:** Implemented for centralized access to shared resources, prominently in `SoundManager` and `SaveManager`.
+
+## 📊 UML Class Diagram
+
+Below is the complete project UML structure rendered dynamically via Mermaid:
+
+```mermaid
+classDiagram
+    direction BT
+    
+    %% Abstract & Interface definitions
+    class PlayableAI {
+        <<Interface>>
+    }
+    class AIBrain {
+        <<Interface>>
+    }
+    class CompanyStructure {
+        <<abstract>>
+    }
+    
+    %% Enumerations
+    class BuildMode {
+        <<enumeration>>
+        MVP
+        UNICORN
+        PARTNERSHIP
+    }
+    class PlayerRole {
+        <<enumeration>>
+        HACKER_CEO
+        TECH_GURU
+        VC_FUNDED
+    }
+    class ResourceType {
+        <<enumeration>>
+        CAPITAL
+        TALENT
+        CLOUD
+        PATENT
+        DATA
+    }
+    class CornerDirection {
+        <<enumeration>>
+    }
+    class MessageMode {
+        <<enumeration>>
+    }
+    
+    %% Player Inheritance structure
+    class Player {
+        +String name
+        +PlayerRole role
+        +int victoryPoints
+        +Map resources
+        +canBuild()
+    }
+    class HackerCEOPlayer {
+        +getMarketRate()
+    }
+    class TechGuruPlayer {
+        +getUpgradeCost()
+    }
+    class VCFundedPlayer {
+        +getMaxHandSize()
+    }
+    
+    Player <|-- HackerCEOPlayer
+    Player <|-- TechGuruPlayer
+    Player <|-- VCFundedPlayer
+    
+    %% AI Implementations
+    class AIPlayer
+    class AIHackerCEOPlayer
+    class AITechGuruPlayer
+    class AIVCFundedPlayer
+    
+    Player <|-- AIPlayer
+    AIPlayer ..|> PlayableAI
+    
+    HackerCEOPlayer <|-- AIHackerCEOPlayer
+    AIHackerCEOPlayer ..|> PlayableAI
+    
+    TechGuruPlayer <|-- AITechGuruPlayer
+    AITechGuruPlayer ..|> PlayableAI
+    
+    VCFundedPlayer <|-- AIVCFundedPlayer
+    AIVCFundedPlayer ..|> PlayableAI
+    
+    %% AI Brain logic
+    class SimpleAIBrain
+    class MCTSAIBrain
+    
+    SimpleAIBrain ..|> AIBrain
+    MCTSAIBrain ..|> AIBrain
+    
+    %% Structures
+    class MVP
+    class Unicorn
+    class Partnership
+    
+    CompanyStructure <|-- MVP
+    CompanyStructure <|-- Unicorn
+    
+    %% Map Elements
+    class Map
+    class Sector
+    class Vertex
+    class Edge
+    
+    Map --> "*" Sector
+    Map --> "*" Vertex
+    Map --> "*" Edge
+    
+    %% Core Engines
+    class GameEngine
+    class Market
+    class SaveManager
+    class SoundManager
+    class SFXManager
+    
+    GameEngine --> "1" Map
+    GameEngine --> "1" Market
+    GameEngine --> "*" Player : manages
+    
+    %% Custom Exceptions
+    class InsufficientResourcesException
+    class InvalidPlacementException
+    class InvalidAuditorMovementException
+    class InvalidMarketTransactionException
+    class InvalidPlayerNameException
+    class PlayerRoleNotSelectedException
+    class PlayerTypeNotSelectedException
+    class MusicFileNotFoundException
+    class SFXNotFoundException
+    
+    %% Controllers and UI
+    class Main
+    class GameBoardController
+    class MainMenuController
+    class IncomingTradeController
+    class TradeRequestController
+    class LegalCrisisController
+```
+
+## 👥 Team Work & Task Division
+
+| Developer             | Core Responsibilities | Shared Responsibilities |
+|:----------------------| :--- | :--- |
+| **Amirmahdi Soheyli** | <ul><li>Designed & implemented the complete game UI/UX in JavaFX</li><li>Created and styled FXML UI layouts with SceneBuilder</li><li>Handled audio integration, sound effects, and developed sound managers (`SoundManager`/`SFXManager`)</li></ul> | <ul><li><b>Initial Classes:</b> Collaborated on the design and foundation of core classes like <code>Player</code>, <code>Sector</code>, <code>Vertex</code>, <code>Edge</code>, and custom Exception classes.</li><li><b>Controllers:</b> Integrated core logic handlers with UI layers (e.g., <code>GameBoardController</code> and <code>MainMenuController</code>) for seamless frontend-backend integration.</li></ul> |
+| **Reza Masoumi**      | <ul><li>Designed & developed the core Game Engine and turn sequence logic</li><li>Created and tuned the Artificial Intelligence engine (`AIBrain`) and automated bots</li><li>Implemented network calculation algorithms (such as DFS to find the longest network path)</li></ul> | <ul><li><b>Initial Classes:</b> Collaborated on the design and foundation of core classes like <code>Player</code>, <code>Sector</code>, <code>Vertex</code>, <code>Edge</code>, and custom Exception classes.</li><li><b>Controllers:</b> Integrated core logic handlers with UI layers (e.g., <code>GameBoardController</code> and <code>MainMenuController</code>) for seamless frontend-backend integration.</li></ul> |
+
 ## 💻 Technical Details
 
 - **Thread Management:** Full separation of game logic and heavy operations (like saving) from the main UI thread to prevent UI freezing. UI updates are handled safely via `Platform.runLater()`.
@@ -224,14 +531,6 @@ The game features smart bots via role-specific classes, which rely on `AIBrain` 
 - Purchasing from the market based on internal logic.
 - Smart resource discarding during a legal crisis.
 - Targeted deployment of the Auditor to disrupt opponents.
-
-## 📐 Design Patterns
-
-- **MVC Pattern:** Complete separation of logic from the user interface.
-- **Inheritance & Polymorphism:** Using the abstract `CompanyStructure` class for all physical structures.
-- **Template Method Pattern:** Applied in the `CompanyStructure` to define the structural logic of resource production and scoring in its subclasses.
-- **Strategy Pattern:** Applied in the AI's logic to choose different building and trading strategies dynamically.
-- **Singleton / Utility Pattern:** Implemented for centralized access to shared resources, prominently in `SoundManager` and `SaveManager`.
 
 ## 🚀 How to Run
 
