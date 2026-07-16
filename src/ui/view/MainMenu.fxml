@@ -27,122 +27,6 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.MainMenuController">
    <children>
-      <Group fx:id="AboutUs" mouseTransparent="true" visible="false">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="140.0" layoutX="30.0" layoutY="340.0" stroke="#3b3b3b" strokeType="INSIDE" width="923.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="140.0" layoutX="30.0" layoutY="163.0" stroke="#3b3b3b" strokeType="INSIDE" width="923.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
-               <children>
-                  <Text fill="#b3922e" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers">
-                     <font>
-                        <Font name="Elephant Italic" size="64.0" />
-                     </font>
-                  </Text>
-                  <Line endX="355.0" stroke="#b3922e" strokeWidth="7.0" />
-                  <VBox alignment="TOP_CENTER" prefHeight="140.0" prefWidth="927.0">
-                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="73.0" />
-                     </VBox.margin>
-                     <children>
-                        <Label alignment="CENTER" text="Amirmahdi Soheyli" textAlignment="CENTER" textFill="#b3922e">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <Glow level="0.55">
-                                 <input>
-                                    <Lighting diffuseConstant="1.25" specularConstant="0.21" specularExponent="16.33" surfaceScale="3.16">
-                                       <bumpInput>
-                                          <Shadow />
-                                       </bumpInput>
-                                       <light>
-                                          <Light.Distant />
-                                       </light>
-                                    </Lighting>
-                                 </input>
-                              </Glow>
-                           </effect>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../assets/Icons/GitHub.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="amirmnothing" textAlignment="CENTER" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="140.0" prefWidth="100.0">
-                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="37.0" />
-                     </VBox.margin>
-                     <children>
-                        <Label alignment="CENTER" text="Reza Masoumi" textAlignment="CENTER" textFill="#b3922e">
-                           <font>
-                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <Glow level="0.55">
-                                 <input>
-                                    <Lighting diffuseConstant="1.25" specularConstant="0.21" specularExponent="16.33" surfaceScale="3.16">
-                                       <bumpInput>
-                                          <Shadow />
-                                       </bumpInput>
-                                       <light>
-                                          <Light.Distant />
-                                       </light>
-                                    </Lighting>
-                                 </input>
-                              </Glow>
-                           </effect>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../assets/Icons/GitHub.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="RezaMasoumihub" textAlignment="CENTER" textFill="#b3922e">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBacktoMainMenuButton" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="BACK TO MAIN MENU" textAlignment="CENTER" textFill="#d4af37">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="32.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets right="550.0" top="155.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-      </Group>
       <Group fx:id="GameLobby" mouseTransparent="true" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0" style="-fx-background-color: black;">
@@ -678,7 +562,7 @@
             </VBox>
          </children>
       </Group>
-      <Group fx:id="MainMenu">
+      <Group fx:id="MainMenu" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
                <children>
@@ -726,6 +610,156 @@
                      </font>
                      <VBox.margin>
                         <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </Group>
+      <Group fx:id="AboutUs" mouseTransparent="true">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="190.0" layoutX="30.0" layoutY="370.0" stroke="#3b3b3b" strokeType="INSIDE" width="923.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="190.0" layoutX="30.0" layoutY="163.0" stroke="#3b3b3b" strokeType="INSIDE" width="923.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="740.0" prefWidth="988.0">
+               <children>
+                  <Text fill="#b3922e" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers">
+                     <font>
+                        <Font name="Elephant Italic" size="64.0" />
+                     </font>
+                  </Text>
+                  <Line endX="355.0" stroke="#b3922e" strokeWidth="7.0" />
+                  <VBox alignment="TOP_CENTER" prefHeight="190.0" prefWidth="927.0">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="73.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label alignment="CENTER" text="Amirmahdi Soheyli" textAlignment="CENTER" textFill="#b3922e">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <Glow level="0.55">
+                                 <input>
+                                    <Lighting diffuseConstant="1.25" specularConstant="0.21" specularExponent="16.33" surfaceScale="3.16">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </input>
+                              </Glow>
+                           </effect>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/GitHub.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="amirmnothing" textAlignment="CENTER" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Email.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="amirmahdiSoheyli@gmail.com" textAlignment="CENTER" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="190.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="17.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label alignment="CENTER" text="Reza Masoumi" textAlignment="CENTER" textFill="#b3922e">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <Glow level="0.55">
+                                 <input>
+                                    <Lighting diffuseConstant="1.25" specularConstant="0.21" specularExponent="16.33" surfaceScale="3.16">
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </input>
+                              </Glow>
+                           </effect>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/GitHub.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="RezaMasoumihub" textAlignment="CENTER" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="907.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Icons/Email.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="rezam26977@gmail.com" textAlignment="CENTER" textFill="#b3922e">
+                                 <font>
+                                    <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBacktoMainMenuButton" onMouseEntered="#LoadMenuButtonsMouseEnter" onMouseExited="#LoadMenuButtonsMouseExit" prefHeight="70.0" prefWidth="380.0" style="-fx-background-color: #1a1a1a;" text="BACK TO MAIN MENU" textAlignment="CENTER" textFill="#d4af37">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="32.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="550.0" top="78.0" />
                      </VBox.margin>
                   </Button>
                </children>
