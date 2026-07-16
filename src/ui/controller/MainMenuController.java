@@ -798,12 +798,26 @@ public class MainMenuController {
                     case THE_VC_FUNDED -> new VCFundedPlayer(playerName, new ArrayList<>());
                     case NONE -> new Player(playerName, new ArrayList<>());
                 };
-            } else {
+            } else if(playerCount==1){
                 player = switch (playerR) {
-                    case THE_HACKER_CEO -> new AIHackerCEOPlayer(playerName, controller,true);
-                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,true);
-                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,true);
-                    case NONE -> new AIPlayer(playerName, controller,true);
+                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P2HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P2HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P2HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller,P2HardCheckBox.isSelected());
+                };
+            }else if(playerCount==2){
+                player = switch (playerR) {
+                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P3HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P3HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P3HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller,P3HardCheckBox.isSelected());
+                };
+            }else if(playerCount==3){
+                player = switch (playerR) {
+                    case THE_HACKER_CEO ->new AIHackerCEOPlayer(playerName, controller,P4HardCheckBox.isSelected());
+                    case THE_TECH_GURU_CTO -> new AITechGuruPlayer(playerName, controller,P4HardCheckBox.isSelected());
+                    case THE_VC_FUNDED -> new AIVCFundedPlayer(playerName, controller,P4HardCheckBox.isSelected());
+                    case NONE -> new AIPlayer(playerName, controller,P4HardCheckBox.isSelected());
                 };
             }
 

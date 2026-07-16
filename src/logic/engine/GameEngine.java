@@ -553,15 +553,24 @@ public class GameEngine implements Serializable {
         }
 
         int previousPlayerIndex = currentPlayerIndex;
-        nextTurn();
-        currentTurnNumber = turnNumber;
-        if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
+        int nextIndex = (currentPlayerIndex + 1) % players.size();
+
+        isDiceRolled = false;
+        currentBuildMode = BuildMode.NONE;
+        if (nextIndex == 0 && previousPlayerIndex == players.size() - 1) {
             turnNumber++;
             market.updateMarketAtEndOfRound();
         }
 
-        isDiceRolled = false;
-        currentBuildMode = BuildMode.NONE;
+        currentTurnNumber = turnNumber;
+        nextTurn();
+//        if (currentPlayerIndex == 0 && previousPlayerIndex == players.size() - 1) {
+//            turnNumber++;
+//            market.updateMarketAtEndOfRound();
+//        }
+
+//        isDiceRolled = false;
+//        currentBuildMode = BuildMode.NONE;
     }
 
 

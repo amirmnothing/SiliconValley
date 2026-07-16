@@ -71,9 +71,9 @@ public class SimpleAIBrain implements Serializable,AIBrain {
                                         scheduleAction(() -> {
                                             engine.endCurrentTurn();
                                             refreshUI(engine);
-                                            if (onTurnComplete != null) {
-                                                onTurnComplete.run();
-                                            }
+//                                            if (onTurnComplete != null) {
+//                                                onTurnComplete.run();
+//                                            }
                                         });
                                     });
                                 });
@@ -202,7 +202,9 @@ public class SimpleAIBrain implements Serializable,AIBrain {
             if (resourceType == ResourceType.REGULATORY) continue;
             totalResources += currentResources.getOrDefault(resourceType, 0);
         }
-
+       if (totalResources <= aiPlayer.getCrisisModifierThreshold()) {
+           return new java.util.HashMap<>();
+       }
         int targetDiscardCount = totalResources / 2;
         int discarded = 0;
 
