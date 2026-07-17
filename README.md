@@ -862,9 +862,9 @@ This project is developed based on the **MVC (Model-View-Controller)** design pa
 ### 🏢 Structures & Building Rules
 
 - **Distance Rule:** Every constructed company must be at least 2 edges away from any other company.
-- **MVP (Minimum Viable Product):** Built on Vertices. Value: 1 point. Production: 1 resource. Requires: 1 Capital, 1 Talent, 1 Cloud, 1 Data.
-- **Unicorn:** Upgrade of MVP. Value: 2 points. Production: 2 resources. Requires: 3 Data, 2 Cloud.
-- **Partnership:** Built on Edges to expand the tech network. Requires: 1 Capital, 1 Patent.
+- **MVP (Minimum Viable Product):** Built on Vertices. Value: 1 point. | Production: 1 resource. - Requires: 1 Capital, 1 Talent, 1 Cloud, 1 Data.
+- **Unicorn:** Upgrade of MVP. Value: 2 points. | Production: 2 resources. - Requires: 3 Data, 2 Cloud.
+- **Partnership:** Built on Edges to expand the tech network. | Requires: 1 Capital, 1 Patent.
 
 ### 🎭 Role Guide
 
@@ -872,9 +872,9 @@ Players can select roles with unique abilities:
 
 | Role | Special Perk |
 | :--- | :--- |
-| **Hacker CEO** | Trade discount (3:1 conversion rate instead of 4:1). |
-| **Tech Guru** | Upgrading structures requires fewer resources. |
-| **VC-Funded** | Higher starting capital and legal crisis resistance (holds up to 9 cards instead of 7). |
+| **Hacker CEO** | When trading with the market, instead of the standard 4:1 rate, they trade at a 3:1 rate. |
+| **Tech Guru** | To upgrade the MVP to a Unicorn, they consume one less cloud infrastructure unit (i.e., only 1 unit instead of 2). |
+| **VC-Funded** | Starts the game with 2 additional capital units. Also, during a legal crisis (rolling a 7), the maximum number of cards they can hold before tax is 9 cards (instead of 7). |
 
 ### 🏆 Scoring System and Win Condition
 
