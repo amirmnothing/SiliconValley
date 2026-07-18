@@ -661,29 +661,20 @@ public class GameEngine implements Serializable {
         LastMessage = List.of(new String[]{Header, Body, mode});
     }
 
-
-    /**
-     * یک کپی کاملاً مستقل از وضعیت فعلی بازی برای شبیه‌سازی هوش مصنوعی می‌سازد.
-     */
     public GameEngine deepCopy() {
         try {
-            // تبدیل شیء فعلی به جریان بایت‌ها (نوشتن در حافظه)
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(this);
             oos.flush();
             oos.close();
 
-            // خواندن مجدد بایت‌ها و ساخت یک شیء کاملاً جدید
             ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(bis);
-//            return (GameEngine) ois.readObject();
             GameEngine copy = (GameEngine) ois.readObject();
-            copy.isSimulation = true; // <--- این خط حیاتی است!
+            copy.isSimulation = true;
             return copy;
         } catch (Exception e) {
-            System.err.println("خطا در کپی کردن GameEngine! آیا همه کلاس‌ها Serializable هستند؟");
-            e.printStackTrace();
             return null;
         }
     }

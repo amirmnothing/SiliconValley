@@ -1,7 +1,6 @@
 package logic.engine;
 
 import logic.models.Player;
-import ui.controller.GameBoardController;
 
 public interface AIBrain {
     void executeTurn(Player aiPlayer, GameEngine engine, Runnable onTurnComplete);

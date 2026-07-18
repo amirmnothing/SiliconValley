@@ -1835,7 +1835,7 @@ public class GameBoardController {
         Dice1.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D1Addr))));
         Dice2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(D2Addr))));
         setDiceRolled(true);
-        enableButtonsAfterDiceRoll();
+        if (!(gameEngine.getCurrentPlayer() instanceof PlayableAI)) enableButtonsAfterDiceRoll();
 
         setActiveEndTurn(true);
         endTurnDisable();
