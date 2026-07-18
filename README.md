@@ -17,16 +17,142 @@
 - **زبان برنامه‌نویسی:** Java (17+)
 - **رابط کاربری:** JavaFX
 
-## 🏗 معماری پروژه (Architecture)
+## 🏗 معماری پروژه (Project Architecture)
 
-این پروژه بر اساس الگوی طراحی MVC (Model-View-Controller) توسعه یافته تا منطق بازی کاملاً از رابط کاربری جدا باشد و کدها در پکیج‌های منطقی زیر دسته‌بندی شده‌اند:
+این پروژه بر اساس الگوی معماری **MVC (Model–View–Controller)** توسعه یافته است تا منطق بازی، مدل‌های داده و رابط کاربری کاملاً از یکدیگر مستقل باشند. ساختار پروژه به صورت زیر سازمان‌دهی شده است:
 
-- `logic.engine`: هسته اصلی بازی شامل `GameEngine` (مدیریت نوبت‌ها، تاس، شرایط برد)، `Map` و `AIBrain`.
-- `logic.models`: هسته داده‌ها. کلاس انتزاعی (Abstract) `CompanyStructure` که زیرکلاس‌های `MVP`، `Unicorn` و `Partnership` از آن ارث‌بری می‌کنند. همچنین شامل مدل‌های داده‌ای نقشه (`Sector`, `Vertex`, `Edge`) و بازیکنان دارای نقش‌های تخصصی (`AIHackerCEOPlayer`, `AITechGuruPlayer`, `AIVCFundedPlayer` و غیره).
-- `ui.controller`: کنترلرهای رابط کاربری JavaFX.
-- `ui.view`: فایل‌های FXML مرتبط با رابط کاربری JavaFX.
-- `exception`: استثناهای سفارشی مدیریت خطا.
-- `logic.save` & `logic.sound`: سیستم مدیریت ذخیره‌سازی و پخش صدا.
+```text
+src
+├── Main.java
+│
+├── assets
+│   ├── dice/
+│   ├── Icons/
+│   ├── PlayerRoles/
+│   ├── Resources/
+│   ├── Sectors/
+│   │   ├── AI/
+│   │   ├── Cloud/
+│   │   ├── Data/
+│   │   ├── Fintech/
+│   │   └── IP/
+│   ├── SectorsIcons/
+│   └── Sounds/
+│       ├── Musics/
+│       └── SFX Sounds/
+│
+├── exception
+│   ├── InsufficientResourcesException.java
+│   ├── InvalidAuditorMovementException.java
+│   ├── InvalidMarketTransactionException.java
+│   ├── InvalidPlacementException.java
+│   ├── InvalidPlayerNameException.java
+│   ├── MusicFileNotFoundException.java
+│   ├── PlayerRoleNotSelectedException.java
+│   ├── PlayerTypeNotSelectedException.java
+│   └── SFXNotFoundException.java
+│
+├── logic
+│   ├── engine
+│   │   ├── AIBrain.java
+│   │   ├── GameEngine.java
+│   │   ├── Map.java
+│   │   ├── MCTSAIBrain.java
+│   │   └── SimpleAIBrain.java
+│   │
+│   ├── enums
+│   │   ├── BuildMode.java
+│   │   ├── CornerDirection.java
+│   │   ├── MessageMode.java
+│   │   ├── PlayerRole.java
+│   │   └── ResourceType.java
+│   │
+│   ├── models
+│   │   ├── AIHackerCEOPlayer.java
+│   │   ├── AIPlayer.java
+│   │   ├── AITechGuruPlayer.java
+│   │   ├── AIVCFundedPlayer.java
+│   │   ├── CompanyStructure.java
+│   │   ├── Edge.java
+│   │   ├── FileItem.java
+│   │   ├── HackerCEOPlayer.java
+│   │   ├── Market.java
+│   │   ├── MVP.java
+│   │   ├── Partnership.java
+│   │   ├── PlayableAI.java
+│   │   ├── Player.java
+│   │   ├── Sector.java
+│   │   ├── TechGuruPlayer.java
+│   │   ├── Unicorn.java
+│   │   ├── VCFundedPlayer.java
+│   │   └── Vertex.java
+│   │
+│   ├── save
+│   │   └── SaveManager.java
+│   │
+│   └── sound
+│       ├── SFXManager.java
+│       └── SoundManager.java
+│
+└── ui
+    ├── controller
+    │   ├── GameBoardController.java
+    │   ├── IncomingTradeController.java
+    │   ├── LegalCrisisController.java
+    │   ├── MainMenuController.java
+    │   └── TradeRequestController.java
+    │
+    └── view
+        ├── GameBoard.fxml
+        ├── IncomingTrade.fxml
+        ├── LegalCrisis.fxml
+        ├── MainMenu.fxml
+        ├── TradeRequest.fxml
+        └── style.css
+```
+
+### مسئولیت هر پکیج
+
+| پکیج | توضیحات |
+|------|---------|
+| **Main** | نقطه شروع برنامه که وظیفه راه‌اندازی برنامه JavaFX را بر عهده دارد. |
+| **assets** | شامل تمامی منابع ثابت پروژه مانند تصاویر، آیکون‌ها، بافت‌های نقشه، تصاویر تاس، افکت‌های صوتی، موسیقی پس‌زمینه و سایر فایل‌های رابط کاربری است. |
+| **logic.engine** | هسته اصلی بازی شامل مدیریت نوبت‌ها، مکانیزم تاس، توزیع منابع، تولید نقشه، قوانین بازی و پیاده‌سازی هوش مصنوعی (Simple AI و MCTS AI). |
+| **logic.models** | لایه مدل داده‌ها شامل بازیکنان، ساختارهای شرکت (MVP، Unicorn و Partnership)، سیستم Market، اجزای نقشه و کلاس‌های مربوط به نقش‌های مختلف بازیکنان و هوش مصنوعی. |
+| **logic.enums** | شامل Enumerationهای پروژه مانند انواع منابع، نقش بازیکنان، حالت‌های ساخت و سایر مقادیر ثابت بازی. |
+| **logic.save** | مسئول ذخیره‌سازی و بارگذاری کامل وضعیت بازی با استفاده از Serialization جاوا. |
+| **logic.sound** | مدیریت موسیقی پس‌زمینه و افکت‌های صوتی بازی. |
+| **ui.controller** | کنترلرهای JavaFX که تعاملات کاربر، رویدادهای بازی، انیمیشن‌ها و ارتباط بین رابط کاربری و موتور بازی را مدیریت می‌کنند. |
+| **ui.view** | فایل‌های FXML و فایل‌های مربوط به ظاهر و چیدمان رابط گرافیکی بازی. |
+| **exception** | شامل استثناهای سفارشی برای اعتبارسنجی قوانین بازی و مدیریت خطاها. |
+
+### نمای کلی معماری
+
+```text
+                     کاربر
+                       │
+                       ▼
+         کنترلرهای JavaFX (رابط کاربری)
+                       │
+                       ▼
+                 GameEngine
+       ┌────────────┼────────────┐
+       ▼            ▼            ▼
+      نقشه       بازیکنان     سیستم هوش مصنوعی
+       │            │       ┌──────────────┐
+       │            │       │              │
+       │            │       ▼              ▼
+       │            │   Simple AI      MCTS AI
+       │            │
+       ▼            ▼
+        ساختارهای شرکت
+             │
+             ├── MVP
+             ├── Unicorn
+             └── Partnership
+```
+
+استفاده از معماری **MVC** باعث شده است که منطق بازی، مدل‌های داده و رابط کاربری به صورت مستقل از یکدیگر توسعه پیدا کنند. این ساختار نگهداری، توسعه و آزمایش پروژه را ساده‌تر کرده و امکان افزودن قابلیت‌های جدید مانند الگوریتم‌های هوش مصنوعی، مکانیزم‌های بازی، نقش‌های جدید بازیکنان یا بخش‌های جدید رابط کاربری را با حداقل تغییر در سایر بخش‌های پروژه فراهم می‌کند.
 
 ## ⚙️ منطق کلی بازی
 
@@ -844,14 +970,140 @@ Advanced Programming Final Project - A strategic board game inspired by Catan, b
 
 ## 🏗 Project Architecture
 
-This project is developed based on the **MVC (Model-View-Controller)** design pattern to completely decouple game logic from the user interface. The codebase is categorized into the following logical packages:
+The project follows the **Model–View–Controller (MVC)** architectural pattern, ensuring a clean separation between game logic, data models, and the user interface. The source code is organized as follows:
 
-- `logic.engine`: Core game engine handling turn management, dice, win conditions, and the `AIBrain`.
-- `logic.models`: Core data models. Includes the abstract `CompanyStructure` class (parent to `MVP`, `Unicorn`, and `Partnership`), map elements (`Sector`, `Vertex`, `Edge`), and specialized player role classes (e.g., `HackerCEOPlayer`, `VCFundedPlayer`).
-- `ui.controller`: JavaFX UI controllers.
-- `ui.view`: FXML layout files.
-- `exception`: Custom exceptions for specific error handling.
-- `logic.save` & `logic.sound`: Game state save/load manager and sound player systems.
+```text
+src
+├── Main.java
+│
+├── assets
+│   ├── dice/
+│   ├── Icons/
+│   ├── PlayerRoles/
+│   ├── Resources/
+│   ├── Sectors/
+│   │   ├── AI/
+│   │   ├── Cloud/
+│   │   ├── Data/
+│   │   ├── Fintech/
+│   │   └── IP/
+│   ├── SectorsIcons/
+│   └── Sounds/
+│       ├── Musics/
+│       └── SFX Sounds/
+│
+├── exception
+│   ├── InsufficientResourcesException.java
+│   ├── InvalidAuditorMovementException.java
+│   ├── InvalidMarketTransactionException.java
+│   ├── InvalidPlacementException.java
+│   ├── InvalidPlayerNameException.java
+│   ├── MusicFileNotFoundException.java
+│   ├── PlayerRoleNotSelectedException.java
+│   ├── PlayerTypeNotSelectedException.java
+│   └── SFXNotFoundException.java
+│
+├── logic
+│   ├── engine
+│   │   ├── AIBrain.java
+│   │   ├── GameEngine.java
+│   │   ├── Map.java
+│   │   ├── MCTSAIBrain.java
+│   │   └── SimpleAIBrain.java
+│   │
+│   ├── enums
+│   │   ├── BuildMode.java
+│   │   ├── CornerDirection.java
+│   │   ├── MessageMode.java
+│   │   ├── PlayerRole.java
+│   │   └── ResourceType.java
+│   │
+│   ├── models
+│   │   ├── AIHackerCEOPlayer.java
+│   │   ├── AIPlayer.java
+│   │   ├── AITechGuruPlayer.java
+│   │   ├── AIVCFundedPlayer.java
+│   │   ├── CompanyStructure.java
+│   │   ├── Edge.java
+│   │   ├── FileItem.java
+│   │   ├── HackerCEOPlayer.java
+│   │   ├── Market.java
+│   │   ├── MVP.java
+│   │   ├── Partnership.java
+│   │   ├── PlayableAI.java
+│   │   ├── Player.java
+│   │   ├── Sector.java
+│   │   ├── TechGuruPlayer.java
+│   │   ├── Unicorn.java
+│   │   ├── VCFundedPlayer.java
+│   │   └── Vertex.java
+│   │
+│   ├── save
+│   │   └── SaveManager.java
+│   │
+│   └── sound
+│       ├── SFXManager.java
+│       └── SoundManager.java
+│
+└── ui
+    ├── controller
+    │   ├── GameBoardController.java
+    │   ├── IncomingTradeController.java
+    │   ├── LegalCrisisController.java
+    │   ├── MainMenuController.java
+    │   └── TradeRequestController.java
+    │
+    └── view
+        ├── GameBoard.fxml
+        ├── IncomingTrade.fxml
+        ├── LegalCrisis.fxml
+        ├── MainMenu.fxml
+        ├── TradeRequest.fxml
+        └── style.css
+```
+
+### Package Responsibilities
+
+| Package | Responsibility |
+|----------|----------------|
+| **Main** | Application entry point responsible for launching the JavaFX application. |
+| **assets** | Contains all static resources used by the game, including images, icons, sector textures, dice faces, audio effects, background music, and UI assets. |
+| **logic.engine** | Core game engine containing turn management, resource distribution, dice mechanics, AI implementations (Simple AI & MCTS AI), map generation, and game rules. |
+| **logic.models** | Data model layer representing players, company structures (MVP, Unicorn, Partnership), market system, map components, and AI player specializations. |
+| **logic.enums** | Enumerations defining game constants such as resource types, player roles, build modes, and UI message types. |
+| **logic.save** | Save/Load subsystem responsible for serializing and restoring complete game sessions. |
+| **logic.sound** | Background music and sound effect management. |
+| **ui.controller** | JavaFX controllers handling user interactions, game events, animations, and communication with the game engine. |
+| **ui.view** | JavaFX FXML layouts and styling resources for the graphical user interface. |
+| **exception** | Custom exception classes used to validate game rules and provide meaningful error handling. |
+
+### High-Level Architecture
+
+```text
+                     User
+                      │
+                      ▼
+           JavaFX Controllers (UI)
+                      │
+                      ▼
+                GameEngine
+      ┌────────────┼────────────┐
+      ▼            ▼            ▼
+   Game Map     Players      AI System
+      │            │       ┌──────────────┐
+      │            │       │              │
+      │            │       ▼              ▼
+      │            │   Simple AI      MCTS AI
+      │            │
+      ▼            ▼
+ Company Structures
+      │
+      ├── MVP
+      ├── Unicorn
+      └── Partnership
+```
+
+The modular MVC architecture makes the project easy to maintain, extend, and test. New AI strategies, game mechanics, player roles, or UI components can be added with minimal impact on the rest of the codebase.
 
 ## ⚙️ Overall Game Logic
 
